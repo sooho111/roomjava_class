@@ -22,7 +22,7 @@
 		-->
 		<property name="driverClassName" value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy"></property>
 		<property name="url" value="jdbc:log4jdbc:mysql://127.0.0.1:3306/roomjava?useSSL=false&amp;serverTimezone=UTC"></property>
-		<property name="username" value="roommaster"></property>
+		<property name="username" value="RoomMaster"></property>
 		<property name="password" value=""></property>
 	</bean>
 	
