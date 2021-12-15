@@ -8,7 +8,7 @@
 		<div class="comunity">
 			<ul class="f_lnb">
 				<li><a href="#">1 : 1 문의</a></li>
-				<li><a href="#">공지사항</a></li>
+				<li><a href="admin/notice/noticeInsert">공지사항</a></li>
 				<li><a href="#">후기 보기</a></li>
 			</ul>
 		</div>
