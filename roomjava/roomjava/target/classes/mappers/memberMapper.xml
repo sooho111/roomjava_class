@@ -4,5 +4,14 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace = "com.room.member.mapper.memberMapper">
+<!-- 로그인 -->
 
+
+<select resultType="com.room.member.dto.MemberDTO" parameterType="com.room.member.dto.MemberDTO" id="login">
+SELECT m_id, m_pwd, m_name ,m_power
+FROM member
+WHERE m_id = #{m_id}
+AND m_pwd = #{m_pwd} 
+</select>
+	
 </mapper>
