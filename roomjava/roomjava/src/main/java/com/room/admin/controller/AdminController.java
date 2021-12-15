@@ -9,7 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.room.admin.dto.BoardDTO;
 import com.room.admin.dto.PageMaker;
@@ -67,5 +67,16 @@ public class AdminController {
 			model.addAttribute("pageMaker", pageMaker);
 			
 			return "admin/notice/noticeList";
+		}
+		
+	// ------------------------------------------------------------------------------------------------------
+	// 공지사항 상세페이지
+	// ------------------------------------------------------------------------------------------------------
+		@RequestMapping(value = "/notice/noticeDetail", method = RequestMethod.GET)
+		public void noticeDetail(@RequestParam("n") int notice_bno, Model model, BoardDTO boardDTO) throws Exception {
+			logger.info("noticeDetail");
+			
+			
+			
 		}
 }

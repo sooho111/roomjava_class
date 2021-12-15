@@ -19,3 +19,5 @@
 	<h3 style="font-size : 2em ;">관리자가 ROOM JAVA에 관한 모든 것을 관리하는 페이지입니다.</h3>
 	<br>
 </div>
+</body>
+</html>

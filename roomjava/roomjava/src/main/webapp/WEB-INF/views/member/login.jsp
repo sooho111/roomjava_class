@@ -9,6 +9,9 @@
 <meta charset="UTF-8">
 <title>로그인</title>
 <%@ include file="../include/includeFile.jsp" %>
+<style>
+.container { position:absolute; z-index:10; }
+</style>
 </head>
 <body>
 <%@ include file="../include/header.jsp" %>
