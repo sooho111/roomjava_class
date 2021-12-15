@@ -7,21 +7,20 @@
 	<div class="inner">
 		<div class="comunity">
 			<ul class="f_lnb">
-				<li><a href="#">1 : 1 문의</a></li>
-				<li><a href="admin/notice/noticeInsert">공지사항</a></li>
-				<li><a href="#">후기 보기</a></li>
+				<li><a href="#">개인정보처리방침</a></li>
+				<li><a href="#">영상정보처리기기 운영 · 관리 방침</a></li>
+				<li><a href="#">이메일무단수집거부</a></li>
 			</ul>
 		</div>
 				
-		<img src="../resources/images/logo.png" alt="footer_logo" width="200" />
+		<img src="../resources/images/logo2.png" alt="footer_logo" width="200" />
 		
 		<div class="callsenter">
 			<ul class="f_call">
 				<li>고객 센터</li>
-				<li><span class="glyphicon glyphicon-phone-alt"></span> 02-733-8781</li>
-				<li>월 ~ 토요일 09:00 ~ 18:00<br>
-					점심시간 12:00 ~ 13:00<br>
-					일요일, 공휴일은 휴무입니다.</li>
+				<li>(우:16107) 경기도 의왕시 왕송못동로 295 (월암동, 왕송호수캠핑장 매표소)</li>
+				<li>문의 : 031-8086-7371</li>
+				<li>Copyright (c) 2018 UIWANG CITY. All rights reserved.</li>
 			</ul>
 		</div>
 	</div>
