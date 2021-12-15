@@ -16,11 +16,11 @@
 				<h2 align="center">회원 가입</h2>
 			</div>
 		</div>
-		
+		<input type="hidden" id="m_bno" name="m_bno" value="${m_bno}" />
 		<div class="form-group">
 			<label class="control-label col-sm-2">아 이 디</label>
 			<div class="col-sm-3">
-				<input type="text" class="form-control" id="userId" name="userId" maxlength="16" placeholder="Enter ID"/>*4~12자의 영문 대소문자와 숫자로만 입력
+				<input type="text" class="form-control" id="m_id" name="m_id" maxlength="16" placeholder="Enter ID"/>*4~12자의 영문 대소문자와 숫자로만 입력
 			</div>
 			<div class="col-sm-2">
 				<button class="idCheck btn btn-warning" type="button" id="idCheck" onclick="fn_idCheck();" value="N">중복확인</button>
@@ -30,14 +30,14 @@
 		<div class="form-group">
 			<label class="control-label col-sm-2">비밀번호</label>
 			<div class="col-sm-3">
-				<input type="password" class="form-control" id="userPw" name="userPw" maxlength="16" placeholder="Enter Password"/>*4~12자의 영문 대소문자와 숫자로만 입력
+				<input type="password" class="form-control" id="m_pwd" name="m_pwd" maxlength="16" placeholder="Enter Password"/>*4~12자의 영문 대소문자와 숫자로만 입력
 			</div>
 		</div>
 		
 		<div class="form-group">
 			<label class="control-label col-sm-2">비밀번호 확인</label>
 			<div class="col-sm-3">
-				<input type="password" class="form-control" id="reuserPw" name="reuserPw" maxlength="16" placeholder="Enter Password"/>
+				<input type="password" class="form-control" id="rem_pwd" name="rem_pwd" maxlength="16" placeholder="Enter Password"/>
 				<font id="chkNotice" size="2"></font>
 			</div>
 		</div>
@@ -45,28 +45,28 @@
 		<div class="form-group">
 			<label class="control-label col-sm-2">이름</label>
 			<div class="col-sm-3">
-				<input type="text" class="form-control" id="userName" name="userName" maxlength="20" placeholder="Enter Name"/>*2~20글자 이상 입력
+				<input type="text" class="form-control" id="m_name" name="m_name" maxlength="20" placeholder="Enter Name"/>*2~20글자 이상 입력
 			</div>
 		</div>
 		
 		<div class="form-group">
 			<label class="control-label col-sm-2">생년월일</label>
 			<div class="col-sm-3">
-				<input type="text" class="form-control" id="userBirth" name="userBirth" placeholder="Enter Birth"/>*생년월일 6자 입력
+				<input type="text" class="form-control" id="m_birth" name="m_birth" placeholder="Enter Birth"/>*생년월일 6자 입력
 			</div>
 		</div>
 		
 		<div class="form-group">
 			<label class="control-label col-sm-2">전화번호</label>
 			<div class="col-sm-3">
-				<input type="text" class="form-control" id="userPhone" name="userPhone" placeholder="Enter Telephone"/>*('-' 없이 번호만 입력해주세요)
+				<input type="text" class="form-control" id="m_tel" name="m_tel" placeholder="Enter Telephone"/>*('-' 없이 번호만 입력해주세요)
 			</div>
 		</div>
 		
 		<div class="form-group">
 			<label class="control-label col-sm-2">이메일</label>
 			<div class="col-sm-3">
-				<input type="text" class="form-control" id="userEmail" name="userEmail" placeholder="Enter Email"/>
+				<input type="text" class="form-control" id="m_email" name="m_email" placeholder="Enter Email"/>
 			</div>
 			<div class="col-sm-2">
 				<button class="eCheck btn btn-warning" type="button" id="eCheck" onclick="fn_eCheck();" value="N">중복확인</button>
@@ -76,7 +76,7 @@
 		<div class="form-group">
 			<label class="control-label col-sm-2">우편번호</label>
 			<div class="col-sm-3">
-				<input type="text" class="form-control" id="zipcode" name="zipcode" placeholder="우편번호"/>
+				<input type="text" class="form-control" id="zipcode" name="zipcode" placeholder="우편번호" readonly/>
 				<input type="button"	class="form-control" onclick="daumZipCode()" value="우편번호검색"/>
 			</div>
 		</div>
@@ -115,100 +115,100 @@ $(document).ready(function() {
 		var email = RegExp(/^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/)
 	    var birth= RegExp(/^[0-9]{6}$/)
 	    var phone= RegExp(/^0?[0-9]{11}$/)
-		if($("#userId").val() == "") {
+		if($("#m_id").val() == "") {
 			alert("아이디를 입력하십시오.");
-			$("#userId").focus();
+			$("#m_id").focus();
 			return false;
 		}
-		if(!idd.test($("#userId").val())){
+		if(!idd.test($("#m_id").val())){
 			alert("아이디는 4~12자의 영문 대소문자와 숫자로만 입력하십시오.");
-			$("#userId").val("");
+			$("#m_id").val("");
             // idCheck.value = "";
-            $("#userId").focus();
+            $("#m_id").focus();
             return false;
 		}
 			
-		if($("#userPw").val() == "") {
+		if($("#m_pwd").val() == "") {
 			alert("비밀번호를 입력하십시오.");
-			$("#userPw").focus();
+			$("#m_pwd").focus();
 			return false;
 		}
 		//아이디 비밀번호 같음 확인
-        if($("#userId").val() == $("#userPw").val()){
+        if($("#m_id").val() == $("#m_pwd").val()){
           alert("아이디와 비밀번호가 같습니다.\n다르게 입력해주십시오.");
-          $("#userPw").val("");
-          $("#userPw").focus();
+          $("#m_pwd").val("");
+          $("#m_pwd").focus();
            return false;
 	     }
 	      //비밀번호 유효성검사
-	      if(!pww.test($("#userPw").val())){
+	      if(!pww.test($("#m_pwd").val())){
 	          alert("비밀번호는 4~12자의 영문 대소문자와 숫자로만 입력하십시오.");
-	          $("#userPw").val("");
-	          $("#userPw").focus();
+	          $("#m_pwd").val("");
+	          $("#m_pwd").focus();
 	           return false;
 	     }
-		if($("#reuserPw").val() == "") {
+		if($("#rem_pwd").val() == "") {
 			alert("비밀번호확인을 입력하십시오.");
-			$("#reuserPw").focus();
+			$("#rem_pwd").focus();
 			return false;
 		}
 		//비밀번호 서로확인
-        if($("#userPw").val() != $("#reuserPw").val()){
+        if($("#m_pwd").val() != $("#rem_pwd").val()){
             alert("비밀번호가 일치하지 않습니다.");
-            $("#reuserPw").val("");
-            $("#reuserPw").focus();
+            $("#rem_pwd").val("");
+            $("#rem_pwd").focus();
             return false;
        }
 		
-		if($("#userName").val() == "") {
+		if($("#m_name").val() == "") {
 			alert("이름를 입력하십시오.");
-			$("#userName").focus();
+			$("#m_name").focus();
 			return false;
 		}
 		//이름 유효성 검사
-        if(!named.test($("#userName").val())){
+        if(!named.test($("#m_name").val())){
              alert("이름형식에 맞게 입력해주세요")
-             $("#userName").val("");
-             $("#userName").focus();
+             $("#m_name").val("");
+             $("#m_name").focus();
              return false;
         }
 		
-		if($("#userBirth").val() == "") {
+		if($("#m_birth").val() == "") {
 			alert("생년월일을 입력하십시오.");
-			$("#userBirth").focus();
+			$("#m_birth").focus();
 			return false;
 		}
 		//생년월일 유효성 검사
-        if(!birth.test($("#userBirth").val())){
+        if(!birth.test($("#m_birth").val())){
              alert("생년월일 6자리를 입력해주세요.")
-             $("#userBirth").val("");
-             $("#userBirth").focus();
+             $("#m_birth").val("");
+             $("#m_birth").focus();
              return false;
         }
 		
-		if($("#userPhone").val() == "") {
+		if($("#m_tel").val() == "") {
 			alert("전화번호를 입력하십시오.");
-			$("#userPhone").focus();
+			$("#m_tel").focus();
 			return false;
 		}
 		//전화번호 유효성 검사
-        if(!phone.test($("#userPhone").val())){
+        if(!phone.test($("#m_tel").val())){
              alert("핸드폰 번호를 입력해주세요.")
-             $("#userPhone").val("");
-             $("#userPhone").focus();
+             $("#m_tel").val("");
+             $("#m_tel").focus();
              return false;
         }
 		
-		if($("#userEmail").val() == "") {
+		if($("#m_email").val() == "") {
 			alert("이메일를 입력하십시오.");
-			$("#userEmail").focus();
+			$("#m_email").focus();
 			return false;
 		}
 		//이메일 유효성 검사
-        if(!email.test($("#userEmail").val())){
+        if(!email.test($("#m_email").val())){
              alert("이메일형식에 맞게 입력해주세요")
-             $("#userEmail").val("");
-             $("#userEmail").focus();
+             $("#m_email").val("");
+             $("#m_email").focus();
              return false;
         }
 		if($("#zipcode").val() == "") {
@@ -226,9 +226,9 @@ $(document).ready(function() {
 			$("#userAddr2").focus();
 			return false;
 		}
-		if($('#userPw').val() != $('#reuserPw').val()){
+		if($('#m_pwd').val() != $('#rem_pwd').val()){
 			alert("비밀번호를 다시한번 입력해주세요.")
-			$("#userPw").focus();
+			$("#m_pwd").focus();
 			return false;
 		}	
 			
@@ -244,7 +244,7 @@ function fn_idCheck() {
 		url :		"/member/idCheck",
 		type:		"post",
 		dataType:	"json",
-		data:		{"userId" : $("#userId").val() },
+		data:		{"m_id" : $("#m_id").val() },
 		success:	function(data) {
 			
 			var idd= RegExp(/^[a-zA-Z0-9]{4,12}$/)
@@ -253,11 +253,11 @@ function fn_idCheck() {
 				alert("이미 사용중인 아이디입니다.\n다른 아이디를 입력하십시요.");
 			} else if(data == 0) {
 
-				if(!idd.test($("#userId").val())){
+				if(!idd.test($("#m_id").val())){
 					alert("아이디는 4~12자의 영문 대소문자와 숫자로만 입력하십시오.");
-					$("#userId").val("");
+					$("#m_id").val("");
 		            // idCheck.value = "";
-		            $("#userId").focus();
+		            $("#m_id").focus();
 		            return false;
 				}
 					
@@ -271,13 +271,13 @@ function fn_idCheck() {
 
 
 $(function(){
-    $('#userPw').keyup(function(){
+    $('#m_pwd').keyup(function(){
       $('#chkNotice').html('');
     });
 
-    $('#reuserPw').keyup(function(){
+    $('#rem_pwd').keyup(function(){
 
-        if($('#userPw').val() != $('#reuserPw').val()){
+        if($('#m_pwd').val() != $('#rem_pwd').val()){
           $('#chkNotice').html('비밀번호 일치하지 않음<br><br>');
           $('#chkNotice').attr('color', '#f82a2aa3');
         } else{
@@ -293,7 +293,7 @@ function fn_eCheck() {
 		url :		"/member/eCheck",
 		type:		"post",
 		dataType:	"json",
-		data:		{"userEmail" : $("#userEmail").val() },
+		data:		{"m_email" : $("#m_email").val() },
 		success:	function(data) {
 			var email = RegExp(/^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/)
 			//alert("Return : " + data);
@@ -301,10 +301,10 @@ function fn_eCheck() {
 				alert("이미 사용중인 이메일입니다.\n다른 이메일을 입력하십시요.");
 			} else if(data == 0) {
 				
-				if(!email.test($("#userEmail").val())){
+				if(!email.test($("#m_email").val())){
 		             alert("이메일형식에 맞게 입력해주세요")
-		             $("#userEmail").val("");
-		             $("#userEmail").focus();
+		             $("#m_email").val("");
+		             $("#m_email").focus();
 		             return false;
 		        }
 				$("#eCheck").attr("value", "Y");
