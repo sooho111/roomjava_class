@@ -9,13 +9,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import com.room.admin.dao.AdminDAO;
-<<<<<<< HEAD
 import com.room.admin.dto.BoardDTO;
 import com.room.admin.dto.SearchCriteria;
-=======
 import com.room.admin.dto.RoomKindDTO;
->>>>>>> f2709bd4c58caa5bea47ff97e6268537e6bc0d49
-import com.room.member.dao.MemberDAO;
 
 @Service
 public class AdminServiceImpl implements AdminService {
