@@ -13,5 +13,48 @@ FROM member
 WHERE m_id = #{m_id}
 AND m_pwd = #{m_pwd} 
 </select>
+<!-- 회원 아이디 중복 검사 -->
+
+
+<select resultType="int" id="idCheck">
+SELECT count(*)
+FROM member
+WHERE m_id = #{m_id} 
+</select>
+<!-- 회원 이메일 중복 검사 -->
+<select resultType="int" id="eCheck">
+SELECT count(*)
+FROM member
+WHERE m_email = #{m_email}
+</select>
+<!-- 회원 가입 -->
+
+
+<insert parameterType="com.room.member.dto.MemberDTO" id="insert">
+INSERT INTO member(m_bno,m_id, m_pwd, m_name, m_tel, m_email, m_address, m_birth)
+VALUES (#{m_bno},#{m_id}, #{m_pwd}, #{m_name}, #{m_tel}, #{m_email}, #{m_address}, #{m_birth}) 
+</insert>
+<!-- 해당하는 회원id의 비밀번호, 이름, 번화번호, 주소를 변경한다. -->
+
+
+<update parameterType="com.room.member.dto.MemberDTO" id="update">
+UPDATE member
+SET m_pwd = #{m_pwd},m_name = #{m_name},m_tel = #{m_tel},m_address = #{m_address} 
+WHERE m_id = #{m_id} 
+</update>
+
+<!-- 회원 아이디에 해당하는 정보를 삭제한다. -->
+
+
+<delete parameterType="String" id="delete">
+DELETE FROM member
+WHERE m_id = #{m_id} 
+</delete>
+ 	<select id="view" parameterType="String" resultType="com.room.member.dto.MemberDTO">
+		SELECT * FROM member WHERE m_id = #{m_id}
+	</select>
+
+
+
 	
 </mapper>

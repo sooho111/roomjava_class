@@ -9,7 +9,7 @@
 				<c:if test="${manager == null}">
 			<ul>
 				<!-- <li><a href="#">내 정보</a></li> -->
-				<li><a href="#">로그인</a></li>
+				<li><a href="#"></a></li>
 			</ul>
 		</c:if>
 		
@@ -22,7 +22,7 @@
 				<li><a href="#"><span class="glyphicon glyphicon-barcode"></span> 밀키트 등록</a></li>
            		<li><a href="#"><span class="glyphicon glyphicon-plane"></span> 밀키트 주문 목록</a></li>
            		<li><a href="#"><span class="glyphicon glyphicon-inbox"></span> 밀키트 목록 확인</a></li>
-           		<li><a href="#"><span class="glyphicon glyphicon-volume-up"></span> 공지사항</a></li>
+           		<li><a href="/admin/notice/noticeList"><span class="glyphicon glyphicon-volume-up"></span> 공지사항</a></li>
             	<li><a href="#"><span class="glyphicon glyphicon-user"></span> 1 : 1 문의</a></li>
 			</ul>
 	</div>

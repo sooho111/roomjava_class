@@ -59,7 +59,7 @@
 								환영합니다.</h2>
 							<c:if test="${member.m_power== 1}">
 								<div align="center">
-								<a href="/manager/managerMain">관리자 페이지로</a>
+								<a href="/admin/adminMain">관리자 페이지로</a>
 								</div>
 							</c:if>
 						</div>
