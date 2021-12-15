@@ -26,7 +26,7 @@ INSERT INTO notice_board (notice_title, notice_content)
       </if>
    </sql>
 
-   <!-- 회원 목록 보기 (Paging 처리) + 검색조건 -->
+   <!-- 공지사항 목록 보기 (Paging 처리) + 검색조건 -->
    <select id="noticePaging" parameterType="com.room.admin.dto.SearchCriteria" resultType="com.room.admin.dto.BoardDTO">
     <![CDATA[
         SELECT   *  
@@ -40,7 +40,7 @@ INSERT INTO notice_board (notice_title, notice_content)
     ]]>
    </select>
    
-   	<!-- 전체 게시글 수 구하기 (Paging 처리) -->
+   	<!-- 전체 공지사항 수 구하기 (Paging 처리) -->
 	<select id="noticeTotalCount" resultType="Integer">
     <![CDATA[
         SELECT	count(*)
@@ -48,4 +48,13 @@ INSERT INTO notice_board (notice_title, notice_content)
     ]]>
 	</select>
 
+	<!-- 공지사항 상세페이지 -->
+	<select id="detailView" parameterType="int" resultType="com.room.admin.dto.BoardDTO">
+	SELECT notice_bno,
+		   notice_title,
+		   notice_content,
+		   notice_date
+	FROM   notice_board		   
+	WHERE  notice_bno = #{notice_bno}
+	</select>
 </mapper>

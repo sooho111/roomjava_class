@@ -69,14 +69,18 @@ public class AdminController {
 			return "admin/notice/noticeList";
 		}
 		
-	// ------------------------------------------------------------------------------------------------------
-	// 공지사항 상세페이지
-	// ------------------------------------------------------------------------------------------------------
+	//-------------------------------------------------------------------------------------------------------
+	//공지사항 상세페이지	
+	//-------------------------------------------------------------------------------------------------------
 		@RequestMapping(value = "/notice/noticeDetail", method = RequestMethod.GET)
-		public void noticeDetail(@RequestParam("n") int notice_bno, Model model, BoardDTO boardDTO) throws Exception {
-			logger.info("noticeDetail");
-			
-			
-			
+		public String noticeDetail( Model model, @RequestParam("n") int notice_bno, BoardDTO boardDTO) throws Exception {
+		
+		logger.info("noticeDetail");
+		
+		boardDTO.setNotice_bno(notice_bno);
+		model.addAttribute("detail", adminService.detailView(boardDTO.getNotice_bno()));
+		
+		return "admin/notice/noticeDetail";
+		
 		}
 }

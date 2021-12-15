@@ -46,8 +46,6 @@ public class AdminDAOImpl implements AdminDAO {
 
 		return sqlSession.selectOne(namespace + ".noticeTotalCount", scri);
 	}
-
-
 	
 	// ----------------------------------------------------------------------------------------------------
 	// 방 종류 뿌려주기
@@ -57,5 +55,13 @@ public class AdminDAOImpl implements AdminDAO {
 		return sqlSession.selectList(namespace + ".roomKind");
 		
 	} // end RoomKindDTO roomKind()
+	
+	// 공지사항 상세페이지
+	@Override
+	public BoardDTO detailView(int notice_bno) throws Exception {
+		
+		return sqlSession.selectOne(namespace + ".detailView", notice_bno);
+	}
+	
 
 } // end class AdminDAOImpl implements AdminDAO
