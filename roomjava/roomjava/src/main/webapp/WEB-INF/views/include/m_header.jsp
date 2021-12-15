@@ -4,7 +4,7 @@
 <%@ taglib prefix="fmt"			uri="http://java.sun.com/jsp/jstl/fmt" %>
 <div id="header">
 	<div class="inner">
-		<h1><a href="#"><img src="../resources/images/logo2.png" alt="logo" width="200" /></a></h1>
+		<h1><a href="/"><img src="../resources/images/logo.png" alt="logo" width="200" /></a></h1>
 		
 				<c:if test="${manager == null}">
 			<ul>
