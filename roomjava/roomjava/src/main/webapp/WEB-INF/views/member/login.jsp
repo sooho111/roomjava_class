@@ -20,7 +20,7 @@
 				<div class="form-group">
 					<label class="control-label col-sm-2">아이디</label>
 					<div class="col-sm-3">
-						<input type="text" class="form-control" id="userId" name="userId"
+						<input type="text" class="form-control" id="m_id" name="m_id"
 							maxlength="16" placeholder="Enter username" />
 					</div>
 				</div>
@@ -29,7 +29,7 @@
 					<label class="control-label col-sm-2">비밀번호</label>
 					<div class="col-sm-3">
 						<input type="password" class="form-control" id="password"
-							placeholder="Enter password" name="userPw">
+							placeholder="Enter password" name="m_pwd">
 					</div>
 				</div>
 
@@ -68,8 +68,8 @@
 				
 				<div class="form-group">
 					<div class="col-sm-offset-3 col-sm-4">
-						<input type="hidden" id="userId" name="id"
-							value="${member.userId}" />
+						<input type="hidden" id="m_id" name="id"
+							value="${member.m_id}" />
 						<button id="memberUpdateBtn" type="button" class="btn btn-warning">회원정보수정</button>
 						<button id="memberDeleteBtn" type="button" class="btn btn-danger">회원탈퇴</button>
 						<button id="logoutBtn" type="button" class="btn btn-info">로그아웃</button>
@@ -105,9 +105,9 @@
 
 			// 로그인 버튼을 눌렀을 경우
 			$("#submit").on("click", function() {
-				if ($("#userId").val() == "") { // 아이디를 입력하지 않았으면
+				if ($("#m_id").val() == "") { // 아이디를 입력하지 않았으면
 					alert("아이디를 입력하십시오.");
-					$("#userId").focus();
+					$("#m_id").focus();
 					return false;
 				}
 				if ($("#password").val() == "") { // 비밀번호를 입력하지 않았으면
@@ -120,7 +120,7 @@
 			});
 			// 회원탈퇴버튼을 눌렀을 경우 회원탈퇴 페이지로 이동한다.
 			$("#memberDeleteBtn").on("click", function() {
-				location.href = "/member/memberDelete/" + $("#userId").val();
+				location.href = "/member/memberDelete/" + $("#m_id").val();
 			});
 			
 
@@ -131,7 +131,7 @@
 
 			// 회원정보수정버튼을 눌렀을 경우 회원정보수정 페이지로 이동한다.
 			$("#memberUpdateBtn").on("click", function() {
-				location.href = "/member/memberUpdate/" + $("#userId").val();
+				location.href = "/member/memberUpdate/" + $("#m_id").val();
 			});
 
 			// 아이디찾기
