@@ -9,7 +9,6 @@
 <title>Room Java</title>
 <%@ include file="../include/includeFile.jsp" %>
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');
 .item { background-color:#000; }
 .item img { opacity:0.7; }
 </style>
@@ -73,6 +72,9 @@
 <script>
 $('.logout').click(function(){
 	var result = confirm("로그아웃 하시겠습니까?");
+	if(result){
+		location.href="member/logout";
+	}
 });
 
 </script>
