@@ -10,19 +10,16 @@
 <%@ include file="../include/includeFile.jsp" %>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');
-<<<<<<< HEAD
-.item {
-	max-width: 80%;
- 	height: auto !important;
-	display: block;
-}
+.item { background-color:#000; }
+.item img { opacity:0.7; }
 </style>
 
 </head>
 <body>
-<%@ include file="../include/header.jsp" %>
 
 <div id="visual">
+	<%@ include file="../include/header.jsp" %>
+	
 	<div id="myCarousel" class="carousel slide" data-ride="carousel">
 		
 		<!-- Wrapper for slides : 사진에 대한 설정 -->

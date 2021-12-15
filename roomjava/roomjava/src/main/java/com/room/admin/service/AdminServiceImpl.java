@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 import com.room.admin.dao.AdminDAO;
 import com.room.admin.dto.BoardDTO;
 import com.room.admin.dto.SearchCriteria;
-import com.room.member.dao.MemberDAO;
+import com.room.admin.dto.RoomKindDTO;
 
 @Service
 public class AdminServiceImpl implements AdminService {
@@ -40,5 +40,15 @@ public class AdminServiceImpl implements AdminService {
 		return adminDAO.listCount(scri);
 	} 	
 	
+	// ----------------------------------------------------------------------------------------------------
+	// 방 종류 뿌려주기
+	// ----------------------------------------------------------------------------------------------------
+	@Override
+	public List<RoomKindDTO> roomKind() throws Exception {
+		return adminDAO.roomKind();
+		
+	} // end RoomKindDTO roomKind()
+
 	
-}
+	
+} // end class AdminServiceImpl implements AdminService

@@ -27,7 +27,6 @@ MemberDAO memberDAO;
 	public MemberDTO login(MemberDTO memberDTO) throws Exception {
 		return memberDAO.login(memberDTO);
 	}
-	/*
 	// -----------------------------------------------------------------------------------------------------------
 	// 회원 아이디 중복 검사
 	// -----------------------------------------------------------------------------------------------------------
@@ -38,8 +37,17 @@ MemberDAO memberDAO;
 		int result = memberDAO.idCheck(memberDTO);
 		return result;
 
-	} // End - public int idCheck(MemberDTO memberDTO)
+	}
+	// -----------------------------------------------------------------------------------------------------------
+	// 회원 이메일 중복 검사
+	// -----------------------------------------------------------------------------------------------------------
+	@Override
+	public int eCheck(MemberDTO memberDTO) throws Exception {
 
+		logger.info("MemberServieImpl 이메일 중복 검사()");
+		int result = memberDAO.eCheck(memberDTO);
+		return result;
+	}
 	// -------------------------------------------------------------------------------------------------
 	// 회원 가입
 	// -------------------------------------------------------------------------------------------------
@@ -53,15 +61,6 @@ MemberDAO memberDAO;
 		int result = memberDAO.memberInsert(memberDTO);
 		return result;
 	}
-
-	// -------------------------------------------------------------------------------------------------
-	// 회원가입 POST (Ajax)
-	// -------------------------------------------------------------------------------------------------
-	@Override
-	public int register(MemberDTO memberDTO) throws Exception {
-		return memberDAO.register(memberDTO);
-	}
-
 	// -------------------------------------------------------------------------------------------------
 	// 회원 정보 수정
 	// -------------------------------------------------------------------------------------------------
@@ -70,6 +69,28 @@ MemberDAO memberDAO;
 		logger.info("MemberServiceImpl update(MemberDTO memberDTO).....");
 		memberDAO.update(memberDTO);
 	}
+	// -------------------------------------------------------------------------------------------------
+	// 회원 상세 정보
+	// -------------------------------------------------------------------------------------------------
+	@Override
+	public MemberDTO view(String m_id) throws Exception {
+		logger.info("MemberServiceImpl view(String id).....");
+		return memberDAO.view(m_id);
+	}
+
+	// -------------------------------------------------------------------------------------------------
+	// 회원탈퇴
+	// -------------------------------------------------------------------------------------------------
+	@Override
+	public int memberDelete(String m_id) throws Exception {
+		return memberDAO.memberDelete(m_id);
+	}
+
+	/*
+
+
+
+
 
 	// -------------------------------------------------------------------------------------------------
 	// 아이디 찾기
@@ -113,24 +134,9 @@ MemberDAO memberDAO;
 
 
 
-		// -------------------------------------------------------------------------------------------------
-		// 회원탈퇴
-		// -------------------------------------------------------------------------------------------------
-		@Override
-		public int memberDelete(String userId) throws Exception {
-			return memberDAO.memberDelete(userId);
-		}
 
-		// -----------------------------------------------------------------------------------------------------------
-		// 회원 이메일 중복 검사
-		// -----------------------------------------------------------------------------------------------------------
-		@Override
-		public int eCheck(MemberDTO memberDTO) throws Exception {
 
-			logger.info("MemberServieImpl 이메일 중복 검사()");
-			int result = memberDAO.eCheck(memberDTO);
-			return result;
 
-		}*/
+		*/
 	
 }

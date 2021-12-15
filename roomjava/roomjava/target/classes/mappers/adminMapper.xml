@@ -5,10 +5,18 @@
 
 <mapper namespace = "com.room.admin.mapper.adminMapper">
 
+
 <insert id ="notice">
 INSERT INTO notice_board (notice_title, notice_content)
 		values (#{notice_title}, #{notice_content} )
 </insert>
+
+	
+	<select id="roomKind" resultType="com.room.admin.dto.RoomKindDTO">
+		SELECT *
+		FROM room_kind
+	</select>
+
 
    <!-- 공지사항 검색조건 -->
    <sql id="noticeSearch">

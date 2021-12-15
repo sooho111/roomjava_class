@@ -1,6 +1,8 @@
 package com.room.member.controller;
 
 import java.text.DateFormat;
+import java.text.DecimalFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 import javax.inject.Inject;
@@ -70,7 +72,7 @@ public class MemberController {
 				return "redirect:/member/login";
 			}
 
-			/*// -------------------------------------------------------------------------------------------------
+			// -------------------------------------------------------------------------------------------------
 			// 로그아웃
 			// -------------------------------------------------------------------------------------------------
 			@RequestMapping(value = "/logout", method = RequestMethod.GET)
@@ -84,11 +86,56 @@ public class MemberController {
 			// 회원 가입 : GET
 			// -------------------------------------------------------------------------------------------------
 			@RequestMapping(value = "/memberInsert", method = RequestMethod.GET)
-			public String memberInsertGet() throws Exception {
+			public String memberInsertGet(Model model) throws Exception {
+			    // 캘린더 호출
+			    Calendar cal = Calendar.getInstance();
+			    int year = cal.get(Calendar.YEAR);  // 연도 추출
+			    String ym = year + new DecimalFormat("00").format(cal.get(Calendar.MONTH) + 1);  // 월 추출
+			    String ymd = ym +  new DecimalFormat("00").format(cal.get(Calendar.DATE));  // 일 추출
+			    String subNum = "";  // 랜덤 숫자를 저장할 문자열 변수
+			      
+			    for(int i = 1; i <= 6; i ++) {  // 6회 반복
+			        subNum += (int)(Math.random() * 6);  // 0~9까지의 숫자를 생성하여 subNum에 저장
+			    }
+			      
+			    String m_bno = ymd + "_" + subNum;  // [연월일]_[랜덤숫자] 로 구성된 문자
+			    model.addAttribute("m_bno",m_bno);
 				logger.info("MemberController memberInsertGET().....");
 				return "/member/memberInsert";
 			}
+			// -----------------------------------------------------------------------------------------------------------
+			// 아이디 중복 검사
+			// -----------------------------------------------------------------------------------------------------------
+			@ResponseBody
+			@RequestMapping(value = "/idCheck", method = RequestMethod.POST)
+			public int idCheck(MemberDTO memberDTO) throws Exception {
 
+				logger.info("MemberController 아이디 검사()");
+
+				int result = memberService.idCheck(memberDTO);
+
+				logger.info("MemberController 아이디 검사() 결과 ==> " + result);
+
+				return result;
+
+			} // End - public int idCheck(MemberDTO memberDTO)
+			
+			// -----------------------------------------------------------------------------------------------------------
+			// 이메일 중복 검사
+			// -----------------------------------------------------------------------------------------------------------
+			@ResponseBody
+			@RequestMapping(value = "/eCheck", method = RequestMethod.POST)
+			public int eCheck(MemberDTO memberDTO) throws Exception {
+
+				logger.info("MemberController 이메일 검사()");
+
+				int result = memberService.eCheck(memberDTO);
+
+				logger.info("MemberController 이메일 검사() 결과 ==> " + result);
+
+				return result;
+
+			}
 			// -------------------------------------------------------------------------------------------------
 			// 회원 가입 : POST
 			// -------------------------------------------------------------------------------------------------
@@ -96,6 +143,9 @@ public class MemberController {
 			public String memberInsertPost(MemberDTO memberDTO) throws Exception {
 
 				logger.info("MemberController memberInsertPost(MemberDTO memberDTO).....");
+				
+
+			   
 
 				// 회원 아이디가 존재하는지 먼저 검사한다.
 				int result = memberService.idCheck(memberDTO);
@@ -113,30 +163,16 @@ public class MemberController {
 				// return "redirect:/member/login";
 			}
 
-			// -----------------------------------------------------------------------------------------------------------
-			// 아이디 중복 검사
-			// -----------------------------------------------------------------------------------------------------------
-			@ResponseBody
-			@RequestMapping(value = "/idCheck", method = RequestMethod.POST)
-			public int idCheck(MemberDTO memberDTO) throws Exception {
+			
 
-				logger.info("MemberController 아이디 검사()");
-
-				int result = memberService.idCheck(memberDTO);
-
-				logger.info("MemberController 아이디 검사() 결과 ==> " + result);
-
-				return result;
-
-			} // End - public int idCheck(MemberDTO memberDTO)
 
 			// -------------------------------------------------------------------------------------------------
 			// 회원 정보 수정 GET
 			// -------------------------------------------------------------------------------------------------
-			@RequestMapping(value = "/memberUpdate/{userId}", method = RequestMethod.GET)
-			public String getMemberUpdate(@PathVariable String userId, Model model) throws Exception {
-				//MemberDTO view = memberService.view(userId);
-				//model.addAttribute("view", view);
+			@RequestMapping(value = "/memberUpdate/{m_id}", method = RequestMethod.GET)
+			public String getMemberUpdate(@PathVariable String m_id, Model model) throws Exception {
+				MemberDTO view = memberService.view(m_id);
+				model.addAttribute("view", view);
 				return "/member/memberUpdate";
 			}
 			
@@ -158,6 +194,7 @@ public class MemberController {
 				memberService.update(memberDTO);
 				return "redirect:/member/login";
 			}
+			/*
 
 			// 아이디 찾기 폼
 				@RequestMapping(value = "/findidpage", method = RequestMethod.GET)
@@ -186,21 +223,6 @@ public class MemberController {
 					return "/member/findpwform";
 				}
 
-				// -----------------------------------------------------------------------------------------------------------
-				// 이메일 중복 검사
-				// -----------------------------------------------------------------------------------------------------------
-				@ResponseBody
-				@RequestMapping(value = "/eCheck", method = RequestMethod.POST)
-				public int eCheck(MemberDTO memberDTO) throws Exception {
-
-					logger.info("MemberController 이메일 검사()");
-
-					int result = memberService.eCheck(memberDTO);
-
-					logger.info("MemberController 이메일 검사() 결과 ==> " + result);
-
-					return result;
-
-				}*/
+*/
 	
 }
