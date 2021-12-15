@@ -25,10 +25,10 @@
 		<ul class="gnb">
 		    <li><a href="#"><span class="glyphicon glyphicon-heart"></span> 시설 안내</a>
 		    	<ul class="infra">
-					<li><a href="#">공지 사항</a></li>
-					<li><a href="#">후기</a></li>
-					<li><a href="#">FAQ</a></li>
-				</ul>
+			    	<c:forEach items="${roomKind}" var="room">
+						<li><a href="#">${room.room_class}</a></li>
+					</c:forEach>
+		    	</ul>
 		    </li>
 		    
 			<li><a href="#"><span class="glyphicon glyphicon-credit-card"></span> 예약 안내</a>

@@ -38,6 +38,7 @@ a { text-decoration:none; }
 #header .gnb li { border:0; }
 #header .gnb li:nth-child(2):hover .reservation { visibility:visible; }
 #header .gnb li:nth-child(3):hover .comunity { visibility:visible; }
+#header .gnb li:nth-child(1):hover .infra { visibility:visible; }
 #header .gnb li a { color:#fff; font-size:18px; font-weight:100; }
 
 #header .reservation { position:absolute; padding:0; padding-top:10px; visibility:hidden; }
@@ -47,6 +48,10 @@ a { text-decoration:none; }
 #header .comunity { position:absolute; left:85px; top:45px; padding:0; padding-top:10px; visibility:hidden; }
 #header .comunity li { float:none; font-size:15px; background:#fff; margin:0; padding:5px; }
 #header .comunity li a { color:#000; }
+
+#header .infra { position:absolute; right:25px; top:45px; padding:0; padding-top:10px; visibility:hidden; }
+#header .infra li { float:none; font-size:15px; background:#fff; margin:0; padding:5px; }
+#header .infra li a { color:#000; }
 
 /* visual */
 #visual { width:100%; height:300px; }

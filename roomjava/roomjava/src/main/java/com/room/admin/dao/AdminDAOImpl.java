@@ -21,7 +21,7 @@ public class AdminDAOImpl implements AdminDAO {
 	@Inject
 	SqlSession sqlSession;
 	
-	private static final String namespace = "com.room.admin.mapper.Adminmapper";
+	private static final String namespace = "com.room.admin.mapper.adminMapper";
 	
 	// ----------------------------------------------------------------------------------------------------
 	// 방 종류 뿌려주기

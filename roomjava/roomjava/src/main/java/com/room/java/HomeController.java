@@ -45,7 +45,12 @@ public class HomeController {
       
       List<RoomKindDTO> roomKindDTO = new ArrayList<RoomKindDTO>();
       
-      roomKindDTO = adminService.roomKind();
+      try {
+    	  roomKindDTO.addAll(adminService.roomKind());
+      } catch (Exception e) {
+    	  e.printStackTrace();
+      }
+      model.addAttribute("roomKind", roomKindDTO);
       
       return "/room/index";
    }
