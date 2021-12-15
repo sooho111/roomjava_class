@@ -34,16 +34,17 @@ a { text-decoration:none; }
 
 #header .log { position:absolute; right:0; top:30px; }
 
-#header .gnb { position:absolute; left:250px; top:25px; border:1px solid red; }
-#header .gnb li { border:3px solid white; }
-#header .gnb li:nth-child(2):hover .reservation { opacity:1; }
+#header .gnb { position:absolute; left:250px; top:25px; }
+#header .gnb li { border:0; }
+#header .gnb li:nth-child(2):hover .reservation { visibility:visible; }
+#header .gnb li:nth-child(3):hover .comunity { visibility:visible; }
 #header .gnb li a { color:#fff; font-size:18px; font-weight:100; }
 
-#header .reservation { padding:0; padding-top:10px; opacity:1; transition:0.5s; border:1px solid yellow; }
+#header .reservation { position:absolute; padding:0; padding-top:10px; visibility:hidden; }
 #header .reservation li { float:none; font-size:15px; background:#fff; margin:0; padding:5px; }
 #header .reservation li a { color:#000; }
 
-#header .comunity { border:1px solid red; padding:0; padding-top:10px; transition:0.5s; }
+#header .comunity { position:absolute; left:85px; top:45px; padding:0; padding-top:10px; visibility:hidden; }
 #header .comunity li { float:none; font-size:15px; background:#fff; margin:0; padding:5px; }
 #header .comunity li a { color:#000; }
 

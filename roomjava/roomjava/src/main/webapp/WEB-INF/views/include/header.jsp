@@ -23,7 +23,13 @@
 		</c:if>
 		
 		<ul class="gnb">
-		    <li><a href="#"><span class="glyphicon glyphicon-heart"></span> 시설 안내</a></li>
+		    <li><a href="#"><span class="glyphicon glyphicon-heart"></span> 시설 안내</a>
+		    	<ul class="infra">
+					<li><a href="#">공지 사항</a></li>
+					<li><a href="#">후기</a></li>
+					<li><a href="#">FAQ</a></li>
+				</ul>
+		    </li>
 		    
 			<li><a href="#"><span class="glyphicon glyphicon-credit-card"></span> 예약 안내</a>
 				<ul class="reservation">
