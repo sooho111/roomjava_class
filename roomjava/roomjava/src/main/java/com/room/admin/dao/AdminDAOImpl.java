@@ -1,11 +1,16 @@
 package com.room.admin.dao;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
+
+import com.room.admin.dto.BoardDTO;
+import com.room.admin.dto.SearchCriteria;
 
 
 
@@ -17,5 +22,24 @@ public class AdminDAOImpl implements AdminDAO {
 	@Inject
 	SqlSession sqlSession;
 	
-	private static final String namespace = "com.room.admin.mapper.Adminmapper";
+	private static final String namespace = "com.room.admin.mapper.adminMapper";
+	// 공지사항 작성
+	@Override
+	public void noticeWrite(BoardDTO boardDTO) throws Exception {
+		sqlSession.insert(namespace + ".notice", boardDTO);
+		
+		
+	}
+	// 공지사항 리스트
+	@Override
+	public List<BoardDTO> list(SearchCriteria scri) throws Exception {
+
+		return sqlSession.selectList(namespace + ".noticePaging", scri);
+	}
+	// 공지사항 카운트
+	@Override
+	public int listCount(SearchCriteria scri) throws Exception {
+
+		return sqlSession.selectOne(namespace + ".noticeTotalCount", scri);
+	}
 }
