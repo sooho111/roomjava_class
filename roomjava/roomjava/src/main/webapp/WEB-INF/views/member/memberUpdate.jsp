@@ -17,31 +17,31 @@
 
 			<!-- 아이디 -->
 			<div class="form-group">
-				<label class="control-label col-sm-2" for="userId">아이디</label>
+				<label class="control-label col-sm-2" for="m_id">아이디</label>
 				<div class="col-sm-3">
-				 <input type="text" class="form-control" name="userId" value="${view.userId}" readonly="readonly" required>
+				 <input type="text" class="form-control" name="m_id" value="${view.m_id}" readonly="readonly" required>
 			</div>
 			</div>
 			<!-- 비밀번호 -->
 			<div class="form-group">
-				<label class="control-label col-sm-2" for="userPw">비밀번호</label>
+				<label class="control-label col-sm-2" for="m_pwd">비밀번호</label>
 				<div class="col-sm-3">
-				 <input type="password" class="form-control" id="userPw" name="userPw" value="${view.userPw}"placeholder="PASSWORD" >*비밀번호 변경가능(4~12자의 영문 대소문자와 숫자만)
+				 <input type="password" class="form-control" id="m_pwd" name="m_pwd" value="${view.m_pwd}"placeholder="PASSWORD" >*비밀번호 변경가능(4~12자의 영문 대소문자와 숫자만)
 			</div>
 			</div>
 			
 			<!-- 이름 -->
 			<div class="form-group">
-				<label class="control-label col-sm-2" for="userName">이름</label> 
+				<label class="control-label col-sm-2" for="m_name">이름</label> 
 				<div class="col-sm-3">
-				<input type="text" class="form-control" id="userName" name="userName" maxlength="20" value="${view.userName}">
+				<input type="text" class="form-control" id="m_name" name="m_name" maxlength="20" value="${view.m_name}">
 			</div>
 			</div>
 			<!-- 생년월일 -->
 			<div class="form-group required">
-				<label class="control-label col-sm-2" for="userBirth">생년월일</label>
+				<label class="control-label col-sm-2" for="m_birth">생년월일</label>
 				<div class="col-sm-3">
-				 <input type="text" class="form-control" id="userBirth" name="userBirth" placeholder="ex) 19990415" value="${view.userBirth}">*생년월일 6자 입력
+				 <input type="text" class="form-control" id="m_birth" name="m_birth" placeholder="ex) 19990415" value="${view.m_birth}">*생년월일 6자 입력
 			</div>
 			</div>
 			
@@ -49,15 +49,15 @@
 			<div class="form-group">
 				<label class="control-label col-sm-2" for="user_phone">전화번호</label> 
 				<div class="col-sm-3">
-				<input type="text" class="form-control" id="userPhone" name="userPhone" placeholder="휴대전화 ('-' 없이 번호만 입력해주세요)" value="${view.userPhone}" >*('-' 없이 번호만 입력해주세요)
+				<input type="text" class="form-control" id="m_tel" name="m_tel" placeholder="휴대전화 ('-' 없이 번호만 입력해주세요)" value="${view.m_tel}" >*('-' 없이 번호만 입력해주세요)
 			</div>
 			</div>
 			
 			<!-- 본인확인 이메일 -->
 			<div class="form-group">
-				<label class="control-label col-sm-2" for="userEmail">이메일</label> 
+				<label class="control-label col-sm-2" for="m_email">이메일</label> 
 				<div class="col-sm-3">
-				<input type="text" class="form-control" name="userEmail" id="userEmail" placeholder="E-mail" value="${view.userEmail}" readonly="readonly">
+				<input type="text" class="form-control" name="m_email" id="m_email" placeholder="E-mail" value="${view.m_email}" readonly="readonly">
 			</div>
 			</div>
 			<!-- 우편번호 -->
@@ -99,72 +99,72 @@ $(document).ready(function() {
 	    var birth= RegExp(/^[0-9]{6}$/)
 	    var phone= RegExp(/^0?[0-9]{11}$/)
 	    
-	    if($("#userPw").val() == "") {
+	    if($("#m_pwd").val() == "") {
 			alert("비밀번호를 입력하십시오.");
-			$("#userPw").focus();
+			$("#m_pwd").focus();
 			return false;
 		}
 	      //비밀번호 유효성검사
-	      if(!pww.test($("#userPw").val())){
+	      if(!pww.test($("#m_pwd").val())){
 	          alert("비밀번호는 4~12자의 영문 대소문자와 숫자로만 입력하십시오.");
-	          $("#userPw").val("");
-	          $("#userPw").focus();
+	          $("#m_pwd").val("");
+	          $("#m_pwd").focus();
 	           return false;
 	     }
-	      if($("#userPw").val() == "${view.userPw}") {
+	      if($("#m_pwd").val() == "${view.m_pwd}") {
 				alert("기존과 다른 비밀번호를 입력해주세요.");
-				$("#userPw").focus();
+				$("#m_pwd").focus();
 				return false;
 			}
-		if($("#userName").val() == "") {
+		if($("#m_name").val() == "") {
 			alert("이름를 입력하십시오.");
-			$("#userName").focus();
+			$("#m_name").focus();
 			return false;
 		}
 		//이름 유효성 검사
-        if(!named.test($("#userName").val())){
+        if(!named.test($("#m_name").val())){
              alert("이름형식에 맞게 입력해주세요")
-             $("#userName").val("");
-             $("#userName").focus();
+             $("#m_name").val("");
+             $("#m_name").focus();
              return false;
         }
 		
-		if($("#userBirth").val() == "") {
+		if($("#m_birth").val() == "") {
 			alert("생년월일을 입력하십시오.");
-			$("#userBirth").focus();
+			$("#m_birth").focus();
 			return false;
 		}
 		//생년월일 유효성 검사
-        if(!birth.test($("#userBirth").val())){
+        if(!birth.test($("#m_birth").val())){
              alert("생년월일 6자리를 입력해주세요.")
-             $("#userBirth").val("");
-             $("#userBirth").focus();
+             $("#m_birth").val("");
+             $("#m_birth").focus();
              return false;
         }
 		
-		if($("#userPhone").val() == "") {
+		if($("#m_tel").val() == "") {
 			alert("전화번호를 입력하십시오.");
-			$("#userPhone").focus();
+			$("#m_tel").focus();
 			return false;
 		}
 		//전화번호 유효성 검사
-        if(!phone.test($("#userPhone").val())){
+        if(!phone.test($("#m_tel").val())){
              alert("핸드폰 번호를 입력해주세요.")
-             $("#userPhone").val("");
-             $("#userPhone").focus();
+             $("#m_tel").val("");
+             $("#m_tel").focus();
              return false;
         }
 		
-		if($("#userEmail").val() == "") {
+		if($("#m_email").val() == "") {
 			alert("이메일를 입력하십시오.");
-			$("#userEmail").focus();
+			$("#m_email").focus();
 			return false;
 		}
 		//이메일 유효성 검사
-        if(!email.test($("#userEmail").val())){
+        if(!email.test($("#m_email").val())){
              alert("이메일형식에 맞게 입력해주세요")
-             $("#userEmail").val("");
-             $("#userEmail").focus();
+             $("#m_email").val("");
+             $("#m_email").focus();
              return false;
         }
 		

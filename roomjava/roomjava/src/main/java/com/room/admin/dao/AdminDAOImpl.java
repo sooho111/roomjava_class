@@ -12,6 +12,9 @@ import org.springframework.stereotype.Repository;
 import com.room.admin.dto.BoardDTO;
 import com.room.admin.dto.SearchCriteria;
 
+import com.room.admin.dto.RoomKindDTO;
+
+
 
 
 @Repository
@@ -23,6 +26,7 @@ public class AdminDAOImpl implements AdminDAO {
 	SqlSession sqlSession;
 	
 	private static final String namespace = "com.room.admin.mapper.adminMapper";
+
 	// 공지사항 작성
 	@Override
 	public void noticeWrite(BoardDTO boardDTO) throws Exception {
@@ -42,4 +46,16 @@ public class AdminDAOImpl implements AdminDAO {
 
 		return sqlSession.selectOne(namespace + ".noticeTotalCount", scri);
 	}
-}
+
+
+	
+	// ----------------------------------------------------------------------------------------------------
+	// 방 종류 뿌려주기
+	// ----------------------------------------------------------------------------------------------------
+	@Override
+	public List<RoomKindDTO> roomKind() throws Exception {
+		return sqlSession.selectList(namespace + ".roomKind");
+		
+	} // end RoomKindDTO roomKind()
+
+} // end class AdminDAOImpl implements AdminDAO

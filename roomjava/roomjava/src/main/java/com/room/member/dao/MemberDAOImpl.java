@@ -31,7 +31,7 @@ public class MemberDAOImpl implements MemberDAO {
 		logger.info("로그인 : " + memberDTO);
 		return sqlSession.selectOne(namespace + ".login", memberDTO);
 	}
-	/*
+	
 	// -----------------------------------------------------------------------------------------------------------
 	// 아이디 중복 검사
 	// -----------------------------------------------------------------------------------------------------------
@@ -41,53 +41,7 @@ public class MemberDAOImpl implements MemberDAO {
 		logger.info("MemberDAOImpl 아이디 중복 검사()");
 		return sqlSession.selectOne(namespace + ".idCheck", memberDTO);
 
-	} // End - public int idCheck(MemberDTO memberDTO)
-
-	// -------------------------------------------------------------------------------------------------
-	// 회원 가입
-	// -------------------------------------------------------------------------------------------------
-	@Override
-	public int memberInsert(MemberDTO memberDTO) throws Exception {
-		logger.info("MemberDAOImpl memberInsert(MemberDTO memberDTO).....");
-		return sqlSession.insert(namespace + ".insert", memberDTO);
-	}
-
-	// -------------------------------------------------------------------------------------------------
-	// 회원가입 POST (Ajax)
-	// -------------------------------------------------------------------------------------------------
-	@Override
-	public int register(MemberDTO memberDTO) throws Exception {
-		logger.info("회원가입(Ajax) : " + memberDTO);
-		return sqlSession.insert(namespace + ".register", memberDTO);
-	}
-
-	// -------------------------------------------------------------------------------------------------
-	// 회원 정보 수정
-	// -------------------------------------------------------------------------------------------------
-	@Override
-	public void update(MemberDTO memberDTO) throws Exception {
-		sqlSession.update(namespace + ".update", memberDTO);
-	}
-
-	// 아이디 찾기
-	public String findidform(String userEmail) throws Exception{
-		return sqlSession.selectOne(namespace + ".findidform", userEmail);
-	}
-
-	// 비밀번호 찾기
-		public String memberfindpwform(MemberDTO memberDTO) throws Exception {
-			return sqlSession.selectOne(namespace + ".memberfindpwform", memberDTO);
-	}
-
-	// -------------------------------------------------------------------------------------------------
-	// 회원 가입
-	// -------------------------------------------------------------------------------------------------
-	@Override
-	public int memberDelete(String userId) throws Exception {
-		logger.info("MemberDAOImpl memberInsert(MemberDTO memberDTO).....");
-		return sqlSession.delete(namespace + ".delete", userId);
-	}
-
+	} 
 	// -----------------------------------------------------------------------------------------------------------
 	//이메일 중복 검사
 	// -----------------------------------------------------------------------------------------------------------
@@ -98,6 +52,52 @@ public class MemberDAOImpl implements MemberDAO {
 		return sqlSession.selectOne(namespace + ".eCheck", memberDTO);
 
 	}
+	// -------------------------------------------------------------------------------------------------
+	// 회원 가입
+	// -------------------------------------------------------------------------------------------------
+	@Override
+	public int memberInsert(MemberDTO memberDTO) throws Exception {
+		logger.info("MemberDAOImpl memberInsert(MemberDTO memberDTO).....");
+		return sqlSession.insert(namespace + ".insert", memberDTO);
+	}
+
+
+	// -------------------------------------------------------------------------------------------------
+	// 회원 정보 수정
+	// -------------------------------------------------------------------------------------------------
+	@Override
+	public void update(MemberDTO memberDTO) throws Exception {
+		sqlSession.update(namespace + ".update", memberDTO);
+	}
+	// -------------------------------------------------------------------------------------------------
+	// 회원 탈퇴
+	// -------------------------------------------------------------------------------------------------
+	@Override
+	public int memberDelete(String m_id) throws Exception {
+		logger.info("MemberDAOImpl memberInsert(MemberDTO memberDTO).....");
+		return sqlSession.delete(namespace + ".delete", m_id);
+	}
+	// -------------------------------------------------------------------------------------------------
+	// 회원 상세 정보
+	// -------------------------------------------------------------------------------------------------
+	@Override
+	public MemberDTO view(String m_id) throws Exception {
+		return sqlSession.selectOne(namespace + ".view", m_id);
+	}
+
+	/*
+	// 아이디 찾기
+	public String findidform(String userEmail) throws Exception{
+		return sqlSession.selectOne(namespace + ".findidform", userEmail);
+	}
+
+	// 비밀번호 찾기
+		public String memberfindpwform(MemberDTO memberDTO) throws Exception {
+			return sqlSession.selectOne(namespace + ".memberfindpwform", memberDTO);
+	}
+
+
+
 */
 
 }
