@@ -19,7 +19,7 @@ public class MemberServiceImpl implements MemberService {
 MemberDAO memberDAO;
 
 	private static final Logger logger = LoggerFactory.getLogger(MemberServiceImpl.class);
-	/*
+	
 	// -------------------------------------------------------------------------------------------------
 	// 로그인
 	// -------------------------------------------------------------------------------------------------
@@ -27,7 +27,7 @@ MemberDAO memberDAO;
 	public MemberDTO login(MemberDTO memberDTO) throws Exception {
 		return memberDAO.login(memberDTO);
 	}
-
+	/*
 	// -----------------------------------------------------------------------------------------------------------
 	// 회원 아이디 중복 검사
 	// -----------------------------------------------------------------------------------------------------------

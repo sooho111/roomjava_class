@@ -43,16 +43,17 @@ public class MemberController {
 				return "/member/login";
 			}
 
-			/*// -------------------------------------------------------------------------------------------------
+			// -------------------------------------------------------------------------------------------------
 			// 로그인 POST
 			// -------------------------------------------------------------------------------------------------
 			@RequestMapping(value = "/login", method = RequestMethod.POST)
 			public String login(MemberDTO memberDTO, HttpServletRequest req, RedirectAttributes rttr) throws Exception {
 
 				HttpSession session = req.getSession();
-
+				
 				// 넘겨받은 회원정보를 가지고 Service에게 의뢰한다.
 				MemberDTO login = memberService.login(memberDTO);
+			
 
 				// RedirectAttributes : redirect로 리턴하는 코드가 있어야 한다.
 				// Model : jsp페이지를 거쳐갈때는 model로 값을 보내주면 된다.
@@ -69,7 +70,7 @@ public class MemberController {
 				return "redirect:/member/login";
 			}
 
-			// -------------------------------------------------------------------------------------------------
+			/*// -------------------------------------------------------------------------------------------------
 			// 로그아웃
 			// -------------------------------------------------------------------------------------------------
 			@RequestMapping(value = "/logout", method = RequestMethod.GET)
