@@ -18,7 +18,7 @@
 <body>
 
 <div id="visual">
-	<%@ include file="../include/header.jsp" %>
+	<%@ include file="../include/indexHeader.jsp" %>
 	
 	<div id="myCarousel" class="carousel slide" data-ride="carousel">
 		
