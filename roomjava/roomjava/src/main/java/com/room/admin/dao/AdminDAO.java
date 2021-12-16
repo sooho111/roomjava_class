@@ -2,7 +2,6 @@ package com.room.admin.dao;
 
 import java.util.List;
 
-
 import com.room.admin.dto.BoardDTO;
 import com.room.admin.dto.SearchCriteria;
 

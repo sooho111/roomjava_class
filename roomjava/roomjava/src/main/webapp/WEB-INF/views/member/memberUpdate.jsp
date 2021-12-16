@@ -61,8 +61,8 @@ th { text-align:center; }
 			<ul class="myShopping">
 				<li></li>
 				<li><a href="#">예약 확인</a><span class="glyphicon glyphicon-chevron-right"></span></li>
-				<li><a href="memberUpdate/${member.m_id}">회원 정보 수정</a><span class="glyphicon glyphicon-chevron-right"></span></li>
-				<li class = "memberDelete"><a href="memberDelete/${member.m_id}">회원 탈퇴</a><span class="glyphicon glyphicon-chevron-right"></span></li>
+				<li><a href="/member/memberUpdate/${member.m_id}">회원 정보 수정</a><span class="glyphicon glyphicon-chevron-right"></span></li>
+				<li class = "memberDelete">회원 탈퇴<span class="glyphicon glyphicon-chevron-right"></span></li>
 			</ul>
 		</div>
 
@@ -251,7 +251,7 @@ $(document).ready(function() {
 			$("#userAddr2").focus();
 			return false;
 		}
-		$('#m_address').val($('#zipcode').val()+ " " + $('#userAddr1').val()+ " " + $('#userAddr2').val());
+		$('#m_address').val($('#zipcode').val()+ " " + $('#address01').val()+ " " + $('#address02').val());
 		alert("회원수정 되었습니다.");
 		
 	});
@@ -312,32 +312,9 @@ $("#memberUpdateBtn").on("click", function() {
 $('.memberDelete').click(function(){
 	var result = confirm("회원탈퇴 하시겠습니까?");
 	if(result){
-	location.href = "/member/memberDelete/" + $("#m_id").val();
+		location.href = "/member/memberDelete/" + $("#m_id").val();
 	}
 });
 
-var addr = ''; // 주소 변수
-
-function daumZipCode() {
-	new daum.Postcode({
-	    oncomplete: function(data) {
-	
-	        //사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
-	        if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
-	            addr = data.roadAddress;
-	        } else { // 사용자가 지번 주소를 선택했을 경우(J)
-	            addr = data.jibunAddress;
-	        }
-	        document.getElementById('zipcode').value = data.zonecode;
-	        document.getElementById("address01").value = addr;
-	        // 커서를 상세주소 필드로 이동한다.
-	        document.getElementById("address02").focus();
-	        
-	        $('#address').val(addr);
-	    }
-	}).open({
-		popupKey:"nopop"
-	});
-}
 </script>
 </html>

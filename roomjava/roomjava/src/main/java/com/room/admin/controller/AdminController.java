@@ -49,7 +49,7 @@ public class AdminController {
 		
 		adminService.noticeWrite(boardDTO);
 		
-		return "/admin/noticeList";
+		return "/admin/notice/noticeList";
 	}
 	// -------------------------------------------------------------------------------------------------
 	// 공지사항 list 페이징

@@ -21,6 +21,7 @@
 	<div class="container">
 			
 			
+<<<<<<< HEAD
 		<div class="form-group">
 			<div style="text-align: center; margin: 50px 0;">
 				<h5><b>공지사항</b></h5>
@@ -46,6 +47,12 @@
 				</c:forEach>
 				
 			</table>
+=======
+			<nav>
+				<button type="button" onclick="location.href='noticeInsert'">글 작 성</button>
+			</nav>
+			<hr />
+>>>>>>> 0135d118c2b9bce7c216f13001bd3d22b4b03039
 			
 			<div class="search row">
 			
