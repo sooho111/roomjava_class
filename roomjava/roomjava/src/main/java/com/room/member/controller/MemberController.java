@@ -176,9 +176,10 @@ public class MemberController {
 	// 회원 탈퇴
 	// -------------------------------------------------------------------------------------------------
 	@RequestMapping(value = "/memberDelete/{m_id}", method = RequestMethod.GET)
-	private String productDelete(@PathVariable String m_id) throws Exception {
+	private String productDelete(@PathVariable String m_id,HttpSession session) throws Exception {
 		memberService.memberDelete(m_id);
-		return "/member/logout";
+		session.invalidate();
+		return "redirect:/member/logout";
 	}
 
 	// -------------------------------------------------------------------------------------------------
