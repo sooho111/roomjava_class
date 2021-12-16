@@ -9,15 +9,14 @@
 		<c:if test="${member == null}">
 			<ul class="log">
 				<li><a href="#">예약 확인 및 취소</a></li>
-				<li><a href="../member/join">회원가입</a></li>
+				<li><a href="../member/memberInsert">회원가입</a></li>
 				<li><a href="../member/login">로그인</a></li>
 			</ul>
 		</c:if>
 		
 		<c:if test="${member != null}">
 			<ul class="log">
-				<li><a href="#">내 정보</a></li>
-				<li><a href="#">회원 탈퇴</a></li>
+				<li><a href="../member/myPage">내 정보</a></li>
 				<li class="logout"><a href="#">로그아웃</a></li>
 			</ul>
 		</c:if>

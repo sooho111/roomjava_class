@@ -50,9 +50,27 @@ WHERE m_id = #{m_id}
 DELETE FROM member
 WHERE m_id = #{m_id} 
 </delete>
- 	<select id="view" parameterType="String" resultType="com.room.member.dto.MemberDTO">
+ <select id="view" parameterType="String" resultType="com.room.member.dto.MemberDTO">
 		SELECT * FROM member WHERE m_id = #{m_id}
-	</select>
+</select>
+<!-- 아이디 찾기 -->
+
+
+<select resultType="String" parameterType="String" id="findidform">
+select m_id 
+from member 
+where m_email = #{m_email} 
+</select>
+
+<!-- 비밀번호 찾기 -->
+
+
+<select resultType="String" id="memberfindpwform">
+select m_pwd 
+from member 
+where m_id=#{m_id} 
+and m_email = #{m_email} 
+</select>
 
 
 

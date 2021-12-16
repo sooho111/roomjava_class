@@ -48,7 +48,22 @@ public class AdminServiceImpl implements AdminService {
 		return adminDAO.roomKind();
 		
 	} // end RoomKindDTO roomKind()
-
+	
+	//공지사항 상세페이지
+	@Override
+	public BoardDTO detailView(int notice_bno) throws Exception {
+		
+		return adminDAO.detailView(notice_bno);
+	}
+	
+	//공지사항 수정
+	@Override
+	public void noticeUpdate(BoardDTO boardDTO) throws Exception {
+		
+		adminDAO.noticeUpdate(boardDTO);
+		
+	}
+	
 	
 	
 } // end class AdminServiceImpl implements AdminService

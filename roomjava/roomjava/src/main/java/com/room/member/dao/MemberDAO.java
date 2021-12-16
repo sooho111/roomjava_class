@@ -34,19 +34,16 @@ public interface MemberDAO {
 	public int memberDelete(String m_id) throws Exception;
 
 
-	/*
 	// -------------------------------------------------------------------------------------------------
 	// 아이디 찾기
 	// -------------------------------------------------------------------------------------------------
-	public String findidform(String userEmail) throws Exception;
+	public String findidform(String m_email) throws Exception;
 
 	// -------------------------------------------------------------------------------------------------
 	// 비밀번호 찾기
 	// -------------------------------------------------------------------------------------------------
 	public String memberfindpwform(MemberDTO memberDTO) throws Exception;
 	
-
-	*/
 
 
 }

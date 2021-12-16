@@ -20,4 +20,10 @@ public interface AdminDAO {
 	// 방 종류 뿌려주기
 	public List<RoomKindDTO> roomKind() throws Exception;
 	
+	//공지사항 상세페이지
+	public BoardDTO detailView(int notice_bno) throws Exception;
+	
+	//공지사항 수정
+	public void noticeUpdate(BoardDTO boardDTO) throws Exception;
+	
 } // end interface AdminDAO

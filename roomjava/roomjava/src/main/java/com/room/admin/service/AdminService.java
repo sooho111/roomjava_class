@@ -15,13 +15,19 @@ public interface AdminService {
 	// 방 종류 뿌려주기
 	public List<RoomKindDTO> roomKind() throws Exception;
 
-
+	// 공지사항 작성
 	public void noticeWrite(BoardDTO boardDTO) throws Exception;
 	
-	// 게시물 목록 조회
+	// 공지사항 목록 조회
 	public List<BoardDTO> list(SearchCriteria scri) throws Exception;
 
-	// 게시물 총 갯수
+	// 공지사항 총 갯수
 	public int listCount(SearchCriteria scri) throws Exception;
+	
+	// 공지사항 상세보기
+	public BoardDTO detailView(int notice_bno) throws Exception;
+	
+	//공지사항 수정
+	public void noticeUpdate(BoardDTO boardDTO) throws Exception;
 
 } // end interface AdminService
