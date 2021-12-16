@@ -8,15 +8,32 @@
 <meta charset="UTF-8">
 <title>인사 </title>
 <%@ include file="../include/includeFile.jsp" %>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');
+#header .inner .gnb li:last-child a { font-weight:700; }
 
+#story { width:100%; margin-bottom:150px; }
+#story .inner { width:960px; text-align:center; }
+
+#story .context { text-align:left; margin-left:80px; width:800px; }
+.context .title { font-size:35px; font-weight:500; color:#333; margin-bottom:20px; }
+.context .row { font-size:20px; color:#666; font-weight:300; }
+#story .context.con2 { margin-bottom:60px; }
+
+#story .f_title { margin-left:80px; font-size:35px;
+	 font-weight:500; color:#333; border-top:1px solid #999; border-bottom:1px solid #999; width:800px; padding:50px 0px; }
+
+.homeBtn { margin-top:130px; font-size:20px; width:300px; height:40px; background:#fff; border:1px solid #999; }
+
+</style>
 </head>
 <body>
 <%@ include file="../include/header.jsp" %>
-
-				<div class="section margin-top-90 margin-bottom-120" id="mcon">
-					<h2>인사</h2>
-					<ul>
-						<li class="row txt-box">
+<div id="story">
+	<div class="inner">
+		<div class="context">
+						<p class=title>소 개</p>
+						<p class=row>
 							왕송호수캠핑장 및 의왕스카이레일은<br>
 							의왕시가 가진 천혜의 자연환경을 자랑하는 경기도의 대표적인 관광지인 왕송호수 자연학습공원 내에 위치하고 있습니다.<br>
 							왕송호수캠핑장은 글램핑 15개, 카라반 10개, 캠핑 데크 10개로 구성되어 있으며<br>
@@ -29,11 +46,13 @@
 							수도권 근교 나들이 핫스팟으로 발전시켜 의왕시 관광 유입 확대 및 관광산업 활성화로 경기도권 대표 레저 체험 관광지로 조성하였습니다.<br>
 							색다른 체험과 캠핑의 즐거움을 느끼고자 한다면 왕송호수캠핌장, 의왕스카이레일을 방문하여 즐거운 시간을 가져보시기 바랍니다. <br>
 							감사합니다. <br>
-						</li>
+						</p>
 						<p>
 							<img src="../../resources/images/introduce.jpg" alt="" />
 						</p>
-					</ul>
+					
+				</div>
+				</div>
 				</div>
 <%@ include file="../include/footer.jsp" %>
 </body>
