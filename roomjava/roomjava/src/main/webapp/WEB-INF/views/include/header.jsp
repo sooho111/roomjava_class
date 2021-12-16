@@ -5,6 +5,8 @@
 
 <div id="bheader">
 	<div class="inner">
+	
+				
 		<h1><a href="/"><img src="../../resources/images/logo2.png" alt="logo" width="200" /></a></h1>
 		<c:if test="${member == null}">
 			<ul class="log">
@@ -18,6 +20,12 @@
 			<ul class="log">
 				<li class="myPage"><a href="#">내 정보</a></li>
 				<li class="logout"><a href="#">로그아웃</a></li>
+				<c:if test="${member.m_power == 1}">
+					<li><p class="mi" align="center"><a href="/admin/adminMain">관리자 페이지로</a></p></li>
+				</c:if>
+				<c:if test="${member.m_power != 1}">
+					<li><p>${member.m_name}님 환영합니다.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p></li>
+				</c:if>
 			</ul>
 		</c:if>
 		
@@ -32,14 +40,14 @@
 		    
 			<li><a href="#"><span class="glyphicon glyphicon-credit-card"></span> 예약 안내</a>
 				<ul class="reservation">
-					<li><a href="#">예약 안내</a></li>
+					<li><a href="../main/calen">예약 하기</a></li>
 					<li><a href="#">예약 확인 및 취소</a></li>
 				</ul>
 			</li>
 			
 			<li><a href="#"><span class="glyphicon glyphicon-apple"></span> 커뮤니티</a>
 				<ul class="comunity">
-					<li><a href="#">공지 사항</a></li>
+					<li><a href="member/notice">공지 사항</a></li>
 					<li><a href="#">후기</a></li>
 					<li><a href="#">FAQ</a></li>
 				</ul>
