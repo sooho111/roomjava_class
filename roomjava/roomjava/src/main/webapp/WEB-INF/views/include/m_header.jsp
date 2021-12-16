@@ -2,11 +2,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c"			uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt"			uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <div id="header">
 	<div class="inner">
-		<h1><a href="/"><img src="../resources/images/logo.png" alt="logo" width="200" /></a></h1>
+		<h1><a href="/"><img src="../resources/images/logo2.png" alt="logo" width="200" /></a></h1>
 		
-				<c:if test="${manager == null}">
+		<c:if test="${manager == null}">
 			<ul>
 				<!-- <li><a href="#">내 정보</a></li> -->
 				<li><a href="#"></a></li>
