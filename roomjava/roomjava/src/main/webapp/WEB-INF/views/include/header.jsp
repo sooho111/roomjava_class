@@ -5,6 +5,8 @@
 
 <div id="bheader">
 	<div class="inner">
+	
+				
 		<h1><a href="/"><img src="../../resources/images/logo2.png" alt="logo" width="200" /></a></h1>
 		<c:if test="${member == null}">
 			<ul class="log">
@@ -18,6 +20,7 @@
 			<ul class="log">
 				<li class="myPage"><a href="#">내 정보</a></li>
 				<li class="logout"><a href="#">로그아웃</a></li>
+				<li><p>${member.m_name}님 환영합니다.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p></li>
 			</ul>
 		</c:if>
 		
