@@ -26,5 +26,8 @@ public interface AdminService {
 	
 	// 공지사항 상세보기
 	public BoardDTO detailView(int notice_bno) throws Exception;
+	
+	//공지사항 수정
+	public void noticeUpdate(BoardDTO boardDTO) throws Exception;
 
 } // end interface AdminService
