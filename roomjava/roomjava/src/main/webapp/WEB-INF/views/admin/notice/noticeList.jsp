@@ -20,8 +20,6 @@
 <%@ include file="../../include/m_header.jsp" %>
 	<div class="container">
 			
-			
-<<<<<<< HEAD
 		<div class="form-group">
 			<div style="text-align: center; margin: 50px 0;">
 				<h5><b>공지사항</b></h5>
@@ -42,17 +40,18 @@
 							<a href="/admin/notice/noticeDetail?n=${list.notice_bno }"><c:out value="${list.notice_title}" /></a>
 						</td>
 						<td>관리자</td>
-						<td><fmt:formatDate value="${list.notice_date}" pattern="yyyy년MM월dd일"/></td>
+						<td><fmt:formatDate value="${list.notice_date}" pattern="yyyy년 MM월 dd일"/></td>
 					</tr>
 				</c:forEach>
 				
 			</table>
-=======
-			<nav>
-				<button type="button" onclick="location.href='noticeInsert'">글 작 성</button>
-			</nav>
+			
+			<div class="form-group btnss">
+				<div align="right" class="col-sm-offset-3">
+					<button type="button" class="btn btn-success btn-sm" onclick="location.href='noticeInsert'">글 작 성</button>
+				</div>
+			</div>	
 			<hr />
->>>>>>> 0135d118c2b9bce7c216f13001bd3d22b4b03039
 			
 			<div class="search row">
 			
@@ -99,11 +98,7 @@
 		  		</ul>
 			</div>
 			
-		<div class="form-group btnss">
-			<div align="right" class="col-sm-offset-3">
-				<button type="button" class="btn btn-success btn-sm" onclick="location.href='notice'">글 작 성</button>
-			</div>
-		</div>				
+			
 			
 		</form>
 	</div>
