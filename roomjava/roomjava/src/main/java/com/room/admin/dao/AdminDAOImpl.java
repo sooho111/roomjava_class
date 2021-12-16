@@ -63,5 +63,13 @@ public class AdminDAOImpl implements AdminDAO {
 		return sqlSession.selectOne(namespace + ".detailView", notice_bno);
 	}
 	
+	//공지사항 수정
+		@Override
+		public void noticeUpdate(BoardDTO boardDTO) throws Exception {
+			
+			sqlSession.update(namespace + ".noticeUpdate", boardDTO);
+			
+		}
+	
 
 } // end class AdminDAOImpl implements AdminDAO

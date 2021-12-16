@@ -83,4 +83,30 @@ public class AdminController {
 		return "admin/notice/noticeDetail";
 		
 		}
+	//-------------------------------------------------------------------------------------------------------
+	//공지사항 수정 GET	
+	//-------------------------------------------------------------------------------------------------------		
+		@RequestMapping(value = "/notice/noticeUpdate", method = RequestMethod.GET)
+		public String noticeUpdateView(@RequestParam("n") int notice_bno, BoardDTO boardDTO, Model model) throws Exception {
+			logger.info("noticeUpdateView");
+			
+			boardDTO.setNotice_bno(notice_bno);
+			model.addAttribute("update", adminService.detailView(boardDTO.getNotice_bno()));
+			
+			
+			return "admin/notice/noticeUpdate";
+		}
+	//-------------------------------------------------------------------------------------------------------
+	//공지사항 수정 GET	
+	//-------------------------------------------------------------------------------------------------------		
+		@RequestMapping(value = "/notice/noticeUpdate", method = RequestMethod.POST)
+		public String noticeUpdate(@RequestParam("n") int notice_bno, BoardDTO boardDTO, Model model) throws Exception {
+			logger.info("noticeUpdate");
+			
+			boardDTO.setNotice_bno(notice_bno);
+			
+			adminService.noticeUpdate(boardDTO);
+			
+			return "redirect:/admin/notice/noticeList";
+		}
 }
