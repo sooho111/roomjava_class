@@ -5,15 +5,68 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="UTF-8">
-	<title>회원정보 수정</title>
-	<%@ include file="../include/includeFile.jsp" %>
+<meta charset="UTF-8">
+<title>${member.m_id}님의 정보</title>
+<%@ include file="../include/includeFile.jsp" %>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;800&family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');
+
+/* visual */
+.t_visual { height:300px; width:100%; background:url("/resources/images/food3.jpg") no-repeat top center; position:relative; margin-bottom:70px; }
+.t_visual .inner { width:960px; position:relative; }
+.t_visual_black { height:300px; width:100%; background:rgba(0,0,0,0.5); position:absolute; }
+
+.me { position:absolute; left:0; top:0; margin-top:90px; }
+.me p { color:#fff; font-family:'Nanum Myeongjo',serif; }
+.me p:first-child { font-weight:800; font-size:40px; margin-bottom:15px; }
+.me p:last-child { font-size:20px; }
+
+/* myContent */
+#myContent { height:750px; }
+#myContent .inner { width:960px; }
+#myContent .inner:after { content:""; clear:both; display:block; }
+
+.left_bar { float:left; }
+.left_bar .myShopping { width:200px; border-bottom:1px solid #888; margin-bottom:20px; }
+.left_bar .myShopping:last-child { border:0; }
+.left_bar .myShopping li { margin-bottom:20px; position:relative; }
+.left_bar .myShopping li:first-child { color:#333; font-weight:700; font-size:20px; } 
+.left_bar .myShopping li a { color:#666; font-weight:300; font-size:15px; }
+.glyphicon-chevron-right { color:#666; position:absolute; right:0; top:4px; }
+
+.m_content { float:right; width:700px; }
+.m_content .order { font-size:20px; }
+
+th { text-align:center; }
+
+</style>
 </head>
 <body>
 <%@ include file="../include/header.jsp" %>
 
+<div class="t_visual">
+	<div class="t_visual_black"></div>
+	
+	<div class="inner">
+		<div class="me">
+			<p>${member.m_name}</p>
+			<p>${member.m_id}님 환영합니다.</p>
+		</div>
+	</div>
+</div>
 
-	<div class="container">
+<div id="myContent">
+	<div class="inner">
+		<div class="left_bar">
+			<ul class="myShopping">
+				<li></li>
+				<li><a href="#">예약 확인</a><span class="glyphicon glyphicon-chevron-right"></span></li>
+				<li><a href="memberUpdate/${member.m_id}">회원 정보 수정</a><span class="glyphicon glyphicon-chevron-right"></span></li>
+				<li class = "memberDelete"><a href="memberDelete/${member.m_id}">회원 탈퇴</a><span class="glyphicon glyphicon-chevron-right"></span></li>
+			</ul>
+		</div>
+
+		<div class="m_content">
 		<form class="form-horizontal" action="/member/memberUpdate" method="post">
 			<div class="form-group">
 				<div class="col-sm-2"></div>
@@ -67,20 +120,24 @@
 				<input type="text" class="form-control" name="m_email" id="m_email" placeholder="E-mail" value="${view.m_email}" readonly="readonly">
 			</div>
 			</div>
-			<!-- 우편번호 -->
 				<div class="form-group">
 					<label class="control-label col-sm-2">우편번호</label>
 					<div class="col-sm-3">
-						<input type="text" class="form-control" id="zipcode" name="zipcode" placeholder="우편번호" value="" /> 
-						<input type="button" class="form-control" onclick="daumZipCode()" value="우편번호검색" />
+						<input type="text" class="form-control" id="zipcode" name="zipcode" readonly />
+						<input type="button" class="form-control btn btn-success" onclick="daumZipCode()" value="우편번호검색" />
 					</div>
 				</div>
-			<!-- 기본주소 및 상세주소-->
 				<div class="form-group">
 					<label class="control-label col-sm-2">주 소</label>
 					<div class="col-sm-6">
-						<input type="text" class="form-control" id="userAddr1" name="userAddr1" placeholder="Enter Address" value="" /> 
-						<input type="text" class="form-control" id="userAddr2" name="userAddr2" placeholder="나머지주소 입력" value="" />
+						<input type="text" class="form-control" name="address01" id="address01" readonly />
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label col-sm-2">상세주소</label>
+					<div class="col-sm-6">
+						<input type="text" class="form-control" name="address02" id="address02" />
+						<input type="hidden" id="address" name="address" />
 					</div>
 				</div>
 				
@@ -92,9 +149,13 @@
 			</div>
 		</form>
 	</div>
+	</div>
+</div>
+
+
 <%@ include file="../include/footer.jsp" %>
-<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<script>
+</body>
+<script type="text/javascript">
 $(document).ready(function() {
 	//전송
 	$("#submit").on("click", function() {
@@ -242,6 +303,41 @@ function daumZipCode() {
 			popupName:	'postcodePopup'
 	});
 }
+
+// 회원정보수정버튼을 눌렀을 경우 회원정보수정 페이지로 이동한다.
+$("#memberUpdateBtn").on("click", function() {
+	location.href = "/member/memberUpdate/" + $("#m_id").val();
+});
+// 회원탈퇴버튼을 눌렀을 경우 회원탈퇴.
+$('.memberDelete').click(function(){
+	var result = confirm("회원탈퇴 하시겠습니까?");
+	if(result){
+	location.href = "/member/memberDelete/" + $("#m_id").val();
+	}
+});
+
+var addr = ''; // 주소 변수
+
+function daumZipCode() {
+	new daum.Postcode({
+	    oncomplete: function(data) {
 	
-		
-	</script>
+	        //사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+	        if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+	            addr = data.roadAddress;
+	        } else { // 사용자가 지번 주소를 선택했을 경우(J)
+	            addr = data.jibunAddress;
+	        }
+	        document.getElementById('zipcode').value = data.zonecode;
+	        document.getElementById("address01").value = addr;
+	        // 커서를 상세주소 필드로 이동한다.
+	        document.getElementById("address02").focus();
+	        
+	        $('#address').val(addr);
+	    }
+	}).open({
+		popupKey:"nopop"
+	});
+}
+</script>
+</html>

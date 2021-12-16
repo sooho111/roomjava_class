@@ -16,7 +16,7 @@
 		
 		<c:if test="${member != null}">
 			<ul class="log">
-				<li><a href="../member/myPage">내 정보</a></li>
+				<li class="myPage"><a href="#">내 정보</a></li>
 				<li class="logout"><a href="#">로그아웃</a></li>
 			</ul>
 		</c:if>
@@ -54,6 +54,13 @@ $('.logout').click(function(){
 	var result = confirm("로그아웃 하시겠습니까?");
 	if(result){
 		location.href="/member/logout";
+	}
+});
+
+$('.myPage').click(function(){
+	var result = confirm("내 정보로 이동 하시겠습니까?");
+	if(result){
+		location.href="/member/myPage";
 	}
 });
 

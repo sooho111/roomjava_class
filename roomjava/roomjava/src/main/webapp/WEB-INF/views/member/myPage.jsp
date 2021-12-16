@@ -44,11 +44,31 @@ th { text-align:center; }
 <body>
 <%@ include file="../include/header.jsp" %>
 
+<div class="t_visual">
+	<div class="t_visual_black"></div>
+	
+	<div class="inner">
+		<div class="me">
+			<p>${member.m_name}</p>
+			<p>${member.m_id}님 환영합니다.</p>
+		</div>
+	</div>
+</div>
+
 <div id="myContent">
-	<div class="m_content">
-			<button id="memberUpdateBtn" type="button" class="btn btn-warning">회원정보수정</button>
-			<button id="memberDeleteBtn" type="button" class="btn btn-danger">회원 탈퇴</button>
-			<input type="hidden" id="m_id" name="m_id" value="${member.m_id}" />
+	<div class="inner">
+		<div class="left_bar">
+			<ul class="myShopping">
+				<li></li>
+				<li><a href="#">예약 확인</a><span class="glyphicon glyphicon-chevron-right"></span></li>
+				<li><a href="memberUpdate/${member.m_id}">회원 정보 수정</a><span class="glyphicon glyphicon-chevron-right"></span></li>
+				<li class = "memberDelete"><a href="memberDelete/${member.m_id}">회원 탈퇴</a><span class="glyphicon glyphicon-chevron-right"></span></li>
+			</ul>
+		</div>
+
+		<div class="m_content">
+				<input type="hidden" id="m_id" name="m_id" value="${member.m_id}" />
+		</div>
 	</div>
 </div>
 
@@ -60,8 +80,8 @@ th { text-align:center; }
 $("#memberUpdateBtn").on("click", function() {
 	location.href = "/member/memberUpdate/" + $("#m_id").val();
 });
-// 회원탈퇴버튼을 눌렀을 경우 회원탈퇴 페이지로 이동한다.
-$("#memberDeleteBtn").on("click", function() {
+// 회원탈퇴버튼을 눌렀을 경우 회원탈퇴.
+$('.memberDelete').click(function(){
 	var result = confirm("회원탈퇴 하시겠습니까?");
 	if(result){
 	location.href = "/member/memberDelete/" + $("#m_id").val();
