@@ -42,7 +42,7 @@
 			
 			<li><a href="#"><span class="glyphicon glyphicon-apple"></span> 커뮤니티</a>
 				<ul class="comunity">
-					<li><a href="#">공지 사항</a></li>
+					<li><a href="member/notice">공지 사항</a></li>
 					<li><a href="#">후기</a></li>
 					<li><a href="#">FAQ</a></li>
 				</ul>
