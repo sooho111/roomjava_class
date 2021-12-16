@@ -40,14 +40,14 @@
 		    
 			<li><a href="#"><span class="glyphicon glyphicon-credit-card"></span> 예약 안내</a>
 				<ul class="reservation">
-					<li><a href="#">예약 안내</a></li>
+					<li><a href="../reservation/calen">예약 하기</a></li>
 					<li><a href="#">예약 확인 및 취소</a></li>
 				</ul>
 			</li>
 			
 			<li><a href="#"><span class="glyphicon glyphicon-apple"></span> 커뮤니티</a>
 				<ul class="comunity">
-					<li><a href="#">공지 사항</a></li>
+					<li><a href="member/notice">공지 사항</a></li>
 					<li><a href="#">후기</a></li>
 					<li><a href="#">FAQ</a></li>
 				</ul>
