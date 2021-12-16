@@ -72,7 +72,7 @@
 					</div>
 				</div>
 			</div>
-			<button id="memberUpdateBtn" type="button" class="btn btn-warning">회원정보수정</button>
+
 			<input type="hidden" id="m_id" name="id" value="${member.m_id}" />
 		</c:if>
 		
@@ -117,15 +117,6 @@
 		location.href = "/member/memberDelete/" + $("#m_id").val();
 	});
 
-	// 회원가입버튼을 눌렀을 경우 회원가입 페이지로 이동한다.
-	$("#registerBtn").on("click", function() {
-		location.href = "/member/memberInsert";
-	});
-
-	// 회원정보수정버튼을 눌렀을 경우 회원정보수정 페이지로 이동한다.
-	$("#memberUpdateBtn").on("click", function() {
-		location.href = "/member/memberUpdate/" + $("#m_id").val();
-	});
 
 	// 아이디찾기
 	$("#findidBtn").on("click", function() {

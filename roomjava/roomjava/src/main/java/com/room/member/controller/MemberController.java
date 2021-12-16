@@ -4,6 +4,7 @@ import java.text.DateFormat;
 import java.text.DecimalFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
@@ -176,9 +177,10 @@ public class MemberController {
 	// 회원 탈퇴
 	// -------------------------------------------------------------------------------------------------
 	@RequestMapping(value = "/memberDelete/{m_id}", method = RequestMethod.GET)
-	private String productDelete(@PathVariable String m_id) throws Exception {
+	private String productDelete(@PathVariable String m_id, HttpSession session) throws Exception {
 		memberService.memberDelete(m_id);
-		return "/member/logout";
+		session.invalidate();
+		return "redirect:/";
 	}
 
 	// -------------------------------------------------------------------------------------------------
@@ -218,6 +220,13 @@ public class MemberController {
 	  md.addAttribute("userPw",memberService.memberfindpwform(response,
 	  memberDTO)); return "/member/findpwform"; }
 	  
-	 
+	//마이페이지
+	@RequestMapping(value="/myPage", method=RequestMethod.GET)
+	public void myPage(MemberDTO memberDTO, HttpSession session, Model model) throws Exception {
+		
+		memberDTO = (MemberDTO)session.getAttribute("member");
+		model.addAttribute("member", memberDTO);
+			
+	} // end void myPage
 
 } // end class MemberController
