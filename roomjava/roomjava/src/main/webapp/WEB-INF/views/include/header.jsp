@@ -9,7 +9,7 @@
 		<c:if test="${member == null}">
 			<ul class="log">
 				<li><a href="#">예약 확인 및 취소</a></li>
-				<li><a href="../member/join">회원가입</a></li>
+				<li><a href="../member/memberInsert">회원가입</a></li>
 				<li><a href="../member/login">로그인</a></li>
 			</ul>
 		</c:if>
@@ -17,7 +17,7 @@
 		<c:if test="${member != null}">
 			<ul class="log">
 				<li><a href="#">내 정보</a></li>
-				<li><a href="#">회원 탈퇴</a></li>
+				<li id="memberDeleteBtn"><a href="">회원 탈퇴</a></li>
 				<li class="logout"><a href="#">로그아웃</a></li>
 			</ul>
 		</c:if>
@@ -55,6 +55,13 @@ $('.logout').click(function(){
 	var result = confirm("로그아웃 하시겠습니까?");
 	if(result){
 		location.href="/member/logout";
+	}
+});
+//회원탈퇴버튼을 눌렀을 경우 회원탈퇴 페이지로 이동한다.
+$("#memberDeleteBtn").on("click", function() {
+	var result = confirm("회원탈퇴 하시겠습니까?");
+	if(result){
+	location.href = "/member/memberDelete/" + $("#m_id").val();
 	}
 });
 </script>

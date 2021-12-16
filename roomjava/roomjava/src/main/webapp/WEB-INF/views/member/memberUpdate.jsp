@@ -41,7 +41,7 @@
 			<div class="form-group required">
 				<label class="control-label col-sm-2" for="m_birth">생년월일</label>
 				<div class="col-sm-3">
-				 <input type="text" class="form-control" id="m_birth" name="m_birth" placeholder="ex) 19990415" value="${view.m_birth}">*생년월일 6자 입력
+				 <input type="text" class="form-control" id="m_birth" name="m_birth" placeholder="ex) 970106" value="${view.m_birth}">*생년월일 6자 입력
 			</div>
 			</div>
 			
@@ -64,7 +64,7 @@
 				<div class="form-group">
 					<label class="control-label col-sm-2">우편번호</label>
 					<div class="col-sm-3">
-						<input type="text" class="form-control" id="zipcode" name="zipcode" placeholder="우편번호" value="${view.zipcode}" /> 
+						<input type="text" class="form-control" id="zipcode" name="zipcode" placeholder="우편번호" value="" /> 
 						<input type="button" class="form-control" onclick="daumZipCode()" value="우편번호검색" />
 					</div>
 				</div>
@@ -72,8 +72,8 @@
 				<div class="form-group">
 					<label class="control-label col-sm-2">주 소</label>
 					<div class="col-sm-6">
-						<input type="text" class="form-control" id="userAddr1" name="userAddr1" placeholder="Enter Address" value="${view.userAddr1}" /> 
-						<input type="text" class="form-control" id="userAddr2" name="userAddr2" placeholder="나머지주소 입력" value="${view.userAddr2}" />
+						<input type="text" class="form-control" id="userAddr1" name="userAddr1" placeholder="Enter Address" value="" /> 
+						<input type="text" class="form-control" id="userAddr2" name="userAddr2" placeholder="나머지주소 입력" value="" />
 					</div>
 				</div>
 				
@@ -183,7 +183,7 @@ $(document).ready(function() {
 			$("#userAddr2").focus();
 			return false;
 		}
-		
+		$('#m_address').val($('#zipcode').val()+ " " + $('#userAddr1').val()+ " " + $('#userAddr2').val());
 		alert("회원수정 되었습니다.");
 		
 	});

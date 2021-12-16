@@ -72,6 +72,7 @@
 					</div>
 				</div>
 			</div>
+			<button id="memberUpdateBtn" type="button" class="btn btn-warning">회원정보수정</button>
 			<input type="hidden" id="m_id" name="id" value="${member.m_id}" />
 		</c:if>
 		

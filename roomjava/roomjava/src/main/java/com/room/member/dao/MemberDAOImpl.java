@@ -85,10 +85,9 @@ public class MemberDAOImpl implements MemberDAO {
 		return sqlSession.selectOne(namespace + ".view", m_id);
 	}
 
-	/*
 	// 아이디 찾기
-	public String findidform(String userEmail) throws Exception{
-		return sqlSession.selectOne(namespace + ".findidform", userEmail);
+	public String findidform(String m_email) throws Exception{
+		return sqlSession.selectOne(namespace + ".findidform", m_email);
 	}
 
 	// 비밀번호 찾기
@@ -97,7 +96,5 @@ public class MemberDAOImpl implements MemberDAO {
 	}
 
 
-
-*/
 
 }

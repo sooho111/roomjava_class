@@ -17,6 +17,7 @@
 			</div>
 		</div>
 		<input type="hidden" id="m_bno" name="m_bno" value="${m_bno}" />
+		<input type="hidden" id="m_address" name="m_address" value="" />
 		<div class="form-group">
 			<label class="control-label col-sm-2">아 이 디</label>
 			<div class="col-sm-3">
@@ -230,7 +231,9 @@ $(document).ready(function() {
 			alert("비밀번호를 다시한번 입력해주세요.")
 			$("#m_pwd").focus();
 			return false;
-		}	
+		}
+		  $('#m_address').val($('#zipcode').val()+ " " + $('#userAddr1').val()+ " " + $('#userAddr2').val());
+		
 			
 		alert("회원가입 되었습니다.");
 		
