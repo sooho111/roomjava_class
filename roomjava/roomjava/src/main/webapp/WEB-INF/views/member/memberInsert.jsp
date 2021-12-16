@@ -16,6 +16,8 @@
 				<h2 align="center">회원 가입</h2>
 			</div>
 		</div>
+		<input type="hidden" name="checked_id" value="">
+		<input type="hidden" name="checked_address" value="">
 		<input type="hidden" id="m_bno" name="m_bno" value="${m_bno}" />
 		<input type="hidden" id="m_address" name="m_address" value="" />
 		<div class="form-group">
@@ -67,7 +69,18 @@
 		<div class="form-group">
 			<label class="control-label col-sm-2">이메일</label>
 			<div class="col-sm-3">
-				<input type="text" class="form-control" id="m_email" name="m_email" placeholder="Enter Email"/>
+				<input type="hidden" class="form-control" id="m_email" name="m_email" placeholder="Enter Email"/>
+				<input type="text" class="form-control" name="str_email01" id="str_email01" style="width:100px"> @ 
+				<input type="text" class="form-control" name="str_email02" id="str_email02" style="width:100px;" disabled value="naver.com">
+					<select style="width:100px;margin-right:10px" name="selectEmail" id="selectEmail"> 
+						<option value="1">직접입력</option> <option value="naver.com" selected>naver.com</option> 
+						<option value="hanmail.net">hanmail.net</option> <option value="hotmail.com">hotmail.com</option> 
+						<option value="nate.com">nate.com</option> <option value="yahoo.co.kr">yahoo.co.kr</option> 
+						<option value="empas.com">empas.com</option> <option value="dreamwiz.com">dreamwiz.com</option> 
+						<option value="freechal.com">freechal.com</option> <option value="lycos.co.kr">lycos.co.kr</option> 
+						<option value="korea.com">korea.com</option> <option value="gmail.com">gmail.com</option> 
+						<option value="hanmir.com">hanmir.com</option> <option value="paran.com">paran.com</option> 
+					</select>
 			</div>
 			<div class="col-sm-2">
 				<button class="eCheck btn btn-warning" type="button" id="eCheck" onclick="fn_eCheck();" value="N">중복확인</button>
@@ -232,7 +245,18 @@ $(document).ready(function() {
 			$("#m_pwd").focus();
 			return false;
 		}
+	   if($("input[name='checked_id']").val()==''){
+	        alert('아이디중복 확인을 해주세요.');
+	        $("input[name='checked_id']").eq(0).focus();
+	        return false;
+	    	}
+	   if($("input[name='checked_address']").val()==''){
+	        alert('이메일중복 확인을 해주세요.');
+	        $("input[name='checked_address']").eq(0).focus();
+	        return false;
+	    	}
 		  $('#m_address').val($('#zipcode').val()+ " " + $('#userAddr1').val()+ " " + $('#userAddr2').val());
+		  $('#m_email').val($('#str_email01').val()+ "@" + $('#str_email02').val());
 		
 			
 		alert("회원가입 되었습니다.");
@@ -265,6 +289,7 @@ function fn_idCheck() {
 				}
 					
 				$("#idCheck").attr("value", "Y");
+				$("input[name=checked_id]").val('y');
 				alert("사용가능한 아이디입니다.");
 			}
 		}
@@ -292,6 +317,7 @@ $(function(){
 });
 
 function fn_eCheck() {
+	$('#m_email').val($('#str_email01').val()+ "@" + $('#str_email02').val());
 	$.ajax({
 		url :		"/member/eCheck",
 		type:		"post",
@@ -300,7 +326,7 @@ function fn_eCheck() {
 		success:	function(data) {
 			var email = RegExp(/^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/)
 			//alert("Return : " + data);
-			if(data == 1) {
+			if(data != 0) {
 				alert("이미 사용중인 이메일입니다.\n다른 이메일을 입력하십시요.");
 			} else if(data == 0) {
 				
@@ -311,6 +337,7 @@ function fn_eCheck() {
 		             return false;
 		        }
 				$("#eCheck").attr("value", "Y");
+				$("input[name=checked_address]").val('y');
 				alert("사용가능한 이메일입니다.");
 			}
 		}
@@ -364,9 +391,19 @@ function daumZipCode() {
 			popupName:	'postcodePopup'
 	});
 }
-
-
-
+ 
+//이메일 입력방식 선택 
+$('#selectEmail').change(function(){
+	$("#selectEmail option:selected").each(function () {
+		if($(this).val()== '1'){ //직접입력일 경우 
+			$("#str_email02").val(''); //값 초기화
+			$("#str_email02").attr("disabled",false); //활성화
+			}else{ //직접입력이 아닐경우
+				$("#str_email02").val($(this).text()); //선택값 입력
+				$("#str_email02").attr("disabled",true); //비활성화
+				}
+		});
+	});
 </script>
 </body>
 </html>
