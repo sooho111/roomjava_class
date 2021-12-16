@@ -5,7 +5,7 @@
 
 <div id="bheader">
 	<div class="inner">
-		<h1><a href="/"><img src="../resources/images/logo2.png" alt="logo" width="200" /></a></h1>
+		<h1><a href="/"><img src="../../resources/images/logo2.png" alt="logo" width="200" /></a></h1>
 		<c:if test="${member == null}">
 			<ul class="log">
 				<li><a href="#">예약 확인 및 취소</a></li>

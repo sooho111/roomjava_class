@@ -30,7 +30,7 @@
 			</div>
 			<div>
 				<h5>
-					${userId}
+					${m_id}
 				</h5>
 				<button class="btn btn-light left" type="button" id="findpwBtn">비밀번호찾기</button>
 				<p class="w3-center">

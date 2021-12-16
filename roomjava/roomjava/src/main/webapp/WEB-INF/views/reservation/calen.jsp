@@ -28,7 +28,7 @@
 </head>
 
 <body>
-<%@ include file="../include/indexHeader.jsp" %>
+<%@ include file="../include/header.jsp" %>
 
 	<div class="calendar">
 		<div class="header">
