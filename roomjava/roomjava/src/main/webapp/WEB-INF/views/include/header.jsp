@@ -32,9 +32,10 @@
 		<ul class="gnb">
 		    <li><a href="#"><span class="glyphicon glyphicon-heart"></span> 시설 안내</a>
 		    	<ul class="infra">
-			    	<c:forEach items="${roomKind}" var="room">
-						<li><a href="#">${room.room_class}</a></li>
-					</c:forEach>
+					<li><a href="../main/1">펜션</a></li>
+					<li><a href="../main/2">카라반</a></li>
+					<li><a href="../main/3">데크</a></li>
+					<li><a href="../main/4">글램핑</a></li>
 		    	</ul>
 		    </li>
 		    
