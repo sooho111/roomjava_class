@@ -47,7 +47,7 @@ th { text-align:center; }
 <div id="myContent">
 	<div class="m_content">
 			<button id="memberUpdateBtn" type="button" class="btn btn-warning">회원정보수정</button>
-			<button id="memberDeleteBtn" type="button" class="btn btn-warning">회원 탈퇴</button>
+			<button id="memberDeleteBtn" type="button" class="btn btn-danger">회원 탈퇴</button>
 			<input type="hidden" id="m_id" name="m_id" value="${member.m_id}" />
 	</div>
 </div>
