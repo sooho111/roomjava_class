@@ -20,7 +20,12 @@
 			<ul class="log">
 				<li class="myPage"><a href="#">내 정보</a></li>
 				<li class="logout"><a href="#">로그아웃</a></li>
-				<li><p>${member.m_name}님 환영합니다.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p></li>
+				<c:if test="${member.m_power == 1}">
+					<li><p class="mi" align="center"><a href="/admin/adminMain">관리자 페이지로</a></p></li>
+				</c:if>
+				<c:if test="${member.m_power != 1}">
+					<li><p>${member.m_name}님 환영합니다.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p></li>
+				</c:if>
 			</ul>
 		</c:if>
 		
@@ -42,7 +47,7 @@
 			
 			<li><a href="#"><span class="glyphicon glyphicon-apple"></span> 커뮤니티</a>
 				<ul class="comunity">
-					<li><a href="#">공지 사항</a></li>
+					<li><a href="member/notice">공지 사항</a></li>
 					<li><a href="#">후기</a></li>
 					<li><a href="#">FAQ</a></li>
 				</ul>

@@ -15,6 +15,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -22,6 +23,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.room.admin.dto.BoardDTO;
+import com.room.admin.dto.PageMaker;
+import com.room.admin.dto.SearchCriteria;
 import com.room.member.dto.MemberDTO;
 import com.room.member.service.MemberService;
 
@@ -228,5 +232,21 @@ public class MemberController {
 		model.addAttribute("member", memberDTO);
 			
 	} // end void myPage
+	
+	//공지사항 view
+	@RequestMapping(value="/notice", method=RequestMethod.GET)
+	public String noticeList(Model model, @ModelAttribute("scri") SearchCriteria scri) throws Exception {
+		logger.info("noticeList");
+		
+		model.addAttribute("list", memberService.list(scri));
+		
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(scri);
+		pageMaker.setTotalCount(memberService.listCount(scri));
+		
+		model.addAttribute("pageMaker", pageMaker);
+		
+		return "member/notice";
+	}
 
 } // end class MemberController

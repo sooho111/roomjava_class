@@ -1,5 +1,9 @@
 package com.room.member.dao;
 
+import java.util.List;
+
+import com.room.admin.dto.BoardDTO;
+import com.room.admin.dto.SearchCriteria;
 import com.room.member.dto.MemberDTO;
 
 public interface MemberDAO {
@@ -43,7 +47,14 @@ public interface MemberDAO {
 	// 비밀번호 찾기
 	// -------------------------------------------------------------------------------------------------
 	public String memberfindpwform(MemberDTO memberDTO) throws Exception;
-	
+	//-------------------------------------------------------------------------------------------------
+	// 공지사항 목록 조회
+	//-------------------------------------------------------------------------------------------------
+	public List<BoardDTO> list(SearchCriteria scri) throws Exception;
+	//-------------------------------------------------------------------------------------------------
+	// 공지사항 총 갯수
+	//-------------------------------------------------------------------------------------------------
+	public int listCount(SearchCriteria scri) throws Exception;
 
 
 }
