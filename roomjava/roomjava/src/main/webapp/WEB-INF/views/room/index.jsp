@@ -76,6 +76,13 @@ $('.logout').click(function(){
 		location.href="member/logout";
 	}
 });
+// 회원탈퇴버튼을 눌렀을 경우 회원탈퇴 페이지로 이동한다.
+$("#memberDeleteBtn").on("click", function() {
+	var result = confirm("회원탈퇴 하시겠습니까?");
+	if(result){
+	location.href = "/member/memberDelete/" + $("#m_id").val();
+	}
+});
 
 </script>
 </html>
