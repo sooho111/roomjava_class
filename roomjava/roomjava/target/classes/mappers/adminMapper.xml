@@ -57,4 +57,21 @@ INSERT INTO notice_board (notice_title, notice_content)
 	FROM   notice_board		   
 	WHERE  notice_bno = #{notice_bno}
 	</select>
+	
+	<!-- 공지사항 수정 -->
+	<update id="noticeUpdate" parameterType="com.room.admin.dto.BoardDTO">
+	UPDATE notice_board
+	SET notice_title = #{notice_title},
+		notice_content = #{notice_content}
+	WHERE notice_bno = #{notice_bno}
+	</update>
+	
+	<!-- 공지사항 삭제 -->
+	<delete id="noticeDelete" parameterType="int">
+	delete from notice_board
+	
+	WHERE notice_bno = #{notice_bno}
+	
+	</delete>
+	
 </mapper>

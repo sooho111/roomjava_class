@@ -17,7 +17,8 @@
 		
 		<div class="callsenter">
 			<ul class="f_call">
-				<li>고객 센터</li>
+				<li><a href="http://pf.kakao.com/_mKlKb">카카오톡 채널</a></li>
+				<li><a href="http://pf.kakao.com/_mKlKb/chat">카카오톡 1대1 채팅</a></li>
 				<li>(우:16107) 경기도 의왕시 왕송못동로 295 (월암동, 왕송호수캠핑장 매표소)</li>
 				<li>문의 : 031-8086-7371</li>
 				<li>Copyright (c) 2018 UIWANG CITY. All rights reserved.</li>

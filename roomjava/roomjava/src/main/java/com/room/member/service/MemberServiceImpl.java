@@ -86,7 +86,6 @@ MemberDAO memberDAO;
 		return memberDAO.memberDelete(m_id);
 	}
 
-	/*
 
 
 
@@ -95,12 +94,12 @@ MemberDAO memberDAO;
 	// -------------------------------------------------------------------------------------------------
 	// 아이디 찾기
 	// -------------------------------------------------------------------------------------------------
-	public String findidform(HttpServletResponse response, String userEmail) throws Exception{
+	public String findidform(HttpServletResponse response, String m_email) throws Exception{
 		response.setContentType("text/html;charset=utf-8");
 		PrintWriter out = response.getWriter();
-		String userId = memberDAO.findidform(userEmail);
+		String m_id = memberDAO.findidform(m_email);
 		
-		if (userId == null) {
+		if (m_id == null) {
 			out.println("<script>");
 			out.println("alert('가입된 이메일이 없습니다.');");
 			out.println("history.go(-1);");
@@ -108,7 +107,7 @@ MemberDAO memberDAO;
 			out.close();
 			return null;
 		} else {
-			return userId;
+			return m_id;
 		}
 	}
 
@@ -118,9 +117,9 @@ MemberDAO memberDAO;
 		public String memberfindpwform(HttpServletResponse response, MemberDTO memberDTO) throws Exception {
 			response.setContentType("text/html;charset=utf-8");
 			PrintWriter out = response.getWriter();
-			String userPw = memberDAO.memberfindpwform(memberDTO);
+			String m_pwd = memberDAO.memberfindpwform(memberDTO);
 			
-			if(userPw == null) {
+			if(m_pwd == null) {
 				out.println("<script>");
 				out.println("alert('입력한 id 또는 email을 찾을 수 없습니다.');");
 				out.println("history.go(-1);");
@@ -128,15 +127,9 @@ MemberDAO memberDAO;
 				out.close();
 				return null;
 			}else {
-				return userPw;
+				return m_pwd;
 			}
 		}
 
-
-
-
-
-
-		*/
 	
 }

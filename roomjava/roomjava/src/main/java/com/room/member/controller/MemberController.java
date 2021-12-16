@@ -4,6 +4,7 @@ import java.text.DateFormat;
 import java.text.DecimalFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
@@ -66,7 +67,7 @@ public class MemberController {
 		} else {
 			// 로그인이 정상이라면 세션을 발급한다.
 			session.setAttribute("member", login);
-			session.setAttribute("userid", memberDTO.getM_id());
+			session.setAttribute("m_id", memberDTO.getM_id());
 		}
 		return "redirect:/member/login";
 	}
@@ -78,6 +79,7 @@ public class MemberController {
 	public String logout(HttpSession session) throws Exception {
 		// 로그아웃 버튼을 눌렀을 경우에는 세션을 없앤다.
 		session.invalidate();
+		logger.info("123");
 		return "redirect:/";
 	}
 
@@ -174,10 +176,11 @@ public class MemberController {
 	// -------------------------------------------------------------------------------------------------
 	// 회원 탈퇴
 	// -------------------------------------------------------------------------------------------------
-	@RequestMapping(value = "/memberDelete/{userId}", method = RequestMethod.GET)
-	private String productDelete(@PathVariable String userId) throws Exception {
-		memberService.memberDelete(userId);
-		return "redirect:/member/logout";
+	@RequestMapping(value = "/memberDelete/{m_id}", method = RequestMethod.GET)
+	private String productDelete(@PathVariable String m_id, HttpSession session) throws Exception {
+		memberService.memberDelete(m_id);
+		session.invalidate();
+		return "redirect:/";
 	}
 
 	// -------------------------------------------------------------------------------------------------
@@ -189,34 +192,41 @@ public class MemberController {
 		memberService.update(memberDTO);
 		return "redirect:/member/login";
 	}
-	/*
-	 * 
-	 * // 아이디 찾기 폼
-	 * 
-	 * @RequestMapping(value = "/findidpage", method = RequestMethod.GET) public
-	 * String findidpage() throws Exception { return "/member/findidpage"; }
-	 * 
-	 * // 아이디 찾기
-	 * 
-	 * @RequestMapping(value = "/findidform", method = RequestMethod.POST) public
-	 * String findidform(HttpServletResponse response, @RequestParam("userEmail")
-	 * String userEmail, Model md) throws Exception { md.addAttribute("userId",
-	 * memberService.findidform(response, userEmail)); return "/member/findidform";
-	 * }
-	 * 
-	 * // 비밀번호 찾기 폼
-	 * 
-	 * @RequestMapping("/findpwpage") public String findpwpage() { return
-	 * "/member/findpwpage"; }
-	 * 
-	 * // 비밀번호 찾기
-	 * 
-	 * @RequestMapping( "/findpwform") public String
-	 * memberfindpwform(HttpServletResponse response, MemberDTO memberDTO, Model md)
-	 * throws Exception {
-	 * md.addAttribute("userPw",memberService.memberfindpwform(response,
-	 * memberDTO)); return "/member/findpwform"; }
-	 * 
-	 */
+	
+	 
+	  // 아이디 찾기 폼
+	  
+	  @RequestMapping(value = "/findidpage", method = RequestMethod.GET) public
+	  String findidpage() throws Exception { return "/member/findidpage"; }
+	  
+	  // 아이디 찾기
+	  
+	  @RequestMapping(value = "/findidform", method = RequestMethod.POST) public
+	  String findidform(HttpServletResponse response, @RequestParam("m_email")
+	  String m_email, Model md) throws Exception { md.addAttribute("m_id",
+	  memberService.findidform(response, m_email)); return "/member/findidform";
+	  }
+	  
+	  // 비밀번호 찾기 폼
+	  
+	  @RequestMapping("/findpwpage") public String findpwpage() { return
+	  "/member/findpwpage"; }
+	  
+	  // 비밀번호 찾기
+	  
+	  @RequestMapping( "/findpwform") public String
+	  memberfindpwform(HttpServletResponse response, MemberDTO memberDTO, Model md)
+	  throws Exception {
+	  md.addAttribute("userPw",memberService.memberfindpwform(response,
+	  memberDTO)); return "/member/findpwform"; }
+	  
+	//마이페이지
+	@RequestMapping(value="/myPage", method=RequestMethod.GET)
+	public void myPage(MemberDTO memberDTO, HttpSession session, Model model) throws Exception {
+		
+		memberDTO = (MemberDTO)session.getAttribute("member");
+		model.addAttribute("member", memberDTO);
+			
+	} // end void myPage
 
 } // end class MemberController

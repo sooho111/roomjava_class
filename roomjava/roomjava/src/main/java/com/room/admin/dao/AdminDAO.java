@@ -24,4 +24,10 @@ public interface AdminDAO {
 	//공지사항 상세페이지
 	public BoardDTO detailView(int notice_bno) throws Exception;
 	
+	//공지사항 수정
+	public void noticeUpdate(BoardDTO boardDTO) throws Exception;
+	
+	//공지사항 삭제
+	public void noticeDelete(BoardDTO boardDTO) throws Exception;
+	
 } // end interface AdminDAO
