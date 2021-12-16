@@ -18,7 +18,7 @@
 				<div>
 					<p>
 						<label>Email</label>
-						<input class="w3-input" type="text" id="email" name="userEmail" required>
+						<input class="w3-input" type="text" id="email" name="m_email" required>
 					</p>
 					<p class="w3-center">
 						<button type="submit" id=findBtn class="w3-button w3-block w3-black w3-ripple w3-margin-top w3-round">find</button>
