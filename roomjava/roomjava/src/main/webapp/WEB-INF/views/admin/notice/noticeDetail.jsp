@@ -36,8 +36,8 @@
 			
 			<div class="form-group">
 				<div class="col-sm-offset-9">
-					<button type ="button" class="btn btn-primary" onclick="location.href='#'" >수정</button>&nbsp;
-					<button type="button" class="btn btn-danger" onclick="location.href'#'" >삭제</button>
+					<button type ="button" class="btn btn-primary" onclick="location.href='noticeUpdate?n=${detail.notice_bno}'" >수정</button>&nbsp;
+					<button type="button" class="btn btn-danger" onclick="location.href='noticeDelete?n=${detail.notice_bno}'" >삭제</button>
 				</div>
 			</div>
 			
