@@ -30,8 +30,8 @@
 							색다른 체험과 캠핑의 즐거움을 느끼고자 한다면 왕송호수캠핌장, 의왕스카이레일을 방문하여 즐거운 시간을 가져보시기 바랍니다. <br>
 							감사합니다. <br>
 						</li>
-						<p align="center">
-							<img src="../../resoureces/introduce.jpg" alt="">
+						<p>
+							<img src="../../resources/images/introduce.jpg" alt="" />
 						</p>
 					</ul>
 				</div>

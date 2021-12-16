@@ -52,7 +52,7 @@
 					<li><a href="#">FAQ</a></li>
 				</ul>
 			</li>
-			<li><a href="../room/introduce"><span class="glyphicon glyphicon-user"></span> 소개</a></li>
+			<li><a href="../main/introduce"><span class="glyphicon glyphicon-user"></span> 소개</a></li>
 		</ul>
 	</div>
 </div>

@@ -20,6 +20,13 @@ public class MainController {
 	MainService mainService;
 	
 	//------------------------------------------------------------------------------------------------
+	// 소개 이동
+	//------------------------------------------------------------------------------------------------
+    @RequestMapping(value = "/introduce", method = RequestMethod.GET)
+    public String goIntroduce() throws Exception {
+    	return "/main/introduce";
+    }
+	//------------------------------------------------------------------------------------------------
 	// 달력으로 이동
 	//------------------------------------------------------------------------------------------------
     @RequestMapping(value = "/calen", method = RequestMethod.GET)
