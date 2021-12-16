@@ -16,8 +16,7 @@
 		
 		<c:if test="${member != null}">
 			<ul class="log">
-				<li><a href="#">내 정보</a></li>
-				<li id="memberDeleteBtn"><a href="">회원 탈퇴</a></li>
+				<li><a href="../member/myPage">내 정보</a></li>
 				<li class="logout"><a href="#">로그아웃</a></li>
 			</ul>
 		</c:if>
@@ -57,11 +56,5 @@ $('.logout').click(function(){
 		location.href="/member/logout";
 	}
 });
-//회원탈퇴버튼을 눌렀을 경우 회원탈퇴 페이지로 이동한다.
-$("#memberDeleteBtn").on("click", function() {
-	var result = confirm("회원탈퇴 하시겠습니까?");
-	if(result){
-	location.href = "/member/memberDelete/" + $("#m_id").val();
-	}
-});
+
 </script>

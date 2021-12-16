@@ -16,8 +16,7 @@
 		
 		<c:if test="${member != null}">
 			<ul class="log">
-				<li><a href="#">내 정보</a></li>
-				<li id="memberDeleteBtn"><a href="#">회원 탈퇴</a></li>
+				<li><a href="../member/myPage">내 정보</a></li>
 				<li class="logout"><a href="#">로그아웃</a></li>
 			</ul>
 		</c:if>
