@@ -70,6 +70,13 @@ public class AdminDAOImpl implements AdminDAO {
 			sqlSession.update(namespace + ".noticeUpdate", boardDTO);
 			
 		}
-	
+		
+		//공지사항 삭제
+		@Override
+		public void noticeDelete(BoardDTO boardDTO) throws Exception {
+			sqlSession.delete(namespace + ".noticeDelete", boardDTO);
+		
+	}
+		
 
 } // end class AdminDAOImpl implements AdminDAO
