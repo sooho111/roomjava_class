@@ -64,6 +64,14 @@ public class AdminServiceImpl implements AdminService {
 		
 	}
 	
+	//공지사항 삭제
+	@Override
+	public void noticeDelete(BoardDTO boardDTO) throws Exception {
+		
+		adminDAO.noticeDelete(boardDTO);
+		
+	}
+	
 	
 	
 } // end class AdminServiceImpl implements AdminService

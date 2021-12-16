@@ -23,7 +23,7 @@
 			
 			
 			<nav>
-				<button type="button" onclick="location.href='notice'">글 작 성</button>
+				<button type="button" onclick="location.href='noticeInsert'">글 작 성</button>
 			</nav>
 			<hr />
 			
