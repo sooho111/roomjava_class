@@ -50,5 +50,8 @@ public interface AdminService {
 	//회원 삭제
 	public void memberDelete(String m_bno) throws Exception;
 	
+	//회원 등급찾기
+	public int searchM_power(String m_id)throws Exception;
+	
 
 } // end interface AdminService

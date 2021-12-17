@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -133,8 +134,9 @@ public class AdminController {
 		* 회원 목록(Paging 처리)
 		----------------------------------------------------------------------------------------------------------*/
 		@RequestMapping(value="/member/memberList", method=RequestMethod.GET)
-		   public ModelAndView memberList(SearchCriteria cri) throws Exception {
-			
+		   public ModelAndView memberList(SearchCriteria cri,HttpSession session) throws Exception {
+			String m_id = (String) session.getAttribute("m_id");
+			int m_power = (adminService.searchM_power(m_id));
 			
 			ModelAndView mav = new ModelAndView("/admin/member/memberList");
 		    
@@ -144,6 +146,7 @@ public class AdminController {
 			
 			//List<ManagerDTO>  list = adminService.memberListPaging(cri);
 			List<MemberDTO>  list = adminService.memberListPaging(cri);
+			mav.addObject("m_power",m_power);
 			mav.addObject("list", list);
 		    mav.addObject("pageMaker", pageMaker);
 		        
@@ -155,7 +158,9 @@ public class AdminController {
 		* 회원 번호에 해당하는 상세정보화면
 		----------------------------------------------------------------------------------------------------------*/
 		@RequestMapping("/member/memberDetail/{m_bno}")
-		private String memberDetail(@PathVariable String m_bno, Model model) throws Exception {
+		private String memberDetail(@PathVariable String m_bno, Model model,HttpSession session) throws Exception {
+			String m_id = (String) session.getAttribute("m_id");
+			model.addAttribute("m_power",adminService.searchM_power(m_id));
 			model.addAttribute("detail", adminService.memberDetail(m_bno));
 			
 			return "/admin/member/memberDetail";

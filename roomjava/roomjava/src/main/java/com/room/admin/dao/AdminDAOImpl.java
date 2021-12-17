@@ -106,6 +106,10 @@ public class AdminDAOImpl implements AdminDAO {
 		public void memberDelete(String m_bno) throws Exception {
 			sqlSession.delete(namespace + ".memberDelete", m_bno);
 		}
+		//회원 등급 찾기
+		public int searchM_power (String m_id) throws Exception {
+			return sqlSession.selectOne(namespace + ".searchM_power", m_id);
+		}
 		
 
 } // end class AdminDAOImpl implements AdminDAO

@@ -93,14 +93,20 @@ public class AdminServiceImpl implements AdminService {
 	
 
 	// 회원 수정
-
+	@Override
 	public void memberUpdate(MemberDTO memberDTO) throws Exception {
 		adminDAO.memberUpdate(memberDTO);
 	}
 	
 	//회원 삭제
+	@Override
 	public void memberDelete(String m_bno) throws Exception {
 		adminDAO.memberDelete(m_bno);
+	}
+	//회원 등급 찾기
+	@Override
+	public int searchM_power(String m_id) throws Exception {
+		return adminDAO.searchM_power(m_id);
 	}
 
 	

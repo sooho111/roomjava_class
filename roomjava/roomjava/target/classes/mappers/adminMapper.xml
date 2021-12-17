@@ -98,6 +98,7 @@ INSERT INTO notice_board (notice_title, notice_content)
         SELECT	*  
         FROM	member 
         WHERE	1=1
+        and		m_power!=1
     ]]>
 		<include refid="membersearch"/>
     <![CDATA[
@@ -119,7 +120,8 @@ INSERT INTO notice_board (notice_title, notice_content)
     SET     m_pwd = #{m_pwd},
     		m_name = #{m_name},m_tel = #{m_tel},
     		m_address = #{m_address},
-    		m_birth 	=#{m_birth}
+    		m_birth 	=#{m_birth},
+    		m_power	=#{m_power}
     WHERE   m_bno     = #{m_bno}
    	</update>
    	 
@@ -129,6 +131,12 @@ INSERT INTO notice_board (notice_title, notice_content)
    	FROM	member
     WHERE   m_bno     = #{m_bno}
    	</delete>
+   	<!-- 회원 등급 찾기 -->
+   	<select id="searchM_power" parameterType="com.room.member.dto.MemberDTO" resultType="Integer">
+   	SELECT 	m_power
+   	from	member
+   	where	m_id	=#{m_id}
+   	</select>
    
 	
 </mapper>
