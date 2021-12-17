@@ -5,9 +5,10 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<%@ include file="../../include/includeFile.jsp" %>
 </head>
 <body>
-
+<%@ include file="../../include/m_header.jsp" %>
 		<form class="form-horizontal" method="post">
 			<div class="form-group">
 				<div style="text-align: center; margin: 50px 0;">
