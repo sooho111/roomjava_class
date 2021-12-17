@@ -6,7 +6,7 @@ import java.util.List;
 
 import com.room.admin.dto.BoardDTO;
 import com.room.admin.dto.SearchCriteria;
-
+import com.room.member.dto.MemberDTO;
 import com.room.admin.dto.RoomKindDTO;
 
 
@@ -32,5 +32,23 @@ public interface AdminService {
 	
 	//공지사항 삭제
 	public void noticeDelete(BoardDTO boardDTO) throws Exception;
+
+	// 회원 목록 보기 (Paging 처리)
+
+	public List<MemberDTO> memberListPaging(SearchCriteria cri) throws Exception;
+
+	
+	// 회원 목록 수 구하기 (Paging 처리)
+	public int memberListTotalCount(SearchCriteria cri) throws Exception;
+	
+	//회원 번호에 해당하는 상세정보화면
+	public MemberDTO memberDetail(String m_bno) throws Exception;
+	
+	//회원 수정
+	public void memberUpdate(MemberDTO memberDTO) throws Exception;
+	
+	//회원 삭제
+	public void memberDelete(String m_bno) throws Exception;
+	
 
 } // end interface AdminService
