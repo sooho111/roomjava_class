@@ -1800,7 +1800,7 @@ var FullCalendar = (function (exports) {
         eventDragMinDistance: 5,
         expandRows: false,
         navLinks: false,
-        selectable: false,
+        selectable: true,
         eventMinHeight: 15,
         eventMinWidth: 30,
         eventShortHeight: 30,
