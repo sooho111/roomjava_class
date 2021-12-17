@@ -78,5 +78,62 @@ INSERT INTO notice_board (notice_title, notice_content)
 	WHERE notice_bno = #{notice_bno}
 	
 	</delete>
+	    <!-- 회원 검색조건 -->
+	<sql id="membersearch">
+		<if test="searchType != null">
+			<if test="searchType == 'id'.toString()">AND userId LIKE CONCAT('%',#{keyword},'%')</if>
+			<if test="searchType == 'name'.toString()">AND m_name LIKE CONCAT('%',#{keyword},'%')</if>
+			<if test="searchType == 'birth'.toString()">AND m_birth  LIKE CONCAT('%',#{keyword},'%')</if>
+		</if>
+	</sql>
+	
+    <!-- 전체 회원 수 구하기 (Paging 처리) + 검색조건 -->
+	<select id="memberListTotalCount" parameterType="com.room.admin.dto.SearchCriteria" resultType="Integer">
+    <![CDATA[
+        SELECT	count(*) FROM	member
+        WHERE	1=1
+    ]]>
+		<include refid="membersearch"/>
+	</select>
+
+	
+	<!-- 회원 목록 보기 (Paging 처리) + 검색조건 -->
+	<select id="memberListPaging" parameterType="com.room.admin.dto.SearchCriteria" resultType="com.room.member.dto.MemberDTO">
+    <![CDATA[
+        SELECT	*  
+        FROM	member 
+        WHERE	1=1
+    ]]>
+		<include refid="membersearch"/>
+    <![CDATA[
+        ORDER BY m_bno DESC
+        LIMIT	#{pageStart}, #{perPageNum}
+    ]]>
+	</select>
+	
+	<!-- 회원번호에 해당하는 정보를 추출한다. -->
+	<select id="memberDetail" parameterType="com.room.member.dto.MemberDTO" resultType="com.room.member.dto.MemberDTO">
+	SELECT	*
+	FROM	member
+	WHERE	m_bno		= #{m_bno}
+	</select>
+	
+	<!-- 회원 수정 -->
+	<update id="memberUpdate" parameterType="com.room.member.dto.MemberDTO">
+    UPDATE 	member
+    SET     m_pwd = #{m_pwd},
+    		m_name = #{m_name},m_tel = #{m_tel},
+    		m_address = #{m_address},
+    		m_birth 	=#{m_birth}
+    WHERE   m_bno     = #{m_bno}
+   	</update>
+   	 
+   	<!-- 회원 삭제 -->
+	<delete id="memberDelete" parameterType="com.room.member.dto.MemberDTO">
+    DELETE 	
+   	FROM	member
+    WHERE   m_bno     = #{m_bno}
+   	</delete>
+   
 	
 </mapper>
