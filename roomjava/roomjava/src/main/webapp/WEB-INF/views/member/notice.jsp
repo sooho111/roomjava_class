@@ -16,7 +16,7 @@
 </head>
 <body>
 <%@ include file="../include/header.jsp" %>
-	<div class="container_con">
+	<div class="container_con" style="margin-left:3%">
 		
 		
 		<section id="container">
@@ -87,7 +87,7 @@
 					<script>
 						$(function(){
 							$('#searchBtn').click(function(){
-								self.location = "notice" + '${pageMaker.makeQuery(1)}' + "$searchType=" + $("select option:selected").val()
+								self.location = "noticeList?searchType=" +$("select option:selected").val() +"&keyword="+$("[name=keyword]").val()
 							});
 						});
 					</script>

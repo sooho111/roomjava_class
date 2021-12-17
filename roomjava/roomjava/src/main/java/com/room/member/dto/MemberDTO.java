@@ -6,7 +6,6 @@ import lombok.Data;
 
 @Data
 public class MemberDTO {
-	
 	private	String	m_bno;			// 회원 번호
 	private	String	m_id;			// 회원 아이디
 	private	String	m_pwd;	// 회원 비민번호
