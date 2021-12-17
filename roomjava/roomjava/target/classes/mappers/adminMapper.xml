@@ -18,11 +18,12 @@ INSERT INTO notice_board (notice_title, notice_content)
 	</select>
 
 
-   <!-- 공지사항 검색조건 -->
+    <!-- 공지사항 검색조건 -->
    <sql id="noticeSearch">
       <if test="searchType != null">
-         <if test="searchType == 'title'.toString()">AND notice_title LIKE CONCAT('%',#{keyword},'%')</if>
-         <if test="searchType == 'content'.toString()">AND notice_content  LIKE CONCAT('%',#{keyword},'%')</if>
+ 		<if test="searchType == 't'.toString()">AND notice_title LIKE '%' || #{keyword} || '%'</if>
+		<if test="searchType == 'c'.toString()">AND notice_content LIKE '%' || #{keyword} || '%'</if>
+ 		<if test="searchType == 'tc'.toString()">AND (notice_title LIKE '%' || #{keyword} || '%') or (notice_content LIKE '%' || #{keyword} || '%')</if>
       </if>
    </sql>
 
@@ -40,14 +41,18 @@ INSERT INTO notice_board (notice_title, notice_content)
     ]]>
    </select>
    
+   
    	<!-- 전체 공지사항 수 구하기 (Paging 처리) -->
 	<select id="noticeTotalCount" resultType="Integer">
     <![CDATA[
         SELECT	count(*)
         FROM	notice_board
+        WHERE   1=1
     ]]>
+    
 	</select>
-
+	
+	
 	<!-- 공지사항 상세페이지 -->
 	<select id="detailView" parameterType="int" resultType="com.room.admin.dto.BoardDTO">
 	SELECT notice_bno,
