@@ -109,6 +109,12 @@ public class MemberDAOImpl implements MemberDAO {
 		return sqlSession.selectOne(namespace + ".noticeTotalCount", scri);
 	}
 
+	@Override
+	public BoardDTO detailView(int board_notice) throws Exception {
+		
+		return sqlSession.selectOne(namespace + ".detailView", board_notice);
+	}
+
 
 
 }
