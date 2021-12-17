@@ -142,7 +142,7 @@ th { text-align:center; }
 				</div>
 				
 			<div class="form-group">
-				<div class="col-sm-offset-3 col-sm-2 center">
+				<div class="col-sm-offset-3 col-sm-3 center">
 					<button class="btn btn-success" type="submit" id="submit">수정</button>
 					<input class="btn btn-primary" type="button" value="뒤로가기" onclick="history.go(-1);" /> 
 				</div>
