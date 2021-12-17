@@ -32,8 +32,8 @@
 				<h5>
 					${m_id}
 				</h5>
-				<button class="btn btn-light left" type="button" id="findpwBtn">비밀번호찾기</button>
 				<p class="w3-center">
+					<button class="w3-button w3-block w3-black w3-ripple w3-margin-top w3-round" type="button" id="findpwBtn">비밀번호찾기</button>
 					<button type="button" id=loginBtn class="w3-button w3-block w3-black w3-ripple w3-margin-top w3-round">Login</button>
 					<button type="button" onclick="history.go(-1);" class="w3-button w3-block w3-black w3-ripple w3-margin-top w3-margin-bottom w3-round">Cancel</button>
 				</p>

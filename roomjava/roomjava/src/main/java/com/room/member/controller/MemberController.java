@@ -194,7 +194,7 @@ public class MemberController {
 	public String postMemberUpdate(MemberDTO memberDTO) throws Exception {
 		// logger.info(memberDTO.getAddress());
 		memberService.update(memberDTO);
-		return "redirect:/member/login";
+		return "redirect:/member/myPage";
 	}
 	
 	 
@@ -246,7 +246,22 @@ public class MemberController {
 		
 		model.addAttribute("pageMaker", pageMaker);
 		
-		return "member/notice";
+		return "/member/notice";
 	}
+	
+	//-------------------------------------------------------------------------------------------------------
+	//공지사항 상세페이지	
+	//-------------------------------------------------------------------------------------------------------
+		@RequestMapping(value = "/noticeDetail", method = RequestMethod.GET)
+		public String noticeDetail( Model model, @RequestParam("n") int notice_bno, BoardDTO boardDTO) throws Exception {
+		
+		logger.info("noticeDetail");
+		
+		boardDTO.setNotice_bno(notice_bno);
+		model.addAttribute("detail", memberService.detailView(boardDTO.getNotice_bno()));
+		
+		return "/member/noticeDetail";
+		
+		}
 
 } // end class MemberController

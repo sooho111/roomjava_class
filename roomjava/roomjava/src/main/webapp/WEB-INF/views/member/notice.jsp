@@ -16,7 +16,7 @@
 </head>
 <body>
 <%@ include file="../include/header.jsp" %>
-	<div class="container_con">
+	<div class="container_con" style="margin-left:3%">
 		
 		
 		<section id="container">
@@ -35,7 +35,7 @@
 						<tr>
 							<td><c:out value="${list.notice_bno}" /></td>
 							<td>
-								<a href="/admin/notice/noticeDetail?n=${list.notice_bno }"><c:out value="${list.notice_title}" /></a>
+								<a href="/member/noticeDetail?n=${list.notice_bno }"><c:out value="${list.notice_title}" /></a>
 							</td>
 							<td>관리자</td>
 							<td><fmt:formatDate value="${list.notice_date}" pattern="yyyy년MM월dd일"/></td>
@@ -87,7 +87,7 @@
 					<script>
 						$(function(){
 							$('#searchBtn').click(function(){
-								self.location = "notice" + '${pageMaker.makeQuery(1)}' + "$searchType=" + $("select option:selected").val()
+								self.location = "noticeList?searchType=" +$("select option:selected").val() +"&keyword="+$("[name=keyword]").val()
 							});
 						});
 					</script>

@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import com.room.admin.dao.AdminDAO;
 import com.room.admin.dto.BoardDTO;
 import com.room.admin.dto.SearchCriteria;
+import com.room.member.dto.MemberDTO;
 import com.room.admin.dto.RoomKindDTO;
 
 @Service
@@ -71,6 +72,37 @@ public class AdminServiceImpl implements AdminService {
 		adminDAO.noticeDelete(boardDTO);
 		
 	}
+	//회원 목록 보기 (Paging 처리)
+	@Override
+	public List<MemberDTO> memberListPaging(SearchCriteria cri) throws Exception {
+		return adminDAO.memberListPaging(cri);
+	}
+
+	// 회원 목록 수 구하기 (Paging 처리)
+	@Override
+	public int memberListTotalCount(SearchCriteria cri) throws Exception {
+		return adminDAO.memberListTotalCount(cri);
+	}
+	
+	//회원 번호에 해당하는 상세정보화면
+
+	@Override
+	public MemberDTO memberDetail(String m_bno) throws Exception {
+		return adminDAO.memberDetail(m_bno);
+	}
+	
+
+	// 회원 수정
+
+	public void memberUpdate(MemberDTO memberDTO) throws Exception {
+		adminDAO.memberUpdate(memberDTO);
+	}
+	
+	//회원 삭제
+	public void memberDelete(String m_bno) throws Exception {
+		adminDAO.memberDelete(m_bno);
+	}
+
 	
 	
 	

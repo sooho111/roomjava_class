@@ -11,7 +11,7 @@ import org.springframework.stereotype.Repository;
 
 import com.room.admin.dto.BoardDTO;
 import com.room.admin.dto.SearchCriteria;
-
+import com.room.member.dto.MemberDTO;
 import com.room.admin.dto.RoomKindDTO;
 
 
@@ -77,6 +77,35 @@ public class AdminDAOImpl implements AdminDAO {
 			sqlSession.delete(namespace + ".noticeDelete", boardDTO);
 		
 	}
+		//회원 목록 보기 (Paging 처리)
+		@Override
+		@SuppressWarnings("unchecked")
+		public List<MemberDTO> memberListPaging(SearchCriteria cri) throws Exception {
+
+			return sqlSession.selectList(namespace + ".memberListPaging", cri);
+		}
+
+		//회원 목록 수 구하기 (Paging 처리)
+		@Override
+		public int memberListTotalCount(SearchCriteria cri) throws Exception {
+			return sqlSession.selectOne(namespace + ".memberListTotalCount", cri);
+		}
+		
+		//회원 번호에 해당하는 상세정보화면
+		@Override
+		public MemberDTO memberDetail(String m_bno) throws Exception {
+			return sqlSession.selectOne(namespace + ".memberDetail", m_bno);
+		}
+		
+		//회원 수정
+		public void memberUpdate(MemberDTO memberDTO) throws Exception {
+			sqlSession.update(namespace + ".memberUpdate", memberDTO);
+		}
+		
+		//회원 삭제
+		public void memberDelete(String m_bno) throws Exception {
+			sqlSession.delete(namespace + ".memberDelete", m_bno);
+		}
 		
 
 } // end class AdminDAOImpl implements AdminDAO

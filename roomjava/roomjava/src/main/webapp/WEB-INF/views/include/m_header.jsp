@@ -4,7 +4,7 @@
 <%@ taglib prefix="fmt"			uri="http://java.sun.com/jsp/jstl/fmt" %>
 <div id="bheader">
 	<div class="inner">
-		<h1><a href="/"><img src="../../resources/images/logo2.png" alt="logo" width="200" /></a></h1>
+		<h1><a href="/"><img src="../../../resources/images/logo2.png" alt="logo" width="200" /></a></h1>
 
 			<ul>
 				<li class="logout"><a href="#">로그아웃</a></li>
@@ -13,7 +13,7 @@
 			<ul class="gnb">
 				<li><a href="#"><span class="glyphicon glyphicon-barcode"></span> 어쩌구</a></li>
            		<li><a href="#"><span class="glyphicon glyphicon-plane"></span> 저쩌구</a></li>
-           		<li><a href="#"><span class="glyphicon glyphicon-inbox"></span> 샬라샬라</a></li>
+           		<li><a href="/admin/member/memberList"><span class="glyphicon glyphicon-user"></span> 회원 목록 </a></li>
            		<li><a href="/admin/notice/noticeList"><span class="glyphicon glyphicon-volume-up"></span> 공지사항</a></li>
 			</ul>
 	</div>
