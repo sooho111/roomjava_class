@@ -4,7 +4,7 @@
 <%@ taglib prefix="fmt"			uri="http://java.sun.com/jsp/jstl/fmt" %>
 <div id="bheader">
 	<div class="inner">
-		<h1><a href="/"><img src="../../resources/images/logo2.png" alt="logo" width="200" /></a></h1>
+		<h1><a href="/"><img src="../../../resources/images/logo2.png" alt="logo" width="200" /></a></h1>
 
 			<ul>
 				<li class="logout"><a href="#">로그아웃</a></li>

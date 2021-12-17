@@ -149,6 +149,14 @@ MemberDAO memberDAO;
 			
 			return memberDAO.listCount(scri);
 		}
+		//-----------------------------------------------------------------------------------------------------
+		//공지사항 상세페이지
+		//-----------------------------------------------------------------------------------------------------		
+		@Override
+		public BoardDTO detailView(int notice_bno) throws Exception {
+			
+			return memberDAO.detailView(notice_bno);
+		}
 
 	
 }
