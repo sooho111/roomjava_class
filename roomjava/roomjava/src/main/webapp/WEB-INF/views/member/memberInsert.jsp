@@ -5,6 +5,16 @@
 	<meta charset="UTF-8">
 	<title>회원가입</title>
 	<%@ include file="../include/includeFile.jsp" %>
+	<style>
+	.flex-container {
+	  display: flex;
+	  width: 350px;
+	}
+	.flex-container > input {
+	  width:90px;
+	 
+	}
+	</style>
 </head>
 <body>
 <%@ include file="../include/header.jsp" %>
@@ -69,21 +79,23 @@
 		<div class="form-group">
 			<label class="control-label col-sm-2">이메일</label>
 			<div class="col-sm-3">
-				<input type="hidden" class="form-control" id="m_email" name="m_email" placeholder="Enter Email"/>
-				<input type="text" class="form-control" name="str_email01" id="str_email01" style="width:100px"> @ 
-				<input type="text" class="form-control" name="str_email02" id="str_email02" style="width:100px;" disabled value="naver.com">
-					<select style="width:100px;margin-right:10px" name="selectEmail" id="selectEmail"> 
-						<option value="1">직접입력</option> <option value="naver.com" selected>naver.com</option> 
-						<option value="hanmail.net">hanmail.net</option> <option value="hotmail.com">hotmail.com</option> 
-						<option value="nate.com">nate.com</option> <option value="yahoo.co.kr">yahoo.co.kr</option> 
-						<option value="empas.com">empas.com</option> <option value="dreamwiz.com">dreamwiz.com</option> 
-						<option value="freechal.com">freechal.com</option> <option value="lycos.co.kr">lycos.co.kr</option> 
-						<option value="korea.com">korea.com</option> <option value="gmail.com">gmail.com</option> 
-						<option value="hanmir.com">hanmir.com</option> <option value="paran.com">paran.com</option> 
+				<input type="hidden" class="form-control" id="m_email" name="m_email"/>
+				<div class="flex-container" style="width: 350px">
+					<input type="text" class="form-control" name="str_email01" id="str_email01" style="width:100px"> @ 
+					<input type="text" class="form-control" name="str_email02" id="str_email02" style="width:100px;" disabled value="naver.com">
+						<select style="width:100px;margin-right:10px" name="selectEmail" id="selectEmail"> 
+							<option value="1">직접입력</option> <option value="naver.com" selected>naver.com</option> 
+							<option value="hanmail.net">hanmail.net</option> <option value="hotmail.com">hotmail.com</option> 
+							<option value="nate.com">nate.com</option> <option value="yahoo.co.kr">yahoo.co.kr</option> 
+							<option value="empas.com">empas.com</option> <option value="dreamwiz.com">dreamwiz.com</option> 
+							<option value="freechal.com">freechal.com</option> <option value="lycos.co.kr">lycos.co.kr</option> 
+							<option value="korea.com">korea.com</option> <option value="gmail.com">gmail.com</option> 
+							<option value="hanmir.com">hanmir.com</option> <option value="paran.com">paran.com</option> 
 					</select>
+				</div>
 			</div>
 			<div class="col-sm-2">
-				<button class="eCheck btn btn-warning" type="button" id="eCheck" onclick="fn_eCheck();" value="N">중복확인</button>
+				<button class="eCheck btn btn-warning" style="margin-left:20px" type="button" id="eCheck" onclick="fn_eCheck();" value="N">중복확인</button>
 			</div>
 		</div>
 		
