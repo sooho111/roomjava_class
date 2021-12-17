@@ -13,7 +13,7 @@
 			</ul>
 		</div>
 				
-		<img src="../resources/images/logo2.png" alt="footer_logo" width="200" />
+		<img src="../../resources/images/logo2.png" alt="footer_logo" width="200" />
 		
 		<div class="callsenter">
 			<ul class="f_call">
