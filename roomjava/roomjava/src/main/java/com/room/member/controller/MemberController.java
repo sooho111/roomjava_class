@@ -194,7 +194,7 @@ public class MemberController {
 	public String postMemberUpdate(MemberDTO memberDTO) throws Exception {
 		// logger.info(memberDTO.getAddress());
 		memberService.update(memberDTO);
-		return "redirect:/member/login";
+		return "redirect:/member/myPage";
 	}
 	
 	 
