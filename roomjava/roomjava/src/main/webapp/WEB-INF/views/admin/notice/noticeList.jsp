@@ -21,7 +21,6 @@
 	<div class="container">
 			
 			
-<<<<<<< HEAD
 		<div class="form-group">
 			<div style="text-align: center; margin: 50px 0;">
 				<h5><b>공지사항</b></h5>
@@ -47,20 +46,22 @@
 				</c:forEach>
 				
 			</table>
-=======
+
 			<nav>
 				<button type="button" onclick="location.href='noticeInsert'">글 작 성</button>
 			</nav>
 			<hr />
->>>>>>> 0135d118c2b9bce7c216f13001bd3d22b4b03039
+
 			
 			<div class="search row">
 			
 				<div align="center" class="col-xs-2 col-sm-2" style="margin-left:170px;">
 					<select name = "searchType" class="form-control">
 						<option value ="n" <c:out value = "$(scri.seachType == null ? 'selected' : '')"/>>---선택---</option>
-						<option value ="title" <c:out value = "$(scri.seachType eq 't' ? 'selected' : '')"/>>제목</option>
-						<option value ="content" <c:out value = "$(scri.seachType eq 'c' ? 'selected' : '')"/>>내용</option>
+						<option value ="t" <c:out value = "$(scri.seachType eq 't' ? 'selected' : '')"/>>제목</option>
+						<option value ="c" <c:out value = "$(scri.seachType eq 'c' ? 'selected' : '')"/>>내용</option>
+						<option value ="tc" <c:out value = "$(scri.seachType eq 'tc' ? 'selected' : '')"/>>제목/내용</option>
+						
 					</select>
 				</div>
 				
@@ -73,19 +74,12 @@
 					</div>
 				</div>
 				
-				<script>
-					$(function(){
-						$('#searchBtn').click(function(){
-							self.location = "list" + '${pageMaker.makeQuery(1)}' + "$searchType=" + $("select option:selected").val()
-						});
-					});
-				</script>
 			</div>
 
  			<div class="col-md-offset-3">
 			  	<ul class="pagination">
 				    <c:if test="${pageMaker.prev}">
-				    	<li><a href="list${pageMaker.makeSearch(pageMaker.startPage - 1)}">이전</a></li>
+				    	<li><a href="noticeList${pageMaker.makeSearch(pageMaker.startPage - 1)}">이전</a></li>
 				    </c:if>
 					
 				    <c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="idx">
@@ -99,13 +93,17 @@
 		  		</ul>
 			</div>
 			
-		<div class="form-group btnss">
-			<div align="right" class="col-sm-offset-3">
-				<button type="button" class="btn btn-success btn-sm" onclick="location.href='notice'">글 작 성</button>
-			</div>
-		</div>				
+
 			
 		</form>
 	</div>
+			<script>
+				$(function(){
+					$('#searchBtn').click(function(){
+						
+					self.location = "noticeList" + '${pageMaker.makeQuery(1)}' + "$searchType=" + $("select option:selected").val()
+					});
+				});
+			</script>
 </body>
 </html>
