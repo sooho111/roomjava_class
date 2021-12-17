@@ -13,11 +13,11 @@
 <%@ include file="../../include/m_header.jsp" %>
 <div class="container">
 
-	<div align="center">
-		<h2>회원 목록</h2>
+	<div class="form-group">
+		<h5><b>회원 목록</b></h5>
 	</div>
-	<div class="col-sm-offset-1 col-sm-12">
-	<table class="table table-striped table-bordered table-hover">
+	<form role= "form">
+	<table class="table table-bordered table-striped table-hove">
 		<thead>
 			<tr>
 				<th>번호</th>
@@ -46,20 +46,26 @@
 			</c:forEach>
 		</tbody>
 	</table>
-	</div>
+	</form>
 	
-	<div class="col-sm-offset-3 col-sm-4">
+	<div align="center" class="col-xs-2 col-sm-2" style="margin-left:170px;">
 		
-		<select id='searchType'>
+		<select name = "searchType" class="form-control" id='searchType'>
 			<option>검색종류</option>
 				<option value="id" <c:if test="${pageVO.type} == 'id'">selected</c:if>>아이디</option>
 				<option value="name" <c:if test="${pageVO.type} == 'name'">selected</c:if>>이  름</option>
 				<option value="birth" <c:if test="${pageVO.type} == 'birth'">selected</c:if>>생년월일</option>
 		</select>
-	  <input type='text' id='searchKeyword' value="${pageVO.keyword}">
-	  <button id='searchBtn' style="width:50px">검 색</button> 
 	</div>
-	
+	<div class="col-xs-10 col-sm-5">
+		<div class="input-group">
+			<input type="text" name="keyword" id="searchKeyword" value ="${pageVO.keyword}" class="form-control"/>
+			<span class="input-group-btn">
+				<button id ="searchBtn" type="button" class="btn btn-default">검색</button>
+			</span>
+		</div>
+	</div>
+
 	<div class="col-sm-offset-3 col-sm-4">
 		<ul class="btn-group pagination">
 		    <c:if test="${pageMaker.prev }">

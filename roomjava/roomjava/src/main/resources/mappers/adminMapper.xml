@@ -76,7 +76,7 @@ INSERT INTO notice_board (notice_title, notice_content)
 	    <!-- 회원 검색조건 -->
 	<sql id="membersearch">
 		<if test="searchType != null">
-			<if test="searchType == 'id'.toString()">AND userId LIKE CONCAT('%',#{keyword},'%')</if>
+			<if test="searchType == 'id'.toString()">AND m_id LIKE CONCAT('%',#{keyword},'%')</if>
 			<if test="searchType == 'name'.toString()">AND m_name LIKE CONCAT('%',#{keyword},'%')</if>
 			<if test="searchType == 'birth'.toString()">AND m_birth  LIKE CONCAT('%',#{keyword},'%')</if>
 		</if>
