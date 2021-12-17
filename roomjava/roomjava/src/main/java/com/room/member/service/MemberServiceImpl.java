@@ -1,6 +1,7 @@
 package com.room.member.service;
 
 import java.io.PrintWriter;
+import java.util.List;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletResponse;
@@ -9,6 +10,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
+import com.room.admin.dto.BoardDTO;
+import com.room.admin.dto.SearchCriteria;
 import com.room.member.dao.MemberDAO;
 import com.room.member.dto.MemberDTO;
 
@@ -129,6 +132,30 @@ MemberDAO memberDAO;
 			}else {
 				return m_pwd;
 			}
+		}
+		//-----------------------------------------------------------------------------------------------------
+		//공지사항 리스트
+		//-----------------------------------------------------------------------------------------------------
+		@Override
+		public List<BoardDTO> list(SearchCriteria scri) throws Exception {
+			
+			return memberDAO.list(scri);
+		}
+		//-----------------------------------------------------------------------------------------------------
+		//공지사항 카운트
+		//-----------------------------------------------------------------------------------------------------
+		@Override
+		public int listCount(SearchCriteria scri) throws Exception {
+			
+			return memberDAO.listCount(scri);
+		}
+		//-----------------------------------------------------------------------------------------------------
+		//공지사항 상세페이지
+		//-----------------------------------------------------------------------------------------------------		
+		@Override
+		public BoardDTO detailView(int notice_bno) throws Exception {
+			
+			return memberDAO.detailView(notice_bno);
 		}
 
 	

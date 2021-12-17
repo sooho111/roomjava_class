@@ -43,13 +43,8 @@
 
 			<div class="form-group">
 				<div class="col-sm-offset-4 col-sm-6">
-					<button type="submit" class="btn btn-primary btn-sm" id="submit">로그인</button>
-					<button class="btn btn-danger btn-sm" type="button" id="registerBtn">회원가입</button>
-				</div>
-			</div>
-
-			<div class="form-group">
-				<div class="col-sm-offset-4 col-sm-6">
+					<button type="submit" class="btn btn-light"" id="submit">로그인</button>
+					<button class="btn btn-light"" type="button" id="registerBtn">회원가입</button>
 					<button class="btn btn-light" type="button" id="findidBtn">아이디찾기</button>
 					<button class="btn btn-light" type="button" id="findpwBtn">비밀번호찾기</button>
 				</div>
@@ -63,7 +58,7 @@
 			<div class="form-group">
 				<div class="col-sm-offset-3 col-sm-6">
 					<div class="jumbotron">
-						<p class="hi" align="center">${member.m_name}님환영합니다.</p>
+						<p class="hi" align="center">${member.m_name}님 &nbsp;환영합니다.</p>
 						<c:if test="${member.m_power == 1}">
 							<p class="mi" align="center">
 								<a href="/admin/adminMain">관리자 페이지로</a>

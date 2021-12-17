@@ -1,20 +1,26 @@
 package com.room.admin.controller;
 
+import java.util.List;
+
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.room.admin.dto.BoardDTO;
 import com.room.admin.dto.PageMaker;
 import com.room.admin.dto.SearchCriteria;
 import com.room.admin.service.AdminService;
+import com.room.member.dto.MemberDTO;
 
 
 
@@ -49,7 +55,7 @@ public class AdminController {
 		
 		adminService.noticeWrite(boardDTO);
 		
-		return "/admin/notice/noticeList";
+		return "redirect:/admin/notice/noticeList";
 	}
 	// -------------------------------------------------------------------------------------------------
 	// 공지사항 list 페이징
@@ -123,4 +129,60 @@ public class AdminController {
 			
 			return "redirect:/admin/notice/noticeList";
 		}
+		/*-----------------------------------------------------------------------------------------------------------
+		* 회원 목록(Paging 처리)
+		----------------------------------------------------------------------------------------------------------*/
+		@RequestMapping(value="/member/memberList", method=RequestMethod.GET)
+		   public ModelAndView memberList(SearchCriteria cri) throws Exception {
+			
+			
+			ModelAndView mav = new ModelAndView("/admin/member/memberList");
+		    
+			PageMaker pageMaker = new PageMaker();	
+			pageMaker.setCri(cri);
+			pageMaker.setTotalCount(adminService.memberListTotalCount(cri));
+			
+			//List<ManagerDTO>  list = adminService.memberListPaging(cri);
+			List<MemberDTO>  list = adminService.memberListPaging(cri);
+			mav.addObject("list", list);
+		    mav.addObject("pageMaker", pageMaker);
+		        
+		    return mav;
+		    
+		}
+		
+		/*-----------------------------------------------------------------------------------------------------------
+		* 회원 번호에 해당하는 상세정보화면
+		----------------------------------------------------------------------------------------------------------*/
+		@RequestMapping("/member/memberDetail/{m_bno}")
+		private String memberDetail(@PathVariable String m_bno, Model model) throws Exception {
+			model.addAttribute("detail", adminService.memberDetail(m_bno));
+			
+			return "/admin/member/memberDetail";
+		}
+		
+		/*-----------------------------------------------------------------------------------------------------------
+		* 회원 수정
+		----------------------------------------------------------------------------------------------------------*/
+		@RequestMapping("/member/update")
+		private String memberUpdate(MemberDTO memberDTO, HttpServletRequest request, Model model) throws Exception {
+			
+			adminService.memberUpdate(memberDTO);
+			
+			model.addAttribute("detail", adminService.memberDetail(memberDTO.getM_bno()));
+			return "/admin/member/memberDetail";
+			
+		}
+		
+		/*-----------------------------------------------------------------------------------------------------------
+		* 회원 삭제
+		----------------------------------------------------------------------------------------------------------*/
+		@RequestMapping("/member/delete/{m_bno}")
+		private String memberDelete(@PathVariable String m_bno) throws Exception {
+			
+			adminService.memberDelete(m_bno);
+			
+			return "redirect:/admin/member/memberList";
+		}
+		
 }
