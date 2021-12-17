@@ -102,5 +102,14 @@ and m_email = #{m_email}
     ]]>
 	</select>
 
+	<!-- 공지사항 상세페이지 -->
+	<select id="detailView" parameterType="int" resultType="com.room.admin.dto.BoardDTO">
+	SELECT notice_bno,
+		   notice_title,
+		   notice_content,
+		   notice_date
+	FROM   notice_board		   
+	WHERE  notice_bno = #{notice_bno}
+	</select>
 	
 </mapper>

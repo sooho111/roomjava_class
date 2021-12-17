@@ -12,7 +12,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;800&family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');
 
 /* visual */
-.t_visual { height:300px; width:100%; background:url("/resources/images/food3.jpg") no-repeat top center; position:relative; margin-bottom:70px; }
+.t_visual { height:300px; width:100%; background:url("/resources/images/photo4.jpg") no-repeat top center; position:relative; margin-bottom:70px; }
 .t_visual .inner { width:960px; position:relative; }
 .t_visual_black { height:300px; width:100%; background:rgba(0,0,0,0.5); position:absolute; }
 
