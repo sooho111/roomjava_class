@@ -19,6 +19,26 @@ public class MainController {
 	@Inject
 	MainService mainService;
 	
+	@RequestMapping("/1")
+	public void ps() throws Exception {
+	}
+	@RequestMapping("/2")
+	public void gp() throws Exception {
+	}
+	@RequestMapping("/3")
+	public void dk() throws Exception {
+	}
+	@RequestMapping("/4")
+	public void kb() throws Exception {
+	}
+	
+	//------------------------------------------------------------------------------------------------
+	// 소개 이동
+	//------------------------------------------------------------------------------------------------
+    @RequestMapping(value = "/introduce", method = RequestMethod.GET)
+    public String goIntroduce() throws Exception {
+    	return "/main/introduce";
+    }
 	//------------------------------------------------------------------------------------------------
 	// 달력으로 이동
 	//------------------------------------------------------------------------------------------------
