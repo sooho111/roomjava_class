@@ -191,10 +191,10 @@ public class MemberController {
 	// 회원 정보 수정 POST
 	// -------------------------------------------------------------------------------------------------
 	@RequestMapping(value = "/memberUpdate", method = RequestMethod.POST)
-	public String postMemberUpdate(MemberDTO memberDTO) throws Exception {
-		// logger.info(memberDTO.getAddress());
+	public String postMemberUpdate(MemberDTO memberDTO, HttpSession session) throws Exception {
 		memberService.update(memberDTO);
-		return "redirect:/member/myPage";
+		session.invalidate();
+		return "redirect:/member/login";
 	}
 	
 	 
