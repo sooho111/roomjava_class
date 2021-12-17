@@ -62,7 +62,7 @@ th { text-align:center; }
 				<li></li>
 				<li><a href="#">예약 확인</a><span class="glyphicon glyphicon-chevron-right"></span></li>
 				<li><a href="/member/memberUpdate/${member.m_id}">회원 정보 수정</a><span class="glyphicon glyphicon-chevron-right"></span></li>
-				<li class = "memberDelete">회원 탈퇴<span class="glyphicon glyphicon-chevron-right"></span></li>
+				<li class = "memberDelete"><a href="#">회원 탈퇴</a><span class="glyphicon glyphicon-chevron-right"></span></li>
 			</ul>
 		</div>
 
@@ -101,25 +101,25 @@ th { text-align:center; }
 			<div class="form-group required">
 				<label class="control-label col-sm-2" for="m_birth">생년월일</label>
 				<div class="col-sm-3">
-				 <input type="text" class="form-control" id="m_birth" name="m_birth" placeholder="ex) 970106" value="${view.m_birth}">*생년월일 6자 입력
+					 <input type="text" class="form-control" id="m_birth" name="m_birth" placeholder="ex) 970106" value="${view.m_birth}">*생년월일 6자 입력
+				</div>
 			</div>
-			</div>
-			
+				
 			<!-- 휴대전화 -->
 			<div class="form-group">
-				<label class="control-label col-sm-2" for="user_phone">전화번호</label> 
+		        <label class="control-label col-sm-2" for="user_phone">전화번호</label> 
 				<div class="col-sm-3">
-				<input type="text" class="form-control" id="m_tel" name="m_tel" placeholder="휴대전화 ('-' 없이 번호만 입력해주세요)" value="${view.m_tel}" >*('-' 없이 번호만 입력해주세요)
+					<input type="text" class="form-control" id="m_tel" name="m_tel" placeholder="휴대전화 ('-' 없이 번호만 입력해주세요)" value="${view.m_tel}" >*('-' 없이 번호만 입력해주세요)
+				</div>
 			</div>
-			</div>
-			
-			<!-- 본인확인 이메일 -->
-			<div class="form-group">
-				<label class="control-label col-sm-2" for="m_email">이메일</label> 
-				<div class="col-sm-3">
-				<input type="text" class="form-control" name="m_email" id="m_email" placeholder="E-mail" value="${view.m_email}" readonly="readonly">
-			</div>
-			</div>
+				
+				<!-- 본인확인 이메일 -->
+				<div class="form-group">
+					<label class="control-label col-sm-2" for="m_email">이메일</label> 
+						<div class="col-sm-4">
+						<input type="text" class="form-control" name="m_email" id="m_email" placeholder="E-mail" value="${view.m_email}" readonly="readonly">
+					</div>
+				</div>
 				<div class="form-group">
 					<label class="control-label col-sm-2">우편번호</label>
 					<div class="col-sm-3">
@@ -140,15 +140,15 @@ th { text-align:center; }
 						<input type="hidden" id="address" name="address" />
 					</div>
 				</div>
-				
-			<div class="form-group">
-				<div class="col-sm-offset-3 col-sm-3 center">
-					<button class="btn btn-success" type="submit" id="submit">수정</button>
-					<input class="btn btn-primary" type="button" value="뒤로가기" onclick="history.go(-1);" /> 
+					
+				<div class="form-group">
+					<div class="col-sm-offset-3 col-sm-3 center">
+						<button class="btn btn-success" type="submit" id="submit">수정</button>
+						<input class="btn btn-primary" type="button" value="뒤로가기" onclick="history.go(-1);" /> 
+					</div>
 				</div>
-			</div>
-		</form>
-	</div>
+			</form>
+		</div>
 	</div>
 </div>
 
