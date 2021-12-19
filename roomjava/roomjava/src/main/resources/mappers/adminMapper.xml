@@ -142,6 +142,68 @@ INSERT INTO notice_board (notice_title, notice_content)
    	from	member
    	where	m_id	=#{m_id}
    	</select>
+   	    <!-- 공지사항 검색조건 -->
+   <sql id="paymentSearch">
+      <if test="searchType != null">
+ 		<if test="searchType == 't'.toString()">AND pay_name LIKE '%' || #{keyword} || '%'</if>
+		<if test="searchType == 'c'.toString()">AND pay_account LIKE '%' || #{keyword} || '%'</if>
+ 		<if test="searchType == 'tc'.toString()">AND (pay_name LIKE '%' || #{keyword} || '%') or (pay_account LIKE '%' || #{keyword} || '%')</if>
+      </if>
+   </sql>
+
+   <!-- 공지사항 목록 보기 (Paging 처리) + 검색조건 -->
+   <select id="paymentPaging" parameterType="com.room.admin.dto.SearchCriteria" resultType="com.room.admin.dto.PaymentDTO">
+    <![CDATA[
+        SELECT   *  
+        FROM   payment 
+        WHERE   1=1
+    ]]>
+      <include refid="paymentSearch"/>
+    <![CDATA[
+        ORDER BY pay_bno DESC
+        LIMIT   #{pageStart}, #{perPageNum}
+    ]]>
+   </select>
+   
+   
+   	<!-- 전체 공지사항 수 구하기 (Paging 처리) -->
+	<select id="paymentTotalCount" resultType="Integer">
+    <![CDATA[
+        SELECT	count(*)
+        FROM	payment
+        WHERE   1=1
+    ]]>
+    
+	</select>
+	<!-- 결제항목 상세페이지 -->
+	<select id="paymentdetailView" parameterType="int" resultType="com.room.admin.dto.PaymentDTO">
+	SELECT *
+	FROM   payment		   
+	WHERE  pay_bno = #{pay_bno}
+	</select>
+
+	
+	<!-- 결제항목 수정 -->
+	<update id="paymentUpdate" parameterType="com.room.admin.dto.PaymentDTO">
+	UPDATE payment
+	SET pay_name = #{pay_name},
+		pay_account = #{pay_account},
+		pay_bank = #{pay_bank}
+	WHERE pay_bno = #{pay_bno}
+	</update>
+	<insert id ="payment">
+		INSERT INTO payment (pay_name,pay_account,pay_bank)
+		values (#{pay_name}, #{pay_account}, #{pay_bank}  )
+	</insert>
+	
+	<!-- 결제항목 삭제 -->
+	<delete id="paymentDelete" parameterType="int">
+	delete from payment
+	
+	WHERE pay_bno = #{pay_bno}
+	
+	</delete>
+
    
 	
 </mapper>

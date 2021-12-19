@@ -19,6 +19,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.room.admin.dto.BoardDTO;
 import com.room.admin.dto.PageMaker;
+import com.room.admin.dto.PaymentDTO;
 import com.room.admin.dto.SearchCriteria;
 import com.room.admin.service.AdminService;
 import com.room.member.dto.MemberDTO;
@@ -42,14 +43,14 @@ public class AdminController {
     }
 	
 	// -------------------------------------------------------------------------------------------------
-	// 공지사항 GET
+	// 공지사항 추가 GET
 	// -------------------------------------------------------------------------------------------------
 	@RequestMapping(value = "/notice/noticeInsert", method = RequestMethod.GET)
 	public String getNotice() throws Exception {
 		return "/admin/notice/noticeInsert";
 	}
 	// -------------------------------------------------------------------------------------------------
-	// 공지사항 POST
+	// 공지사항 추가  POST
 	// -------------------------------------------------------------------------------------------------
 	@RequestMapping(value = "/notice/noticeInsert", method = RequestMethod.POST)
 	public String writeNoitce(BoardDTO boardDTO) throws Exception {
@@ -189,5 +190,91 @@ public class AdminController {
 			
 			return "redirect:/admin/member/memberList";
 		}
+		// -------------------------------------------------------------------------------------------------
+		// 결제수단 list 페이징
+		// -------------------------------------------------------------------------------------------------
+			@RequestMapping(value = "/payment/paymentList", method = RequestMethod.GET)
+			public String paymentList(Model model, @ModelAttribute("scri") SearchCriteria scri) throws Exception {
+				logger.info("paymentList");
+				
+				model.addAttribute("list", adminService.paymentList(scri));
+				
+				
+				return "admin/payment/paymentList";
+			}
+		
+		// -------------------------------------------------------------------------------------------------
+		// 공지사항 GET
+		// -------------------------------------------------------------------------------------------------
+		@RequestMapping(value = "/payment/paymentInsert", method = RequestMethod.GET)
+		public String getPayment() throws Exception {
+			return "/admin/payment/paymentInsert";
+		}
+		// -------------------------------------------------------------------------------------------------
+		// 공지사항 POST
+		// -------------------------------------------------------------------------------------------------
+		@RequestMapping(value = "/payment/paymentInsert", method = RequestMethod.POST)
+		public String insertPayment(PaymentDTO paymentDTO) throws Exception {
+			
+			adminService.insertPayment(paymentDTO);
+			
+			return "redirect:/admin/payment/paymentList";
+		}
+
+		
+		//-------------------------------------------------------------------------------------------------------
+		//공지사항 상세페이지	
+		//-------------------------------------------------------------------------------------------------------
+			@RequestMapping(value = "/payment/paymentDetail", method = RequestMethod.GET)
+			public String paymentDetail( Model model, @RequestParam("n") int pay_bno, PaymentDTO paymentDTO) throws Exception {
+			
+			logger.info("paymentDetail");
+			
+			paymentDTO.setPay_bno(pay_bno);
+			model.addAttribute("detail", adminService.paymentdetailView(paymentDTO.getPay_bno()));
+			
+			return "admin/payment/paymentDetail";
+			
+			}
+		//-------------------------------------------------------------------------------------------------------
+		//공지사항 수정 GET	
+		//-------------------------------------------------------------------------------------------------------		
+			@RequestMapping(value = "/payment/paymentUpdate", method = RequestMethod.GET)
+			public String paymentUpdateView(@RequestParam("n") int pay_bno, PaymentDTO paymentDTO, Model model) throws Exception {
+				logger.info("noticeUpdateView");
+				
+				paymentDTO.setPay_bno(pay_bno);
+				model.addAttribute("update", adminService.paymentdetailView(paymentDTO.getPay_bno()));
+				
+				
+				return "admin/payment/paymentUpdate";
+			}
+			//-------------------------------------------------------------------------------------------------------
+			//공지사항 수정 POST	
+			//-------------------------------------------------------------------------------------------------------		
+			@RequestMapping(value = "/payment/paymentUpdate", method = RequestMethod.POST)
+			public String paymentUpdate(@RequestParam("n") int pay_bno, PaymentDTO paymentDTO) throws Exception {
+				logger.info("noticeUpdate");
+				
+				paymentDTO.setPay_bno(pay_bno);
+				
+				adminService.paymentUpdate(paymentDTO);
+				
+				return "redirect:/admin/payment/paymentList";
+			}
+			
+			//-------------------------------------------------------------------------------------------------------
+			//공지사항 삭제 GET	
+			//-------------------------------------------------------------------------------------------------------
+			@RequestMapping(value = "/payment/paymentDelete", method = RequestMethod.GET)
+			public String paymentDelete(@RequestParam("n") int pay_bno, PaymentDTO paymentDTO) throws Exception {
+				logger.info("noticeDelete");
+				
+				paymentDTO.setPay_bno(pay_bno);
+				
+				adminService.paymentDelete(paymentDTO);
+				
+				return "redirect:/admin/payment/paymentList";
+			}
 		
 }

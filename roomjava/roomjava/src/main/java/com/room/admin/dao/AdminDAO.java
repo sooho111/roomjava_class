@@ -3,6 +3,7 @@ package com.room.admin.dao;
 import java.util.List;
 
 import com.room.admin.dto.BoardDTO;
+import com.room.admin.dto.PaymentDTO;
 import com.room.admin.dto.SearchCriteria;
 import com.room.member.dto.MemberDTO;
 import com.room.admin.dto.RoomKindDTO;
@@ -44,6 +45,21 @@ public interface AdminDAO {
 	public void memberDelete(String m_bno) throws Exception;
 	//회원 등급찾기
 	public int searchM_power(String m_id)throws Exception;
+	// 게시물 목록 조회
+	public List<PaymentDTO> paymentList(SearchCriteria scri) throws Exception;
+
+	// 게시물 총 갯수
+	public int paymentListCount(SearchCriteria scri) throws Exception;
+	//결제항목 상세페이지
+	public PaymentDTO paymentdetailView(int pay_bno) throws Exception;
+	
+	//결제항목 수정
+	public void paymentUpdate(PaymentDTO paymentDTO) throws Exception;
+	
+	//결제항목 삭제
+	public void paymentDelete(PaymentDTO paymentDTO) throws Exception;
+	// 게시글 작성
+	public void insertPayment(PaymentDTO paymentDTO) throws Exception;
 	
 	
 } // end interface AdminDAO
