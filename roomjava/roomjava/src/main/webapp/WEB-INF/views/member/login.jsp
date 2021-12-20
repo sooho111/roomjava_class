@@ -90,6 +90,11 @@
 	$("#logoutBtn").on("click", function() {
 		location.href = "/member/logout";
 	});
+	
+	// 회원가입 버튼을 눌렀을 경우
+	$("#registerBtn").on("click", function() {
+		location.href = "/member/memberInsert";
+	});
 
 	// 로그인 버튼을 눌렀을 경우
 	$("#submit").on("click", function() {

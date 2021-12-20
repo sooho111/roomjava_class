@@ -55,7 +55,7 @@ WHERE m_id = #{m_id}
 </select>
 <!-- 아이디 찾기 -->
 
-
+ 	
 <select resultType="String" parameterType="String" id="findidform">
 select m_id 
 from member 
