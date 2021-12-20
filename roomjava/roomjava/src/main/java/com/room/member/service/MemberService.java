@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.room.admin.dto.BoardDTO;
 import com.room.admin.dto.SearchCriteria;
+import com.room.main.dto.BookDTO;
 import com.room.member.dto.MemberDTO;
 
 public interface MemberService {
@@ -57,7 +58,9 @@ public interface MemberService {
 	//-------------------------------------------------------------------------------------------------
 	// 공지사항 디테일 뷰
 	//-------------------------------------------------------------------------------------------------	
-	public BoardDTO detailView(int notice_bno) throws Exception; 	
+	public BoardDTO detailView(int notice_bno) throws Exception;
+	
+	public List<BookDTO> getBooks(String m_name) throws Exception; 	
 
-
+	public List<BookDTO> bookView(String book_order) throws Exception; 	
 }

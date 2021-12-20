@@ -40,7 +40,7 @@
 							<a href="/admin/notice/noticeDetail?n=${list.notice_bno }"><c:out value="${list.notice_title}" /></a>
 						</td>
 						<td>관리자</td>
-						<td><fmt:formatDate value="${list.notice_date}" pattern="yyyy년 MM월 dd일"/></td>
+						<td><fmt:formatDate value="${list.notice_date}" pattern="yyyy년MM월dd일 hh:mm:ss"/></td>
 					</tr>
 				</c:forEach>
 				

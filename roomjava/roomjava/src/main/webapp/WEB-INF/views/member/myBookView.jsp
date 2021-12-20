@@ -60,47 +60,68 @@ th { text-align:center; }
 		<div class="left_bar">
 			<ul class="myShopping">
 				<li></li>
-				<li><a href="myPage">예약 확인</a><span class="glyphicon glyphicon-chevron-right"></span></li>
+				<li><a href="mypage/">예약 확인</a><span class="glyphicon glyphicon-chevron-right"></span></li>
 				<li><a href="memberUpdate/${member.m_id}">회원 정보 수정</a><span class="glyphicon glyphicon-chevron-right"></span></li>
 				<li class = "memberDelete"><a href="#">회원 탈퇴</a><span class="glyphicon glyphicon-chevron-right"></span></li>
 			</ul>
 		</div>
-<div class="m_content">
-			<p class="order">예약 정보</p>
-			<hr>
-			
-			<c:if test="${buys != '[]' }">
-			
-				<table class="table table-hover table-bordered">
-					<thead>
-						<tr class="info">
-							<th>주문번호</th>
-							<th>예약자 이름</th>
-							<th>예약 인원</th>
-							<th>상태</th>
-						</tr>
-					</thead>
-					
-					<tbody>
-						<c:forEach var="bookList" items="${bookList}">		
-							<tr>
-								<td align=center><a href="../member/myBookView?book_order=${bookList.book_order}">${bookList.book_order}</a></td>
-								<td align=center>${bookList.book_name}</td>
-								<td align=center>${bookList.book_people}</td>
-								<td align=center>${bookList.book_ok}</td>
-							</tr>
-						</c:forEach>
-					</tbody>
-				</table>
-				
-			</c:if>
-		</div>
 		<div class="m_content">
-				<input type="hidden" id="m_id" name="m_id" value="${member.m_id}" />
+			<p class="order"> 조회 </p>
+			<hr>
+			<table class="table table-bordered table-hover">
+				<thead>
+					<tr class="info">
+						<th align=center>주문번호</th>
+						<th align=center>예약자</th>
+						<th align=center>인원수</th>
+						<th align=center>주문상태</th>
+					</tr>
+				</thead>
+				
+				<tbody>
+					<c:forEach var="bookView" items="${bookView}">				
+						<tr>
+							<td align=center>${bookView.book_order}</td>
+							<td align=center>${bookView.book_name}</td>
+							<td align=center>${bookView.book_people}</td>
+							<td class="delivery" align=center>${bookView.book_ok}</td>
+						</tr>
+					</c:forEach>
+				</tbody>
+			</table>
+			
+			<table class="table table-bordered table-hover orderInfo">
+				<c:forEach items="${bookView}" var="bookView" varStatus="status">
+					<c:if test="${status.first}">
+						<thead>
+							<tr class="info">
+								<th align=center>예약자</th>
+								<th align=center>휴대폰 번호</th>
+								<th align=center>인원수</th>
+								<th align=center>시작일</th>
+								<th align=center>종료일</th>
+								<th align=center>방번호</th>
+								<th align=center>방종류</th>
+							</tr>
+						</thead>
+						
+						<tbody>
+							<tr>
+								<td align=center>${bookView.book_name}</td>
+								<td align=center>${bookView.book_tel}</td>
+								<td align=center>${bookView.book_people}</td>
+								<td align=center>${bookView.start_date}</td>
+								<td align=center>${bookView.end_date}</td>
+								<td align=center>${bookView.r_name}</td>
+								<td align=center>${bookView.room_class}</td>
+							</tr>
+						</tbody>		
+					</c:if>
+				</c:forEach>
+			</table>
 		</div>
 	</div>
 </div>
-
 
 <%@ include file="../include/footer.jsp" %>
 </body>

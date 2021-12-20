@@ -39,9 +39,9 @@
 		    	</ul>
 		    </li>
 		    
-			<li><a href="#"><span class="glyphicon glyphicon-credit-card"></span> 예약 안내</a>
+			<li><a href="../main/roomList"><span class="glyphicon glyphicon-credit-card"></span>예약 하기</a>
 				<ul class="reservation">
-					<li><a href="../main/calen">예약 하기</a></li>
+					<li><a href="../main/roomList">예약 하기</a></li>
 					<li><a href="#">예약 확인 및 취소</a></li>
 				</ul>
 			</li>

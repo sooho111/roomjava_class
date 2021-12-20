@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 
 import com.room.admin.dto.BoardDTO;
 import com.room.admin.dto.SearchCriteria;
+import com.room.main.dto.BookDTO;
 import com.room.member.dto.MemberDTO;
 
 
@@ -114,7 +115,15 @@ public class MemberDAOImpl implements MemberDAO {
 		
 		return sqlSession.selectOne(namespace + ".detailView", board_notice);
 	}
+	
+	@Override
+	public List<BookDTO> getBooks(String m_name) throws Exception{
+		return sqlSession.selectList(namespace + ".getBooks", m_name);
+	}
 
-
+	@Override
+	public List<BookDTO> bookView(String book_order) throws Exception{
+		return sqlSession.selectList(namespace + ".bookView", book_order);
+	}
 
 }

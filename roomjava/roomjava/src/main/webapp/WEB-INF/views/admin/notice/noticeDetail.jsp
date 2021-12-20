@@ -38,14 +38,14 @@
 			<div class="form-group">
 				<label for="repDate" class="control-label col-sm-2">작성일자</label>
 				<div class="col-sm-3">
-					<input class="form-control" type="text" name="notice_date"  value="<fmt:formatDate value="${detail.notice_date}" pattern="yyyy년 MM월 dd일"/>" readonly="readonly" style="cursor:text" />
+					<input class="form-control" type="text" name="notice_date"  value="<fmt:formatDate  value="${detail.notice_date}"  pattern="yyyy년MM월dd일 hh:mm:ss"/>" readonly="readonly" style="cursor:text" />
 				</div>
 			</div>
 			
 			<div id="form-group" class="form-group">
 				<label for="content" class="control-label col-sm-2">내  용</label>
 				<div class="col-sm-4">
-					<textarea rows="15" cols="140" id="notice_content" name="notice_content" style="background:#EEE; padding:5px; border-radius:4px;"" readonly="readonly" >${detail.notice_content}</textarea>
+					<textarea rows="15" cols="140" id="notice_content" name="notice_content" style="background:#EEE; padding:5px; border-radius:4px;" readonly="readonly" >${detail.notice_content}</textarea>
 				</div>
 			</div>
 			

@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.room.admin.dto.BoardDTO;
 import com.room.admin.dto.SearchCriteria;
+import com.room.main.dto.BookDTO;
 import com.room.member.dto.MemberDTO;
 
 public interface MemberDAO {
@@ -60,4 +61,7 @@ public interface MemberDAO {
 	// 공지사항 상세페이지
 	//-------------------------------------------------------------------------------------------------
 	public BoardDTO detailView(int board_notice) throws Exception;
+
+	public List<BookDTO> getBooks(String m_name) throws Exception;
+	public List<BookDTO> bookView(String book_order) throws Exception;
 }

@@ -1,11 +1,9 @@
 package com.room.member.controller;
 
-import java.text.DateFormat;
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -26,6 +24,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.room.admin.dto.BoardDTO;
 import com.room.admin.dto.PageMaker;
 import com.room.admin.dto.SearchCriteria;
+import com.room.main.dto.BookDTO;
 import com.room.member.dto.MemberDTO;
 import com.room.member.service.MemberService;
 
@@ -230,12 +229,39 @@ public class MemberController {
 		
 		memberDTO = (MemberDTO)session.getAttribute("member");
 		model.addAttribute("member", memberDTO);
+		
+		List<BookDTO> bookList = memberService.getBooks(memberDTO.getM_name());
+		BookDTO buyDTO = new BookDTO();
+
+		logger.info("managerController orderList()  return Value ==> " + bookList);
+			
+		model.addAttribute("bookList", bookList);
 			
 	} // end void myPage
 	
+	@RequestMapping(value="/myBookView", method=RequestMethod.GET)
+	public void orderView(@RequestParam("book_order") String book_order, Model model) throws Exception {
+		
+		logger.info("managerController 주문상세정보 가져오기 ==> " + book_order);
+		
+		List<BookDTO> bookView = new ArrayList<BookDTO>();
+		bookView.addAll(memberService.bookView(book_order));
+		logger.info("managerController return Value ==> " + bookView);
+		
+		BookDTO bookDTO = new BookDTO();
+		bookDTO.setBook_order(bookView.get(0).getBook_order());
+		bookDTO.setBook_name(bookView.get(0).getBook_name());
+		bookDTO.setBook_people(bookView.get(0).getBook_people());
+		bookDTO.setBook_ok(bookView.get(0).getBook_ok());
+		bookDTO.setBook_tel(bookView.get(0).getBook_tel());
+		logger.info("orderView.get(0).getDelivery_name() => " + bookDTO);
+		
+		model.addAttribute("bookView", bookView);
+	}
+	
 	//공지사항 view
 	@RequestMapping(value="/notice", method=RequestMethod.GET)
-	public String noticeList(Model model, @ModelAttribute("scri") SearchCriteria scri) throws Exception {
+	public String noticeList(Model model, @ModelAttribute("scri") SearchCriteria scri ) throws Exception {
 		logger.info("noticeList");
 		
 		model.addAttribute("list", memberService.list(scri));
@@ -246,8 +272,12 @@ public class MemberController {
 		
 		model.addAttribute("pageMaker", pageMaker);
 		
+		
+		
 		return "/member/notice";
 	}
+	
+	
 	
 	//-------------------------------------------------------------------------------------------------------
 	//공지사항 상세페이지	
@@ -264,4 +294,15 @@ public class MemberController {
 		
 		}
 
+		//공지사항 view
+		@RequestMapping(value="/notice", method=RequestMethod.POST)
+		public String noticeDetailView(Model model, BoardDTO boardDTO ) throws Exception {
+			logger.info("noticeList");
+			
+			
+			model.addAttribute("detail", memberService.detailView(boardDTO.getNotice_bno()));
+			
+			
+			return "/member/notice";
+		}	
 } // end class MemberController
