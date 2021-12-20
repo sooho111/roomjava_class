@@ -203,6 +203,70 @@ INSERT INTO notice_board (notice_title, notice_content)
 	WHERE pay_bno = #{pay_bno}
 	
 	</delete>
+	<!-- 기능 목록 조회 -->
+	<select id="fncList" parameterType="com.room.admin.dto.SearchCriteria" resultType="com.room.admin.dto.Room_fncDTO">
+	select *
+	from room_fnc
+	</select>
+	<!-- 대여 목록 조회 -->
+	<select id="rentList" parameterType="com.room.admin.dto.SearchCriteria" resultType="com.room.admin.dto.Room_rentDTO">
+	select *
+	from room_rent
+	</select>
+	<insert id ="insertFnc">
+		INSERT INTO room_fnc (fnc_name,fnc_price)
+		values ( #{fnc_name}, #{fnc_price}  )
+	</insert>
+	<insert id ="insertRent">
+		INSERT INTO room_rent (rent_name,rent_price)
+		values (#{rent_name}, #{rent_price})
+	</insert>
+		<!-- 기능항목 상세페이지 -->
+	<select id="fncdetailView" parameterType="int" resultType="com.room.admin.dto.Room_fncDTO">
+	SELECT *
+	FROM   room_fnc		   
+	WHERE  fnc_bno = #{fnc_bno}
+	</select>
+
+	
+	<!-- 기능항목 수정 -->
+	<update id="fncUpdate" parameterType="com.room.admin.dto.Room_fncDTO">
+	UPDATE room_fnc
+	SET fnc_bno = #{fnc_bno},
+		fnc_name = #{fnc_name},
+		fnc_price = #{fnc_price}
+	WHERE fnc_bno = #{fnc_bno}
+	</update>
+		<!-- 대여항목 상세페이지 -->
+	<select id="rentdetailView" parameterType="int" resultType="com.room.admin.dto.Room_rentDTO">
+	SELECT *
+	FROM   room_rent		   
+	WHERE  rent_bno = #{rent_bno}
+	</select>
+
+	
+	<!-- 대여항목 수정 -->
+	<update id="rentUpdate" parameterType="com.room.admin.dto.Room_rentDTO">
+	UPDATE room_rent
+	SET rent_bno = #{rent_bno},
+		rent_name = #{rent_name},
+		rent_price = #{rent_price}
+	WHERE rent_bno = #{rent_bno}
+	</update>
+		<!-- 기능 삭제 -->
+	<delete id="fncDelete" parameterType="int">
+	delete from room_fnc
+	
+	WHERE fnc_bno = #{fnc_bno}
+	
+	</delete>
+		<!-- 대여 삭제 -->
+	<delete id="rentDelete" parameterType="int">
+	delete from room_rent
+	
+	WHERE rent_bno = #{rent_bno}
+	
+	</delete>
 
    
 	

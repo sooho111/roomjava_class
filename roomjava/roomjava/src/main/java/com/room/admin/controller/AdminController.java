@@ -20,6 +20,8 @@ import org.springframework.web.servlet.ModelAndView;
 import com.room.admin.dto.BoardDTO;
 import com.room.admin.dto.PageMaker;
 import com.room.admin.dto.PaymentDTO;
+import com.room.admin.dto.Room_fncDTO;
+import com.room.admin.dto.Room_rentDTO;
 import com.room.admin.dto.SearchCriteria;
 import com.room.admin.service.AdminService;
 import com.room.member.dto.MemberDTO;
@@ -191,7 +193,7 @@ public class AdminController {
 			return "redirect:/admin/member/memberList";
 		}
 		// -------------------------------------------------------------------------------------------------
-		// 결제수단 list 페이징
+		// 결제수단 list 
 		// -------------------------------------------------------------------------------------------------
 			@RequestMapping(value = "/payment/paymentList", method = RequestMethod.GET)
 			public String paymentList(Model model, @ModelAttribute("scri") SearchCriteria scri) throws Exception {
@@ -264,7 +266,7 @@ public class AdminController {
 			}
 			
 			//-------------------------------------------------------------------------------------------------------
-			//공지사항 삭제 GET	
+			//결제항목 삭제 GET	
 			//-------------------------------------------------------------------------------------------------------
 			@RequestMapping(value = "/payment/paymentDelete", method = RequestMethod.GET)
 			public String paymentDelete(@RequestParam("n") int pay_bno, PaymentDTO paymentDTO) throws Exception {
@@ -276,5 +278,134 @@ public class AdminController {
 				
 				return "redirect:/admin/payment/paymentList";
 			}
+			// -------------------------------------------------------------------------------------------------
+			// 결제수단 list 
+			// -------------------------------------------------------------------------------------------------
+				@RequestMapping(value = "/etc/etcList", method = RequestMethod.GET)
+				public String etcList(Model model, @ModelAttribute("scri") SearchCriteria scri) throws Exception {
+					logger.info("etcList");
+					
+					model.addAttribute("list", adminService.fncList(scri));
+					model.addAttribute("list2", adminService.rentList(scri));
+					
+					
+					return "admin/etc/etcList";
+				}
+			// -------------------------------------------------------------------------------------------------
+			// 기능 추가 GET
+			// -------------------------------------------------------------------------------------------------
+			@RequestMapping(value = "/etc/fncInsert", method = RequestMethod.GET)
+			public String insertFncGet() throws Exception {
+				return "/admin/etc/fncInsert";
+			}
+			// -------------------------------------------------------------------------------------------------
+			// 대여 추가 GET
+			// -------------------------------------------------------------------------------------------------
+			@RequestMapping(value = "/etc/rentInsert", method = RequestMethod.GET)
+			public String insertRentGet() throws Exception {
+				return "/admin/etc/rentInsert";
+			}
+			// -------------------------------------------------------------------------------------------------
+			// 기능 추가 POST
+			// -------------------------------------------------------------------------------------------------
+			@RequestMapping(value = "/etc/fncInsert", method = RequestMethod.POST)
+			public String insertFncPost(Room_fncDTO room_fncDTO) throws Exception {
+				
+				adminService.insertfnc(room_fncDTO);
+				
+				return "redirect:/admin/etc/etcList";
+			}
+			// -------------------------------------------------------------------------------------------------
+			// 기능 추가 POST
+			// -------------------------------------------------------------------------------------------------
+			@RequestMapping(value = "/etc/rentInsert", method = RequestMethod.POST)
+			public String insertRentPost(Room_rentDTO room_rentDTO) throws Exception {
+				
+				adminService.insertrent(room_rentDTO);
+				
+				return "redirect:/admin/etc/etcList";
+			}
+			//-------------------------------------------------------------------------------------------------------
+			//기능 수정 GET	
+			//-------------------------------------------------------------------------------------------------------		
+			@RequestMapping(value = "/etc/fncUpdate", method = RequestMethod.GET)
+			public String fncUpdateView(@RequestParam("n") int fnc_bno, Room_fncDTO room_fncDTO, Model model) throws Exception {
+				
+				
+				room_fncDTO.setFnc_bno(fnc_bno);
+				model.addAttribute("update", adminService.fncdetailView(room_fncDTO.getFnc_bno()));
+				
+				
+				return "admin/etc/fncUpdate";
+			}
+			//-------------------------------------------------------------------------------------------------------
+			//기능 수정 POST	
+			//-------------------------------------------------------------------------------------------------------		
+			@RequestMapping(value = "/etc/fncUpdate", method = RequestMethod.POST)
+			public String fncUpdate(@RequestParam("n") int fnc_bno, Room_fncDTO room_fncDTO) throws Exception {
+				
+				
+				room_fncDTO.setFnc_bno(fnc_bno);
+				
+				adminService.fncUpdate(room_fncDTO);
+				
+				return "redirect:/admin/etc/etcList";
+			}
+			
+			//-------------------------------------------------------------------------------------------------------
+			//대여 수정 GET	
+			//-------------------------------------------------------------------------------------------------------		
+			@RequestMapping(value = "/etc/rentUpdate", method = RequestMethod.GET)
+			public String rentUpdateView(@RequestParam("n") int rent_bno, Room_rentDTO room_rentDTO, Model model) throws Exception {
+				
+				
+				room_rentDTO.setRent_bno(rent_bno);
+				model.addAttribute("update", adminService.rentdetailView(room_rentDTO.getRent_bno()));
+				
+				
+				return "admin/etc/rentUpdate";
+			}
+			//-------------------------------------------------------------------------------------------------------
+			//대여 수정 POST	
+			//-------------------------------------------------------------------------------------------------------		
+			@RequestMapping(value = "/etc/rentUpdate", method = RequestMethod.POST)
+			public String fncUpdate(@RequestParam("n") int rent_bno, Room_rentDTO room_rentDTO) throws Exception {
+				
+				
+				room_rentDTO.setRent_bno(rent_bno);
+				
+				adminService.rentUpdate(room_rentDTO);
+				
+				return "redirect:/admin/etc/etcList";
+			}
+			//-------------------------------------------------------------------------------------------------------
+			//기능 삭제 
+			//-------------------------------------------------------------------------------------------------------
+			@RequestMapping(value = "/etc/fncDelete", method = RequestMethod.GET)
+			public String fncDelete(@RequestParam("n") int fnc_bno, Room_fncDTO room_fncDTO) throws Exception {
+				logger.info("noticeDelete");
+				
+				room_fncDTO.setFnc_bno(fnc_bno);
+				
+				adminService.fncDelete(room_fncDTO);
+				
+				return "redirect:/admin/etc/etcList";
+			}
+			//-------------------------------------------------------------------------------------------------------
+			//대여 삭제 
+			//-------------------------------------------------------------------------------------------------------
+			@RequestMapping(value = "/etc/rentDelete", method = RequestMethod.GET)
+			public String fncDelete(@RequestParam("n") int rent_bno, Room_rentDTO room_rentDTO) throws Exception {
+				logger.info("noticeDelete");
+				
+				room_rentDTO.setRent_bno(rent_bno);
+				
+				adminService.rentDelete(room_rentDTO);
+				
+				return "redirect:/admin/etc/etcList";
+			}
+				
+			
+		
 		
 }

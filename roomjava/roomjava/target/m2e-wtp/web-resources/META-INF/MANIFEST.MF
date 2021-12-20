@@ -1,9 +1,5 @@
 Manifest-Version: 1.0
-<<<<<<< HEAD
-Built-By: 82109
-=======
-Built-By: kyj93
->>>>>>> edded1e953f28764ab1d725a0d80e54e1d6f644b
+Built-By: YB
 Build-Jdk: 16.0.2
 Created-By: Maven Integration for Eclipse
 

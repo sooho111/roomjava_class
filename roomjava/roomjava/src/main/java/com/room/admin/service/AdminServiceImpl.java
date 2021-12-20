@@ -14,6 +14,8 @@ import com.room.admin.dto.PaymentDTO;
 import com.room.admin.dto.SearchCriteria;
 import com.room.member.dto.MemberDTO;
 import com.room.admin.dto.RoomKindDTO;
+import com.room.admin.dto.Room_fncDTO;
+import com.room.admin.dto.Room_rentDTO;
 
 @Service
 public class AdminServiceImpl implements AdminService {
@@ -142,13 +144,79 @@ public class AdminServiceImpl implements AdminService {
 		
 	}
 	
-	//공지사항 삭제
+	//결제 삭제
 	@Override
 	public void paymentDelete(PaymentDTO paymentDTO) throws Exception {
 		
 		adminDAO.paymentDelete(paymentDTO);
 		
 	}
+	//기능항목 조회
+	@Override
+	public List<Room_fncDTO> fncList(SearchCriteria scri) throws Exception {
+		
+		return adminDAO.fncList(scri);
+	}
+	//대여항목 조회
+	@Override
+	public List<Room_rentDTO> rentList(SearchCriteria scri) throws Exception {
+		
+		return adminDAO.rentList(scri);
+	}
+	//기능 추가
+	@Override
+	public void insertfnc(Room_fncDTO room_fncDTO) throws Exception {
+		
+		adminDAO.insertfnc(room_fncDTO);
+	}
+	//대여 추가
+	@Override
+	public void insertrent(Room_rentDTO room_rentDTO) throws Exception {
+		
+		adminDAO.insertrent(room_rentDTO);
+	}
+	//기능 상세페이지
+	@Override
+	public Room_fncDTO fncdetailView(int fnc_bno) throws Exception {
+		
+		return adminDAO.fncdetailView(fnc_bno);
+	}
+	
+	//기능 수정
+	@Override
+	public void fncUpdate(Room_fncDTO room_fncDTO) throws Exception {
+		
+		adminDAO.fncUpdate(room_fncDTO);
+		
+	}
+	//대여 상세페이지
+	@Override
+	public Room_rentDTO rentdetailView(int rent_bno) throws Exception {
+		
+		return adminDAO.rentdetailView(rent_bno);
+	}
+	
+	//대여 수정
+	@Override
+	public void rentUpdate(Room_rentDTO room_rentDTO) throws Exception {
+		
+		adminDAO.rentUpdate(room_rentDTO);
+		
+	}
+	//결제 삭제
+	@Override
+	public void fncDelete(Room_fncDTO room_fncDTO) throws Exception {
+	
+	adminDAO.fncDelete(room_fncDTO);
+	}
+	//결제 삭제
+	@Override
+	public void rentDelete(Room_rentDTO room_rentDTO) throws Exception {
+		
+	adminDAO.rentDelete(room_rentDTO);
+	}	
+	
+	
 	
 	
 
