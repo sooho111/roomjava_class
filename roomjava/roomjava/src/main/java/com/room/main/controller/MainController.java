@@ -31,7 +31,7 @@ public class MainController {
 	@RequestMapping("/4")
 	public void kb() throws Exception {
 	}
-	
+
 	//------------------------------------------------------------------------------------------------
 	// 소개 이동
 	//------------------------------------------------------------------------------------------------
@@ -46,5 +46,26 @@ public class MainController {
     public String goCalen() throws Exception {
     	return "/main/calen";
     }
+	
+	//------------------------------------------------------------------------------------------------
+	// 달력에서 "펜션" 예약하기로 가는 페이지 
+	//------------------------------------------------------------------------------------------------
+	@RequestMapping(value = "/book_ps", method=RequestMethod.GET)
+	public String book_ps( ) throws Exception {
+		
+		
+		
+	return "/main/book_complete";	
+	}
+	
+	@RequestMapping("/book_gp")
+	public void book_gp() throws Exception {
+	}
+	@RequestMapping("/book_dk")
+	public void book_dk() throws Exception {
+	}
+	@RequestMapping("/book_kb")
+	public void book_kb() throws Exception {
+	}
 	
 }

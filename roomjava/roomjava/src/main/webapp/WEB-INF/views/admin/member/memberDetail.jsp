@@ -65,10 +65,27 @@
 				<input type="text"class="form-control" value="${detail.m_birth}" name="m_birth"/>
 			</div>		
 		</div>
+
+		<c:if test="${m_power == 1 }">
+		<div class="form-group">
+			<label class="control-label col-xs-2">권한 부여</label>
+			<div class="col-sm-3">
+				<input type="text"class="form-control" id="m_power" value="${detail.m_power}" name="m_power"/>
+			</div>		
+		</div>
+		</c:if>
+		<c:if test="${m_power != 1 }">
+			<div class="form-group">
+			<label class="control-label col-xs-2">권한 부여</label>
+			<div class="col-sm-3">
+				<input type="text"class="form-control" id="m_power" readonly value="${detail.m_power}" name="m_power"/>
+			</div>		
+		</div>
+		</c:if>
 		<div class="form-group">
 			<div class="col-xs-offset-4 col-xs-3">
 				<button type="button" class="btn btn-primary" onclick="location.href='/admin/member/memberList'">회원목록</button>
-				<button type="submit" class="btn btn-primary">수정</button>
+				<button type="submit" class="btn btn-primary" id="submit">수정</button>
 				<button type="button" class="btn btn-primary" onclick="location.href='/admin/member/delete/${detail.m_bno}'">삭제</button>
 				
 			</div>
@@ -76,7 +93,21 @@
 	</form>
 	
 </div>
-
+<script>
+$(document).ready(function() {
+	//전송
+	$("#submit").on("click", function() {
+		var power= RegExp(/^[2-3]{1}$/)
+		if(!power.test($("#m_power").val())){
+     		alert("권한 설정 2: 관리자 3: 일반회원")
+     		$("#m_power").val("");
+     		$("#m_power").focus();
+     	return false;
+		}
+	});
+});
+	
+</script>
 </body>
 </html>
 

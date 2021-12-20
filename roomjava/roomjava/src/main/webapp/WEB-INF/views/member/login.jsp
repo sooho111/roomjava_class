@@ -59,7 +59,7 @@
 				<div class="col-sm-offset-3 col-sm-6">
 					<div class="jumbotron">
 						<p class="hi" align="center">${member.m_name}님 &nbsp;환영합니다.</p>
-						<c:if test="${member.m_power == 1}">
+						<c:if test="${member.m_power == 1 || member.m_power == 2}">
 							<p class="mi" align="center">
 								<a href="/admin/adminMain">관리자 페이지로</a>
 							</p>

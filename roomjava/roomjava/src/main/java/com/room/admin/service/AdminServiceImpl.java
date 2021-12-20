@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.room.admin.dao.AdminDAO;
 import com.room.admin.dto.BoardDTO;
+import com.room.admin.dto.PaymentDTO;
 import com.room.admin.dto.SearchCriteria;
 import com.room.member.dto.MemberDTO;
 import com.room.admin.dto.RoomKindDTO;
@@ -93,15 +94,63 @@ public class AdminServiceImpl implements AdminService {
 	
 
 	// 회원 수정
-
+	@Override
 	public void memberUpdate(MemberDTO memberDTO) throws Exception {
 		adminDAO.memberUpdate(memberDTO);
 	}
 	
 	//회원 삭제
+	@Override
 	public void memberDelete(String m_bno) throws Exception {
 		adminDAO.memberDelete(m_bno);
 	}
+	//회원 등급 찾기
+	@Override
+	public int searchM_power(String m_id) throws Exception {
+		return adminDAO.searchM_power(m_id);
+	}
+	//결제항목 페이징
+	@Override
+	public List<PaymentDTO> paymentList(SearchCriteria scri) throws Exception {
+		
+		return adminDAO.paymentList(scri);
+	}
+	//결제항목 갯수확인
+	@Override
+	public int paymentListCount(SearchCriteria scri) throws Exception {
+		
+		return adminDAO.paymentListCount(scri);
+	} 	
+	//공지사항 작성
+	@Override
+	public void insertPayment(PaymentDTO paymentDTO) throws Exception {
+		
+		adminDAO.insertPayment(paymentDTO);
+	}
+	//공지사항 상세페이지
+	@Override
+	public PaymentDTO paymentdetailView(int pay_bno) throws Exception {
+		
+		return adminDAO.paymentdetailView(pay_bno);
+	}
+	
+	//공지사항 수정
+	@Override
+	public void paymentUpdate(PaymentDTO paymentDTO) throws Exception {
+		
+		adminDAO.paymentUpdate(paymentDTO);
+		
+	}
+	
+	//공지사항 삭제
+	@Override
+	public void paymentDelete(PaymentDTO paymentDTO) throws Exception {
+		
+		adminDAO.paymentDelete(paymentDTO);
+		
+	}
+	
+	
 
 	
 	

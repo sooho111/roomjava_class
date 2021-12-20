@@ -51,7 +51,6 @@
 					<button type="button" class="btn btn-success btn-sm" onclick="location.href='noticeInsert'">글 작 성</button>
 				</div>
 			</div>	
-			<hr />
 			
 			<div class="search row">
 			
