@@ -58,6 +58,7 @@ public interface AdminDAO {
 	
 	//결제항목 삭제
 	public void paymentDelete(PaymentDTO paymentDTO) throws Exception;
+	
 	// 게시글 작성
 	public void insertPayment(PaymentDTO paymentDTO) throws Exception;
 	

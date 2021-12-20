@@ -13,6 +13,12 @@
 .container { margin-top:70px; margin-bottom:70px; }
 .btnss { margin-bottom:50px; }
 .notice { font-size:20px; margin-bottom:30px; }
+
+
+.noticeInfo {  padding:30px 20px 20px 20px; display:none; height:500px; }
+.noticeInfo .inputArea { margin:10px 0; }
+.noticeInfo .inputArea label { display:inline-block; width:120px; margin-right:10px; }
+.noticeInfo .inputArea input { font-size:14px; padding:5px; }
 </style>
 </head>
 <body>
@@ -24,6 +30,46 @@
 				<h5><b>공지사항</b></h5>
 			</div>
 		</div>	
+
+			<div class="noticeInfo">
+				<form class="form-horizontal" role="form" method="post" autocomplete="off">
+				
+				<input type="hidden" name="notice_bno" value="${detail.notice_bno}" id="notice_bno"/>
+	
+			
+			<div class="inputArea">
+				<label for="title" class="control-label col-sm-2">제  목</label>
+				<div class="col-sm-5">
+					<input class="form-control" type="text" id="notice_title" name="notice_title" style="background:#EEE;" maxlength="50"  value="${detail.notice_title}" readonly="readonly"  />
+				</div>
+			</div>
+			
+			
+			<div class="inputArea">
+				<label for="repDate" class="control-label col-sm-2">작성일자</label>
+				<div class="col-sm-3">
+					<input class="form-control" type="text" name="notice_date"  value="<fmt:formatDate value="${detail.notice_date}" pattern="yyyy년 MM월 dd일"/>" readonly="readonly" style="cursor:text" />
+				</div>
+			</div>
+			
+			<div class="inputArea">
+				<label for="content" class="control-label col-sm-2">내  용</label>
+				<div class="col-sm-4">
+					<textarea rows="15" cols="140" id="notice_content" name="notice_content" style="background:#EEE; padding:5px; border-radius:4px;" readonly="readonly" >${detail.notice_content}</textarea>
+				</div>
+			</div>
+				
+	<div class="inputArea">
+		   	<br/>
+	<button type="button" class="cancel_btn">취소</button>
+		                  		
+		   
+	 </div>
+				
+				</form>
+			</div>
+
+
 
 		<form role= "form" method="get">
 		
@@ -39,15 +85,11 @@
 							<a href="/member/noticeDetail?n=${list.notice_bno }"><c:out value="${list.notice_title}" /></a>
 						</td>
 						<td>관리자</td>
-						<td><fmt:formatDate value="${list.notice_date}" pattern="yyyy년 MM월 dd일"/></td>
+						<td><fmt:formatDate value="${list.notice_date}" pattern="yyyy년MM월dd일 hh:mm:ss"/><button type ="button" class="noticeDetail_btn">상세보기</button></td>
 					</tr>
 				</c:forEach>
 				
 			</table>
-			
-			<hr />
-			<hr />
-			<hr />
 			
 			<div class="search row">
 			
@@ -88,14 +130,25 @@
 			</div>
 			
 			
-			
 		</form>
+
 	</div>
 				<script>
 					$(function(){
 						$('#searchBtn').click(function(){
 							self.location = "notice?searchType=" +$("select option:selected").val() +"&keyword="+$("[name=keyword]").val()	});
 					});
+					
+					$(".noticeDetail_btn").click(function(){
+						$(".noticeInfo").slideDown();
+						$(".noticeDetail_btn").slideUp();
+					});
+		     
+		      $(".cancel_btn").click(function(){
+		      $(".noticeInfo").slideUp();
+		      $(".noticeDetail_btn").slideDown();
+		      });
+					
 				</script>
 </body>
 </html>

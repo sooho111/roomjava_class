@@ -261,7 +261,7 @@ public class MemberController {
 	
 	//공지사항 view
 	@RequestMapping(value="/notice", method=RequestMethod.GET)
-	public String noticeList(Model model, @ModelAttribute("scri") SearchCriteria scri) throws Exception {
+	public String noticeList(Model model, @ModelAttribute("scri") SearchCriteria scri ) throws Exception {
 		logger.info("noticeList");
 		
 		model.addAttribute("list", memberService.list(scri));
@@ -272,8 +272,12 @@ public class MemberController {
 		
 		model.addAttribute("pageMaker", pageMaker);
 		
+		
+		
 		return "/member/notice";
 	}
+	
+	
 	
 	//-------------------------------------------------------------------------------------------------------
 	//공지사항 상세페이지	
@@ -290,4 +294,15 @@ public class MemberController {
 		
 		}
 
+		//공지사항 view
+		@RequestMapping(value="/notice", method=RequestMethod.POST)
+		public String noticeDetailView(Model model, BoardDTO boardDTO ) throws Exception {
+			logger.info("noticeList");
+			
+			
+			model.addAttribute("detail", memberService.detailView(boardDTO.getNotice_bno()));
+			
+			
+			return "/member/notice";
+		}	
 } // end class MemberController
