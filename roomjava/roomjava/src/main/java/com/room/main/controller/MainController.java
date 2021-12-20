@@ -1,5 +1,6 @@
 package com.room.main.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -18,6 +19,7 @@ import com.room.main.dto.RoomInfraDTO;
 import com.room.main.service.MainService;
 import com.room.member.dto.MemberDTO;
 import com.room.admin.dto.RoomKindDTO;
+import com.room.admin.service.AdminService;
 
 @Controller
 @RequestMapping(value="/main")
@@ -27,6 +29,9 @@ public class MainController {
 	
 	@Inject
 	MainService mainService;
+	
+	@Inject
+	AdminService adminService;
 	
 	@RequestMapping("/1")
 	public void ps() throws Exception {
@@ -60,18 +65,21 @@ public class MainController {
 	// room_list로 이동
 	//------------------------------------------------------------------------------------------------
     @RequestMapping(value = "/roomList")
-    public String roomList(Model model) throws Exception {
-    	
+    public String roomList(String room_bno, Model model) throws Exception {
+
     	List<RoomKindDTO> roomkindDTO = mainService.getKind();
     	model.addAttribute("kinds", roomkindDTO);
-    	// 방 리스트 목록을 보여주기 위한 화면으로 가기 전에 보여줄 데이터를 가져와서 model에 담는다.
-    	logger.info("allrooms 방 종류 가져오나요? roomkindDTO => " + roomkindDTO);
     	
-    	// 방 리스트를 종류대로 뿌려주기
-    	List<RoomInfraDTO> roominfraDTO = mainService.allRooms();
-    	model.addAttribute("allRooms", roominfraDTO);
-    		      
-    	logger.info("allrooms 방 잘 가져오나요? roominfraDTO => " + roominfraDTO);
+    	if(room_bno == null) {
+        	// 방 리스트를 종류대로 뿌려주기
+        	List<RoomInfraDTO> roominfraDTO = mainService.allRooms();
+        	model.addAttribute("allRooms", roominfraDTO);
+    	} else {
+    		List<RoomInfraDTO> kindroominfraDTO = mainService.kindRooms(room_bno);
+    		RoomKindDTO list = mainService.soKind(room_bno);
+        	model.addAttribute("allRooms", kindroominfraDTO);
+        	model.addAttribute("list", list);
+    	}
     	return "main/roomList";    	
     }
     
@@ -81,7 +89,7 @@ public class MainController {
 	//------------------------------------------------------------------------------------------------
 	@RequestMapping("/roomView")
 	public String roomView(@RequestParam("r_bno") int r_bno, Model model, BookDTO bookDTO, HttpSession session) throws Exception {
-		logger.info("동균아!!" + r_bno);
+		
 		RoomInfraDTO roomInfraDTO = mainService.getRoomView(r_bno);
 		List<RoomKindDTO> roomkindDTO = mainService.getKind();
 		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");

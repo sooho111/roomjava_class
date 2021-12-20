@@ -1,9 +1,5 @@
 Manifest-Version: 1.0
-<<<<<<< HEAD
-Built-By: YB
-=======
-Built-By: 82109
->>>>>>> 1b58a3efe3c58f454c904c05c27bb152a3ce0869
+Built-By: dlals
 Build-Jdk: 16.0.2
 Created-By: Maven Integration for Eclipse
 
