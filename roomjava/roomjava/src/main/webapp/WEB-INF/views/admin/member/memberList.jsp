@@ -9,7 +9,8 @@
 <title>Member List</title>
 <%@ include file="../../include/includeFile.jsp" %>
 <style type="text/css">
-	.container { margin-top:70px; margin-bottom:70px; }
+.container { margin-top:70px; margin-bottom:70px; }
+.info { cursor:pointer; }
 </style>
 </head>
 <body>
@@ -32,7 +33,6 @@
 				<th>주  소</th>
 				<th>생년월일</th>
 				<th>권  한</th>
-
 			</tr>
 		</thead>
 		<tbody>
@@ -46,10 +46,8 @@
 				<td>${member.m_email}</td>
 				<td>${member.m_address}</td>
 				<td>${member.m_birth}</td>
-				<c:if test="${member.m_power ==2 }"><td>관리자</td> 		</c:if>
-				<c:if test="${member.m_power ==3 }"><td>일반 회원</td>	</c:if>
-				
-				
+				<c:if test="${member.m_power ==2 }"><td>관리자</td></c:if>
+				<c:if test="${member.m_power ==3 }"><td>일반 회원</td></c:if>
 			</tr>
 			</c:forEach>
 		</tbody>

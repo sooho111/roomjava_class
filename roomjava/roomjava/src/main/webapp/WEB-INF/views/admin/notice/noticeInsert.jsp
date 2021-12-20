@@ -6,6 +6,9 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <%@ include file="../../include/includeFile.jsp" %>
+<style>
+body { overflow-x:hidden; }
+</style>
 </head>
 <body>
 <%@ include file="../../include/m_header.jsp" %>
