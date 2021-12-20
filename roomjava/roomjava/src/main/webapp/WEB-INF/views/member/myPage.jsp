@@ -65,7 +65,36 @@ th { text-align:center; }
 				<li class = "memberDelete"><a href="#">회원 탈퇴</a><span class="glyphicon glyphicon-chevron-right"></span></li>
 			</ul>
 		</div>
-
+<div class="m_content">
+			<p class="order">예약 정보</p>
+			<hr>
+			
+			<c:if test="${buys != '[]' }">
+			
+				<table class="table table-hover table-bordered">
+					<thead>
+						<tr class="info">
+							<th>주문번호</th>
+							<th>예약자 이름</th>
+							<th>예약 인원</th>
+							<th>상태</th>
+						</tr>
+					</thead>
+					
+					<tbody>
+						<c:forEach var="bookList" items="${bookList}">		
+							<tr>
+								<td align=center><a href="#">${bookList.book_order}</a></td>
+								<td align=center>${bookList.book_name}</td>
+								<td align=center>${bookList.book_people}</td>
+								<td align=center>${bookList.book_ok}</td>
+							</tr>
+						</c:forEach>
+					</tbody>
+				</table>
+				
+			</c:if>
+		</div>
 		<div class="m_content">
 				<input type="hidden" id="m_id" name="m_id" value="${member.m_id}" />
 		</div>
