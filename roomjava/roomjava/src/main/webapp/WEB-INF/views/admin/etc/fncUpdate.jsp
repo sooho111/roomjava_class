@@ -4,12 +4,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>기본 기능 수정</title>
 <%@ include file="../../include/includeFile.jsp" %>
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');
-
+.won { margin-top:5px; font-size:16px; }
 </style>
 </head>
 <body>
@@ -20,7 +19,7 @@
 			<input type="hidden" name="fnc_bno" value="${update.fnc_bno}" readonly="readonly"/>
 			<div class="form-group">
 				<div style="text-align: center; margin: 50px 0;">
-					<h5><b>결제항목 수정</b></h5>
+					<h5><b>기본 기능 수정</b></h5>
 				</div>
 			</div>
 			
@@ -33,9 +32,10 @@
 			</div>
 			<div class="form-group">
 				<label class="control-label col-sm-2">기능 비용</label>
-				<div class="col-sm-3">
-					<input type="text" class="form-control" name="fnc_price" maxlength="50" value="${update.fnc_price}" placeholder="기능 비용"/><p>원</p>
+				<div class="col-sm-1">
+					<input type="text" class="form-control" name="fnc_price" maxlength="50" value="${update.fnc_price}" placeholder="기능 비용"/>
 				</div>
+				<p class="won">원</p>
 			</div>
 			<div class="form-group">
 				<div class="col-sm-offset-9">
