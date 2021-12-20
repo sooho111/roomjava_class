@@ -28,13 +28,13 @@
 			<div class="form-group">
 				<label class="control-label col-sm-2">대여 항목 이름</label>
 				<div class="col-sm-2">
-					<input type="text" class="form-control" name="rent_name" maxlength="50" placeholder="대여 항목 이름"/>
+					<input type="text" class="form-control" name="rent_name" value="${update.rent_name}" maxlength="50" placeholder="대여 항목 이름"/>
 				</div>
 			</div>
 			<div class="form-group">
 				<label class="control-label col-sm-2">대여 비용</label>
 				<div class="col-sm-3">
-					<input type="text" class="form-control" name="rent_price" maxlength="50" placeholder="대여 비용"/>
+					<input type="text" class="form-control" name="rent_price" value="${update.rent_price}" maxlength="50" placeholder="대여 비용"/>
 				</div>
 			</div>
 			<div class="form-group">
