@@ -5,6 +5,7 @@ import lombok.Data;
 @Data
 public class RoomInfraDTO {
 
+	private int		r_bno;		// 고유번호
 	private String 	r_name;		// 방이름
 	private String 	r_kind;		// 방 종류
 	private int		r_people;	// 방 인원수

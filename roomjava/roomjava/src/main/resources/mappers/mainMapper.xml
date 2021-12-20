@@ -20,7 +20,7 @@
 	</select>
 
 	<!-- 방 상세보기 -->
-	<select id="getRoomView" parameterType="int" resultType="com.room.main.dto.RoomInfraDTO">
+	<select id="roomView" parameterType="int" resultType="com.room.main.dto.RoomInfraDTO">
 		SELECT 	*
 		FROM 	room_infra
 		WHERE 	r_bno = #{r_bno}
