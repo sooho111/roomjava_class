@@ -85,7 +85,7 @@
 							<a href="/member/noticeDetail?n=${list.notice_bno }"><c:out value="${list.notice_title}" /></a>
 						</td>
 						<td>관리자</td>
-						<td><fmt:formatDate value="${list.notice_date}" pattern="yyyy년MM월dd일 hh:mm:ss"/><a href="/member/noticeDetail?n=${list.notice_bno }" class="noticeDetail">상세보기</a></td>
+						<td><fmt:formatDate value="${list.notice_date}" pattern="yyyy년MM월dd일 hh:mm:ss"/><button type ="button" class="noticeDetail_btn">상세보기</button></td>
 					</tr>
 				</c:forEach>
 				
@@ -146,7 +146,7 @@
 		     
 		      $(".cancel_btn").click(function(){
 		      $(".noticeInfo").slideUp();
-		      $(".noticeDetail").slideDown();
+		      $(".noticeDetail_btn").slideDown();
 		      });
 					
 				</script>
