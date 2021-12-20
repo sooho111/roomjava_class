@@ -81,14 +81,14 @@ public class MainController {
 	//------------------------------------------------------------------------------------------------
 	@RequestMapping("/roomView")
 	public String roomView(@RequestParam("r_bno") int r_bno, Model model, BookDTO bookDTO, HttpSession session) throws Exception {
+		logger.info("동균아!!" + r_bno);
 		RoomInfraDTO roomInfraDTO = mainService.getRoomView(r_bno);
 		List<RoomKindDTO> roomkindDTO = mainService.getKind();
 		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
 
 		return "main/roomView";
 	}
-		
-
+	
 		
 } 
     
