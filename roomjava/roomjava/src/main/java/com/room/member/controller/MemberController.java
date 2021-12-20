@@ -74,6 +74,36 @@ public class MemberController {
 		}
 		return "redirect:/member/login";
 	}
+	
+	// -------------------------------------------------------------------------------------------------
+	// 비로그인 GET
+	// -------------------------------------------------------------------------------------------------
+	@RequestMapping(value = "/belogin", method = RequestMethod.GET)
+	public String getbeLogin() throws Exception {
+		return "/member/belogin";
+
+	} // end String getLogin()
+	// -------------------------------------------------------------------------------------------------
+	// 비로그인 POST
+	// -------------------------------------------------------------------------------------------------
+	@RequestMapping(value = "/belogin", method = RequestMethod.POST)
+	public String belogin(BookDTO bookDTO, HttpServletRequest req, RedirectAttributes rttr) throws Exception {
+
+		// 넘겨받은 회원정보를 가지고 Service에게 의뢰한다.
+		List<BookDTO> bookList = memberService.belogin(bookDTO.getBook_name());
+
+		return "redirect:/member/beLoginBookList";
+	}
+	
+	@RequestMapping("/beLoginBookList")
+	public void beLoginBookList(BookDTO bookDTO,Model model) throws Exception {
+		List<BookDTO> bookList = memberService.belogin(bookDTO.getBook_name());
+		BookDTO buyDTO = new BookDTO();
+
+		logger.info("managerController orderList()  return Value ==> " + bookList);
+			
+		model.addAttribute("bookList", bookList);
+	}
 
 	// -------------------------------------------------------------------------------------------------
 	// 로그아웃

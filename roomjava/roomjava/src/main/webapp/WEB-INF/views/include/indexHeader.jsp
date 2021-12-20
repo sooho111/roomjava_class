@@ -12,7 +12,7 @@ p{
 		<h1><a href="/"><img src="../resources/images/logo.png" alt="logo" width="200" /></a></h1>
 		<c:if test="${member == null}">
 			<ul class="log">
-				<li><a href="#">예약 확인 및 취소</a></li>
+				<li><a href="../member/belogin">예약 확인 및 취소</a></li>
 				<li><a href="../member/memberInsert">회원가입</a></li>
 				<li><a href="../member/login">로그인</a></li>
 			</ul>
@@ -49,7 +49,7 @@ p{
 				</ul>
 			</li>
 			
-			<li><a href="#"><span class="glyphicon glyphicon-apple"></span> 커뮤니티</a>
+			<li><a href="/member/notice"><span class="glyphicon glyphicon-apple"></span> 커뮤니티</a>
 				<ul class="comunity">
 					<li><a href="/member/notice">공지 사항</a></li>
 					<li><a href="#">후기</a></li>
