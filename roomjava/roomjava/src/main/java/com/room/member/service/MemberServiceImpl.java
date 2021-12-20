@@ -169,5 +169,9 @@ MemberDAO memberDAO;
 			return memberDAO.bookView(book_order);
 		}
 
+		@Override
+		public List<BookDTO> belogin(String book_name) throws Exception{
+			return memberDAO.belogin(book_name);
+		}
 	
 }
