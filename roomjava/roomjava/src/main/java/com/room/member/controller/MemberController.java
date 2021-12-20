@@ -92,15 +92,15 @@ public class MemberController {
 		// 넘겨받은 회원정보를 가지고 Service에게 의뢰한다.
 		List<BookDTO> bookList = memberService.belogin(bookDTO.getBook_name());
 
-		return "redirect:/member/beLoginBookList";
+		return "member/beLoginBookList";
 	}
-	
-	@RequestMapping("/beLoginBookList")
-	public void beLoginBookList(BookDTO bookDTO,Model model) throws Exception {
+	 
+	@RequestMapping (value ="/beLoginBookList")
+ 	public void beLoginBookList(BookDTO bookDTO,Model model) throws Exception {
 		List<BookDTO> bookList = memberService.belogin(bookDTO.getBook_name());
-		BookDTO buyDTO = new BookDTO();
+		BookDTO bebookDTO = new BookDTO();
 
-		logger.info("managerController orderList()  return Value ==> " + bookList);
+		logger.info("다 가져온다며 " + bookList);
 			
 		model.addAttribute("bookList", bookList);
 	}

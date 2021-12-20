@@ -21,7 +21,7 @@
 <%@ include file="../include/header.jsp"%>
 <div class="container">
 	<div class="inner">
-		<form class="form-horizontal" action="/member/belogin" method="post" id="beloginform">
+		<form class="form-horizontal" action="/member/beLoginBookList" method="post" id="beloginform">
 			<!-- 로그인을 하지 않고 들어온 경우 -->
 		<c:if test="${member == null}">
 
@@ -68,7 +68,7 @@
 	$("#submit").on("click", function() {
 
 		if ($("#book_name").val() == "") { // 이름를 입력하지 않았으면
-			alert("이름를 입력하십시오.");
+			alert("이름을 입력하십시오.");
 			$("#book_name").focus();
 			return false;
 		}
@@ -78,7 +78,6 @@
 			return false;
 		}
 		document.getElementById("beloginform").submit();
-		return false;
 	});
 
 
