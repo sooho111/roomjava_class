@@ -135,6 +135,7 @@
 			
 		</form>
 
+<%@ include file="../include/footer.jsp" %>
 	</div>
 				<script>
 					$(function(){
