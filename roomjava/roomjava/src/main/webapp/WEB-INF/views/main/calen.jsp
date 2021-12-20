@@ -90,10 +90,10 @@ document.addEventListener('DOMContentLoaded', function() {
 			// 일정 클릭 이벤트
 			eventClick : function() {
 				
-				alert("^^"+$(this).text());
+				alert("^^"+calendar.getEventById());
 				
 				return false;
-				/*
+			
 				if ('title' == "글램핑") {
 					alert('글램핑 클릭! book_gp.jsp로 이동');
 					// location.href="book_gp";
@@ -108,19 +108,19 @@ document.addEventListener('DOMContentLoaded', function() {
 					// location.href="book_ps";
 				} else {
 					
-				} */
+				}
 				
 				// alert('일정 클릭! 4.jsp로 이동');
 				// location.href="4";
 			}, 
 
-		});	
+		});	 
 
 		
 
 		// 데이터 삽입방식
 
-		calendar.addEvent({'title':'펜션', 'start':'2021-12-17'});
+		calendar.addEvent({id:'a',title:'펜션', 'start':'2021-12-17'});
 		calendar.addEvent({'title':'글램핑', 'start':'2021-12-17'});
 		calendar.addEvent({'title':'데크', 'start':'2021-12-17'});
 		calendar.addEvent({'title':'카라반', 'start':'2021-12-17'});
@@ -137,11 +137,15 @@ document.addEventListener('DOMContentLoaded', function() {
 		calendar.addEvent({'title':'고객3-염색', 'start':'2021-07-20T09:00'});
 		calendar.addEvent({'title':'31일?', 'start':'2021-11-30'});
 
+
+
+
 		// 렌더링
 
 		calendar.render();
 
 	});
+
 
 </script>
 

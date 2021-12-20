@@ -1,11 +1,8 @@
 package com.room.member.controller;
 
-import java.text.DateFormat;
 import java.text.DecimalFormat;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -26,6 +23,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.room.admin.dto.BoardDTO;
 import com.room.admin.dto.PageMaker;
 import com.room.admin.dto.SearchCriteria;
+import com.room.main.dto.BookDTO;
 import com.room.member.dto.MemberDTO;
 import com.room.member.service.MemberService;
 
@@ -230,6 +228,13 @@ public class MemberController {
 		
 		memberDTO = (MemberDTO)session.getAttribute("member");
 		model.addAttribute("member", memberDTO);
+		
+		List<BookDTO> bookList = memberService.getBooks(memberDTO.getM_name());
+		BookDTO buyDTO = new BookDTO();
+
+		logger.info("managerController orderList()  return Value ==> " + bookList);
+			
+		model.addAttribute("bookList", bookList);
 			
 	} // end void myPage
 	

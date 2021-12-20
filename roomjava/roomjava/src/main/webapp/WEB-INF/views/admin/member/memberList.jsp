@@ -8,6 +8,9 @@
 <meta charset="UTF-8">
 <title>Member List</title>
 <%@ include file="../../include/includeFile.jsp" %>
+<style type="text/css">
+	.container { margin-top:70px; margin-bottom:70px; }
+</style>
 </head>
 <body>
 <%@ include file="../../include/m_header.jsp" %>

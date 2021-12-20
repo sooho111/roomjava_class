@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import com.room.admin.dto.BoardDTO;
 import com.room.admin.dto.SearchCriteria;
+import com.room.main.dto.BookDTO;
 import com.room.member.dao.MemberDAO;
 import com.room.member.dto.MemberDTO;
 
@@ -156,6 +157,11 @@ MemberDAO memberDAO;
 		public BoardDTO detailView(int notice_bno) throws Exception {
 			
 			return memberDAO.detailView(notice_bno);
+		}
+		
+		@Override
+		public List<BookDTO> getBooks(String m_name) throws Exception{
+			return memberDAO.getBooks(m_name);
 		}
 
 	

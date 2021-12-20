@@ -112,4 +112,10 @@ and m_email = #{m_email}
 	WHERE  notice_bno = #{notice_bno}
 	</select>
 	
+	<select id="getBooks" resultType="com.room.main.dto.BookDTO" parameterType="String">
+		SELECT *
+		FROM book
+		WHERE book_name = #{m_name}
+	</select>
+	
 </mapper>

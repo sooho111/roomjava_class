@@ -6,32 +6,11 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>펜션 예약하기</title>
+	<title>방 리스트</title>
 	<%@ include file="../include/includeFile.jsp" %>
 </head>
 <body>
 <%@ include file="../include/header.jsp" %>
-<h1>펜션예약</h1>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 <%@ include file="../include/footer.jsp" %>
