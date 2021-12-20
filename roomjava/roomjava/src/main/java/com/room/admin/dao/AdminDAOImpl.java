@@ -41,6 +41,7 @@ public class AdminDAOImpl implements AdminDAO {
 	@Override
 	public List<BoardDTO> list(SearchCriteria scri) throws Exception {
 
+		logger.info("DAO => " + sqlSession.selectList(namespace + ".noticePaging", scri));
 		return sqlSession.selectList(namespace + ".noticePaging", scri);
 	}
 	// 공지사항 카운트

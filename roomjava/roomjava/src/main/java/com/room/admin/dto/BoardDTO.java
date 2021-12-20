@@ -1,6 +1,7 @@
 package com.room.admin.dto;
 
-import java.util.Date;
+import java.sql.Timestamp;
+
 
 import lombok.Data;
 
@@ -11,5 +12,5 @@ public class BoardDTO {
 	private int notice_bno;
 	private String notice_title;
 	private String notice_content;
-	private Date notice_date;
+	private Timestamp notice_date;
 }

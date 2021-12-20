@@ -68,6 +68,8 @@ public class AdminController {
 		public String noticeList(Model model, @ModelAttribute("scri") SearchCriteria scri) throws Exception {
 			logger.info("noticeList");
 			
+			logger.info("list ==> " + adminService.list(scri));
+			
 			model.addAttribute("list", adminService.list(scri));
 			
 			PageMaker pageMaker = new PageMaker();

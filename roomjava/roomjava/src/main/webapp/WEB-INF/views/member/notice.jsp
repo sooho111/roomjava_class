@@ -48,7 +48,7 @@
 			<div class="inputArea">
 				<label for="repDate" class="control-label col-sm-2">작성일자</label>
 				<div class="col-sm-3">
-					<input class="form-control" type="text" name="notice_date"  value="<fmt:formatDate value="${detail.notice_date}" pattern="yyyy년 MM월 dd일"/>" readonly="readonly" style="cursor:text" />
+					<input class="form-control" type="text" name="notice_date"  value="<fmt:formatDate value="${detail.notice_date}" pattern="yyyy년 MM월 dd일 HH:mm:ss"/>" readonly="readonly"  />
 				</div>
 			</div>
 			
@@ -85,7 +85,7 @@
 							<a href="/member/noticeDetail?n=${list.notice_bno }"><c:out value="${list.notice_title}" /></a>
 						</td>
 						<td>관리자</td>
-						<td><fmt:formatDate value="${list.notice_date}" pattern="yyyy년MM월dd일 hh:mm:ss"/><button type ="button" class="noticeDetail_btn">상세보기</button></td>
+						<td><fmt:formatDate value="${list.notice_date }"  pattern="yyyy년MM월dd일 hh:mm:ss"/></td>
 					</tr>
 				</c:forEach>
 				
@@ -93,7 +93,7 @@
 			
 			<div class="search row">
 			
-				<div align="center" class="col-xs-2 col-sm-2" style="margin-left:170px;">
+				<div align="center" class="col-xs-2 col-sm-2" style="margin-left:300px;">
 					<select name = "searchType" class="form-control">
 						<option value ="n" <c:out value = "$(scri.seachType == null ? 'selected' : '')"/>>---선택---</option>
 						<option value ="title" <c:out value = "$(scri.seachType eq 't' ? 'selected' : '')"/>>제목</option>
@@ -112,23 +112,26 @@
 				
 			</div>
 
- 			<div class="col-md-offset-3">
-			  	<ul class="pagination">
-				    <c:if test="${pageMaker.prev}">
-				    	<li><a href="notice${pageMaker.makeSearch(pageMaker.startPage - 1)}">이전</a></li>
-				    </c:if>
-					
-				    <c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="idx">
-				 		<li <c:out value="${pageMaker.cri.page == idx ? 'class=info' : '' }" />>   
-				    	<a href="notice${pageMaker.makeSearch(idx)}">${idx}</a></li>
-				    </c:forEach>
-					
-				    <c:if test="${pageMaker.next && pageMaker.endPage > 0}">
-				    	<li><a href="notice${pageMaker.makeSearch(pageMaker.endPage + 1)}">다음</a></li>
-				    </c:if>
-		  		</ul>
-			</div>
-			
+			<br/>
+			<br/>
+			<br/>
+
+  				<div class="col-md-offset-3">
+				  	<ul class="pagination">
+					    <c:if test="${pageMaker.prev}">
+					    	<li><a href="notice${pageMaker.makeSearch(pageMaker.startPage - 1)}">이전</a></li>
+					    </c:if>
+						
+					    <c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="idx">
+					 		<li <c:out value="${pageMaker.cri.page == idx ? 'class=info' : '' }" />>   
+					    	<a href="notice${pageMaker.makeSearch(idx)}">${idx}</a></li>
+					    </c:forEach>
+						
+					    <c:if test="${pageMaker.next && pageMaker.endPage > 0}">
+					    	<li><a href="notice${pageMaker.makeSearch(pageMaker.endPage + 1)}">다음</a></li>
+					    </c:if>
+			  		</ul>
+				</div>
 			
 		</form>
 
