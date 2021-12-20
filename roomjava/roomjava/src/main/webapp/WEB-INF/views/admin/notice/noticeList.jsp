@@ -50,17 +50,18 @@
 				<div align="right" class="col-sm-offset-3">
 					<button type="button" class="btn btn-success btn-sm" onclick="location.href='noticeInsert'">글 작 성</button>
 				</div>
-			</div>	
+				
 			
 			<div class="search row">
 			
-				<div align="center" class="col-xs-2 col-sm-2" style="margin-left:170px;">
+				<div align="center" class="col-xs-2 col-sm-2" style="margin-left:300px;">
 					<select name = "searchType" class="form-control">
 						<option value ="n" <c:out value = "$(scri.seachType == null ? 'selected' : '')"/>>---선택---</option>
 						<option value ="title" <c:out value = "$(scri.seachType eq 't' ? 'selected' : '')"/>>제목</option>
 						<option value ="content" <c:out value = "$(scri.seachType eq 'c' ? 'selected' : '')"/>>내용</option>
 					</select>
 				</div>
+				
 				
 				<div class="col-xs-10 col-sm-5">
 					<div class="input-group">
@@ -70,6 +71,7 @@
 						</span>
 					</div>
 				</div>
+			</div>
 				
 			</div>
 
