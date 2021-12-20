@@ -48,7 +48,7 @@
 			<div class="inputArea">
 				<label for="repDate" class="control-label col-sm-2">작성일자</label>
 				<div class="col-sm-3">
-					<input class="form-control" type="text" name="notice_date"  value="<fmt:formatDate value="${detail.notice_date}" pattern="yyyy년 MM월 dd일"/>" readonly="readonly" style="cursor:text" />
+					<input class="form-control" type="text" name="notice_date"  value="<fmt:formatDate value="${detail.notice_date}" pattern="yyyy년 MM월 dd일 HH:mm:ss"/>" readonly="readonly"  />
 				</div>
 			</div>
 			
@@ -85,7 +85,7 @@
 							<a href="/member/noticeDetail?n=${list.notice_bno }"><c:out value="${list.notice_title}" /></a>
 						</td>
 						<td>관리자</td>
-						<td><fmt:formatDate value="${list.notice_date}" pattern="yyyy년MM월dd일 hh:mm:ss"/></td>
+						<td><fmt:formatDate value="${list.notice_date }"  pattern="yyyy년MM월dd일 hh:mm:ss"/></td>
 					</tr>
 				</c:forEach>
 				
