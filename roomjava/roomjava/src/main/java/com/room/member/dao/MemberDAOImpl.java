@@ -128,6 +128,7 @@ public class MemberDAOImpl implements MemberDAO {
 	
 	@Override
 	public List<BookDTO> belogin(String book_name) throws Exception{
+		logger.info("MemberDAOImpl memberInsert(MemberDTO memberDTO)....."+book_name);
 		return sqlSession.selectList(namespace + ".belogin", book_name);
 	}
 

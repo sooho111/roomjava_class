@@ -125,7 +125,7 @@ WHERE	b.book_order = #{book_order};
 	</select>
 	
 	
-	<select resultType="com.room.main.dto.BookDTO" parameterType="com.room.main.dto.BookDTO" id="belogin">
+	<select id="belogin" resultType="com.room.main.dto.BookDTO" parameterType="String" >
 SELECT *
 FROM book
 WHERE book_name = #{book_name}
