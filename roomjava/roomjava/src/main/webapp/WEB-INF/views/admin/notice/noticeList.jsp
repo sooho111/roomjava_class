@@ -51,7 +51,6 @@
 					<button type="button" class="btn btn-success btn-sm" onclick="location.href='noticeInsert'">글 작 성</button>
 				</div>
 			</div>	
-			<hr />
 			
 			<div class="search row">
 			
@@ -72,18 +71,12 @@
 					</div>
 				</div>
 				
-				<script>
-					$(function(){
-						$('#searchBtn').click(function(){
-							self.location = "noticeList?searchType=" +$("select option:selected").val() +"&keyword="+$("[name=keyword]").val()	});
-					});
-				</script>
 			</div>
 
  			<div class="col-md-offset-3">
 			  	<ul class="pagination">
 				    <c:if test="${pageMaker.prev}">
-				    	<li><a href="list${pageMaker.makeSearch(pageMaker.startPage - 1)}">이전</a></li>
+				    	<li><a href="noticeList${pageMaker.makeSearch(pageMaker.startPage - 1)}">이전</a></li>
 				    </c:if>
 					
 				    <c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="idx">
@@ -101,5 +94,11 @@
 			
 		</form>
 	</div>
+				<script>
+					$(function(){
+						$('#searchBtn').click(function(){
+							self.location = "noticeList?searchType=" +$("select option:selected").val() +"&keyword="+$("[name=keyword]").val()	});
+					});
+				</script>
 </body>
 </html>
