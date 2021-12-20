@@ -13,5 +13,7 @@ public class BookDTO {
 	private String 	start_date;		// 예약시작일자
 	private String 	end_date;		// 예약종료일자
 	private int		r_bno;			// 방 번호
+	private String room_class;
+	private String r_name;
 	
 }

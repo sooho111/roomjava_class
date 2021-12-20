@@ -121,6 +121,9 @@ public class MemberDAOImpl implements MemberDAO {
 		return sqlSession.selectList(namespace + ".getBooks", m_name);
 	}
 
-
+	@Override
+	public List<BookDTO> bookView(String book_order) throws Exception{
+		return sqlSession.selectList(namespace + ".bookView", book_order);
+	}
 
 }

@@ -1,6 +1,7 @@
 package com.room.member.controller;
 
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import javax.inject.Inject;
@@ -237,6 +238,26 @@ public class MemberController {
 		model.addAttribute("bookList", bookList);
 			
 	} // end void myPage
+	
+	@RequestMapping(value="/myBookView", method=RequestMethod.GET)
+	public void orderView(@RequestParam("book_order") String book_order, Model model) throws Exception {
+		
+		logger.info("managerController 주문상세정보 가져오기 ==> " + book_order);
+		
+		List<BookDTO> bookView = new ArrayList<BookDTO>();
+		bookView.addAll(memberService.bookView(book_order));
+		logger.info("managerController return Value ==> " + bookView);
+		
+		BookDTO bookDTO = new BookDTO();
+		bookDTO.setBook_order(bookView.get(0).getBook_order());
+		bookDTO.setBook_name(bookView.get(0).getBook_name());
+		bookDTO.setBook_people(bookView.get(0).getBook_people());
+		bookDTO.setBook_ok(bookView.get(0).getBook_ok());
+		bookDTO.setBook_tel(bookView.get(0).getBook_tel());
+		logger.info("orderView.get(0).getDelivery_name() => " + bookDTO);
+		
+		model.addAttribute("bookView", bookView);
+	}
 	
 	//공지사항 view
 	@RequestMapping(value="/notice", method=RequestMethod.GET)

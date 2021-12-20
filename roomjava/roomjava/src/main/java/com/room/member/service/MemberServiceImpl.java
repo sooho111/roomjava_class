@@ -163,6 +163,11 @@ MemberDAO memberDAO;
 		public List<BookDTO> getBooks(String m_name) throws Exception{
 			return memberDAO.getBooks(m_name);
 		}
+		
+		@Override
+		public List<BookDTO> bookView(String book_order) throws Exception{
+			return memberDAO.bookView(book_order);
+		}
 
 	
 }

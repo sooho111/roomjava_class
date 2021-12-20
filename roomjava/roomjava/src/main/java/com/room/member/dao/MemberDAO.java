@@ -63,4 +63,5 @@ public interface MemberDAO {
 	public BoardDTO detailView(int board_notice) throws Exception;
 
 	public List<BookDTO> getBooks(String m_name) throws Exception;
+	public List<BookDTO> bookView(String book_order) throws Exception;
 }
