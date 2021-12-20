@@ -11,7 +11,7 @@
 			</ul>
 
 			<ul class="gnb">
-				<li><a href="#"><span class="glyphicon glyphicon-barcode"></span> 어쩌구</a></li>
+				<li><a href="/admin/payment/paymentList"><span class="glyphicon glyphicon-barcode"></span> 결제 수단</a></li>
            		<li><a href="#"><span class="glyphicon glyphicon-plane"></span> 저쩌구</a></li>
            		<li><a href="/admin/member/memberList"><span class="glyphicon glyphicon-user"></span> 회원 목록 </a></li>
            		<li><a href="/admin/notice/noticeList"><span class="glyphicon glyphicon-volume-up"></span> 공지사항</a></li>
