@@ -7,6 +7,8 @@ import com.room.admin.dto.PaymentDTO;
 import com.room.admin.dto.SearchCriteria;
 import com.room.member.dto.MemberDTO;
 import com.room.admin.dto.RoomKindDTO;
+import com.room.admin.dto.Room_fncDTO;
+import com.room.admin.dto.Room_rentDTO;
 
 public interface AdminDAO {
 	// 게시글 작성
@@ -61,6 +63,30 @@ public interface AdminDAO {
 	
 	// 게시글 작성
 	public void insertPayment(PaymentDTO paymentDTO) throws Exception;
+	// 기능 목록 조회
+	public List<Room_fncDTO> fncList(SearchCriteria scri) throws Exception;
+	// 대여 목록 조회
+	public List<Room_rentDTO> rentList(SearchCriteria scri) throws Exception;
+	//기능항목 추가
+	public void insertfnc(Room_fncDTO room_fncDTO) throws Exception;
+	//대여항목 추가
+	public void insertrent(Room_rentDTO room_rentDTO) throws Exception;
+	//기능항목 상세페이지
+	public Room_fncDTO fncdetailView(int fnc_bno) throws Exception;
+	//대여항목 상세페이지
+	public Room_rentDTO rentdetailView(int rent_bno) throws Exception;
+	//기능항목 수정
+	public void fncUpdate(Room_fncDTO room_fncDTO) throws Exception;
+	//대여항목 수정
+	public void rentUpdate(Room_rentDTO room_rentDTO) throws Exception;
+	//기능항목 삭제
+	public void fncDelete(Room_fncDTO room_fncDTO) throws Exception;
+	//대여항목 삭제
+	public void rentDelete(Room_rentDTO room_rentDTO) throws Exception;
+	
+	
+
+
 	
 	
 } // end interface AdminDAO

@@ -22,10 +22,10 @@ p{
 			<ul class="log">
 				<li><a href="../member/myPage">내 정보</a></li>
 				<li class="logout"><a href="#">로그아웃</a></li>
-				<c:if test="${member.m_power == 1}">
+				<c:if test="${member.m_power == 1|| member.m_power == 2}">
 					<li><p class="mi" align="center"><a href="/admin/adminMain">관리자 페이지로</a></p></li>
 				</c:if>
-				<c:if test="${member.m_power != 1}">
+				<c:if test="${member.m_power != 1&& member.m_power != 2}">
 					<li><p>${member.m_name}님 환영합니다.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p></li>
 				</c:if>
 			</ul>

@@ -14,6 +14,8 @@ import com.room.admin.dto.PaymentDTO;
 import com.room.admin.dto.SearchCriteria;
 import com.room.member.dto.MemberDTO;
 import com.room.admin.dto.RoomKindDTO;
+import com.room.admin.dto.Room_fncDTO;
+import com.room.admin.dto.Room_rentDTO;
 
 
 
@@ -151,5 +153,70 @@ public class AdminDAOImpl implements AdminDAO {
 			sqlSession.delete(namespace + ".paymentDelete", paymentDTO);
 			
 		}
+		// 기능 리스트
+		@Override
+		public List<Room_fncDTO> fncList(SearchCriteria scri) throws Exception {
+
+			return sqlSession.selectList(namespace + ".fncList", scri);
+		}
+		// 대여 리스트
+		@Override
+		public List<Room_rentDTO> rentList(SearchCriteria scri) throws Exception {
+
+			return sqlSession.selectList(namespace + ".rentList", scri);
+		}
+		// 기능 추가
+		@Override
+		public void insertfnc(Room_fncDTO room_fncDTO) throws Exception {
+			sqlSession.insert(namespace + ".insertFnc", room_fncDTO);
+		}
+		// 대여 추가
+		@Override
+		public void  insertrent(Room_rentDTO room_rentDTO) throws Exception {
+			sqlSession.insert(namespace + ".insertRent", room_rentDTO);
+			
+			
+		}
+		// 공지사항 상세페이지
+		@Override
+		public Room_fncDTO fncdetailView(int fnc_bno) throws Exception {
+			
+			return sqlSession.selectOne(namespace + ".fncdetailView", fnc_bno);
+		}
+		
+		//공지사항 수정
+		@Override
+		public void fncUpdate(Room_fncDTO room_fncDTO) throws Exception {
+			
+			sqlSession.update(namespace + ".fncUpdate", room_fncDTO);
+				
+		}
+		// 공지사항 상세페이지
+		@Override
+		public Room_rentDTO rentdetailView(int rent_bno) throws Exception {
+			
+			return sqlSession.selectOne(namespace + ".rentdetailView", rent_bno);
+		}
+		
+		//공지사항 수정
+		@Override
+		public void rentUpdate(Room_rentDTO room_rentDTO) throws Exception {
+			
+			sqlSession.update(namespace + ".rentUpdate", room_rentDTO);
+				
+		}
+		//공지사항 삭제
+		@Override
+		public void fncDelete(Room_fncDTO room_fncDTO) throws Exception {
+			sqlSession.delete(namespace + ".fncDelete", room_fncDTO);
+			
+		}
+		//공지사항 삭제
+		@Override
+		public void rentDelete(Room_rentDTO room_rentDTO) throws Exception {
+			sqlSession.delete(namespace + ".rentDelete", room_rentDTO);
+			
+		}
+				
 
 } // end class AdminDAOImpl implements AdminDAO
