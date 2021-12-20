@@ -64,4 +64,5 @@ public interface MemberDAO {
 
 	public List<BookDTO> getBooks(String m_name) throws Exception;
 	public List<BookDTO> bookView(String book_order) throws Exception;
+	public List<BookDTO> belogin(String book_name) throws Exception;
 }
