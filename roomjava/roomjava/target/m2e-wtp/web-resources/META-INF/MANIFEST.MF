@@ -1,5 +1,9 @@
 Manifest-Version: 1.0
+<<<<<<< HEAD
+Built-By: Park_JH
+=======
 Built-By: kyj93
+>>>>>>> 085736785284783cf99f874fd1f25d93795fdf7f
 Build-Jdk: 16.0.2
 Created-By: Maven Integration for Eclipse
 
