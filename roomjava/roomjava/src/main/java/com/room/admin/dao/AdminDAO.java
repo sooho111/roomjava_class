@@ -29,6 +29,14 @@ public interface AdminDAO {
 	// faq 총 갯수
 	public int faqlistCount(SearchCriteria scri) throws Exception;
 
+	//faq 수정
+	public void faqUpdate(FaqDTO faqDTO) throws Exception;
+	
+	//faq 삭제
+	public void faqDelete(FaqDTO faqDTO) throws Exception;
+	//faq 상세페이지
+	public FaqDTO faqdetailView(int faq_bno) throws Exception;
+	
 	// 방 종류 뿌려주기
 	public List<RoomKindDTO> roomKind() throws Exception;
 	
