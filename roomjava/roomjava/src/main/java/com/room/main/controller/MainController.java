@@ -97,7 +97,6 @@ public class MainController {
     	return "main/roomList";    	
     }
     
-    
 	//------------------------------------------------------------------------------------------------
 	// roomView로 이동
 	//------------------------------------------------------------------------------------------------
@@ -110,13 +109,17 @@ public class MainController {
 		RoomInfraDTO roomInfraDTO = mainService.getRoomView(r_bno);
 		List<RoomKindDTO> roomkindDTO = mainService.getKind();
 		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
-
+		
+		model.addAttribute("room", roomInfraDTO);
+		model.addAttribute("kinds", roomkindDTO);
+		
+		
 		return "main/roomView";
 	}
 	//------------------------------------------------------------------------------------------------
-	// goBook으로 이동
+	// roomView에서 goBook으로 이동
 	//------------------------------------------------------------------------------------------------
-	@RequestMapping(value="/goBook")
+	@RequestMapping(value="/goBook", method=RequestMethod.POST)
 	public String goBook(Model model) throws Exception {
     	
 		// 방 기능 가져오기 room_fnc
