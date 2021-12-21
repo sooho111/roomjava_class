@@ -10,6 +10,10 @@
 INSERT INTO notice_board (notice_title, notice_content)
 		values (#{notice_title}, #{notice_content} )
 </insert>
+<insert id ="faq">
+INSERT INTO faq (faq_title, faq_content,faq_class)
+		values (#{faq_title}, #{faq_content} ,#{faq_class})
+</insert>
 
 	
 	<select id="roomKind" resultType="com.room.admin.dto.RoomKindDTO">
@@ -47,6 +51,39 @@ INSERT INTO notice_board (notice_title, notice_content)
     <![CDATA[
         SELECT	count(*)
         FROM	notice_board
+        WHERE   1=1
+    ]]>
+    
+	</select>
+	    <!-- 공지사항 검색조건 -->
+   <sql id="faqSearch">
+      <if test="searchType != null">
+ 		<if test="searchType == 't'.toString()">AND faq_title LIKE '%' || #{keyword} || '%'</if>
+		<if test="searchType == 'c'.toString()">AND faq_content LIKE '%' || #{keyword} || '%'</if>
+ 		<if test="searchType == 'tc'.toString()">AND (faq_title LIKE '%' || #{keyword} || '%') or (faq_content LIKE '%' || #{keyword} || '%')</if>
+      </if>
+   </sql>
+
+   <!-- 공지사항 목록 보기 (Paging 처리) + 검색조건 -->
+   <select id="faqPaging" parameterType="com.room.admin.dto.SearchCriteria" resultType="com.room.member.dto.FaqDTO">
+    <![CDATA[
+       SELECT *
+        FROM   faq 
+        WHERE   1=1
+    ]]>
+      <include refid="faqSearch"/>
+    <![CDATA[
+        ORDER BY faq_bno DESC
+        LIMIT   #{pageStart}, #{perPageNum}
+    ]]>
+   </select>
+   
+   
+   	<!-- 전체 공지사항 수 구하기 (Paging 처리) -->
+	<select id="faqTotalCount" resultType="Integer">
+    <![CDATA[
+        SELECT	count(*)
+        FROM	faq
         WHERE   1=1
     ]]>
     

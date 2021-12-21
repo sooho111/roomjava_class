@@ -12,6 +12,7 @@ import com.room.admin.dao.AdminDAO;
 import com.room.admin.dto.BoardDTO;
 import com.room.admin.dto.PaymentDTO;
 import com.room.admin.dto.SearchCriteria;
+import com.room.member.dto.FaqDTO;
 import com.room.member.dto.MemberDTO;
 import com.room.admin.dto.RoomKindDTO;
 import com.room.admin.dto.Room_fncDTO;
@@ -31,6 +32,12 @@ public class AdminServiceImpl implements AdminService {
 		
 		adminDAO.noticeWrite(boardDTO);
 	}
+	//공지사항 작성
+	@Override
+	public void faqWrite(FaqDTO faqDTO) throws Exception {
+		
+		adminDAO.faqWrite(faqDTO);
+	}
 	//공지사항 페이징
 	@Override
 	public List<BoardDTO> list(SearchCriteria scri) throws Exception {
@@ -42,6 +49,18 @@ public class AdminServiceImpl implements AdminService {
 	public int listCount(SearchCriteria scri) throws Exception {
 		
 		return adminDAO.listCount(scri);
+	} 	
+	//faq 페이징
+	@Override
+	public List<FaqDTO> faqlist(SearchCriteria scri) throws Exception {
+		
+		return adminDAO.faqlist(scri);
+	}
+	//faq 갯수확인
+	@Override
+	public int faqlistCount(SearchCriteria scri) throws Exception {
+		
+		return adminDAO.faqlistCount(scri);
 	} 	
 	
 	// ----------------------------------------------------------------------------------------------------
