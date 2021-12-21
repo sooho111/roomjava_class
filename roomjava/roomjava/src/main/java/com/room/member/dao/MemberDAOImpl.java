@@ -13,6 +13,7 @@ import com.room.admin.dto.BoardDTO;
 import com.room.admin.dto.SearchCriteria;
 import com.room.main.dto.BookDTO;
 import com.room.member.dto.MemberDTO;
+import com.room.member.dto.QnaDTO;
 
 
 @Repository
@@ -130,6 +131,14 @@ public class MemberDAOImpl implements MemberDAO {
 	public List<BookDTO> belogin(String book_name) throws Exception{
 		logger.info("MemberDAOImpl memberInsert(MemberDTO memberDTO)....."+book_name);
 		return sqlSession.selectList(namespace + ".belogin", book_name);
+	}
+	// -------------------------------------------------------------------------------------------------
+	// qna 작성
+	// -------------------------------------------------------------------------------------------------
+	@Override
+	public void qnaWrite(QnaDTO qnaDTO) throws Exception {
+		sqlSession.insert(namespace + ".qnaWrite", qnaDTO);
+		
 	}
 
 }

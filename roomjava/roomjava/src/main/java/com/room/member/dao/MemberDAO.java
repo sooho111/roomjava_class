@@ -6,6 +6,7 @@ import com.room.admin.dto.BoardDTO;
 import com.room.admin.dto.SearchCriteria;
 import com.room.main.dto.BookDTO;
 import com.room.member.dto.MemberDTO;
+import com.room.member.dto.QnaDTO;
 
 public interface MemberDAO {
 	// -------------------------------------------------------------------------------------------------
@@ -65,4 +66,9 @@ public interface MemberDAO {
 	public List<BookDTO> getBooks(String m_name) throws Exception;
 	public List<BookDTO> bookView(String book_order) throws Exception;
 	public List<BookDTO> belogin(String book_name) throws Exception;
+	
+	// -------------------------------------------------------------------------------------------------
+	// qna 작성
+	// -------------------------------------------------------------------------------------------------
+	public void qnaWrite(QnaDTO qnaDTO) throws Exception;
 }

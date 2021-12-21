@@ -15,6 +15,7 @@ import com.room.admin.dto.SearchCriteria;
 import com.room.main.dto.BookDTO;
 import com.room.member.dao.MemberDAO;
 import com.room.member.dto.MemberDTO;
+import com.room.member.dto.QnaDTO;
 
 
 @Service
@@ -172,6 +173,15 @@ MemberDAO memberDAO;
 		@Override
 		public List<BookDTO> belogin(String book_name) throws Exception{
 			return memberDAO.belogin(book_name);
+		}
+		
+		// -------------------------------------------------------------------------------------------------
+		// qna 작성
+		// -------------------------------------------------------------------------------------------------		
+		@Override
+		public void qnaWrite(QnaDTO qnaDTO) throws Exception {
+			 memberDAO.qnaWrite(qnaDTO);
+			
 		}
 	
 }

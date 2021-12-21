@@ -20,12 +20,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
 import com.room.admin.dto.BoardDTO;
 import com.room.admin.dto.PageMaker;
 import com.room.admin.dto.SearchCriteria;
 import com.room.main.dto.BookDTO;
 import com.room.member.dto.MemberDTO;
+import com.room.member.dto.QnaDTO;
 import com.room.member.service.MemberService;
 
 /**
@@ -345,10 +345,27 @@ public class MemberController {
 		}
 	
 		//-------------------------------------------------------------------------------------------------------
-		//공지사항 상세페이지	
+		//QnA 작성
 		//-------------------------------------------------------------------------------------------------------		
-			@RequestMapping(value="/qna", method = RequestMethod.GET)
-			public void qnaView() throws Exception {
+			@RequestMapping(value="/qnaInsert", method = RequestMethod.GET)
+			public void qnaWriteView() throws Exception {
 				
 			}
+
+		//-------------------------------------------------------------------------------------------------------
+		//QnA 작성
+		//-------------------------------------------------------------------------------------------------------		
+			@RequestMapping(value="/qnaInsert", method = RequestMethod.POST)
+			public String qnaWirte(QnaDTO qnaDTO, HttpSession httpSession) throws Exception {
+				MemberDTO member = (MemberDTO) httpSession.getAttribute("member");
+				String userId = member.getM_id();
+				
+				qnaDTO.setM_id(userId);
+				
+				memberService.qnaWrite(qnaDTO);
+			
+				return "redirect:/member/qna";
+				
+				
+			}			
 } // end class MemberController
