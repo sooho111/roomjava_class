@@ -8,6 +8,7 @@ import com.room.admin.dto.BoardDTO;
 import com.room.admin.dto.SearchCriteria;
 import com.room.admin.dto.Room_fncDTO;
 import com.room.admin.dto.Room_rentDTO;
+import com.room.member.dto.FaqDTO;
 import com.room.member.dto.MemberDTO;
 import com.room.admin.dto.RoomKindDTO;
 import com.room.admin.dto.PaymentDTO;
@@ -20,12 +21,20 @@ public interface AdminService {
 
 	// 공지사항 작성
 	public void noticeWrite(BoardDTO boardDTO) throws Exception;
+	// 공지사항 작성
+	public void faqWrite(FaqDTO faqDTO) throws Exception;
 	
 	// 공지사항 목록 조회
 	public List<BoardDTO> list(SearchCriteria scri) throws Exception;
 
 	// 공지사항 총 갯수
 	public int listCount(SearchCriteria scri) throws Exception;
+	// faq 목록 조회
+	public List<FaqDTO> faqlist(SearchCriteria scri) throws Exception;
+
+	// faq 총 갯수
+	public int faqlistCount(SearchCriteria scri) throws Exception;
+	
 	
 	// 공지사항 상세보기
 	public BoardDTO detailView(int notice_bno) throws Exception;
