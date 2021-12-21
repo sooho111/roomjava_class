@@ -51,7 +51,7 @@ p{
 				<ul class="comunity">
 					<li><a href="/member/notice">공지 사항</a></li>
 					<li><a href="#">후기</a></li>
-					<li><a href="#">FAQ</a></li>
+					<li><a href="../member/faq">FAQ</a></li>
 				</ul>
 			</li>
 			<li><a href="../main/introduce"><span class="glyphicon glyphicon-user"></span> 소개</a></li>

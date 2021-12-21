@@ -15,6 +15,7 @@ import com.room.admin.dto.SearchCriteria;
 import com.room.main.dto.BookDTO;
 import com.room.member.dao.MemberDAO;
 import com.room.member.dto.MemberDTO;
+import com.room.member.dto.FaqDTO;
 
 
 @Service
@@ -183,5 +184,22 @@ MemberDAO memberDAO;
 		public List<BookDTO> belogin(String book_name) throws Exception{
 			return memberDAO.belogin(book_name);
 		}
+		// -------------------------------------------------------------------------------------------------
+		// 전체 Faq 수 구하기 (Paging 처리)
+		// -------------------------------------------------------------------------------------------------
+		@Override
+		public int faqListTotalCount(SearchCriteria cri) throws Exception {
+			return memberDAO.faqListTotalCount(cri);
+		}
+
+		/*-------------------------------------------------------------------------------------------------
+		* Faq 목록 보기 (Paging 처리)
+		-------------------------------------------------------------------------------------------------*/
+		@Override
+		public List<FaqDTO> faqListPaging(SearchCriteria cri) throws Exception {
+			logger.info("*** Board2ServiceImpl Criteria ==> " + cri);
+			return memberDAO.faqListPaging(cri);
+		}
+
 	
 }

@@ -8,6 +8,7 @@ import com.room.admin.dto.BoardDTO;
 import com.room.admin.dto.SearchCriteria;
 import com.room.main.dto.BookDTO;
 import com.room.member.dto.MemberDTO;
+import com.room.member.dto.FaqDTO;
 
 public interface MemberService {
 	
@@ -74,4 +75,14 @@ public interface MemberService {
 	// 비로그인
 	// -------------------------------------------------------------------------------------------------
 	public List<BookDTO> belogin(String book_name) throws Exception;
+	//-------------------------------------------------------------------------------------------------
+	// FAQ 페이징 처리
+	//-------------------------------------------------------------------------------------------------
+	public int faqListTotalCount(SearchCriteria cri) throws Exception;
+		
+	/*-------------------------------------------------------------------------------------------------
+	* FAQ 목록 보기 (Paging 처리)
+	-------------------------------------------------------------------------------------------------*/
+	public List<FaqDTO> faqListPaging(SearchCriteria cri) throws Exception;
+
 }
