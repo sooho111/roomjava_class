@@ -54,16 +54,35 @@
 	<form class="form-horizontal" method="post" enctype="multipart/form-data" action="#">
 		<div class="inner">
 			<div id="showRooms">
-				<div class="img"><img src="/resources/images/none.png" alt="images" width="450px" height="450px" /></div>
+				<div class="img"><img src="/resources/images/none.png" alt="images" width="450px" height="450px" />
+			</div>
+				
+
 				
 				
 				
-				
-				
-				
-				
-				
-				
+		<div class="form-group">
+			<label class="control-label col-sm-2">밀키트 종류</label>
+			<div class="col-sm-2">
+				<select class="form-control" name="mk_kind" id="mk_kind">
+					<c:forEach var="kind" items="${kind}">
+						<option value="${kind.kind_name}">${kind.kind_name}</option>
+					</c:forEach>
+				</select>
+			</div>
+		</div>		
+	
+		<div class="form-group">
+			<label class="control-label col-sm-2">밀키트 종류</label>
+			<div class="col-sm-2">
+				<select class="form-control" name="mk_kind" id="mk_kind">
+					<c:forEach var="kind" items="${kind}">
+						<option value="${kind.kind_name}">${kind.kind_name}</option>
+					</c:forEach>
+				</select>
+			</div>
+		</div>		
+	
 				
 				
 				
