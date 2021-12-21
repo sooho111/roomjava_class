@@ -1,6 +1,8 @@
 package com.room.main.controller;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.room.main.dto.BookDTO;
 import com.room.main.dto.RoomInfraDTO;
 import com.room.main.service.MainService;
 import com.room.member.dto.MemberDTO;
@@ -101,7 +104,6 @@ public class MainController {
 	// roomView로 이동
 	//------------------------------------------------------------------------------------------------
 	@RequestMapping("/roomView")
-
 	public String roomView(@RequestParam("r_bno") int r_bno, Model model, HttpSession session) throws Exception {
 		logger.info("동균아!!" + r_bno);
 		
@@ -116,11 +118,12 @@ public class MainController {
 		
 		return "main/roomView";
 	}
+	
 	//------------------------------------------------------------------------------------------------
-	// roomView에서 goBook으로 이동
+	// roomView에서 goBook으로 이동 (goBook POST)
 	//------------------------------------------------------------------------------------------------
 	@RequestMapping(value="/goBook", method=RequestMethod.POST)
-	public String goBook(Model model) throws Exception {
+	public String goBook(@RequestParam("r_bno") int r_bno, BookDTO bookDTO, Model model, HttpSession session) throws Exception {
     	
 		// 방 기능 가져오기 room_fnc
     	List<Room_fncDTO> room_fncDTO = mainService.getFnc();
@@ -134,14 +137,55 @@ public class MainController {
     	
     	// 결제수단가져오기 payment
        	List<PaymentDTO> paymentDTO = mainService.getPayment();
-    	model.addAttribute("payment", room_rentDTO);
+    	model.addAttribute("payment", paymentDTO);
     	logger.info("결제수단 잘 가져오나요? paymentDTO => " + paymentDTO);
     	
+    	// 방 가져오기
+		RoomInfraDTO roomInfraDTO = mainService.getRoomView(r_bno);
+		model.addAttribute("room", roomInfraDTO);
+		logger.info("동균아!!aaaaaaaa" + r_bno);
+		
+		// 방 종류가져오기
+		List<RoomKindDTO> roomkindDTO = mainService.getKind();
+		model.addAttribute("kinds", roomkindDTO);
+
+		// 회원정보 가져오기
+		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
+		model.addAttribute("member", memberDTO);
+
+		//-------------------------------------------------------------------------------------------------
+		// book_order 예약번호 만드는 메서드
+		//-------------------------------------------------------------------------------------------------.
+		Calendar cal = Calendar.getInstance();
+		int year = cal.get(Calendar.YEAR);
+		String ym = year + new DecimalFormat("00").format(cal.get(Calendar.MONTH) + 1);
+		String ymd = ym + new DecimalFormat("00").format(cal.get(Calendar.DATE));
+		String subNum = "";
+      
+		for(int i = 1; i <= 6; i ++) {
+			subNum += (int)(Math.random() * 10);
+		}
+		String book_order = ymd + "_" + subNum;
+		bookDTO.setBook_order(book_order);
+		
+		
+		
 		return "main/goBook";
 	}
+
+	@RequestMapping("/okBook")
+	public void okBook() throws Exception {
+	}
 	
+//	//------------------------------------------------------------------------------------------------
+//	// goBook에서 예약완료(goBook => okBook)
+//	//------------------------------------------------------------------------------------------------
+//	@RequestMapping(value="/okBook", method=RequestMethod.POST)
+//	public String okBook(@RequestParam("r_bno") int r_bno, BookDTO bookDTO, Model model, HttpSession session) throws Exception {
+//		return "main/okBook";
+//	}
 	
-	
+
 }
 //	@RequestMapping(value = "/book_ps")
 //	public void book_ps( ) throws Exception {
