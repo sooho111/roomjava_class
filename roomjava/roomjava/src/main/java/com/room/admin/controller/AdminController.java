@@ -80,7 +80,7 @@ public class AdminController {
 		
 		return "redirect:/admin/board/boardList";
 	}
-	//-----------------------------------------------------------------------------------------------------------
+/*	//-----------------------------------------------------------------------------------------------------------
 	// faq 등록 : GET
 	//----------------------------------------------------------------------------------------------------------
 	@RequestMapping(value="/board/faqInsert", method=RequestMethod.GET)
@@ -91,7 +91,7 @@ public class AdminController {
 		List<FaqTypeDTO> list= null;
 		list = adminService.selectFaqType();
 		model.addAttribute("selectFaqType", list);
-	}
+	}*/
 
 	// -------------------------------------------------------------------------------------------------
 	// 공지사항 list 페이징

@@ -105,20 +105,20 @@ $(function(){
 		self.location = "notice?searchType=" +$("select option:selected").val() +"&keyword="+$("[name=keyword]").val()	});
 	
 	$('.toggleContent').click(function(){
-		if(i == 0) {
-			$(this).find('.glyphicon-plus').css({ display:"none", });
-			$(this).find('.glyphicon-minus').css({ display:"inline", });
-			$(this).parent().next().toggle();
-			i=1;
-			
-		} else {
-			$(this).find('.glyphicon-plus').css({ display:"inline", });
-			$(this).find('.glyphicon-minus').css({ display:"none", });
-			$(this).parent().next().toggle();
-			i=0;
-			
-		}
-	});
+	      if(i == 0) {
+	         $(this).find('.glyphicon-plus').css({ display:"none", });
+	         $(this).find('.glyphicon-minus').css({ display:"inline", });
+	         $(this).parent().next().show();
+	         i=1;
+	         
+	      } else {
+	         $(this).find('.glyphicon-plus').css({ display:"inline", });
+	         $(this).find('.glyphicon-minus').css({ display:"none", });
+	         $(this).parent().next().hide();
+	         i=0;
+	         
+	      }
+	   });
 	
 });
 </script>

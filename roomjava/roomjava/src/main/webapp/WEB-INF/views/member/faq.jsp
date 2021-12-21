@@ -117,16 +117,6 @@ $(document).ready(function() {
 
 });
 
-$(function () {
-    
-    // 왼쪽메뉴 드롭다운
-    $("#answer").hide();
-    $("#fa").click(function () {
-        $("#answer").slideToggle(300);
-    });
-    // 외부 클릭 시 좌측 사이드 메뉴 숨기기
-    
-});
 
 $(".plusIcon").on("click",function(){
 	  var obj = $(this);
