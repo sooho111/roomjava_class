@@ -12,6 +12,7 @@ import org.springframework.stereotype.Repository;
 import com.room.admin.dto.BoardDTO;
 import com.room.admin.dto.PaymentDTO;
 import com.room.admin.dto.SearchCriteria;
+import com.room.member.dto.FaqDTO;
 import com.room.member.dto.MemberDTO;
 import com.room.admin.dto.RoomKindDTO;
 import com.room.admin.dto.Room_fncDTO;
@@ -33,9 +34,12 @@ public class AdminDAOImpl implements AdminDAO {
 	// 공지사항 작성
 	@Override
 	public void noticeWrite(BoardDTO boardDTO) throws Exception {
-		sqlSession.insert(namespace + ".notice", boardDTO);
-		
-		
+		sqlSession.insert(namespace + ".notice", boardDTO);	
+	}
+	// 공지사항 작성
+	@Override
+	public void faqWrite(FaqDTO faqDTO) throws Exception {
+		sqlSession.insert(namespace + ".faq", faqDTO);	
 	}
 	// 공지사항 리스트
 	@Override
@@ -50,6 +54,20 @@ public class AdminDAOImpl implements AdminDAO {
 
 		return sqlSession.selectOne(namespace + ".noticeTotalCount", scri);
 	}
+	// 공지사항 리스트
+	@Override
+	public List<FaqDTO> faqlist(SearchCriteria scri) throws Exception {
+
+		logger.info("DAO => " + sqlSession.selectList(namespace + ".noticePaging", scri));
+		return sqlSession.selectList(namespace + ".faqPaging", scri);
+	}
+	// 공지사항 카운트
+	@Override
+	public int faqlistCount(SearchCriteria scri) throws Exception {
+
+		return sqlSession.selectOne(namespace + ".faqTotalCount", scri);
+	}
+	
 	
 	// ----------------------------------------------------------------------------------------------------
 	// 방 종류 뿌려주기

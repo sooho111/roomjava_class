@@ -18,13 +18,16 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.room.admin.dto.BoardDTO;
+import com.room.admin.dto.FaqtypeDTO;
 import com.room.admin.dto.PageMaker;
 import com.room.admin.dto.PaymentDTO;
 import com.room.admin.dto.Room_fncDTO;
 import com.room.admin.dto.Room_rentDTO;
 import com.room.admin.dto.SearchCriteria;
 import com.room.admin.service.AdminService;
+import com.room.member.dto.FaqDTO;
 import com.room.member.dto.MemberDTO;
+import com.shopping.manager.dto.FaqTypeDTO;
 
 
 
@@ -47,44 +50,103 @@ public class AdminController {
 	// -------------------------------------------------------------------------------------------------
 	// 공지사항 추가 GET
 	// -------------------------------------------------------------------------------------------------
-	@RequestMapping(value = "/notice/noticeInsert", method = RequestMethod.GET)
+	@RequestMapping(value = "/board/noticeInsert", method = RequestMethod.GET)
 	public String getNotice() throws Exception {
-		return "/admin/notice/noticeInsert";
+		return "/admin/board/noticeInsert";
 	}
 	// -------------------------------------------------------------------------------------------------
 	// 공지사항 추가  POST
 	// -------------------------------------------------------------------------------------------------
-	@RequestMapping(value = "/notice/noticeInsert", method = RequestMethod.POST)
+	@RequestMapping(value = "/board/noticeInsert", method = RequestMethod.POST)
 	public String writeNoitce(BoardDTO boardDTO) throws Exception {
 		
 		adminService.noticeWrite(boardDTO);
 		
-		return "redirect:/admin/notice/noticeList";
+		return "redirect:/admin/board/boardList";
+	}
+	// -------------------------------------------------------------------------------------------------
+	// faq 추가 GET
+	// -------------------------------------------------------------------------------------------------
+	@RequestMapping(value = "/board/faqInsert", method = RequestMethod.GET)
+	public String getFaq() throws Exception {
+		return "/admin/board/faqInsert";
+	}
+	// -------------------------------------------------------------------------------------------------
+	// faq 추가  POST
+	// -------------------------------------------------------------------------------------------------
+	@RequestMapping(value = "/board/faqInsert", method = RequestMethod.POST)
+	public String writeFaq(FaqDTO faqDTO) throws Exception {
+		
+		adminService.faqWrite(faqDTO);
+		
+		return "redirect:/admin/board/boardList";
+	}
+	//-----------------------------------------------------------------------------------------------------------
+	// faq 등록 : GET
+	//----------------------------------------------------------------------------------------------------------
+	@RequestMapping(value="/board/faqInsert", method=RequestMethod.GET)
+	public void getFaqRegister(Model model) throws Exception {
+		logger.info("ManagerController getFaqTypeRegister() GET");
+		
+		// 데이터 타입의 자료를 모두 가져온다.		
+		List<FaqtypeDTO> list= null;
+		list = managerService.selectFaqType();
+		log.info("ManagerController getData : " + list);
+		model.addAttribute("selectFaqType", list);
+	}
+	
+	//-----------------------------------------------------------------------------------------------------------
+	// faq 등록 : POST, 파일 등록
+	//----------------------------------------------------------------------------------------------------------
+	@RequestMapping(value="/faq/faqRegister", method=RequestMethod.POST)
+	private String Postfaqregister(HttpServletRequest request) throws Exception {
+		
+		System.out.println("상품등록 페이지 진입.....");
+		log.info("상품등록 페이지 진입");
+		
+		//게시글 등록 화면에서 입력한 값들을 실어나르기 위해 BoardVO를 생성한다.
+		FaqDTO faqDTO  	= new FaqDTO();
+		
+		
+		faqDTO.setFaqClass(request.getParameter("faqClass"));
+		faqDTO.setTitle(request.getParameter("title"));
+		faqDTO.setContent(request.getParameter("content"));
+		System.out.println(faqDTO);
+		
+		managerService.faqRegister(faqDTO);
+		
+		
+		return "redirect:/manager/faq/list";
 	}
 	// -------------------------------------------------------------------------------------------------
 	// 공지사항 list 페이징
 	// -------------------------------------------------------------------------------------------------
-		@RequestMapping(value = "/notice/noticeList", method = RequestMethod.GET)
-		public String noticeList(Model model, @ModelAttribute("scri") SearchCriteria scri, BoardDTO boardDTO) throws Exception {
-			logger.info("list");
+		@RequestMapping(value = "/board/boardList", method = RequestMethod.GET)
+		public String noticeList(Model model, @ModelAttribute("scri") SearchCriteria scri) throws Exception {
+			logger.info("boardList");
+			
+			logger.info("list ==> " + adminService.list(scri));
 			
 			model.addAttribute("list", adminService.list(scri));
+			model.addAttribute("faqlist", adminService.faqlist(scri));
 			
 			PageMaker pageMaker = new PageMaker();
 			pageMaker.setCri(scri);
 			pageMaker.setTotalCount(adminService.listCount(scri));
+			PageMaker pageMaker2 = new PageMaker();
+			pageMaker2.setCri(scri);
+			pageMaker2.setTotalCount(adminService.faqlistCount(scri));
 			
 			model.addAttribute("pageMaker", pageMaker);
+			model.addAttribute("pageMaker2", pageMaker2);
 			
-			return "/admin/notice/noticeList";
-			
-		
+			return "admin/board/boardList";
 		}
 		
 	//-------------------------------------------------------------------------------------------------------
 	//공지사항 상세페이지	
 	//-------------------------------------------------------------------------------------------------------
-		@RequestMapping(value = "/notice/noticeDetail", method = RequestMethod.GET)
+		@RequestMapping(value = "/board/noticeDetail", method = RequestMethod.GET)
 		public String noticeDetail( Model model, @RequestParam("n") int notice_bno, BoardDTO boardDTO) throws Exception {
 		
 		logger.info("noticeDetail");
@@ -92,13 +154,13 @@ public class AdminController {
 		boardDTO.setNotice_bno(notice_bno);
 		model.addAttribute("detail", adminService.detailView(boardDTO.getNotice_bno()));
 		
-		return "admin/notice/noticeDetail";
+		return "admin/board/noticeDetail";
 		
 		}
 	//-------------------------------------------------------------------------------------------------------
 	//공지사항 수정 GET	
 	//-------------------------------------------------------------------------------------------------------		
-		@RequestMapping(value = "/notice/noticeUpdate", method = RequestMethod.GET)
+		@RequestMapping(value = "/board/noticeUpdate", method = RequestMethod.GET)
 		public String noticeUpdateView(@RequestParam("n") int notice_bno, BoardDTO boardDTO, Model model) throws Exception {
 			logger.info("noticeUpdateView");
 			
@@ -106,12 +168,12 @@ public class AdminController {
 			model.addAttribute("update", adminService.detailView(boardDTO.getNotice_bno()));
 			
 			
-			return "admin/notice/noticeUpdate";
+			return "admin/board/noticeUpdate";
 		}
 		//-------------------------------------------------------------------------------------------------------
 		//공지사항 수정 POST	
 		//-------------------------------------------------------------------------------------------------------		
-		@RequestMapping(value = "/notice/noticeUpdate", method = RequestMethod.POST)
+		@RequestMapping(value = "/board/noticeUpdate", method = RequestMethod.POST)
 		public String noticeUpdate(@RequestParam("n") int notice_bno, BoardDTO boardDTO, Model model) throws Exception {
 			logger.info("noticeUpdate");
 			
@@ -119,13 +181,13 @@ public class AdminController {
 			
 			adminService.noticeUpdate(boardDTO);
 			
-			return "redirect:/admin/notice/noticeList";
+			return "redirect:/admin/board/boardList";
 		}
 		
 		//-------------------------------------------------------------------------------------------------------
 		//공지사항 삭제 GET	
 		//-------------------------------------------------------------------------------------------------------
-		@RequestMapping(value = "/notice/noticeDelete", method = RequestMethod.GET)
+		@RequestMapping(value = "/board/noticeDelete", method = RequestMethod.GET)
 		public String noticeDelete(@RequestParam("n") int notice_bno, BoardDTO boardDTO, Model model) throws Exception {
 			logger.info("noticeDelete");
 			
@@ -133,7 +195,7 @@ public class AdminController {
 			
 			adminService.noticeDelete(boardDTO);
 			
-			return "redirect:/admin/notice/noticeList";
+			return "redirect:/admin/board/boardList";
 		}
 		/*-----------------------------------------------------------------------------------------------------------
 		* 회원 목록(Paging 처리)
