@@ -5,8 +5,6 @@
 
 <div id="bheader">
 	<div class="inner">
-	
-				
 		<h1><a href="/"><img src="../../resources/images/logo2.png" alt="logo" width="200" /></a></h1>
 		<c:if test="${member == null}">
 			<ul class="log">
@@ -30,7 +28,7 @@
 		</c:if>
 		
 		<ul class="gnb">
-		    <li><a href="#"><span class="glyphicon glyphicon-heart"></span> 시설 안내</a>
+		    <li><a href="../main/1"><span class="glyphicon glyphicon-heart"></span> 시설 안내</a>
 		    	<ul class="infra">
 					<li><a href="../main/1">펜션</a></li>
 					<li><a href="../main/2">카라반</a></li>

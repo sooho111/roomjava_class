@@ -49,7 +49,6 @@
 <%@ include file="../include/header.jsp" %>
 <h1>예약하기!!!!!</h1>
 
-
 <div class="container">
 	<div class="inner">
 		<div id="showRooms">
@@ -113,20 +112,7 @@
 					</c:forEach>
 				</select>
 			</div>
-		</div>				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
+		</div>		
 		<form action="/main/okBook" method="post" id="okBookForm">
 			<input type="hidden" name="r_bno" value="${room.r_bno}" />
 			<input type="hidden" name="r_name" value="${room.r_name}" />
@@ -153,6 +139,7 @@
 				
 <!-- 달력보여주기!!!!!!! 짱이지?! -->				
 <div id='calendar'></div>
+<input type="button" id="btnAddTest" value="추가">
 				
 <script>
 
@@ -178,27 +165,37 @@ document.addEventListener('DOMContentLoaded', function() {
 			locale : 'ko',        // 한국어 설정(lib/locales/ko.js)
 
 			 // 요일 클릭 이벤트
-			dateClick : function() {
-				alert('요일 클릭!');
+			dateClick : function(date) {
+				// JSON.stringify(date)[17]+JSON.stringify(date)[18]
+				// date["dateStr"]
+				alert('요일 클릭!'+JSON.stringify(date));
+				alert('요일 클릭!'+date["dateStr"]);
 			},
 			
 			// 일정 클릭 이벤트
-			eventClick : function() {
+			eventClick : function(date) {
 				
-				alert("^^"+calendar.getEventById());
+				// alert('팬션 클릭!'+JSON.stringify(date));
+				var arrCal = calendar.getEvents(); 
+				// arrCal[1].title
+				// alert(JSON.stringify(date)[114]+JSON.stringify(date)[115]);
+				/*
+				if(JSON.stringify(date)[114]+JSON.stringify(date)[115] == '글램'){
+					alert("글랭핑이닿ㅎㅎㅎㅎ");
+				}
 				
 				return false;
-			
-				if ('title' == "글램핑") {
+				*/
+				if (JSON.stringify(date)[114]+JSON.stringify(date)[115] == "글램") {
 					alert('글램핑 클릭! book_gp.jsp로 이동');
 					// location.href="book_gp";
-				}  else if (title == "데크") {
+				}  else if (JSON.stringify(date)[114]+JSON.stringify(date)[115] == "데크") {
 					alert('데크 클릭! book_dk.jsp로 이동');
 					// location.href="book_dk";
-				} else if (title == "카라반") {
+				} else if (JSON.stringify(date)[114]+JSON.stringify(date)[115] == "카라") {
 					alert('카라반 클릭! book_kb.jsp로 이동');
 					// location.href=book_kb;
-				} else if (title == "펜션") {
+				} else if (JSON.stringify(date)[114]+JSON.stringify(date)[115] == "펜션") {
 					alert('펜션 클릭! book_ps.jsp로 이동');
 					// location.href="book_ps";
 				} else {
@@ -211,10 +208,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
 		});	 
 
-		
-
 		// 데이터 삽입방식
-
+		
 		calendar.addEvent({id:'a',title:'펜션', 'start':'2021-12-17'});
 		calendar.addEvent({'title':'글램핑', 'start':'2021-12-17'});
 		calendar.addEvent({'title':'데크', 'start':'2021-12-17'});
@@ -231,10 +226,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		calendar.addEvent({'title':'고객2-펌', 'start':'2021-07-18T22:00'});
 		calendar.addEvent({'title':'고객3-염색', 'start':'2021-07-20T09:00'});
 		calendar.addEvent({'title':'31일?', 'start':'2021-11-30'});
-
-
-
-
+		
 		// 렌더링
 
 		calendar.render();

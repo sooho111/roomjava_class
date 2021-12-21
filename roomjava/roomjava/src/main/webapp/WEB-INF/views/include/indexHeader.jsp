@@ -32,7 +32,7 @@ p{
 		</c:if>
 		
 		<ul class="gnb">
-		    <li><a href="#"><span class="glyphicon glyphicon-heart"></span> 시설 안내</a>
+		    <li><a href="../main/1"><span class="glyphicon glyphicon-heart"></span> 시설 안내</a>
 		    	<ul class="infra">
 			    	<c:forEach items="${roomKind}" var="room">
 						<li><a href="../main/${room.room_bno}">${room.room_class}</a></li>
