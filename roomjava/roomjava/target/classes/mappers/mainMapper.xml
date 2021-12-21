@@ -10,9 +10,13 @@
 		SELECT 	room_bno, room_class
 		FROM 	room_kind
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 >>>>>>> 085736785284783cf99f874fd1f25d93795fdf7f
+=======
+
+>>>>>>> DongGyun
 	</select>
 
 	<!-- 방 리스트를 종류대로 뿌려주기 -->
@@ -55,7 +59,7 @@
 		FROM 	room_rent
 	</select>	
 	
-	<!-- 결재수단 가져오기 room_rent -->
+	<!-- 방 렌트할 것 가져오기 room_rent -->
 	<select id="getPayment" resultType="com.room.admin.dto.PaymentDTO"> 
 		SELECT 	pay_bno, pay_name, pay_account, pay_bank
 		FROM 	payment
