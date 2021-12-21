@@ -14,14 +14,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.room.main.dto.BookDTO;
 import com.room.main.dto.RoomInfraDTO;
 import com.room.main.service.MainService;
 import com.room.member.dto.MemberDTO;
 import com.room.admin.dto.PaymentDTO;
 import com.room.admin.dto.RoomKindDTO;
+
 import com.room.admin.dto.Room_fncDTO;
 import com.room.admin.dto.Room_rentDTO;
+
 import com.room.admin.service.AdminService;
+
 
 @Controller
 @RequestMapping(value="/main")
@@ -76,13 +80,13 @@ public class MainController {
         	// 방 리스트를 종류대로 뿌려주기
         	List<RoomInfraDTO> roominfraDTO = mainService.allRooms();
         	model.addAttribute("allRooms", roominfraDTO);
-        	
     	} else {
     		List<RoomInfraDTO> kindroominfraDTO = mainService.kindRooms(room_bno);
     		RoomKindDTO list = mainService.soKind(room_bno);
         	model.addAttribute("allRooms", kindroominfraDTO);
         	model.addAttribute("list", list);
     	}
+
     	return "main/roomList";    	
     }
     
@@ -91,9 +95,10 @@ public class MainController {
 	// roomView로 이동
 	//------------------------------------------------------------------------------------------------
 	@RequestMapping("/roomView")
-	public String roomView(@RequestParam("r_bno") int r_bno, Model model, HttpSession session) throws Exception {
+
+	public String roomView(@RequestParam("r_bno") int r_bno, Model model,  HttpSession session) throws Exception {
 		logger.info("동균아!!" + r_bno);
-		
+
 		RoomInfraDTO roomInfraDTO = mainService.getRoomView(r_bno);
 		List<RoomKindDTO> roomkindDTO = mainService.getKind();
 		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
