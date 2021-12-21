@@ -34,12 +34,25 @@
 </head>
 <body>
 <%@ include file="../include/header.jsp" %>
+<<<<<<< HEAD
+=======
+
+>>>>>>> 085736785284783cf99f874fd1f25d93795fdf7f
 
 <div id="container">
 	<div class="inner">
 		<div id="allRooms">
+<<<<<<< HEAD
 			<p class="gTitle">모든 방</p>
 				
+=======
+
+			<p class="rTitle">모든 방</p>
+
+			<p class="gTitle">모든 방</p>
+				
+
+>>>>>>> 085736785284783cf99f874fd1f25d93795fdf7f
 			<ul class="Rooms">
 				<c:forEach items="${kinds}" var="kind">
 					<li class="room_name"><a href="#">${kind.room_class}</a></li>
