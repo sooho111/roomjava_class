@@ -63,6 +63,25 @@ public class AdminServiceImpl implements AdminService {
 		
 		return adminDAO.faqlistCount(scri);
 	} 	
+	//결제 삭제
+	@Override
+	public void faqDelete(FaqDTO faqDTO) throws Exception {
+		
+	adminDAO.faqDelete(faqDTO);
+	}	
+	//기능 수정
+	@Override
+	public void faqUpdate(FaqDTO faqDTO) throws Exception {
+		
+		adminDAO.faqUpdate(faqDTO);
+		
+	}
+	//기능 상세페이지
+	@Override
+	public FaqDTO faqdetailView(int faq_bno) throws Exception {
+		
+		return adminDAO.faqdetailView(faq_bno);
+	}
 	
 	// ----------------------------------------------------------------------------------------------------
 	// 방 종류 뿌려주기

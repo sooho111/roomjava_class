@@ -63,24 +63,7 @@ public class AdminController {
 		
 		return "redirect:/admin/board/boardList";
 	}
-	// -------------------------------------------------------------------------------------------------
-	// faq 추가 GET
-	// -------------------------------------------------------------------------------------------------
-	@RequestMapping(value = "/board/faqInsert", method = RequestMethod.GET)
-	public String getFaq() throws Exception {
-		return "/admin/board/faqInsert";
-	}
-	// -------------------------------------------------------------------------------------------------
-	// faq 추가  POST
-	// -------------------------------------------------------------------------------------------------
-	@RequestMapping(value = "/board/faqInsert", method = RequestMethod.POST)
-	public String writeFaq(FaqDTO faqDTO) throws Exception {
-		
-		adminService.faqWrite(faqDTO);
-		
-		return "redirect:/admin/board/boardList";
-	}
-/*	//-----------------------------------------------------------------------------------------------------------
+	//-----------------------------------------------------------------------------------------------------------
 	// faq 등록 : GET
 	//----------------------------------------------------------------------------------------------------------
 	@RequestMapping(value="/board/faqInsert", method=RequestMethod.GET)
@@ -91,7 +74,63 @@ public class AdminController {
 		List<FaqTypeDTO> list= null;
 		list = adminService.selectFaqType();
 		model.addAttribute("selectFaqType", list);
-	}*/
+	}
+	
+	//-----------------------------------------------------------------------------------------------------------
+	// faq 등록 : POST, 파일 등록
+	//----------------------------------------------------------------------------------------------------------
+	@RequestMapping(value="/board/faqInsert", method=RequestMethod.POST)
+	private String faqInsert(FaqDTO faqDTO) throws Exception {
+		
+		adminService.faqWrite(faqDTO);
+		
+		
+		return "redirect:/admin/board/boardList";
+	}
+	//-------------------------------------------------------------------------------------------------------
+	//faq 삭제 
+	//-------------------------------------------------------------------------------------------------------
+	@RequestMapping(value = "/board/faqDelete", method = RequestMethod.GET)
+	public String faqDelete(@RequestParam("n") int faq_bno, FaqDTO faqDTO) throws Exception {
+		logger.info("noticeDelete");
+		
+		faqDTO.setFaq_bno(faq_bno);
+		
+		adminService.faqDelete(faqDTO);
+		
+		return "redirect:/admin/board/boardList";
+	}
+	//-------------------------------------------------------------------------------------------------------
+	//faq 수정 GET	
+	//-------------------------------------------------------------------------------------------------------		
+		@RequestMapping(value = "/board/faqUpdate", method = RequestMethod.GET)
+		public String faqUpdateView(@RequestParam("n") int faq_bno, FaqDTO faqDTO, Model model) throws Exception {
+			
+			
+			faqDTO.setFaq_bno(faq_bno);
+			model.addAttribute("update", adminService.faqdetailView(faqDTO.getFaq_bno()));
+			List<FaqTypeDTO> list= null;
+			list = adminService.selectFaqType();
+			model.addAttribute("selectFaqType", list);
+			
+			return "admin/board/faqUpdate";
+		}
+	//-------------------------------------------------------------------------------------------------------
+	//faq 수정 POST	
+	//-------------------------------------------------------------------------------------------------------		
+		@RequestMapping(value = "/board/faqUpdate", method = RequestMethod.POST)
+		public String faqUpdate(@RequestParam("n") int faq_bno,  FaqDTO faqDTO) throws Exception {
+			
+			
+			faqDTO.setFaq_bno(faq_bno);
+			
+			adminService.faqUpdate(faqDTO);
+			
+			return "redirect:/admin/board/boardList";
+		}
+		
+
+
 
 	// -------------------------------------------------------------------------------------------------
 	// 공지사항 list 페이징
@@ -245,14 +284,14 @@ public class AdminController {
 			}
 		
 		// -------------------------------------------------------------------------------------------------
-		// 공지사항 GET
+		// 결제항목 GET
 		// -------------------------------------------------------------------------------------------------
 		@RequestMapping(value = "/payment/paymentInsert", method = RequestMethod.GET)
 		public String getPayment() throws Exception {
 			return "/admin/payment/paymentInsert";
 		}
 		// -------------------------------------------------------------------------------------------------
-		// 공지사항 POST
+		// 결제항목 POST
 		// -------------------------------------------------------------------------------------------------
 		@RequestMapping(value = "/payment/paymentInsert", method = RequestMethod.POST)
 		public String insertPayment(PaymentDTO paymentDTO) throws Exception {
@@ -264,7 +303,7 @@ public class AdminController {
 
 		
 		//-------------------------------------------------------------------------------------------------------
-		//공지사항 상세페이지	
+		//결제항목 상세페이지	
 		//-------------------------------------------------------------------------------------------------------
 			@RequestMapping(value = "/payment/paymentDetail", method = RequestMethod.GET)
 			public String paymentDetail( Model model, @RequestParam("n") int pay_bno, PaymentDTO paymentDTO) throws Exception {
@@ -278,7 +317,7 @@ public class AdminController {
 			
 			}
 		//-------------------------------------------------------------------------------------------------------
-		//공지사항 수정 GET	
+		//결제항목 수정 GET	
 		//-------------------------------------------------------------------------------------------------------		
 			@RequestMapping(value = "/payment/paymentUpdate", method = RequestMethod.GET)
 			public String paymentUpdateView(@RequestParam("n") int pay_bno, PaymentDTO paymentDTO, Model model) throws Exception {
@@ -290,9 +329,9 @@ public class AdminController {
 				
 				return "admin/payment/paymentUpdate";
 			}
-			//-------------------------------------------------------------------------------------------------------
-			//공지사항 수정 POST	
-			//-------------------------------------------------------------------------------------------------------		
+		//-------------------------------------------------------------------------------------------------------
+		//결제항목 수정 POST	
+		//-------------------------------------------------------------------------------------------------------		
 			@RequestMapping(value = "/payment/paymentUpdate", method = RequestMethod.POST)
 			public String paymentUpdate(@RequestParam("n") int pay_bno, PaymentDTO paymentDTO) throws Exception {
 				logger.info("noticeUpdate");
@@ -304,9 +343,9 @@ public class AdminController {
 				return "redirect:/admin/payment/paymentList";
 			}
 			
-			//-------------------------------------------------------------------------------------------------------
-			//결제항목 삭제 GET	
-			//-------------------------------------------------------------------------------------------------------
+		//-------------------------------------------------------------------------------------------------------
+		//결제항목 삭제 GET	
+		//-------------------------------------------------------------------------------------------------------
 			@RequestMapping(value = "/payment/paymentDelete", method = RequestMethod.GET)
 			public String paymentDelete(@RequestParam("n") int pay_bno, PaymentDTO paymentDTO) throws Exception {
 				logger.info("noticeDelete");
@@ -317,36 +356,36 @@ public class AdminController {
 				
 				return "redirect:/admin/payment/paymentList";
 			}
-			// -------------------------------------------------------------------------------------------------
-			// 결제수단 list 
-			// -------------------------------------------------------------------------------------------------
-				@RequestMapping(value = "/etc/etcList", method = RequestMethod.GET)
-				public String etcList(Model model, @ModelAttribute("scri") SearchCriteria scri) throws Exception {
-					logger.info("etcList");
-					
-					model.addAttribute("list", adminService.fncList(scri));
-					model.addAttribute("list2", adminService.rentList(scri));
-					
-					
-					return "admin/etc/etcList";
-				}
-			// -------------------------------------------------------------------------------------------------
-			// 기능 추가 GET
-			// -------------------------------------------------------------------------------------------------
+		// -------------------------------------------------------------------------------------------------
+		// 결제수단 list 
+		// -------------------------------------------------------------------------------------------------
+			@RequestMapping(value = "/etc/etcList", method = RequestMethod.GET)
+			public String etcList(Model model, @ModelAttribute("scri") SearchCriteria scri) throws Exception {
+				logger.info("etcList");
+				
+				model.addAttribute("list", adminService.fncList(scri));
+				model.addAttribute("list2", adminService.rentList(scri));
+				
+				
+				return "admin/etc/etcList";
+			}
+		// -------------------------------------------------------------------------------------------------
+		// 기능 추가 GET
+		// -------------------------------------------------------------------------------------------------
 			@RequestMapping(value = "/etc/fncInsert", method = RequestMethod.GET)
 			public String insertFncGet() throws Exception {
 				return "/admin/etc/fncInsert";
 			}
-			// -------------------------------------------------------------------------------------------------
-			// 대여 추가 GET
-			// -------------------------------------------------------------------------------------------------
+		// -------------------------------------------------------------------------------------------------
+		// 대여 추가 GET
+		// -------------------------------------------------------------------------------------------------
 			@RequestMapping(value = "/etc/rentInsert", method = RequestMethod.GET)
 			public String insertRentGet() throws Exception {
 				return "/admin/etc/rentInsert";
 			}
-			// -------------------------------------------------------------------------------------------------
-			// 기능 추가 POST
-			// -------------------------------------------------------------------------------------------------
+		// -------------------------------------------------------------------------------------------------
+		// 기능 추가 POST
+		// -------------------------------------------------------------------------------------------------
 			@RequestMapping(value = "/etc/fncInsert", method = RequestMethod.POST)
 			public String insertFncPost(Room_fncDTO room_fncDTO) throws Exception {
 				
@@ -354,9 +393,9 @@ public class AdminController {
 				
 				return "redirect:/admin/etc/etcList";
 			}
-			// -------------------------------------------------------------------------------------------------
-			// 기능 추가 POST
-			// -------------------------------------------------------------------------------------------------
+		// -------------------------------------------------------------------------------------------------
+		// 기능 추가 POST
+		// -------------------------------------------------------------------------------------------------
 			@RequestMapping(value = "/etc/rentInsert", method = RequestMethod.POST)
 			public String insertRentPost(Room_rentDTO room_rentDTO) throws Exception {
 				
@@ -364,9 +403,9 @@ public class AdminController {
 				
 				return "redirect:/admin/etc/etcList";
 			}
-			//-------------------------------------------------------------------------------------------------------
-			//기능 수정 GET	
-			//-------------------------------------------------------------------------------------------------------		
+		//-------------------------------------------------------------------------------------------------------
+		//기능 수정 GET	
+		//-------------------------------------------------------------------------------------------------------		
 			@RequestMapping(value = "/etc/fncUpdate", method = RequestMethod.GET)
 			public String fncUpdateView(@RequestParam("n") int fnc_bno, Room_fncDTO room_fncDTO, Model model) throws Exception {
 				
@@ -377,9 +416,9 @@ public class AdminController {
 				
 				return "admin/etc/fncUpdate";
 			}
-			//-------------------------------------------------------------------------------------------------------
-			//기능 수정 POST	
-			//-------------------------------------------------------------------------------------------------------		
+		//-------------------------------------------------------------------------------------------------------
+		//기능 수정 POST	
+		//-------------------------------------------------------------------------------------------------------		
 			@RequestMapping(value = "/etc/fncUpdate", method = RequestMethod.POST)
 			public String fncUpdate(@RequestParam("n") int fnc_bno, Room_fncDTO room_fncDTO) throws Exception {
 				
@@ -391,9 +430,9 @@ public class AdminController {
 				return "redirect:/admin/etc/etcList";
 			}
 			
-			//-------------------------------------------------------------------------------------------------------
-			//대여 수정 GET	
-			//-------------------------------------------------------------------------------------------------------		
+		//-------------------------------------------------------------------------------------------------------
+		//대여 수정 GET	
+		//-------------------------------------------------------------------------------------------------------		
 			@RequestMapping(value = "/etc/rentUpdate", method = RequestMethod.GET)
 			public String rentUpdateView(@RequestParam("n") int rent_bno, Room_rentDTO room_rentDTO, Model model) throws Exception {
 				
@@ -404,9 +443,9 @@ public class AdminController {
 				
 				return "admin/etc/rentUpdate";
 			}
-			//-------------------------------------------------------------------------------------------------------
-			//대여 수정 POST	
-			//-------------------------------------------------------------------------------------------------------		
+		//-------------------------------------------------------------------------------------------------------
+		//대여 수정 POST	
+		//-------------------------------------------------------------------------------------------------------		
 			@RequestMapping(value = "/etc/rentUpdate", method = RequestMethod.POST)
 			public String fncUpdate(@RequestParam("n") int rent_bno, Room_rentDTO room_rentDTO) throws Exception {
 				
@@ -417,9 +456,9 @@ public class AdminController {
 				
 				return "redirect:/admin/etc/etcList";
 			}
-			//-------------------------------------------------------------------------------------------------------
-			//기능 삭제 
-			//-------------------------------------------------------------------------------------------------------
+		//-------------------------------------------------------------------------------------------------------
+		//기능 삭제 
+		//-------------------------------------------------------------------------------------------------------
 			@RequestMapping(value = "/etc/fncDelete", method = RequestMethod.GET)
 			public String fncDelete(@RequestParam("n") int fnc_bno, Room_fncDTO room_fncDTO) throws Exception {
 				logger.info("noticeDelete");
@@ -430,9 +469,9 @@ public class AdminController {
 				
 				return "redirect:/admin/etc/etcList";
 			}
-			//-------------------------------------------------------------------------------------------------------
-			//대여 삭제 
-			//-------------------------------------------------------------------------------------------------------
+		//-------------------------------------------------------------------------------------------------------
+		//대여 삭제 
+		//-------------------------------------------------------------------------------------------------------
 			@RequestMapping(value = "/etc/rentDelete", method = RequestMethod.GET)
 			public String fncDelete(@RequestParam("n") int rent_bno, Room_rentDTO room_rentDTO) throws Exception {
 				logger.info("noticeDelete");
