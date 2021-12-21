@@ -110,22 +110,32 @@ public class MemberDAOImpl implements MemberDAO {
 		return sqlSession.selectOne(namespace + ".noticeTotalCount", scri);
 	}
 
+	
 	@Override
 	public BoardDTO detailView(int board_notice) throws Exception {
 		
 		return sqlSession.selectOne(namespace + ".detailView", board_notice);
 	}
 	
+	// -------------------------------------------------------------------------------------------------
+	// 예약 리스트
+	// -------------------------------------------------------------------------------------------------
 	@Override
 	public List<BookDTO> getBooks(String m_name) throws Exception{
 		return sqlSession.selectList(namespace + ".getBooks", m_name);
 	}
 
+	// -------------------------------------------------------------------------------------------------
+	// 예약 뷰
+	// -------------------------------------------------------------------------------------------------
 	@Override
 	public List<BookDTO> bookView(String book_order) throws Exception{
 		return sqlSession.selectList(namespace + ".bookView", book_order);
 	}
 	
+	// -------------------------------------------------------------------------------------------------
+	// 비로그인
+	// -------------------------------------------------------------------------------------------------
 	@Override
 	public List<BookDTO> belogin(String book_name) throws Exception{
 		logger.info("MemberDAOImpl memberInsert(MemberDTO memberDTO)....."+book_name);
