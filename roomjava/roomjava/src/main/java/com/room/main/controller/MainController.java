@@ -92,7 +92,7 @@ public class MainController {
         	model.addAttribute("allRooms", kindroominfraDTO);
         	model.addAttribute("list", list);
     	}
-
+ 
 
     	return "main/roomList";    	
     }
