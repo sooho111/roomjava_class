@@ -1,10 +1,5 @@
 Manifest-Version: 1.0
-<<<<<<< HEAD
-Built-By: kyj93
+Built-By: dlals
 Build-Jdk: 16.0.2
-=======
-Built-By: lglgl
-Build-Jdk: 15.0.2
->>>>>>> cfa056e4ac3c0b39b8ac6ab72b7ecc7f21c50134
 Created-By: Maven Integration for Eclipse
 
