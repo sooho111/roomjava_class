@@ -114,7 +114,7 @@
 				<tr>
 					<td><c:out value="${faqlist.faq_bno}" /></td>
 					<td>
-						<a href="/admin/board/faqDetail?n=${faqlist.faq_bno }"><c:out value="${faqlist.faq_title}" /></a>
+						<a href="/admin/board/faqUpdate?n=${faqlist.faq_bno }"><c:out value="${faqlist.faq_title}" /></a>
 					</td>
 					<td>관리자</td>
 				</tr>
