@@ -329,7 +329,8 @@ public class MemberController {
 		model.addAttribute("pageMaker", pageMaker);
 		
 		model.addAttribute("detail", memberService.detailView(boardDTO.getNotice_bno()));
-		logger.info("noticeList 나와" +  memberService.detailView(boardDTO.getNotice_bno()));
+		
+		
 		return "/member/notice";
 	}
 	
@@ -370,7 +371,7 @@ public class MemberController {
 				
 				memberService.qnaWrite(qnaDTO);
 			
-				return "redirect:/member/qna";
+				return "redirect:/member/qnaInsert";
 				
 				
 			}			

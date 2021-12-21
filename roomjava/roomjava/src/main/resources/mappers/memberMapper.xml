@@ -95,11 +95,14 @@ and m_email = #{m_email}
    </select>
    
    	<!-- 전체 공지사항 수 구하기 (Paging 처리) -->
-	<select id="noticeTotalCount" resultType="Integer">
+	<select id="noticeTotalCount"  resultType="Integer">
     <![CDATA[
         SELECT	count(*)
         FROM	notice_board
+    	WHERE 1=1
     ]]>
+   <include refid="noticeSearch"/>
+  
 	</select>
 
 	<!-- 공지사항 상세페이지 -->
