@@ -107,6 +107,9 @@ public class MemberController {
 		model.addAttribute("bookList", bookList);
 	}
 	
+	// -------------------------------------------------------------------------------------------------
+	// 비로그인 뷰
+	// -------------------------------------------------------------------------------------------------
 	@RequestMapping(value="/beLoginBookView", method=RequestMethod.GET)
 	public void beLoginBookView(@RequestParam("book_order") String book_order, Model model) throws Exception {
 		
@@ -291,6 +294,9 @@ public class MemberController {
 			
 	} // end void myPage
 	
+	// -------------------------------------------------------------------------------------------------
+	// 마이페이지 예약 뷰
+	// -------------------------------------------------------------------------------------------------
 	@RequestMapping(value="/myBookView", method=RequestMethod.GET)
 	public void orderView(@RequestParam("book_order") String book_order, Model model) throws Exception {
 		

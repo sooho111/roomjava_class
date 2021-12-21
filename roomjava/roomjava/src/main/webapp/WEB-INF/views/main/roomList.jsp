@@ -20,8 +20,6 @@
 .Rooms li a { color:#888; }
 .Rooms li a:hover { color:#111; text-decoration:none; }
 
-<div class="container">
-	<form class="form-horizontal" method="post" enctype="multipart/form-data" action="/manager/productRegister">
 #showRooms { width:750px; float:right; position:relative; padding-bottom:50px; }
 .list { float:left; width:230px; margin-right:20px; margin-bottom:30px; }
 .list li a { color:#777; font-size:15px; }

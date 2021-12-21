@@ -160,16 +160,26 @@ MemberDAO memberDAO;
 			return memberDAO.detailView(notice_bno);
 		}
 		
+		
+		// -------------------------------------------------------------------------------------------------
+		// 예약 리스트
+		// -------------------------------------------------------------------------------------------------
 		@Override
 		public List<BookDTO> getBooks(String m_name) throws Exception{
 			return memberDAO.getBooks(m_name);
 		}
 		
+		// -------------------------------------------------------------------------------------------------
+		// 예약 뷰
+		// -------------------------------------------------------------------------------------------------
 		@Override
 		public List<BookDTO> bookView(String book_order) throws Exception{
 			return memberDAO.bookView(book_order);
 		}
 
+		// -------------------------------------------------------------------------------------------------
+		// 비회원
+		// -------------------------------------------------------------------------------------------------
 		@Override
 		public List<BookDTO> belogin(String book_name) throws Exception{
 			return memberDAO.belogin(book_name);
