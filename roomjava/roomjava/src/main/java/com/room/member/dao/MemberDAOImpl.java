@@ -13,6 +13,7 @@ import com.room.admin.dto.BoardDTO;
 import com.room.admin.dto.SearchCriteria;
 import com.room.main.dto.BookDTO;
 import com.room.member.dto.MemberDTO;
+import com.room.member.dto.FaqDTO;
 
 
 @Repository
@@ -130,6 +131,24 @@ public class MemberDAOImpl implements MemberDAO {
 	public List<BookDTO> belogin(String book_name) throws Exception{
 		logger.info("MemberDAOImpl memberInsert(MemberDTO memberDTO)....."+book_name);
 		return sqlSession.selectList(namespace + ".belogin", book_name);
+	}
+	//-------------------------------------------------------------------------------------------------
+	// 전체 글 갯수 구하기 (Paging 처리)
+	//-------------------------------------------------------------------------------------------------
+	@Override
+	public int faqListTotalCount(SearchCriteria cri) throws Exception {
+		return sqlSession.selectOne(namespace + ".faqListTotalCount", cri);
+	}
+	
+	/*-------------------------------------------------------------------------------------------------
+	* faq 목록 보기 (Paging 처리)
+	-------------------------------------------------------------------------------------------------*/
+	@Override
+	public List<FaqDTO> faqListPaging(SearchCriteria cri) throws Exception {
+		logger.info("*** ManagerDAOImpl Criteria ==> " + cri);
+		logger.info("***** ManagerDAOImpl Criteria cri.getSearchType() ==> " + cri.getSearchType());
+		
+		return sqlSession.selectList(namespace + ".faqListPaging", cri);
 	}
 
 }

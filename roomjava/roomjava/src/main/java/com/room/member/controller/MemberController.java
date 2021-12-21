@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.room.admin.dto.BoardDTO;
@@ -27,6 +28,7 @@ import com.room.admin.dto.SearchCriteria;
 import com.room.main.dto.BookDTO;
 import com.room.member.dto.MemberDTO;
 import com.room.member.service.MemberService;
+import com.room.member.dto.FaqDTO;
 
 /**
  * Handles requests for the application home page.
@@ -343,6 +345,34 @@ public class MemberController {
 		return "/member/noticeDetail";
 		
 		}
+		
+	/*-----------------------------------------------------------------------------------------------------------
+	* faq 목록(Paging 처리)
+	----------------------------------------------------------------------------------------------------------*/
+	@RequestMapping(value="/faq", method=RequestMethod.GET)
+	   public ModelAndView faqList(SearchCriteria cri) throws Exception {
+		
+		logger.info("---------------------------------------------------------------------");
+		logger.info("ManagerController memberList CRI ==> " + cri);
+		logger.info("---------------------------------------------------------------------");
+		
+		ModelAndView mav = new ModelAndView("/member/faq");
+	    
+		PageMaker pageMaker = new PageMaker();	
+		pageMaker.setCri(cri);
+		logger.info("---------------------------------------------------------------------"+cri);
+		pageMaker.setTotalCount(memberService.faqListTotalCount(cri));
+		
+		//List<ManagerDTO>  list = managerService.memberListPaging(cri);
+		List<FaqDTO>  list = memberService.faqListPaging(cri);
+		
+		mav.addObject("list", list);
+	    mav.addObject("pageMaker", pageMaker);
+	        
+	    return mav;
+	    
+	   }
+		
 
 	
 } // end class MemberController

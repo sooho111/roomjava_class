@@ -130,4 +130,32 @@ SELECT *
 FROM book
 WHERE book_name = #{book_name}
 </select>
+	     <!-- faq 검색조건 -->
+   	<sql id="faqsearch">
+      	<if test="searchType != null">
+	         <if test="searchType == 'faq_title'.toString()">AND title LIKE CONCAT('%',#{keyword},'%')</if>
+	         <if test="searchType == 'faq_content'.toString()">AND content LIKE CONCAT('%',#{keyword},'%')</if>
+      	</if>
+   	</sql>
+   	
+    <!-- Faq 수 구하기 (Paging 처리) + 검색조건 -->
+   	<select id="faqListTotalCount" parameterType="com.room.admin.dto.SearchCriteria" resultType="Integer">
+    	<![CDATA[
+        	SELECT   count(*) FROM faq
+        	WHERE   1=1
+     	]]>
+   	</select>
+   
+   <!-- Faq 목록 보기 (Paging 처리) + 검색조건 -->
+   <select id="faqListPaging" parameterType="com.room.admin.dto.SearchCriteria" resultType="com.room.member.dto.FaqDTO">
+    	<![CDATA[
+        	SELECT   *  FROM   faq
+        	WHERE   1=1
+    	]]>
+      	<include refid="faqsearch"/>
+    	<![CDATA[
+        	ORDER BY faq_bno ASC
+        	LIMIT   #{pageStart}, #{perPageNum}
+    	]]>
+   	</select>
 </mapper>

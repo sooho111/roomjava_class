@@ -6,9 +6,10 @@
 <head>
 	<meta charset="UTF-8">
 	<title>FAQ</title>
+	<%@ include file="../include/includeFile.jsp" %>
 </head>
 <body>
-
+<%@ include file="../include/header.jsp" %>
 <div class="container" >
 
 	<div align="left">
@@ -28,7 +29,7 @@
    			 <td>
 		      <span class="glyphicon glyphicon-plus plusIcon"></span>
 		      <span class="glyphicon glyphicon-minus plusIcon" style="display:none"></span>
-		      ${faq.title}
+		      ${faq.faq_title}
 		    </td>  
  			 </tr>
 		  <tr style="display:none">
@@ -36,7 +37,7 @@
 		      <table class="table table-bordered">
 		        <tr>
 		          <td>
-		      	${faq.content}
+		      	${faq.faq_content}
 		      	 </td>
 		        </tr>
 		      </table>    
@@ -52,8 +53,8 @@
 		
 		<select id='searchType'>
 			<option>검색종류</option>
-				<option value="title"   <c:if test="${pageVO.type} == 'title'">selected</c:if>>질문</option>
-				<option value="content" <c:if test="${pageVO.type} == 'content'">selected</c:if>>답변</option>
+				<option value="faq_title"   <c:if test="${pageVO.type} == 'faq_title'">selected</c:if>>질문</option>
+				<option value="faq_content" <c:if test="${pageVO.type} == 'faq_content'">selected</c:if>>답변</option>
 		</select>
 	  <input type='text' id='searchKeyword' value="${pageVO.keyword}">
 	  <button id='searchBtn'>Search</button> 
@@ -90,7 +91,7 @@
 	
 	
 </div>
-
+	<%@ include file="../include/footer.jsp" %>
 <script>
 
 $(document).ready(function() {
