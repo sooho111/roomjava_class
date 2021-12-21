@@ -20,12 +20,12 @@ import com.room.main.service.MainService;
 import com.room.member.dto.MemberDTO;
 import com.room.admin.dto.PaymentDTO;
 import com.room.admin.dto.RoomKindDTO;
-<<<<<<< HEAD
+
 import com.room.admin.dto.Room_fncDTO;
 import com.room.admin.dto.Room_rentDTO;
-=======
+
 import com.room.admin.service.AdminService;
->>>>>>> 9556ab8ad82b03462422edaa09afdfecc240bc5d
+
 
 @Controller
 @RequestMapping(value="/main")
@@ -71,21 +71,6 @@ public class MainController {
 	// room_list로 이동
 	//------------------------------------------------------------------------------------------------
     @RequestMapping(value = "/roomList")
-<<<<<<< HEAD
-    public String roomList(Model model) throws Exception {
-    	
-    	// 방 종류 가져오기 room_class
-    	List<RoomKindDTO> roomkindDTO = mainService.getKind();
-    	model.addAttribute("kinds", roomkindDTO);
-    	// 방 리스트 목록을 보여주기 위한 화면으로 가기 전에 보여줄 데이터를 가져와서 model에 담는다.
-    	logger.info("방 종류 잘 가져오나요? roomkindDTO => " + roomkindDTO);
-    	
-    	// 방 리스트를 종류대로 뿌려주기
-    	List<RoomInfraDTO> roominfraDTO = mainService.allRooms();
-    	model.addAttribute("allRooms", roominfraDTO);
-    		      
-    	logger.info("방 잘 가져오나요? roominfraDTO => " + roominfraDTO);
-=======
     public String roomList(String room_bno, Model model) throws Exception {
 
     	List<RoomKindDTO> roomkindDTO = mainService.getKind();
@@ -101,7 +86,7 @@ public class MainController {
         	model.addAttribute("allRooms", kindroominfraDTO);
         	model.addAttribute("list", list);
     	}
->>>>>>> 9556ab8ad82b03462422edaa09afdfecc240bc5d
+
     	return "main/roomList";    	
     }
     
@@ -110,13 +95,10 @@ public class MainController {
 	// roomView로 이동
 	//------------------------------------------------------------------------------------------------
 	@RequestMapping("/roomView")
-<<<<<<< HEAD
+
 	public String roomView(@RequestParam("r_bno") int r_bno, Model model,  HttpSession session) throws Exception {
 		logger.info("동균아!!" + r_bno);
-=======
-	public String roomView(@RequestParam("r_bno") int r_bno, Model model, BookDTO bookDTO, HttpSession session) throws Exception {
-		
->>>>>>> 9556ab8ad82b03462422edaa09afdfecc240bc5d
+
 		RoomInfraDTO roomInfraDTO = mainService.getRoomView(r_bno);
 		List<RoomKindDTO> roomkindDTO = mainService.getKind();
 		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
