@@ -65,10 +65,8 @@ public class AdminController {
 	// 공지사항 list 페이징
 	// -------------------------------------------------------------------------------------------------
 		@RequestMapping(value = "/notice/noticeList", method = RequestMethod.GET)
-		public String noticeList(Model model, @ModelAttribute("scri") SearchCriteria scri) throws Exception {
-			logger.info("noticeList");
-			
-			logger.info("list ==> " + adminService.list(scri));
+		public String noticeList(Model model, @ModelAttribute("scri") SearchCriteria scri, BoardDTO boardDTO) throws Exception {
+			logger.info("list");
 			
 			model.addAttribute("list", adminService.list(scri));
 			
@@ -78,7 +76,9 @@ public class AdminController {
 			
 			model.addAttribute("pageMaker", pageMaker);
 			
-			return "admin/notice/noticeList";
+			return "/admin/notice/noticeList";
+			
+		
 		}
 		
 	//-------------------------------------------------------------------------------------------------------

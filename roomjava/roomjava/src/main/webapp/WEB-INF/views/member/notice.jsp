@@ -101,15 +101,7 @@
 							self.location = "notice?searchType=" +$("select option:selected").val() +"&keyword="+$("[name=keyword]").val()	});
 					});
 					
-					$(".noticeDetail_btn").click(function(){
-						$(".noticeInfo").slideDown();
-						$(".noticeDetail_btn").slideUp();
-					});
-		     
-		      $(".cancel_btn").click(function(){
-		      $(".noticeInfo").slideUp();
-		      $(".noticeDetail_btn").slideDown();
-		      });
+				
 					
 				</script>
 </body>
