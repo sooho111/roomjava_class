@@ -55,7 +55,7 @@ WHERE m_id = #{m_id}
 </select>
 <!-- 아이디 찾기 -->
 
-
+ 	
 <select resultType="String" parameterType="String" id="findidform">
 select m_id 
 from member 
@@ -124,4 +124,10 @@ FROM	book b join room_infra ri join room_kind rk on ri.r_kind = rk.room_bno on r
 WHERE	b.book_order = #{book_order};
 	</select>
 	
+	
+	<select id="belogin" resultType="com.room.main.dto.BookDTO" parameterType="String" >
+SELECT *
+FROM book
+WHERE book_name = #{book_name}
+</select>
 </mapper>

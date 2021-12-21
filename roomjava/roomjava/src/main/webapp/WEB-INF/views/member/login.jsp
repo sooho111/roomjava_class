@@ -43,8 +43,8 @@
 
 			<div class="form-group">
 				<div class="col-sm-offset-4 col-sm-6">
-					<button type="submit" class="btn btn-light"" id="submit">로그인</button>
-					<button class="btn btn-light"" type="button" id="registerBtn">회원가입</button>
+					<button type="submit" class="btn btn-light" id="submit">로그인</button>
+					<button class="btn btn-light" type="button" id="registerBtn">회원가입</button>
 					<button class="btn btn-light" type="button" id="findidBtn">아이디찾기</button>
 					<button class="btn btn-light" type="button" id="findpwBtn">비밀번호찾기</button>
 				</div>
@@ -89,6 +89,11 @@
 	// 로그아웃 버튼을 눌렀을 경우
 	$("#logoutBtn").on("click", function() {
 		location.href = "/member/logout";
+	});
+	
+	// 회원가입 버튼을 눌렀을 경우
+	$("#registerBtn").on("click", function() {
+		location.href = "/member/memberInsert";
 	});
 
 	// 로그인 버튼을 눌렀을 경우

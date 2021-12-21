@@ -74,6 +74,56 @@ public class MemberController {
 		}
 		return "redirect:/member/login";
 	}
+	
+	// -------------------------------------------------------------------------------------------------
+	// 비로그인 GET
+	// -------------------------------------------------------------------------------------------------
+	@RequestMapping(value = "/belogin", method = RequestMethod.GET)
+	public String getbeLogin() throws Exception {
+		return "/member/belogin";
+
+	} // end String getLogin()
+	// -------------------------------------------------------------------------------------------------
+	// 비로그인 POST
+	// -------------------------------------------------------------------------------------------------
+	@RequestMapping(value = "/belogin", method = RequestMethod.POST)
+	public String belogin(BookDTO bookDTO, HttpServletRequest req, RedirectAttributes rttr) throws Exception {
+
+		// 넘겨받은 회원정보를 가지고 Service에게 의뢰한다.
+		List<BookDTO> bookList = memberService.belogin(bookDTO.getBook_name());
+
+		return "member/beLoginBookList";
+	}
+	 
+	@RequestMapping (value ="/beLoginBookList")
+ 	public void beLoginBookList(BookDTO bookDTO,Model model) throws Exception {
+		List<BookDTO> bookList = memberService.belogin(bookDTO.getBook_name());
+		BookDTO bebookDTO = new BookDTO();
+
+		logger.info("다 가져온다며 " + bookList);
+			
+		model.addAttribute("bookList", bookList);
+	}
+	
+	@RequestMapping(value="/beLoginBookView", method=RequestMethod.GET)
+	public void beLoginBookView(@RequestParam("book_order") String book_order, Model model) throws Exception {
+		
+		logger.info("managerController 주문상세정보 가져오기 ==> " + book_order);
+		
+		List<BookDTO> bookView = new ArrayList<BookDTO>();
+		bookView.addAll(memberService.bookView(book_order));
+		logger.info("managerController return Value ==> " + bookView);
+		
+		BookDTO bookDTO = new BookDTO();
+		bookDTO.setBook_order(bookView.get(0).getBook_order());
+		bookDTO.setBook_name(bookView.get(0).getBook_name());
+		bookDTO.setBook_people(bookView.get(0).getBook_people());
+		bookDTO.setBook_ok(bookView.get(0).getBook_ok());
+		bookDTO.setBook_tel(bookView.get(0).getBook_tel());
+		logger.info("orderView.get(0).getDelivery_name() => " + bookDTO);
+		
+		model.addAttribute("bookView", bookView);
+	}
 
 	// -------------------------------------------------------------------------------------------------
 	// 로그아웃
@@ -261,7 +311,7 @@ public class MemberController {
 	
 	//공지사항 view
 	@RequestMapping(value="/notice", method=RequestMethod.GET)
-	public String noticeList(Model model, @ModelAttribute("scri") SearchCriteria scri ) throws Exception {
+	public String noticeList(Model model, @ModelAttribute("scri") SearchCriteria scri ,BoardDTO boardDTO) throws Exception {
 		logger.info("noticeList");
 		
 		model.addAttribute("list", memberService.list(scri));
@@ -272,8 +322,8 @@ public class MemberController {
 		
 		model.addAttribute("pageMaker", pageMaker);
 		
-		
-		
+		model.addAttribute("detail", memberService.detailView(boardDTO.getNotice_bno()));
+		logger.info("noticeList 나와" +  memberService.detailView(boardDTO.getNotice_bno()));
 		return "/member/notice";
 	}
 	
@@ -294,15 +344,5 @@ public class MemberController {
 		
 		}
 
-		//공지사항 view
-		@RequestMapping(value="/notice", method=RequestMethod.POST)
-		public String noticeDetailView(Model model, BoardDTO boardDTO ) throws Exception {
-			logger.info("noticeList");
-			
-			
-			model.addAttribute("detail", memberService.detailView(boardDTO.getNotice_bno()));
-			
-			
-			return "/member/notice";
-		}	
+	
 } // end class MemberController

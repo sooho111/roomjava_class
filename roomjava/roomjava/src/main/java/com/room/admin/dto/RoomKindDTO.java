@@ -6,4 +6,5 @@ import lombok.Data;
 public class RoomKindDTO {
 	private  int room_bno;
 	private String room_class;
+	private int room_cnt;
 }

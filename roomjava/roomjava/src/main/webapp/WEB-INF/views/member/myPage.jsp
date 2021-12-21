@@ -68,8 +68,11 @@ th { text-align:center; }
 <div class="m_content">
 			<p class="order">예약 정보</p>
 			<hr>
+			<c:if test="${bookList == '[]' }">
+				<p class="order">예약 정보가 없습니다.</p>
+			</c:if>
 			
-			<c:if test="${buys != '[]' }">
+			<c:if test="${bookList != '[]' }">
 			
 				<table class="table table-hover table-bordered">
 					<thead>
