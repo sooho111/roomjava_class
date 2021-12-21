@@ -52,7 +52,7 @@
 		FROM 	room_rent
 	</select>	
 	
-	<!-- 방 렌트할 것 가져오기 room_rent -->
+	<!-- 결재수단 가져오기 room_rent -->
 	<select id="getPayment" resultType="com.room.admin.dto.PaymentDTO"> 
 		SELECT 	pay_bno, pay_name, pay_account, pay_bank
 		FROM 	payment
