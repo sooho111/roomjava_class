@@ -11,7 +11,7 @@
 
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');
-.container { margin-top:70px; margin-bottom:70px; }
+.container { margin-top:50px; margin-bottom:70px; }
 .btnss { margin-bottom:50px; }
 .notice { font-size:20px; margin-bottom:30px; }
 </style>
@@ -21,7 +21,7 @@
 <div class="container">
 		
 	<div class="form-group">
-		<div style="text-align: center; margin: 50px 0;">
+		<div style="text-align: center;">
 			<h5><b>공지사항</b></h5>
 		</div>
 	</div>	
@@ -30,7 +30,12 @@
 	
 		<table class="table table-bordered table-striped table-hove">
 			<thead>
-				<tr><th>번호</th><th>제목</th><th>작성자</th><th>등록일</th></tr>
+				<tr>
+					<th>번호</th>
+					<th>제목</th>
+					<th>작성자</th>
+					<th>등록일</th>
+				</tr>
 			</thead>
 			
 			<c:forEach items="${list}" var = "list">
@@ -43,7 +48,6 @@
 					<td><fmt:formatDate value="${list.notice_date}" pattern="yyyy년MM월dd일 HH:mm:ss"/></td>
 				</tr>
 			</c:forEach>
-			
 		</table>
 		
 		<div class="form-group btnss">
@@ -93,10 +97,12 @@
 </div>
 </body>
 <script>
-	$(function(){
-		$('#searchBtn').click(function(){
-			self.location = "noticeList?searchType=" +$("select option:selected").val() +"&keyword="+$("[name=keyword]").val()	});
-	});
+$(function(){
+	$('#searchBtn').click(function(){
+		self.location = "noticeList?searchType=" +$("select option:selected").val() +"&keyword="+$("[name=keyword]").val()	});
+});
+
+
 </script>
 
 </html>

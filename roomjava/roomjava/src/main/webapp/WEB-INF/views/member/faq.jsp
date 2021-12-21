@@ -4,48 +4,47 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="UTF-8">
-	<title>FAQ</title>
-	<%@ include file="../include/includeFile.jsp" %>
+<meta charset="UTF-8">
+<title>FAQ</title>
+<%@ include file="../include/includeFile.jsp" %>
+<style>
+.container { margin-top:70px; margin-bottom:70px; }
+span.plusIcon { cursor:pointer; }
+</style>
 </head>
 <body>
 <%@ include file="../include/header.jsp" %>
 <div class="container" >
-
-	<div align="left">
-		<h2>자주하는 질문</h2>
-	</div>
-	
 	<div class="col-sm-12">
-	<table class="table table-bordered">
-		<thead>
-			<tr align="center">
-				<th>자주 하는 질문</th>
-			</tr>
-		</thead>
-		<tbody>
-			<c:forEach var="faq" items="${list}" varStatus="status">
-			<tr>
-   			 <td>
-		      <span class="glyphicon glyphicon-plus plusIcon"></span>
-		      <span class="glyphicon glyphicon-minus plusIcon" style="display:none"></span>
-		      ${faq.faq_title}
-		    </td>  
- 			 </tr>
-		  <tr style="display:none">
-		    <td>
-		      <table class="table table-bordered">
-		        <tr>
-		          <td>
-		      	${faq.faq_content}
-		      	 </td>
-		        </tr>
-		      </table>    
-		    </td>
-		  </tr>
-		  </c:forEach>
-		</tbody>
-	</table>
+		<table class="table table-bordered">
+			<thead>
+				<tr align="center">
+					<th>자주 하는 질문</th>
+				</tr>
+			</thead>
+			<tbody>
+				<c:forEach var="faq" items="${list}" varStatus="status">
+				<tr>
+	   			 <td>
+			      <span class="glyphicon glyphicon-plus plusIcon"></span>
+			      <span class="glyphicon glyphicon-minus plusIcon" style="display:none"></span>
+			      ${faq.faq_title}
+			    </td>  
+	 			 </tr>
+			  <tr style="display:none">
+			    <td>
+			      <table class="table table-bordered">
+			        <tr>
+			          <td>
+			      	${faq.faq_content}
+			      	 </td>
+			        </tr>
+			      </table>    
+			    </td>
+			  </tr>
+			  </c:forEach>
+			</tbody>
+		</table>
 	</div>
 	
 	<div class="col-sm-offset-3 col-sm-4">
@@ -135,7 +134,7 @@ $(".plusIcon").on("click",function(){
 	    obj.hide();
 	    obj.next().show();            
 	    obj.parent().parent().next().show();
-	  }else{
+	  } else {
 	     obj.hide();
 	     obj.prev().show();
 	     obj.parent().parent().next().hide();
