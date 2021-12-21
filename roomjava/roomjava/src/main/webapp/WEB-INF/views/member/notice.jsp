@@ -24,50 +24,7 @@
 <body>
 <%@ include file="../include/header.jsp" %>
 	<div class="container">
-			
-		<div class="form-group">
-			<div style="text-align: center; margin: 50px 0;">
-				<h5><b>공지사항</b></h5>
-			</div>
-		</div>	
 
-			<div class="noticeInfo">
-				<form class="form-horizontal" role="form" method="post" autocomplete="off">
-				
-				<input type="hidden" name="notice_bno" value="${detail.notice_bno}" id="notice_bno"/>
-	
-			
-			<div class="inputArea">
-				<label for="title" class="control-label col-sm-2">제  목</label>
-				<div class="col-sm-5">
-					<input class="form-control" type="text" id="notice_title" name="notice_title" style="background:#EEE;" maxlength="50"  value="${detail.notice_title}" readonly="readonly"  />
-				</div>
-			</div>
-			
-			
-			<div class="inputArea">
-				<label for="repDate" class="control-label col-sm-2">작성일자</label>
-				<div class="col-sm-3">
-					<input class="form-control" type="text" name="notice_date"  value="<fmt:formatDate value="${detail.notice_date}" pattern="yyyy년 MM월 dd일 HH:mm:ss"/>" readonly="readonly"  />
-				</div>
-			</div>
-			
-			<div class="inputArea">
-				<label for="content" class="control-label col-sm-2">내  용</label>
-				<div class="col-sm-4">
-					<textarea rows="15" cols="140" id="notice_content" name="notice_content" style="background:#EEE; padding:5px; border-radius:4px;" readonly="readonly" >${detail.notice_content}</textarea>
-				</div>
-			</div>
-				
-	<div class="inputArea">
-		   	<br/>
-	<button type="button" class="cancel_btn">취소</button>
-		                  		
-		   
-	 </div>
-				
-				</form>
-			</div>
 
 
 
@@ -85,7 +42,7 @@
 							<a href="/member/noticeDetail?n=${list.notice_bno }"><c:out value="${list.notice_title}" /></a>
 						</td>
 						<td>관리자</td>
-						<td><fmt:formatDate value="${list.notice_date }"  pattern="yyyy년MM월dd일 hh:mm:ss"/></td>
+						<td><fmt:formatDate value="${list.notice_date }"  pattern="yyyy년MM월dd일 HH:mm:ss"/></td>
 					</tr>
 				</c:forEach>
 				
@@ -135,7 +92,9 @@
 			
 		</form>
 
+
 	</div>
+	<%@ include file="../include/footer.jsp" %>
 				<script>
 					$(function(){
 						$('#searchBtn').click(function(){

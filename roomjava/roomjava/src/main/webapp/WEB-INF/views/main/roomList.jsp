@@ -36,8 +36,9 @@
 <div id="container">
 	<div class="inner">
 		<div id="allRooms">
+
 			<p class="gTitle">모든 방</p>
-				
+
 			<ul class="Rooms">
 				<c:forEach items="${kinds}" var="kind">
 					<li class="room_name"><a href="#">${kind.room_class}</a></li>
