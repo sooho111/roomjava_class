@@ -17,8 +17,8 @@
 <body>
 <%@ include file="../include/header.jsp" %>
 
-	<div class="container">
-		<form class="form-horizontal" name="readForm" method="post">
+<div class="container">
+	<form class="form-horizontal" name="readForm" method="post">
 		<input type="hidden" id="notice_bno" name="notice_bno" value="${detail.notice_bno}" />
 			
 			<div class="form-group">
@@ -48,11 +48,8 @@
 					<textarea rows="15" cols="140" id="notice_content" name="notice_content" style="background:#EEE; padding:5px; border-radius:4px;" readonly="readonly" >${detail.notice_content}</textarea>
 				</div>
 			</div>
-			
-		
-			
 		</form>
 	</div>
-				<%@ include file="../include/footer.jsp" %>
+<%@ include file="../include/footer.jsp" %>
 </body>
 </html>
