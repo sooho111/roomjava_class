@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.room.admin.dto.BoardDTO;
+import com.room.admin.dto.FaqtypeDTO;
 import com.room.admin.dto.PageMaker;
 import com.room.admin.dto.PaymentDTO;
 import com.room.admin.dto.Room_fncDTO;

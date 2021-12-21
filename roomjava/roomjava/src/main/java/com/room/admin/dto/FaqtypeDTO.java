@@ -9,9 +9,7 @@ import lombok.ToString;
 @ToString
 public class FaqtypeDTO {
 
-	private int 	faq_bno;		//번호
-	private	String  faq_title;		//제목
-	private String  faq_content;	//답변
-	private	String	faq_class;	//질문목록
+	private int 	faq_class;		//번호
+	private	String  faq_name;		//제목
 	
 }
