@@ -343,6 +343,12 @@ public class MemberController {
 		return "/member/noticeDetail";
 		
 		}
-
 	
+		//-------------------------------------------------------------------------------------------------------
+		//공지사항 상세페이지	
+		//-------------------------------------------------------------------------------------------------------		
+			@RequestMapping(value="/qna", method = RequestMethod.GET)
+			public void qnaView() throws Exception {
+				
+			}
 } // end class MemberController
