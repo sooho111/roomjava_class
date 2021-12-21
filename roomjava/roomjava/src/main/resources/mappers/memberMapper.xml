@@ -99,7 +99,9 @@ and m_email = #{m_email}
     <![CDATA[
         SELECT	count(*)
         FROM	notice_board
+        WHERE   1=1
     ]]>
+       <include refid="noticeSearch"/>
 	</select>
 
 	<!-- 공지사항 상세페이지 -->
