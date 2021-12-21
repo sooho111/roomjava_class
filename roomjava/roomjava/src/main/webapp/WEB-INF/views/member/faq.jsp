@@ -82,7 +82,7 @@
 		</ul>
 	</div>
 	
-	<form id="formList" action="/main/faq" method="get">
+	<form id="formList" action="/member/faq" method="get">
 		<input type='hidden' name='page'		value="${result.currentPageNum}">
 		<input type='hidden' name='size'		value="${result.currentPage.pageSize}">
 		<input type='hidden' name='searchType' 	value="${pageVO.type}">
