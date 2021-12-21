@@ -9,9 +9,7 @@
 <title>펜션</title>
 <%@ include file="../include/includeFile.jsp" %>
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');
-#header .inner .gnb li:last-child a { font-weight:700; }
-
+#bheader .inner .gnb > li:first-child > a { font-weight:700; }
 #story { width:100%; margin-bottom:150px; }
 #story .inner { width:960px; text-align:center; }
 

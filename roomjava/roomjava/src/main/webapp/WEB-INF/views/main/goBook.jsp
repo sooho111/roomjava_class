@@ -49,7 +49,6 @@
 <%@ include file="../include/header.jsp" %>
 <h1>예약하기!!!!!</h1>
 
-
 <div class="container">
 	<div class="inner">
 		<div id="showRooms">
@@ -113,20 +112,7 @@
 					</c:forEach>
 				</select>
 			</div>
-		</div>				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
+		</div>		
 		<form action="/main/okBook" method="post" id="okBookForm">
 			<input type="hidden" name="r_bno" value="${room.r_bno}" />
 			<input type="hidden" name="r_name" value="${room.r_name}" />
@@ -153,6 +139,7 @@
 				
 <!-- 달력보여주기!!!!!!! 짱이지?! -->				
 <div id='calendar'></div>
+<input type="button" id="btnAddTest" value="추가">
 				
 <script>
 
@@ -183,9 +170,9 @@ document.addEventListener('DOMContentLoaded', function() {
 			},
 			
 			// 일정 클릭 이벤트
-			eventClick : function() {
+			eventClick : function(event) {
 				
-				alert("^^"+calendar.getEventById());
+				alert("^^"+event.title);
 				
 				return false;
 			
@@ -211,10 +198,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
 		});	 
 
-		
-
 		// 데이터 삽입방식
-
+		
 		calendar.addEvent({id:'a',title:'펜션', 'start':'2021-12-17'});
 		calendar.addEvent({'title':'글램핑', 'start':'2021-12-17'});
 		calendar.addEvent({'title':'데크', 'start':'2021-12-17'});
@@ -231,10 +216,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		calendar.addEvent({'title':'고객2-펌', 'start':'2021-07-18T22:00'});
 		calendar.addEvent({'title':'고객3-염색', 'start':'2021-07-20T09:00'});
 		calendar.addEvent({'title':'31일?', 'start':'2021-11-30'});
-
-
-
-
+		
 		// 렌더링
 
 		calendar.render();

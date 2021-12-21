@@ -10,6 +10,7 @@
 
 <style>
 .container { margin-top:50px; margin-bottom:70px; }
+#bheader .inner .gnb > li:nth-child(3) > a { font-weight:700; }
 .btnss { margin-bottom:50px; }
 .notice { font-size:20px; margin-bottom:30px; }
 
@@ -108,13 +109,13 @@ $(function(){
 		if(i == 0) {
 			$(this).find('.glyphicon-plus').css({ display:"none", });
 			$(this).find('.glyphicon-minus').css({ display:"inline", });
-			$(this).parent().next().toggle();
+			$(this).parent().next().show();
 			i=1;
 			
 		} else {
 			$(this).find('.glyphicon-plus').css({ display:"inline", });
 			$(this).find('.glyphicon-minus').css({ display:"none", });
-			$(this).parent().next().toggle();
+			$(this).parent().next().hide();
 			i=0;
 			
 		}

@@ -10,11 +10,9 @@
 <%@ include file="../../include/includeFile.jsp" %>
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');
 .container { margin-top:70px; margin-bottom:70px; }
 .btnss { margin-bottom:50px; }
 .notice { font-size:20px; margin-bottom:30px; }
-
 
 .noticeInfo {  padding:30px 20px 20px 20px; display:none; height:500px; }
 .noticeInfo .inputArea { margin:10px 0; }
@@ -23,7 +21,7 @@
 </style>
 </head>
 <body>
-<%@ include file="../../include/header.jsp" %>
+<%@ include file="../../include/m_header.jsp" %>
 	<div class="container">
 
 
