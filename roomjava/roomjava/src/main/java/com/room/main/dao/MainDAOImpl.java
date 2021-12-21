@@ -22,6 +22,7 @@ class MainDAOImpl implements MainDAO {
 	
 	@Inject
 	private SqlSession sqlSession;
+	
 	//-------------------------------------------------------------------------------------------------
 	// 방 종류 가져오기
 	//-------------------------------------------------------------------------------------------------
@@ -36,6 +37,22 @@ class MainDAOImpl implements MainDAO {
 	@Override
 	public List<RoomInfraDTO> allRooms() throws Exception {
 		return sqlSession.selectList(namespace + ".allRooms");
+	}
+	
+	//------------------------------------------------------------------------------------------------
+	// 방 소분류 종류대로 뿌려주기
+	//------------------------------------------------------------------------------------------------
+	@Override
+	public List<RoomInfraDTO> kindRooms(String room_bno) throws Exception {
+		return sqlSession.selectList(namespace + ".kindRooms", room_bno);
+	}
+	
+	//------------------------------------------------------------------------------------------------
+	// 방 소분류 제목 뿌려주기
+	//------------------------------------------------------------------------------------------------
+	@Override
+	public RoomKindDTO soKind(String room_bno) throws Exception {
+		return sqlSession.selectOne(namespace + ".soKind", room_bno);
 	}
 	
 	//------------------------------------------------------------------------------------------------
