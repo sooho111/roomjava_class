@@ -9,7 +9,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
+import com.room.admin.dto.PaymentDTO;
 import com.room.admin.dto.RoomKindDTO;
+import com.room.admin.dto.Room_fncDTO;
+import com.room.admin.dto.Room_rentDTO;
 import com.room.main.dto.RoomInfraDTO;
 
 
@@ -62,5 +65,28 @@ class MainDAOImpl implements MainDAO {
 	public RoomInfraDTO getRoomView(int r_bno) throws Exception {
 		RoomInfraDTO roominfraDTO = sqlSession.selectOne(namespace + ".roomView", r_bno);
 		return roominfraDTO;
+	}
+	
+	//-------------------------------------------------------------------------------------------------
+	// 방 기능 가져오기 room_fnc
+	//-------------------------------------------------------------------------------------------------
+	@Override
+	public List<Room_fncDTO> getFnc() throws Exception {
+		return sqlSession.selectList(namespace + ".getFnc");
+	}
+	
+	//-------------------------------------------------------------------------------------------------
+	// 방 렌트할 것 가져오기 room_rent
+	//-------------------------------------------------------------------------------------------------
+	@Override
+	public List<Room_rentDTO> getRent() throws Exception {
+		return sqlSession.selectList(namespace + ".getRent");
+	}
+	
+	//-------------------------------------------------------------------------------------------------
+	// 결제수단 가져오기 payment
+	//-------------------------------------------------------------------------------------------------
+	public List<PaymentDTO> getPayment() throws Exception {
+		return sqlSession.selectList(namespace + ".getPayment");
 	}
 }

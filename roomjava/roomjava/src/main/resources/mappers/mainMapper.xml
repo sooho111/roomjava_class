@@ -5,11 +5,12 @@
 
 <mapper namespace = "com.room.main.mapper.mainMapper">
 
-   <!-- 방 종류 가져오기 -->
-   <select id="kind" resultType="com.room.admin.dto.RoomKindDTO"> 
+	<!-- 방 종류 가져오기 room_kind-->
+	<select id="kind" resultType="com.room.admin.dto.RoomKindDTO"> 
 		SELECT 	room_bno, room_class
 		FROM 	room_kind
-   </select>
+
+	</select>
 
 	<!-- 방 리스트를 종류대로 뿌려주기 -->
 	<select id="allRooms" resultType="com.room.main.dto.RoomInfraDTO">
@@ -38,4 +39,22 @@
 		FROM 	room_infra
 		WHERE 	r_bno = #{r_bno}
 	</select>
+	
+	<!-- 방 기능 가져오기 room_fnc -->
+	<select id="getFnc" resultType="com.room.admin.dto.Room_fncDTO"> 
+		SELECT	fnc_bno, fnc_name, fnc_price
+		FROM 	room_fnc
+	</select>
+	
+	<!-- 방 렌트할 것 가져오기 room_rent -->
+	<select id="getRent" resultType="com.room.admin.dto.Room_rentDTO"> 
+		SELECT 	rent_bno, rent_name, rent_price
+		FROM 	room_rent
+	</select>	
+	
+	<!-- 방 렌트할 것 가져오기 room_rent -->
+	<select id="getPayment" resultType="com.room.admin.dto.PaymentDTO"> 
+		SELECT 	pay_bno, pay_name, pay_account, pay_bank
+		FROM 	payment
+	</select>	
 </mapper>

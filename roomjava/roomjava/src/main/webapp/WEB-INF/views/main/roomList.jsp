@@ -20,6 +20,10 @@
 .Rooms li a { color:#888; }
 .Rooms li a:hover { color:#111; text-decoration:none; }
 
+<<<<<<< HEAD
+<div class="container">
+	<form class="form-horizontal" method="post" enctype="multipart/form-data" action="/manager/productRegister">
+=======
 #showRooms { width:750px; float:right; position:relative; padding-bottom:50px; }
 .list { float:left; width:230px; margin-right:20px; margin-bottom:30px; }
 .list li a { color:#777; font-size:15px; }
@@ -33,11 +37,16 @@
 <body>
 <%@ include file="../include/header.jsp" %>
 
+
 <div id="container">
 	<div class="inner">
 		<div id="allRooms">
+
+			<p class="rTitle">모든 방</p>
+
 			<p class="gTitle">모든 방</p>
 				
+
 			<ul class="Rooms">
 				<c:forEach items="${kinds}" var="kind">
 					<li class="room_name"><a href="#">${kind.room_class}</a></li>
