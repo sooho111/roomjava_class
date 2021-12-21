@@ -26,7 +26,7 @@ import com.room.admin.dto.SearchCriteria;
 import com.room.admin.service.AdminService;
 import com.room.member.dto.FaqDTO;
 import com.room.member.dto.MemberDTO;
-import com.room.member.dto.FaqTypeDTO;
+
 
 
 
@@ -63,22 +63,52 @@ public class AdminController {
 		
 		return "redirect:/admin/board/boardList";
 	}
+<<<<<<< HEAD
+=======
+	// -------------------------------------------------------------------------------------------------
+	// faq 추가 GET
+	// -------------------------------------------------------------------------------------------------
+	@RequestMapping(value = "/board/faqInsert", method = RequestMethod.GET)
+	public String getFaq() throws Exception {
+		return "/admin/board/faqInsert";
+	}
+	// -------------------------------------------------------------------------------------------------
+	// faq 추가  POST
+	// -------------------------------------------------------------------------------------------------
+	@RequestMapping(value = "/board/faqInsert", method = RequestMethod.POST)
+	public String writeFaq(FaqDTO faqDTO) throws Exception {
+		
+		adminService.faqWrite(faqDTO);
+		
+		return "redirect:/admin/board/boardList";
+	}
+>>>>>>> 724374f06eb64f6cd6b12a67ef42265f61af1c0b
 	//-----------------------------------------------------------------------------------------------------------
 	// faq 등록 : GET
 	//----------------------------------------------------------------------------------------------------------
-	@RequestMapping(value="/board/faqInsert", method=RequestMethod.GET)
-	public void getFaqRegister(Model model) throws Exception {
-		logger.info("ManagerController getFaqTypeRegister() GET");
+	//@RequestMapping(value="/board/faqInsert", method=RequestMethod.GET)
+	//public void getFaqRegister(Model model) throws Exception {
+		//logger.info("ManagerController getFaqTypeRegister() GET");
 		
+<<<<<<< HEAD
 		// 데이터 타입의 자료를 모두 가져온다.		
 		List<FaqTypeDTO> list= null;
 		list = adminService.selectFaqType();
 		model.addAttribute("selectFaqType", list);
 	}
+=======
+		/// 데이터 타입의 자료를 모두 가져온다.		
+		//List<FaqtypeDTO> list= null;
+		//list = managerService.selectFaqType();
+		//log.info("ManagerController getData : " + list);
+		//model.addAttribute("selectFaqType", list);
+//	}
+>>>>>>> 724374f06eb64f6cd6b12a67ef42265f61af1c0b
 	
 	//-----------------------------------------------------------------------------------------------------------
 	// faq 등록 : POST, 파일 등록
 	//----------------------------------------------------------------------------------------------------------
+<<<<<<< HEAD
 	@RequestMapping(value="/board/faqInsert", method=RequestMethod.POST)
 	private String faqInsert(FaqDTO faqDTO) throws Exception {
 		
@@ -132,6 +162,28 @@ public class AdminController {
 
 
 
+=======
+	//@RequestMapping(value="/faq/faqRegister", method=RequestMethod.POST)
+	//private String Postfaqregister(HttpServletRequest request) throws Exception {
+		
+		//System.out.println("상품등록 페이지 진입.....");
+		//log.info("상품등록 페이지 진입");
+		
+		//게시글 등록 화면에서 입력한 값들을 실어나르기 위해 BoardVO를 생성한다.
+		//FaqDTO faqDTO  	= new FaqDTO();
+		
+		
+		//faqDTO.setFaqClass(request.getParameter("faqClass"));
+		//faqDTO.setTitle(request.getParameter("title"));
+		//faqDTO.setContent(request.getParameter("content"));
+		//System.out.println(faqDTO);
+		
+	//	managerService.faqRegister(faqDTO);
+		
+		
+	//	return "redirect:/manager/faq/list";
+//	}
+>>>>>>> 724374f06eb64f6cd6b12a67ef42265f61af1c0b
 	// -------------------------------------------------------------------------------------------------
 	// 공지사항 list 페이징
 	// -------------------------------------------------------------------------------------------------
@@ -305,17 +357,17 @@ public class AdminController {
 		//-------------------------------------------------------------------------------------------------------
 		//결제항목 상세페이지	
 		//-------------------------------------------------------------------------------------------------------
-			@RequestMapping(value = "/payment/paymentDetail", method = RequestMethod.GET)
-			public String paymentDetail( Model model, @RequestParam("n") int pay_bno, PaymentDTO paymentDTO) throws Exception {
-			
-			logger.info("paymentDetail");
-			
-			paymentDTO.setPay_bno(pay_bno);
-			model.addAttribute("detail", adminService.paymentdetailView(paymentDTO.getPay_bno()));
-			
-			return "admin/payment/paymentDetail";
-			
-			}
+		@RequestMapping(value = "/payment/paymentDetail", method = RequestMethod.GET)
+		public String paymentDetail( Model model, @RequestParam("n") int pay_bno, PaymentDTO paymentDTO) throws Exception {
+		
+		logger.info("paymentDetail");
+		
+		paymentDTO.setPay_bno(pay_bno);
+		model.addAttribute("detail", adminService.paymentdetailView(paymentDTO.getPay_bno()));
+		
+		return "admin/payment/paymentDetail";
+		
+		}
 		//-------------------------------------------------------------------------------------------------------
 		//결제항목 수정 GET	
 		//-------------------------------------------------------------------------------------------------------		

@@ -9,7 +9,7 @@
 <title>방 리스트</title>
 <%@ include file="../include/includeFile.jsp" %>
 <style>
-#header .inner .gnb li:nth-child(3) a { font-weight:700; }
+#bheader .inner .gnb > li:nth-child(2) > a { font-weight:700; }
 #container { margin-top:50px; }
 #container .inner { width:960px; }
 #container .inner:after { content:""; clear:both; display:block; }
