@@ -17,7 +17,10 @@ import com.room.main.dto.BookDTO;
 import com.room.main.dto.RoomInfraDTO;
 import com.room.main.service.MainService;
 import com.room.member.dto.MemberDTO;
+import com.room.admin.dto.PaymentDTO;
 import com.room.admin.dto.RoomKindDTO;
+import com.room.admin.dto.Room_fncDTO;
+import com.room.admin.dto.Room_rentDTO;
 
 @Controller
 @RequestMapping(value="/main")
@@ -62,16 +65,17 @@ public class MainController {
     @RequestMapping(value = "/roomList")
     public String roomList(Model model) throws Exception {
     	
+    	// 방 종류 가져오기 room_class
     	List<RoomKindDTO> roomkindDTO = mainService.getKind();
     	model.addAttribute("kinds", roomkindDTO);
     	// 방 리스트 목록을 보여주기 위한 화면으로 가기 전에 보여줄 데이터를 가져와서 model에 담는다.
-    	logger.info("allrooms 방 종류 가져오나요? roomkindDTO => " + roomkindDTO);
+    	logger.info("방 종류 잘 가져오나요? roomkindDTO => " + roomkindDTO);
     	
     	// 방 리스트를 종류대로 뿌려주기
     	List<RoomInfraDTO> roominfraDTO = mainService.allRooms();
     	model.addAttribute("allRooms", roominfraDTO);
     		      
-    	logger.info("allrooms 방 잘 가져오나요? roominfraDTO => " + roominfraDTO);
+    	logger.info("방 잘 가져오나요? roominfraDTO => " + roominfraDTO);
     	return "main/roomList";    	
     }
     
@@ -80,7 +84,7 @@ public class MainController {
 	// roomView로 이동
 	//------------------------------------------------------------------------------------------------
 	@RequestMapping("/roomView")
-	public String roomView(@RequestParam("r_bno") int r_bno, Model model, BookDTO bookDTO, HttpSession session) throws Exception {
+	public String roomView(@RequestParam("r_bno") int r_bno, Model model,  HttpSession session) throws Exception {
 		logger.info("동균아!!" + r_bno);
 		RoomInfraDTO roomInfraDTO = mainService.getRoomView(r_bno);
 		List<RoomKindDTO> roomkindDTO = mainService.getKind();
@@ -88,11 +92,33 @@ public class MainController {
 
 		return "main/roomView";
 	}
+	//------------------------------------------------------------------------------------------------
+	// goBook으로 이동
+	//------------------------------------------------------------------------------------------------
+	@RequestMapping(value="/goBook")
+	public String goBook(Model model) throws Exception {
+    	
+		// 방 기능 가져오기 room_fnc
+    	List<Room_fncDTO> room_fncDTO = mainService.getFnc();
+    	model.addAttribute("fnc", room_fncDTO);
+    	logger.info("방 기능 잘 가져오나요? room_fncDTO => " + room_fncDTO);
+    	
+    	// 방 렌트할 것 가져오기 roon_rent
+       	List<Room_rentDTO> room_rentDTO = mainService.getRent();
+    	model.addAttribute("rent", room_rentDTO);
+    	logger.info("방 렌트할 것 잘 가져오나요? room_rentDTO => " + room_rentDTO);
+    	
+    	// 결제수단가져오기 payment
+       	List<PaymentDTO> paymentDTO = mainService.getPayment();
+    	model.addAttribute("payment", room_rentDTO);
+    	logger.info("결제수단 잘 가져오나요? paymentDTO => " + paymentDTO);
+    	
+		return "main/goBook";
+	}
 	
-		
-} 
-    
-    
+	
+	
+}
 //	@RequestMapping(value = "/book_ps")
 //	public void book_ps( ) throws Exception {
 //	}

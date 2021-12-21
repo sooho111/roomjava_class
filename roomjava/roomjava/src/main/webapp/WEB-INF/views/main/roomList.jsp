@@ -13,14 +13,14 @@
 <%@ include file="../include/header.jsp" %>
 
 
-
+<div class="container">
+	<form class="form-horizontal" method="post" enctype="multipart/form-data" action="/manager/productRegister">
 
 <div id="container">
 	<div class="inner">
 	
 		<div id="allRooms">
-		
-			<p class="gTitle">모든 방</p>
+			<p class="rTitle">모든 방</p>
 			<ul class="Rooms">
 			</ul>
 		</div>
