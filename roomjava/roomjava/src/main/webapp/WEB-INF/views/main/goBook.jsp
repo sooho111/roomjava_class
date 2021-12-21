@@ -51,68 +51,103 @@
 
 
 <div class="container">
-	<form class="form-horizontal" method="post" enctype="multipart/form-data" action="#">
-		<div class="inner">
-			<div id="showRooms">
-				<div class="img"><img src="/resources/images/none.png" alt="images" width="450px" height="450px" />
-			</div>
+	<div class="inner">
+		<div id="showRooms">
+			<div class="img"><img src="/resources/images/none.png" alt="images" width="450px" height="450px" />
+		</div>
 				
+		<br/><br/><br/>
+		
+		<div class="form-group">
+			<label class="control-label col-sm-2">예약자 이름</label>
+			<div class="col-sm-4">
+				<input type="text" class="form-control" 
+				name="m_name" id="m_name" maxlength="50" value="${member.m_name}" readonly="readonly"/>
+			</div>
+		</div>
+		
+		<div class="form-group">
+			<label class="control-label col-sm-2">예약 인원</label>
+			<div class="col-sm-4">
+				<input type="text" class="form-control" 
+				name="member" id="member" maxlength="50" value="${member.m_name}" readonly="readonly"/>
+			</div>
+		</div>	
+				
+		<div class="form-group">
+			<label class="control-label col-sm-2">예약자 전화번호</label>
+			<div class="col-sm-4">
+				<input type="text" class="form-control" 
+				name="m_tel" id="m_tel" maxlength="50" value="${member.m_tel}" readonly="readonly"/>
+			</div>
+		</div>	
+		
+		<div class="form-group">
+			<label class="control-label col-sm-2">방 기능</label>
+			<div class="col-sm-5">
+				<select class="form-control" name="room_fnc" id="room_fnc">
+					<c:forEach var="fnc" items="${fnc}">
+						<option value="${fnc.fnc_name}">${fnc.fnc_name}</option>
+					</c:forEach>
+				</select>
+			</div>
+		</div>		
+	
+		<div class="form-group">
+			<label class="control-label col-sm-2">렌트</label>
+			<div class="col-sm-5">
+				<select class="form-control" name="room_rent" id="room_rent">
+					<c:forEach var="rent" items="${rent}">
+						<option value="${rent.rent_name}">${rent.rent_name}, ${rent.rent_price}원</option>
+					</c:forEach>
+				</select>
+			</div>
+		</div>		
+	
+		<div class="form-group">
+			<label class="control-label col-sm-2">결제 수단</label>
+			<div class="col-sm-5">
+				<select class="form-control" name="payment" id="payment">
+					<c:forEach var="payment" items="${payment}">
+						<option value="${payment.pay_name}">${payment.pay_name}, ${payment.pay_account}, ${payment.pay_bank}은행</option>
+					</c:forEach>
+				</select>
+			</div>
+		</div>				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+		<form action="/main/okBook" method="post" id="okBookForm">
+			<input type="hidden" name="r_bno" value="${room.r_bno}" />
+			<input type="hidden" name="r_name" value="${room.r_name}" />
+			<input type="hidden" name="r_kind" value="${room.r_kind}" />
+			<input type="hidden" name="r_people" value="${room.r_people}" />
+			<input type="hidden" name="r_price" value="${room.r_price}" />
+			<input type="hidden" name="r_base" value="${room.r_base}" />
+			<input type="hidden" name="r_rent" value="${room.r_rent}" />
+		</form>
+	
+		<ul class="btns">
+			<li><button class="btn btn-info">이전단계</button></li>
+			<li><button type="button" class="btn btn-primary okBook">다음단계</button></li>
+		</ul>				
 
-				
-				
-				
-		<div class="form-group">
-			<label class="control-label col-sm-2">밀키트 종류</label>
-			<div class="col-sm-2">
-				<select class="form-control" name="mk_kind" id="mk_kind">
-					<c:forEach var="kind" items="${kind}">
-						<option value="${kind.kind_name}">${kind.kind_name}</option>
-					</c:forEach>
-				</select>
-			</div>
-		</div>		
-	
-		<div class="form-group">
-			<label class="control-label col-sm-2">밀키트 종류</label>
-			<div class="col-sm-2">
-				<select class="form-control" name="mk_kind" id="mk_kind">
-					<c:forEach var="kind" items="${kind}">
-						<option value="${kind.kind_name}">${kind.kind_name}</option>
-					</c:forEach>
-				</select>
-			</div>
-		</div>		
-	
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				<ul class="btns">
-					<li><button class="btn btn-info">이전단계</button></li>
-					<li><button type="submit" class="btn btn-primary booking" id="submit">예약하기</button></li>
-				</ul>
-					<input type="hidden" name="r_name" value="${list.r_name} + " />
-					<input type="hidden" name="r_kind" value="${list.r_kind}" />
-					<input type="hidden" name="r_people" value="${list.r_people}" />
-					<input type="hidden" name="r_price" value="${list.r_price}" />
-					<input type="hidden" name="r_base" value="${list.r_base}" />
-					<input type="hidden" name="r_rent" value="${list.r_rent}" />
+
 <br /><br />
+
+			</div>
+		</div>
+		
 <h1>예약 정보</h1>
 <br /><br />
 				
@@ -209,13 +244,16 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
 <!-- END - 달력보여주기!!!!!!! -->	
 <br /><br />			
-
 			
-			</div>
-		</div>
-	</form>	
 </div>
 
 <%@ include file="../include/footer.jsp" %>
 </body>
+<script>
+$('.okBook').click(function(){
+	alert("버튼이 눌리나요??");
+	$('#okBookForm').submit();
+	
+});
+</script>
 </html>

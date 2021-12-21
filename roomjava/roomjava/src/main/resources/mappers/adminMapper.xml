@@ -25,9 +25,8 @@ INSERT INTO faq (faq_title, faq_content,faq_class)
     <!-- 공지사항 검색조건 -->
    <sql id="noticeSearch">
       <if test="searchType != null">
- 		<if test="searchType == 't'.toString()">AND notice_title LIKE '%' || #{keyword} || '%'</if>
-		<if test="searchType == 'c'.toString()">AND notice_content LIKE '%' || #{keyword} || '%'</if>
- 		<if test="searchType == 'tc'.toString()">AND (notice_title LIKE '%' || #{keyword} || '%') or (notice_content LIKE '%' || #{keyword} || '%')</if>
+         <if test="searchType == 'title'.toString()">AND notice_title LIKE CONCAT('%',#{keyword},'%')</if>
+         <if test="searchType == 'content'.toString()">AND notice_content  LIKE CONCAT('%',#{keyword},'%')</if>
       </if>
    </sql>
 
@@ -52,8 +51,10 @@ INSERT INTO faq (faq_title, faq_content,faq_class)
         SELECT	count(*)
         FROM	notice_board
         WHERE   1=1
+        
     ]]>
-    
+      <include refid="noticeSearch"/>
+      
 	</select>
 	    <!-- 공지사항 검색조건 -->
    <sql id="faqSearch">
