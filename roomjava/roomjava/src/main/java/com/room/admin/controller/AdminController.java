@@ -92,30 +92,7 @@ public class AdminController {
 		list = adminService.selectFaqType();
 		model.addAttribute("selectFaqType", list);
 	}
-	
-	//-----------------------------------------------------------------------------------------------------------
-	// faq 등록 : POST, 파일 등록
-	//----------------------------------------------------------------------------------------------------------
-	@RequestMapping(value="/faq/faqRegister", method=RequestMethod.POST)
-	private String Postfaqregister(HttpServletRequest request) throws Exception {
-		
-		System.out.println("상품등록 페이지 진입.....");
-		log.info("상품등록 페이지 진입");
-		
-		//게시글 등록 화면에서 입력한 값들을 실어나르기 위해 BoardVO를 생성한다.
-		FaqDTO faqDTO  	= new FaqDTO();
-		
-		
-		faqDTO.setFaqClass(request.getParameter("faqClass"));
-		faqDTO.setTitle(request.getParameter("title"));
-		faqDTO.setContent(request.getParameter("content"));
-		System.out.println(faqDTO);
-		
-		managerService.faqRegister(faqDTO);
-		
-		
-		return "redirect:/manager/faq/list";
-	}
+
 	// -------------------------------------------------------------------------------------------------
 	// 공지사항 list 페이징
 	// -------------------------------------------------------------------------------------------------
