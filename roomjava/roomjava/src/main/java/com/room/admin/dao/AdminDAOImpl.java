@@ -14,6 +14,7 @@ import com.room.admin.dto.PaymentDTO;
 import com.room.admin.dto.SearchCriteria;
 import com.room.member.dto.FaqDTO;
 import com.room.member.dto.MemberDTO;
+import com.room.member.dto.FaqTypeDTO;
 import com.room.admin.dto.RoomKindDTO;
 import com.room.admin.dto.Room_fncDTO;
 import com.room.admin.dto.Room_rentDTO;
@@ -235,6 +236,14 @@ public class AdminDAOImpl implements AdminDAO {
 		public void rentDelete(Room_rentDTO room_rentDTO) throws Exception {
 			sqlSession.delete(namespace + ".rentDelete", room_rentDTO);
 			
+		}
+		// -------------------------------------------------------------------------------------------------
+		// Faq 유형 목록 보기
+		// -------------------------------------------------------------------------------------------------
+		@Override
+		public List<FaqTypeDTO> selectFaqType() throws Exception {
+			logger.info("ManagerDAOImpl selectFaqType() Start....");
+			return sqlSession.selectList(namespace + ".selectFaqType");
 		}
 				
 

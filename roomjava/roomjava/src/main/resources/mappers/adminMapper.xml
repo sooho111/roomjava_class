@@ -305,6 +305,10 @@ INSERT INTO faq (faq_title, faq_content,faq_class)
 	WHERE rent_bno = #{rent_bno}
 	
 	</delete>
+	<!-- FAQ 종류 목록 보기 -->
+   	<select id="selectFaqType" resultType="com.room.member.dto.FaqTypeDTO" >
+    	SELECT * FROM FaqType
+    </select>
 
    
 	

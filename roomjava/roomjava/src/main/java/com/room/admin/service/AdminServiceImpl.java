@@ -13,6 +13,7 @@ import com.room.admin.dto.BoardDTO;
 import com.room.admin.dto.PaymentDTO;
 import com.room.admin.dto.SearchCriteria;
 import com.room.member.dto.FaqDTO;
+import com.room.member.dto.FaqTypeDTO;
 import com.room.member.dto.MemberDTO;
 import com.room.admin.dto.RoomKindDTO;
 import com.room.admin.dto.Room_fncDTO;
@@ -234,6 +235,15 @@ public class AdminServiceImpl implements AdminService {
 		
 	adminDAO.rentDelete(room_rentDTO);
 	}	
+	// -------------------------------------------------------------------------------------------------
+	// Faq 목록 가져오기
+	// -------------------------------------------------------------------------------------------------
+	@Override
+	public List<FaqTypeDTO> selectFaqType() throws Exception {
+		logger.info("ManagerDAOImpl selectFaqType() Start....");
+		return adminDAO.selectFaqType();
+	}
+
 	
 	
 	

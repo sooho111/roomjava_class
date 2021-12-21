@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.room.admin.dto.BoardDTO;
-import com.room.admin.dto.FaqtypeDTO;
 import com.room.admin.dto.PageMaker;
 import com.room.admin.dto.PaymentDTO;
 import com.room.admin.dto.Room_fncDTO;
@@ -27,7 +26,7 @@ import com.room.admin.dto.SearchCriteria;
 import com.room.admin.service.AdminService;
 import com.room.member.dto.FaqDTO;
 import com.room.member.dto.MemberDTO;
-import com.shopping.manager.dto.FaqTypeDTO;
+import com.room.member.dto.FaqTypeDTO;
 
 
 
@@ -89,9 +88,8 @@ public class AdminController {
 		logger.info("ManagerController getFaqTypeRegister() GET");
 		
 		// 데이터 타입의 자료를 모두 가져온다.		
-		List<FaqtypeDTO> list= null;
-		list = managerService.selectFaqType();
-		log.info("ManagerController getData : " + list);
+		List<FaqTypeDTO> list= null;
+		list = adminService.selectFaqType();
 		model.addAttribute("selectFaqType", list);
 	}
 	

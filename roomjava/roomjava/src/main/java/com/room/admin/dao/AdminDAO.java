@@ -6,6 +6,7 @@ import com.room.admin.dto.BoardDTO;
 import com.room.admin.dto.PaymentDTO;
 import com.room.admin.dto.SearchCriteria;
 import com.room.member.dto.FaqDTO;
+import com.room.member.dto.FaqTypeDTO;
 import com.room.member.dto.MemberDTO;
 import com.room.admin.dto.RoomKindDTO;
 import com.room.admin.dto.Room_fncDTO;
@@ -91,6 +92,10 @@ public interface AdminDAO {
 	public void fncDelete(Room_fncDTO room_fncDTO) throws Exception;
 	//대여항목 삭제
 	public void rentDelete(Room_rentDTO room_rentDTO) throws Exception;
+	// -------------------------------------------------------------------------------------------------
+	// FAQ 유형 목록
+	// -------------------------------------------------------------------------------------------------
+	public List<FaqTypeDTO> selectFaqType() throws Exception;
 	
 	
 
