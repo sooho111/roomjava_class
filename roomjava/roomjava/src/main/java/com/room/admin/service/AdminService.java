@@ -23,7 +23,7 @@ public interface AdminService {
 
 	// 공지사항 작성
 	public void noticeWrite(BoardDTO boardDTO) throws Exception;
-	// 공지사항 작성
+	// faq 작성
 	public void faqWrite(FaqDTO faqDTO) throws Exception;
 	
 	// 공지사항 목록 조회
@@ -36,6 +36,13 @@ public interface AdminService {
 
 	// faq 총 갯수
 	public int faqlistCount(SearchCriteria scri) throws Exception;
+	//faq 수정
+	public void faqUpdate(FaqDTO faqDTO) throws Exception;
+	
+	//faq 삭제
+	public void faqDelete(FaqDTO faqDTO) throws Exception;
+	//faq 상세페이지
+	public FaqDTO faqdetailView(int faq_bno) throws Exception;
 	
 	// 공지사항 상세보기
 	public BoardDTO detailView(int notice_bno) throws Exception;

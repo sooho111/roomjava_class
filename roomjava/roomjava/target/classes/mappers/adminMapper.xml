@@ -88,6 +88,29 @@ INSERT INTO faq (faq_title, faq_content,faq_class)
     ]]>
     
 	</select>
+		<!-- 대여항목 상세페이지 -->
+	<select id="faqdetailView" parameterType="int" resultType="com.room.member.dto.FaqDTO">
+	SELECT *
+	FROM   faq		   
+	WHERE  faq_bno = #{faq_bno}
+	</select>
+
+	
+	<!-- 대여항목 수정 -->
+	<update id="faqUpdate" parameterType="com.room.member.dto.FaqDTO">
+	UPDATE faq
+	SET	faq_title = #{faq_title},
+		faq_content = #{faq_content},
+		faq_class =#{faq_class}
+	WHERE faq_bno = #{faq_bno}
+	</update>
+		<!-- 기능 삭제 -->
+	<delete id="faqDelete" parameterType="int">
+	delete from faq
+	
+	WHERE faq_bno = #{faq_bno}
+	
+	</delete>
 	
 	   <!-- QnA 검색조건 -->
    <sql id="qnaSearch">
@@ -341,7 +364,7 @@ INSERT INTO faq (faq_title, faq_content,faq_class)
 	</delete>
 	<!-- FAQ 종류 목록 보기 -->
    	<select id="selectFaqType" resultType="com.room.member.dto.FaqTypeDTO" >
-    	SELECT * FROM FaqType
+    	SELECT * FROM faq_type
     </select>
 	
    
