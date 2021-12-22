@@ -87,8 +87,8 @@ MemberDAO memberDAO;
 	// 회원탈퇴
 	// -------------------------------------------------------------------------------------------------
 	@Override
-	public int memberDelete(String m_id) throws Exception {
-		return memberDAO.memberDelete(m_id);
+	public int memberDelete(MemberDTO memberDTO) throws Exception {
+		return memberDAO.memberDelete(memberDTO);
 	}
 
 

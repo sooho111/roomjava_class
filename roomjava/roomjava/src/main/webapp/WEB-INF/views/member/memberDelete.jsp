@@ -65,52 +65,43 @@ th { text-align:center; }
 				<li><a href="/member/memberDelete/${member.m_id}">회원 탈퇴</a><span class="glyphicon glyphicon-chevron-right"></span></li>
 			</ul>
 		</div>
-<div class="m_content">
-			<p class="order">예약 정보</p>
-			<hr>
-			<c:if test="${bookList == '[]' }">
-				<p class="order">예약 정보가 없습니다.</p>
-			</c:if>
-			
-			<c:if test="${bookList != '[]' }">
-			
-				<table class="table table-hover table-bordered">
-					<thead>
-						<tr class="info">
-							<th>주문번호</th>
-							<th>예약자 이름</th>
-							<th>예약 인원</th>
-							<th>상태</th>
-						</tr>
-					</thead>
-					
-					<tbody>
-						<c:forEach var="bookList" items="${bookList}">		
-							<tr>
-								<td align=center><a href="../member/myBookView?book_order=${bookList.book_order}">${bookList.book_order}</a></td>
-								<td align=center>${bookList.book_name}</td>
-								<td align=center>${bookList.book_people}</td>
-								<td align=center>${bookList.book_ok}</td>
-							</tr>
-						</c:forEach>
-					</tbody>
-				</table>
-				
-			</c:if>
-		</div>
-		<div class="m_content">
-				<input type="hidden" id="m_id" name="m_id" value="${member.m_id}" />
-		</div>
+
+
+	<div class="m_content">
+		<form class="form-horizontal" method="post" autocomplete="off">
+		 	
+		 	<div class="form-group">
+		 		<label class="control-label col-sm-2" for="m_id">아이디</label> 
+		 		<div class="col-sm-3">
+		 		<input type="text" id="m_id" name="m_id" value="${member.m_id}" readonly/>
+		 		</div>
+		 	</div>
+		 	
+		 	<div class="form-group">
+		 		<label class="control-label col-sm-2" for="m_pwd">비밀번호</label>
+		 		<div class="col-sm-3">
+		 		<input type="password" id="m_pwd" name="m_pwd" />
+		 		</div>
+		 	</div>
+		 	
+		 	<div class="form-group" style="margin-left:100px;">
+		 		<button class="btn btn-danger" type="submit">회원탈퇴</button>
+		 		<button class="btn btn-warning" onclick ="location.href='member/myPage'">뒤로</button>
+		 	</div>
+		 	
+		</form>
+	</div>
+
 	</div>
 </div>
-
-
+		
 <%@ include file="../include/footer.jsp" %>
 </body>
-<script type="text/javascript">
-// 회원정보수정버튼을 눌렀을 경우 회원정보수정 페이지로 이동한다.
-$("#memberUpdateBtn").on("click", function() {
-	location.href = "/member/memberUpdate/" + $("#m_id").val();
-});
-</script>
+<script>
+ 	var result = '${result}';
+ 	
+ 	if(result === "removeFalse") {
+ 		alert("비밀번호를 다시 입력해주세요.");
+ 	}
+ </script>
 </html>
