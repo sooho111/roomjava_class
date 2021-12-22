@@ -25,8 +25,8 @@ INSERT INTO faq (faq_title, faq_content,faq_class)
     <!-- 공지사항 검색조건 -->
    <sql id="noticeSearch">
       <if test="searchType != null">
-         <if test="searchType == 'title'.toString()">AND notice_title LIKE CONCAT('%',#{keyword},'%')</if>
-         <if test="searchType == 'content'.toString()">AND notice_content  LIKE CONCAT('%',#{keyword},'%')</if>
+         <if test="searchType == 'notice_title'.toString()">AND notice_title LIKE CONCAT('%',#{keyword},'%')</if>
+         <if test="searchType == 'notice_content'.toString()">AND notice_content  LIKE CONCAT('%',#{keyword},'%')</if>
       </if>
    </sql>
 
@@ -59,9 +59,8 @@ INSERT INTO faq (faq_title, faq_content,faq_class)
 	    <!-- 공지사항 검색조건 -->
    <sql id="faqSearch">
       <if test="searchType != null">
- 		<if test="searchType == 't'.toString()">AND faq_title LIKE '%' || #{keyword} || '%'</if>
-		<if test="searchType == 'c'.toString()">AND faq_content LIKE '%' || #{keyword} || '%'</if>
- 		<if test="searchType == 'tc'.toString()">AND (faq_title LIKE '%' || #{keyword} || '%') or (faq_content LIKE '%' || #{keyword} || '%')</if>
+ 		<if test="searchType == 'faq_title'.toString()">AND faq_title LIKE '%' || #{keyword} || '%'</if>
+		<if test="searchType == 'faq_content'.toString()">AND faq_content LIKE '%' || #{keyword} || '%'</if>
       </if>
    </sql>
 
@@ -88,6 +87,41 @@ INSERT INTO faq (faq_title, faq_content,faq_class)
         WHERE   1=1
     ]]>
     
+	</select>
+	
+	   <!-- QnA 검색조건 -->
+   <sql id="qnaSearch">
+      <if test="searchType != null">
+         <if test="searchType == 'qna_title'.toString()">AND qna_title LIKE CONCAT('%',#{keyword},'%')</if>
+         <if test="searchType == 'qna_content'.toString()">AND qna_content  LIKE CONCAT('%',#{keyword},'%')</if>
+      </if>
+   </sql>
+
+   <!-- QnA 목록 보기 (Paging 처리) + 검색조건 -->
+   <select id="qnaPaging" parameterType="com.room.admin.dto.SearchCriteria" resultType="com.room.member.dto.QnaDTO">
+    <![CDATA[
+       SELECT *
+        FROM   qna_board 
+        WHERE   1=1
+    ]]>
+      <include refid="qnaSearch"/>
+    <![CDATA[
+        ORDER BY qna_bno DESC
+        LIMIT   #{pageStart}, #{perPageNum}
+    ]]>
+   </select>
+   
+   
+   	<!-- QnA 수 구하기 (Paging 처리) -->
+	<select id="qnaTotalCount" resultType="Integer">
+    <![CDATA[
+        SELECT	count(*)
+        FROM	qna_board
+        WHERE   1=1
+        
+    ]]>
+      <include refid="qnaSearch"/>
+      
 	</select>
 	
 	
@@ -309,7 +343,7 @@ INSERT INTO faq (faq_title, faq_content,faq_class)
    	<select id="selectFaqType" resultType="com.room.member.dto.FaqTypeDTO" >
     	SELECT * FROM FaqType
     </select>
-
+	
    
 	
 </mapper>

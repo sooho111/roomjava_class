@@ -27,6 +27,7 @@ import com.room.admin.dto.PageMaker;
 import com.room.admin.dto.SearchCriteria;
 import com.room.main.dto.BookDTO;
 import com.room.member.dto.MemberDTO;
+import com.room.member.dto.QnaDTO;
 import com.room.member.service.MemberService;
 import com.room.member.dto.FaqDTO;
 
@@ -378,7 +379,6 @@ public class MemberController {
 	    return mav;
 	    
 	   }
-		
 
 	
 } // end class MemberController

@@ -15,6 +15,7 @@ import com.room.admin.dto.SearchCriteria;
 import com.room.member.dto.FaqDTO;
 import com.room.member.dto.FaqTypeDTO;
 import com.room.member.dto.MemberDTO;
+import com.room.member.dto.QnaDTO;
 import com.room.admin.dto.RoomKindDTO;
 import com.room.admin.dto.Room_fncDTO;
 import com.room.admin.dto.Room_rentDTO;
@@ -63,7 +64,7 @@ public class AdminServiceImpl implements AdminService {
 		
 		return adminDAO.faqlistCount(scri);
 	} 	
-	
+
 	// ----------------------------------------------------------------------------------------------------
 	// 방 종류 뿌려주기
 	// ----------------------------------------------------------------------------------------------------
@@ -243,6 +244,7 @@ public class AdminServiceImpl implements AdminService {
 		logger.info("ManagerDAOImpl selectFaqType() Start....");
 		return adminDAO.selectFaqType();
 	}
+
 
 	
 	

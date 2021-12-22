@@ -56,8 +56,8 @@
 			<div align="center" class="col-xs-2 col-sm-2" style="margin-left:300px;">
 				<select name = "searchType" class="form-control">
 					<option value ="n" <c:out value = "$(scri.seachType == null ? 'selected' : '')"/>>---선택---</option>
-					<option value ="title" <c:out value = "$(scri.seachType eq 't' ? 'selected' : '')"/>>제목</option>
-					<option value ="content" <c:out value = "$(scri.seachType eq 'c' ? 'selected' : '')"/>>내용</option>
+					<option value ="notice_title" <c:out value = "$(scri.seachType eq 't' ? 'selected' : '')"/>>제목</option>
+					<option value ="notice_content" <c:out value = "$(scri.seachType eq 'c' ? 'selected' : '')"/>>내용</option>
 				</select>
 			</div>
 			
@@ -76,16 +76,16 @@
 		<div class="col-md-offset-5">
 		  	<ul class="pagination">
 			    <c:if test="${pageMaker.prev}">
-			    	<li><a href="noticeList${pageMaker.makeSearch(pageMaker.startPage - 1)}">이전</a></li>
+			    	<li><a href="boardList${pageMaker.makeSearch(pageMaker.startPage - 1)}">이전</a></li>
 			    </c:if>
 				
 			    <c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="idx">
 			 		<li <c:out value="${pageMaker.cri.page == idx ? 'class=info' : '' }" />>   
-			    	<a href="noticeList${pageMaker.makeSearch(idx)}">${idx}</a></li>
+			    	<a href="boardList${pageMaker.makeSearch(idx)}">${idx}</a></li>
 			    </c:forEach>
 				
 			    <c:if test="${pageMaker.next && pageMaker.endPage > 0}">
-			    	<li><a href="noticeList${pageMaker.makeSearch(pageMaker.endPage + 1)}">다음</a></li>
+			    	<li><a href="boardList${pageMaker.makeSearch(pageMaker.endPage + 1)}">다음</a></li>
 			    </c:if>
 	  		</ul>
 		</div>
@@ -152,21 +152,22 @@
 		<div class="col-md-offset-5">
 		  	<ul class="pagination">
 			    <c:if test="${pageMaker2.prev}">
-			    	<li><a href="noticeList${pageMaker2.makeSearch(pageMaker2.startPage - 1)}">이전</a></li>
+			    	<li><a href="boardList${pageMaker2.makeSearch(pageMaker2.startPage - 1)}">이전</a></li>
 			    </c:if>
 				
 			    <c:forEach begin="${pageMaker2.startPage}" end="${pageMaker2.endPage}" var="idx">
 			 		<li <c:out value="${pageMaker2.cri.page == idx ? 'class=info' : '' }" />>   
-			    	<a href="noticeList${pageMaker2.makeSearch(idx)}">${idx}</a></li>
+			    	<a href="boardList${pageMaker2.makeSearch(idx)}">${idx}</a></li>
 			    </c:forEach>
 				
 			    <c:if test="${pageMaker2.next && pageMaker2.endPage > 0}">
-			    	<li><a href="noticeList${pageMaker2.makeSearch(pageMaker2.endPage + 1)}">다음</a></li>
+			    	<li><a href="boardList${pageMaker2.makeSearch(pageMaker2.endPage + 1)}">다음</a></li>
 			    </c:if>
 	  		</ul>
 		</div>
 	</form>
 </div>
+
 
 </body>
 <script>

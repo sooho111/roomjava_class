@@ -118,7 +118,7 @@ public class AdminController {
 	//	return "redirect:/manager/faq/list";
 //	}
 	// -------------------------------------------------------------------------------------------------
-	// 공지사항 list 페이징
+	// 보드 list 페이징
 	// -------------------------------------------------------------------------------------------------
 		@RequestMapping(value = "/board/boardList", method = RequestMethod.GET)
 		public String noticeList(Model model, @ModelAttribute("scri") SearchCriteria scri) throws Exception {
@@ -128,6 +128,7 @@ public class AdminController {
 			
 			model.addAttribute("list", adminService.list(scri));
 			model.addAttribute("faqlist", adminService.faqlist(scri));
+
 			
 			PageMaker pageMaker = new PageMaker();
 			pageMaker.setCri(scri);
@@ -135,9 +136,11 @@ public class AdminController {
 			PageMaker pageMaker2 = new PageMaker();
 			pageMaker2.setCri(scri);
 			pageMaker2.setTotalCount(adminService.faqlistCount(scri));
+		
 			
 			model.addAttribute("pageMaker", pageMaker);
 			model.addAttribute("pageMaker2", pageMaker2);
+			
 			
 			return "admin/board/boardList";
 		}
@@ -467,7 +470,7 @@ public class AdminController {
 				
 				return "redirect:/admin/etc/etcList";
 			}
-				
+			
 			
 		
 		

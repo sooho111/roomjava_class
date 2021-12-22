@@ -14,6 +14,7 @@ import com.room.admin.dto.PaymentDTO;
 import com.room.admin.dto.SearchCriteria;
 import com.room.member.dto.FaqDTO;
 import com.room.member.dto.MemberDTO;
+import com.room.member.dto.QnaDTO;
 import com.room.member.dto.FaqTypeDTO;
 import com.room.admin.dto.RoomKindDTO;
 import com.room.admin.dto.Room_fncDTO;
@@ -68,8 +69,8 @@ public class AdminDAOImpl implements AdminDAO {
 
 		return sqlSession.selectOne(namespace + ".faqTotalCount", scri);
 	}
-	
-	
+
+		
 	// ----------------------------------------------------------------------------------------------------
 	// 방 종류 뿌려주기
 	// ----------------------------------------------------------------------------------------------------
@@ -245,6 +246,7 @@ public class AdminDAOImpl implements AdminDAO {
 			logger.info("ManagerDAOImpl selectFaqType() Start....");
 			return sqlSession.selectList(namespace + ".selectFaqType");
 		}
+
 				
 
 } // end class AdminDAOImpl implements AdminDAO
