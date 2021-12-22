@@ -27,6 +27,7 @@
 <!-- End fullcalender -->
 
 <style type="text/css">
+#bheader .inner .gnb > li:nth-child(2) > a { font-weight:700; }
 body { overflow-x:hidden; font-size:14px; }
 #calendar {
     max-width: 900px;
