@@ -29,11 +29,11 @@ span.plusIcon { cursor:pointer; }
 	   			 <td>
 			      <span class="glyphicon glyphicon-plus plusIcon"></span>
 			      <span class="glyphicon glyphicon-minus plusIcon" style="display:none"></span>
-			      ${review.r_name},
+			      (${review.r_name},
 			    <c:if test="${review.r_kind == 1 }">펜션</c:if>
 				<c:if test="${review.r_kind == 2 }">데크</c:if>
 				<c:if test="${review.r_kind == 3 }">글램핑</c:if>
-				<c:if test="${review.r_kind == 4 }">카라반</c:if>, ${review.review_writer},${review.m_reg}
+				<c:if test="${review.r_kind == 4 }">카라반</c:if>) 작성자:${review.review_writer} 등록일:${review.m_reg}
 			    </td>  
 	 			 </tr>
 			  <tr style="display:none">
@@ -68,19 +68,19 @@ span.plusIcon { cursor:pointer; }
 		<ul class="btn-group pagination">
 		    <c:if test="${pageMaker.prev }">
 		    <li>
-		        <a href='<c:url value="/main/review?page=${pageMaker.startPage-1}"/>'><span class="glyphicon glyphicon-chevron-left"></span></a>
+		        <a href='<c:url value="/member/review?page=${pageMaker.startPage-1}"/>'><span class="glyphicon glyphicon-chevron-left"></span></a>
 		    </li>
 		    </c:if>
 		    
 		    <c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="pageNum">
 		    <li>
-		        <a href='<c:url value="/main/review?page=${pageNum}"/>'><i>${pageNum}</i></a>
+		        <a href='<c:url value="/member/review?page=${pageNum}"/>'><i>${pageNum}</i></a>
 		    </li>
 		    </c:forEach>
 		    
 		    <c:if test="${pageMaker.next && pageMaker.endPage >0}">
 		    <li>
-		        <a href='<c:url value="/main/review?page=${pageMaker.endPage+1}"/>'><span class="glyphicon glyphicon-chevron-right"></span></a>
+		        <a href='<c:url value="/member/review?page=${pageMaker.endPage+1}"/>'><span class="glyphicon glyphicon-chevron-right"></span></a>
 		    </li>
 		    </c:if>
 		</ul>

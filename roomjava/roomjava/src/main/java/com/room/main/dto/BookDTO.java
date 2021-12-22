@@ -15,5 +15,5 @@ public class BookDTO {
 	private int		r_bno;			// 방 번호
 	private String 	room_class;
 	private String 	r_name;
-	
+	private int		r_kind;
 }
