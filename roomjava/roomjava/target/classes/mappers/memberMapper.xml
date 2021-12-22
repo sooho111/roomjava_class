@@ -161,4 +161,41 @@ WHERE book_name = #{book_name}
         	LIMIT   #{pageStart}, #{perPageNum}
     	]]>
    	</select>
+   	
+   	<!-- Qna 작성 -->
+   	<insert id="qnaInsert"  parameterType="com.room.member.dto.QnaDTO">
+   	Insert Into qna_board(qna_title, qna_content, qna_seceret, m_id)
+   	 	   Value (#{qna_title}, #{qna_content}, #{qna_seceret}, #{m_id})
+   	
+   	</insert>
+   	
+   		     <!-- qna 검색조건 -->
+   	<sql id="qnasearch">
+      	<if test="searchType != null">
+	         <if test="searchType == 'qna_title'.toString()">AND qna_title LIKE CONCAT('%',#{keyword},'%')</if>
+	         <if test="searchType == 'qna_content'.toString()">AND qna_content LIKE CONCAT('%',#{keyword},'%')</if>
+      	</if>
+   	</sql>
+   	
+    <!-- qna 수 구하기 (Paging 처리) + 검색조건 -->
+   	<select id="qnaListTotalCount" parameterType="com.room.admin.dto.SearchCriteria" resultType="Integer">
+    	<![CDATA[
+        	SELECT   count(*) FROM qna_board
+        	WHERE   1=1
+     	]]>
+     	<include refid="qnasearch"/>
+   	</select>
+   
+   <!-- qna 목록 보기 (Paging 처리) + 검색조건 -->
+   <select id="qnaListPaging" parameterType="com.room.admin.dto.SearchCriteria" resultType="com.room.member.dto.QnaDTO">
+    	<![CDATA[
+        	SELECT   *  FROM   qna_board
+        	WHERE   1=1
+    	]]>
+      	<include refid="qnasearch"/>
+    	<![CDATA[
+        	ORDER BY faq_bno ASC
+        	LIMIT   #{pageStart}, #{perPageNum}
+    	]]>
+   	</select>
 </mapper>

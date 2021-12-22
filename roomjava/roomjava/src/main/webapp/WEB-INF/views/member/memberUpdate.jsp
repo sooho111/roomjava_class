@@ -62,7 +62,7 @@ th { text-align:center; }
 				<li></li>
 				<li><a href="#">예약 확인</a><span class="glyphicon glyphicon-chevron-right"></span></li>
 				<li><a href="/member/memberUpdate/${member.m_id}">회원 정보 수정</a><span class="glyphicon glyphicon-chevron-right"></span></li>
-				<li class = "memberDelete"><a href="#">회원 탈퇴</a><span class="glyphicon glyphicon-chevron-right"></span></li>
+				<li><a href="/member/memberDelete/${member.m_id}">회원 탈퇴</a><span class="glyphicon glyphicon-chevron-right"></span></li>
 			</ul>
 		</div>
 
@@ -224,13 +224,6 @@ $(document).ready(function() {
 // 회원정보수정버튼을 눌렀을 경우 회원정보수정 페이지로 이동한다.
 $("#memberUpdateBtn").on("click", function() {
 	location.href = "/member/memberUpdate/" + $("#m_id").val();
-});
-// 회원탈퇴버튼을 눌렀을 경우 회원탈퇴.
-$('.memberDelete').click(function(){
-	var result = confirm("회원탈퇴 하시겠습니까?");
-	if(result){
-		location.href = "/member/memberDelete/" + $("#m_id").val();
-	}
 });
 
 

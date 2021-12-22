@@ -22,11 +22,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+
 import com.room.admin.dto.BoardDTO;
 import com.room.admin.dto.PageMaker;
 import com.room.admin.dto.SearchCriteria;
 import com.room.main.dto.BookDTO;
 import com.room.member.dto.MemberDTO;
+import com.room.member.dto.QnaDTO;
 import com.room.member.service.MemberService;
 import com.room.member.dto.FaqDTO;
 
@@ -234,11 +236,34 @@ public class MemberController {
 	// -------------------------------------------------------------------------------------------------
 	// 회원 탈퇴
 	// -------------------------------------------------------------------------------------------------
-	@RequestMapping(value = "/memberDelete/{m_id}", method = RequestMethod.GET)
+/*	@RequestMapping(value = "/memberDelete/{m_id}", method = RequestMethod.GET)
 	private String productDelete(@PathVariable String m_id, HttpSession session) throws Exception {
 		memberService.memberDelete(m_id);
 		session.invalidate();
 		return "redirect:/";
+	}*/
+	@RequestMapping(value="/memberDelete/{m_id}", method = RequestMethod.GET)
+	public String memberDeleteGET() throws Exception {
+		return "/member/memberDelete";
+	}
+	@RequestMapping(value="/memberDelete/{m_id}", method = RequestMethod.POST)
+	public String removePOST(MemberDTO memberDTO, HttpSession session, RedirectAttributes ra) throws Exception {
+		logger.info("removePOST");
+		
+		MemberDTO member = (MemberDTO)session.getAttribute("member");
+		
+		String oldPass = memberDTO.getM_pwd();
+		String newPass = member.getM_pwd();
+		
+		if(oldPass.equals(newPass)) {
+			memberService.memberDelete(memberDTO);
+			ra.addFlashAttribute("result", "removeOK");
+			session.invalidate();
+			return "redirect:/";
+		} else {
+			ra.addFlashAttribute("result", "removeFalse");
+			return "redirect:/user/remove";
+		}
 	}
 
 	// -------------------------------------------------------------------------------------------------
@@ -378,7 +403,52 @@ public class MemberController {
 	    return mav;
 	    
 	   }
+	/*-----------------------------------------------------------------------------------------------------------
+	* qna 작성
+	----------------------------------------------------------------------------------------------------------*/
+	@RequestMapping(value = "/qnaInsert", method = RequestMethod.GET)
+	public void qnaView() throws Exception {}
+	
+	@RequestMapping(value = "/qnaInsert", method = RequestMethod.POST)
+	public String qnaWrite(HttpSession httpSession ,QnaDTO QnaDTO) throws Exception {
+		MemberDTO member = (MemberDTO) httpSession.getAttribute("member");
+		String userId = member.getM_id();
 		
+		QnaDTO.setM_id(userId);
+		
+		memberService.qnaWrite(QnaDTO);
+		
+		
+		return "redirect:/member/qna";
+	}
 
+
+
+	// -------------------------------------------------------------------------------------------------
+	// qna list 페이징
+	// -------------------------------------------------------------------------------------------------
+		@RequestMapping(value = "/member/qna", method = RequestMethod.GET)
+		public String noticeList(Model model, @ModelAttribute("scri") SearchCriteria scri) throws Exception {
+			logger.info("qnaList");
+			
+
+			
+			model.addAttribute("qnalist", memberService.list(scri));
+			
+
+			
+			PageMaker pageMaker = new PageMaker();
+			pageMaker.setCri(scri);
+			pageMaker.setTotalCount(memberService.listCount(scri));
+
+		
+			
+			model.addAttribute("pageMaker", pageMaker);
+	
+			
+			
+			return "member/qna";
+		}
+	
 	
 } // end class MemberController

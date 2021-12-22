@@ -56,21 +56,13 @@ INSERT INTO faq (faq_title, faq_content,faq_class)
       <include refid="noticeSearch"/>
       
 	</select>
-	    <!-- 공지사항 검색조건 -->
-   <sql id="faqSearch">
-      <if test="searchType != null">
- 		<if test="searchType == 't'.toString()">AND faq_title LIKE '%' || #{keyword} || '%'</if>
-		<if test="searchType == 'c'.toString()">AND faq_content LIKE '%' || #{keyword} || '%'</if>
- 		<if test="searchType == 'tc'.toString()">AND (faq_title LIKE '%' || #{keyword} || '%') or (faq_content LIKE '%' || #{keyword} || '%')</if>
-      </if>
-   </sql>
 
    <!-- 공지사항 목록 보기 (Paging 처리) + 검색조건 -->
    <select id="faqPaging" parameterType="com.room.admin.dto.SearchCriteria" resultType="com.room.member.dto.FaqDTO">
     <![CDATA[
-       SELECT *
-        FROM   faq 
-        WHERE   1=1
+      	select *
+		from faq
+        where   1=1
     ]]>
       <include refid="faqSearch"/>
     <![CDATA[
