@@ -5,114 +5,109 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="UTF-8">
-	<title>예약하기</title>
-	<%@ include file="../include/includeFile.jsp" %>
-	
-	<script src="/resources/js/jquery-3.6.0.js"></script>
-	<!-- fullcalender -->
-	<script src='/resources/fullcalendar-5.10.1/lib/locales-all.min.js'></script>
-	<link href='/resources/fullcalendar-5.10.1/lib/main.css' rel='stylesheet' />
-	<script src='/resources/fullcalendar-5.10.1/lib/main.js'></script>
-	<script>
-	      document.addEventListener('DOMContentLoaded', function() {
-	        var calendarEl = document.getElementById('calendar');
-	        var calendar = new FullCalendar.Calendar(calendarEl, {
-	          initialView: 'dayGridMonth'
-	        });
-	        calendar.render();
-	      });
-	
-	</script>
-	<!-- End fullcalender -->
-	
-	<style type="text/css">
-	    body {
-	        margin: 40px 10px;
-	        padding: 0;
-	        font-family: "Lucida Grande",Helvetica,Arial,Verdana,sans-serif;
-	        font-size: 14px;
-	    }
-	
-	    #calendar {
-	        max-width: 900px;
-	        margin: 0 auto;
-	    }
-	
-	    .fc-day-number.fc-sat.fc-past { color:#0000FF; }
-	    .fc-day-number.fc-sun.fc-past { color:#FF0000; }
+<meta charset="UTF-8">
+<title>예약하기</title>
+<%@ include file="../include/includeFile.jsp" %>
 
-	</style>	
-	
+<script src="/resources/js/jquery-3.6.0.js"></script>
+<!-- fullcalender -->
+<script src='/resources/fullcalendar-5.10.1/lib/locales-all.min.js'></script>
+<link href='/resources/fullcalendar-5.10.1/lib/main.css' rel='stylesheet' />
+<script src='/resources/fullcalendar-5.10.1/lib/main.js'></script>
+<script>
+      document.addEventListener('DOMContentLoaded', function() {
+        var calendarEl = document.getElementById('calendar');
+        var calendar = new FullCalendar.Calendar(calendarEl, {
+          initialView: 'dayGridMonth'
+        });
+        calendar.render();
+      });
+
+</script>
+<!-- End fullcalender -->
+
+<style type="text/css">
+body { overflow-x:hidden; font-size:14px; }
+#calendar {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.fc-day-number.fc-sat.fc-past { color:#0000FF; }
+.fc-day-number.fc-sun.fc-past { color:#FF0000; }
+#showRooms { margin-top:40px; }
+
+</style>	
+
 </head>
 <body>
 <%@ include file="../include/header.jsp" %>
-<h1>예약하기!!!!!</h1>
 
 <div class="container">
 	<div class="inner">
 		<div id="showRooms">
-			<div class="img"><img src="/resources/images/none.png" alt="images" width="450px" height="450px" />
+			<div align="center"><img src="/resources/images/none.png" alt="images" width="450px" height="450px" />
 		</div>
 				
 		<br/><br/><br/>
+		<form class="form form-horizontal">
+			<div class="form-group">
+				<label class="control-label col-sm-4">예약자 이름</label>
+				<div class="col-sm-3">
+					<input type="text" class="form-control" name="m_name" id="m_name" maxlength="50" />
+				</div>
+			</div>
+			
+			<div class="form-group">
+				<label class="control-label col-sm-4">예약 인원</label>
+				<div class="col-sm-3">
+					<input type="text" class="form-control" 
+					name="member" id="member" maxlength="50" />
+				</div>
+			</div>	
+					
+			<div class="form-group">
+				<label class="control-label col-sm-4">예약자 전화번호</label>
+				<div class="col-sm-4">
+					<input type="text" class="form-control" 
+					name="m_tel" id="m_tel" maxlength="50" />
+				</div>
+			</div>	
+			
+			<div class="form-group">
+				<label class="control-label col-sm-4">방 기능</label>
+				<div class="col-sm-5">
+					<select class="form-control" name="room_fnc" id="room_fnc">
+						<c:forEach var="fnc" items="${fnc}">
+							<option value="${fnc.fnc_name}">${fnc.fnc_name}</option>
+						</c:forEach>
+					</select>
+				</div>
+			</div>		
 		
-		<div class="form-group">
-			<label class="control-label col-sm-2">예약자 이름</label>
-			<div class="col-sm-4">
-				<input type="text" class="form-control" 
-				name="m_name" id="m_name" maxlength="50" value="${member.m_name}" readonly="readonly"/>
-			</div>
-		</div>
+			<div class="form-group">
+				<label class="control-label col-sm-4">렌트</label>
+				<div class="col-sm-5">
+					<select class="form-control" name="room_rent" id="room_rent">
+						<c:forEach var="rent" items="${rent}">
+							<option value="${rent.rent_name}">${rent.rent_name}, ${rent.rent_price}원</option>
+						</c:forEach>
+					</select>
+				</div>
+			</div>		
 		
-		<div class="form-group">
-			<label class="control-label col-sm-2">예약 인원</label>
-			<div class="col-sm-4">
-				<input type="text" class="form-control" 
-				name="member" id="member" maxlength="50" value="${member.m_name}" readonly="readonly"/>
+			<div class="form-group">
+				<label class="control-label col-sm-4">결제 수단</label>
+				<div class="col-sm-5">
+					<select class="form-control" name="payment" id="payment">
+						<c:forEach var="payment" items="${payment}">
+							<option value="${payment.pay_name}">${payment.pay_name}, ${payment.pay_account}, ${payment.pay_bank}은행</option>
+						</c:forEach>
+					</select>
+				</div>
 			</div>
-		</div>	
-				
-		<div class="form-group">
-			<label class="control-label col-sm-2">예약자 전화번호</label>
-			<div class="col-sm-4">
-				<input type="text" class="form-control" 
-				name="m_tel" id="m_tel" maxlength="50" value="${member.m_tel}" readonly="readonly"/>
-			</div>
-		</div>	
+		</form>
 		
-		<div class="form-group">
-			<label class="control-label col-sm-2">방 기능</label>
-			<div class="col-sm-5">
-				<select class="form-control" name="room_fnc" id="room_fnc">
-					<c:forEach var="fnc" items="${fnc}">
-						<option value="${fnc.fnc_name}">${fnc.fnc_name}</option>
-					</c:forEach>
-				</select>
-			</div>
-		</div>		
-	
-		<div class="form-group">
-			<label class="control-label col-sm-2">렌트</label>
-			<div class="col-sm-5">
-				<select class="form-control" name="room_rent" id="room_rent">
-					<c:forEach var="rent" items="${rent}">
-						<option value="${rent.rent_name}">${rent.rent_name}, ${rent.rent_price}원</option>
-					</c:forEach>
-				</select>
-			</div>
-		</div>		
-	
-		<div class="form-group">
-			<label class="control-label col-sm-2">결제 수단</label>
-			<div class="col-sm-5">
-				<select class="form-control" name="payment" id="payment">
-					<c:forEach var="payment" items="${payment}">
-						<option value="${payment.pay_name}">${payment.pay_name}, ${payment.pay_account}, ${payment.pay_bank}은행</option>
-					</c:forEach>
-				</select>
-			</div>
-		</div>		
 		<form action="/main/okBook" method="post" id="okBookForm">
 			<input type="hidden" name="r_bno" value="${room.r_bno}" />
 			<input type="hidden" name="r_name" value="${room.r_name}" />
@@ -123,10 +118,10 @@
 			<input type="hidden" name="r_rent" value="${room.r_rent}" />
 		</form>
 	
-		<ul class="btns">
-			<li><button class="btn btn-info">이전단계</button></li>
-			<li><button type="button" class="btn btn-primary okBook">다음단계</button></li>
-		</ul>				
+		<div class="col-sm-offset-8">
+			<button class="btn btn-info">이전단계</button>
+			<button type="button" class="btn btn-primary okBook">다음단계</button>
+		</div>			
 
 
 <br /><br />
@@ -134,13 +129,12 @@
 			</div>
 		</div>
 		
-<h1>예약 정보</h1>
 <br /><br />
 				
-<!-- 달력보여주기!!!!!!! 짱이지?! -->				
+<!-- 달력보여주기!!!!!!! 짱이지?! 			
 <div id='calendar'></div>
 <input type="button" id="btnAddTest" value="추가">
-				
+-->	
 <script>
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -175,17 +169,13 @@ document.addEventListener('DOMContentLoaded', function() {
 			// 일정 클릭 이벤트
 			eventClick : function(date) {
 				
-				// alert('팬션 클릭!'+JSON.stringify(date));
+				alert('팬션 클릭!'+JSON.stringify(date));
 				var arrCal = calendar.getEvents(); 
 				// arrCal[1].title
 				// alert(JSON.stringify(date)[114]+JSON.stringify(date)[115]);
-				/*
-				if(JSON.stringify(date)[114]+JSON.stringify(date)[115] == '글램'){
-					alert("글랭핑이닿ㅎㅎㅎㅎ");
-				}
 				
 				return false;
-				*/
+				
 				if (JSON.stringify(date)[114]+JSON.stringify(date)[115] == "글램") {
 					alert('글램핑 클릭! book_gp.jsp로 이동');
 					// location.href="book_gp";

@@ -31,9 +31,9 @@
 		    <li><a href="../main/1"><span class="glyphicon glyphicon-heart"></span> 시설 안내</a>
 		    	<ul class="infra">
 					<li><a href="../main/1">펜션</a></li>
-					<li><a href="../main/2">카라반</a></li>
-					<li><a href="../main/3">데크</a></li>
-					<li><a href="../main/4">글램핑</a></li>
+					<li><a href="../main/1">카라반</a></li>
+					<li><a href="../main/1">데크</a></li>
+					<li><a href="../main/1">글램핑</a></li>
 		    	</ul>
 		    </li>
 		    

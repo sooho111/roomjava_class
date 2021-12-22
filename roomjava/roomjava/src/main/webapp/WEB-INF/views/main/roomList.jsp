@@ -11,20 +11,21 @@
 <style>
 #bheader .inner .gnb > li:nth-child(2) > a { font-weight:700; }
 #container { margin-top:50px; }
-#container .inner { width:960px; }
+#container .inner { width:1200px; }
 #container .inner:after { content:""; clear:both; display:block; }
 
-#allRooms { width:180px; float:left; }
+#allRooms { width:200px; float:left; }
 .gTitle { font-size:25px; font-weight:700; color:#333; border-bottom:1px solid #777; padding-bottom:20px; margin-bottom:20px; }
 .Rooms li { font-size:15px; margin-bottom:15px; }
 .Rooms li a { color:#888; }
 .Rooms li a:hover { color:#111; text-decoration:none; }
 
-#showRooms { width:750px; float:right; position:relative; padding-bottom:50px; }
+#showRooms { width:950px; float:right; position:relative; padding-bottom:50px; }
 .list { float:left; width:230px; margin-right:20px; margin-bottom:30px; }
 .list li a { color:#777; font-size:15px; }
 .list li:nth-child(2) a { color:#333; font-size:23px; font-weight:500; }
 .list li:first-child { margin-bottom:15px; }
+
 .kindList:after { content:""; display:block; clear:both; }
 
 </style>
