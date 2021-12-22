@@ -85,6 +85,7 @@ body { overflow-x:hidden; font-size:14px; }
 				</div>
 			</div>		
 		
+<<<<<<< HEAD
 			<div class="form-group">
 				<label class="control-label col-sm-4">렌트</label>
 				<div class="col-sm-5">
@@ -108,6 +109,90 @@ body { overflow-x:hidden; font-size:14px; }
 			</div>
 		</form>
 		
+=======
+		<div class="form-group">
+			<label class="control-label col-sm-2">예약자 이름</label>
+			<div class="col-sm-4">
+				<input type="text" class="form-control" 
+				name="book_name" id="book_name" maxlength="50" placeholder="이름을 입력하십시오."/>
+			</div>
+		</div><br/><br/>
+				
+		<div class="form-group">
+			<label class="control-label col-sm-2">예약 인원(최대인원, 최소인원)</label>
+			<div class="col-sm-4">
+				<input type="text" class="form-control" 
+				name="book_people" id="book_people" maxlength="50" />
+			</div>
+		</div><br/><br/>
+				
+		<div class="form-group">
+			<label class="control-label col-sm-2">예약자 전화번호</label>
+			<div class="col-sm-4">
+				<input type="text" class="form-control" 
+				name="book_tel" id="book_tel" maxlength="50" placeholder="전화번호를 입력하십시오."/>
+			</div>
+		</div><br/><br/>	
+		
+		<div class="form-group">
+			<label class="control-label col-sm-2">예약 시작날짜 만들 예정</label>
+			<div class="col-sm-4">
+				<input type="text" class="form-control" 
+				name="start_Date" id="start_Date" maxlength="50" placeholder="datepicker 넣어야지."/>
+			</div>
+		</div><br/>
+		<div class="form-group">
+			<label class="control-label col-sm-2">예약 종료날짜 만들 예정</label>
+			<div class="col-sm-4">
+				<input type="text" class="form-control" 
+				name="end_Date" id="end_Date" maxlength="50" placeholder="datepicker 넣어야지."/>
+			</div>
+		</div><br/><br/>		
+		
+		
+		<div class="form-group">
+			<label class="control-label col-sm-2">추가 옵션</label>
+			<div class="col-sm-5">
+				<select class="form-control" name="room_fnc" id="room_fnc">
+					<c:forEach var="fnc" items="${fnc}">
+						<option value="${fnc.fnc_name}">${fnc.fnc_name}</option>
+					</c:forEach>
+				</select>
+			</div>
+		</div><br/><br/>	
+	
+		<div class="form-group">
+			<label class="control-label col-sm-2">렌트</label>
+			<div class="col-sm-5">
+				<select class="form-control" name="room_rent" id="room_rent">
+					<c:forEach var="rent" items="${rent}">
+						<option value="${rent.rent_name}">${rent.rent_name}, ${rent.rent_price}원</option>
+					</c:forEach>
+				</select>
+			</div>
+		</div><br/><br/>
+	
+		<div class="form-group">
+			<label class="control-label col-sm-2">결제 수단</label>
+			<div class="col-sm-5">
+				<select class="form-control" name="payment" id="payment">
+					<c:forEach var="payment" items="${payment}">
+						<option value="${payment.pay_name}">${payment.pay_name}, ${payment.pay_account}, ${payment.pay_bank}은행</option>
+					</c:forEach>
+				</select>
+			</div>
+		</div><br/><br/>
+		
+		<div class="form-group">
+			<label class="control-label col-sm-2">가격 구현할 예정(방가격 + 추가인원가격 + 추가기능가격 + 렌트가격)</label>
+			<div class="col-sm-3">
+				<input type="text" class="form-control" 
+				name="mk_price" id="mk_price" maxlength="30" value="${productView.mk_price}" readonly="readonly"/>
+			</div>
+		</div><br/><br/>		
+		
+				
+>>>>>>> 531fc7fd8aaf0aceabb5bfd72f904154c2f60d9b
 		<form action="/main/okBook" method="post" id="okBookForm">
 			<input type="hidden" name="r_bno" value="${room.r_bno}" />
 			<input type="hidden" name="r_name" value="${room.r_name}" />
@@ -118,10 +203,18 @@ body { overflow-x:hidden; font-size:14px; }
 			<input type="hidden" name="r_rent" value="${room.r_rent}" />
 		</form>
 	
+<<<<<<< HEAD
 		<div class="col-sm-offset-8">
 			<button class="btn btn-info">이전단계</button>
 			<button type="button" class="btn btn-primary okBook">다음단계</button>
 		</div>			
+=======
+		<br/><br/>
+		<ul class="btns">
+			<li><button class="btn btn-info">이전단계</button></li>
+			<li><button type="button" class="btn btn-primary okBook">다음단계</button></li>
+		</ul>				
+>>>>>>> 531fc7fd8aaf0aceabb5bfd72f904154c2f60d9b
 
 
 <br /><br />

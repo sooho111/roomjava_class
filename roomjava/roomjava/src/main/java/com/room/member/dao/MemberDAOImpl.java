@@ -13,6 +13,7 @@ import com.room.admin.dto.BoardDTO;
 import com.room.admin.dto.SearchCriteria;
 import com.room.main.dto.BookDTO;
 import com.room.member.dto.MemberDTO;
+import com.room.member.dto.QnaDTO;
 import com.room.member.dto.FaqDTO;
 
 
@@ -77,9 +78,9 @@ public class MemberDAOImpl implements MemberDAO {
 	// 회원 탈퇴
 	// -------------------------------------------------------------------------------------------------
 	@Override
-	public int memberDelete(String m_id) throws Exception {
+	public int memberDelete(MemberDTO memberDTO) throws Exception {
 		logger.info("MemberDAOImpl memberInsert(MemberDTO memberDTO).....");
-		return sqlSession.delete(namespace + ".delete", m_id);
+		return sqlSession.delete(namespace + ".delete", memberDTO);
 	}
 	// -------------------------------------------------------------------------------------------------
 	// 회원 상세 정보
@@ -159,6 +160,23 @@ public class MemberDAOImpl implements MemberDAO {
 		logger.info("***** ManagerDAOImpl Criteria cri.getSearchType() ==> " + cri.getSearchType());
 		
 		return sqlSession.selectList(namespace + ".faqListPaging", cri);
+	}
+	/*-------------------------------------------------------------------------------------------------
+	* qna 작성
+	-------------------------------------------------------------------------------------------------*/
+	@Override
+	public void qnaWrite(QnaDTO qnaDTO) throws Exception {
+		
+		sqlSession.insert(namespace + ".qnaInsert", qnaDTO);
+	}
+
+	/*-------------------------------------------------------------------------------------------------
+	* qna 작성
+	-------------------------------------------------------------------------------------------------*/
+	@Override
+	public void qnaList(SearchCriteria cri) throws Exception {
+		
+		
 	}
 
 }

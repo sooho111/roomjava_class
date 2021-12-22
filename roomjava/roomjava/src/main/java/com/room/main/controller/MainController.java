@@ -120,10 +120,10 @@ public class MainController {
 	}
 	
 	//------------------------------------------------------------------------------------------------
-	// roomView에서 goBook으로 이동 (goBook POST)
+	// roomView에서 goBook으로 이동 (postBook)
 	//------------------------------------------------------------------------------------------------
 	@RequestMapping(value="/goBook", method=RequestMethod.POST)
-	public String goBook(@RequestParam("r_bno") int r_bno, BookDTO bookDTO, Model model, HttpSession session) throws Exception {
+	public String postBook(@RequestParam("r_bno") int r_bno, BookDTO bookDTO, Model model, HttpSession session) throws Exception {
     	
 		// 방 기능 가져오기 room_fnc
     	List<Room_fncDTO> room_fncDTO = mainService.getFnc();
@@ -152,10 +152,30 @@ public class MainController {
 		// 회원정보 가져오기
 		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
 		model.addAttribute("member", memberDTO);
+		
+		logger.info("동균이 이름 => " + memberDTO.getM_name());	
+		logger.info("동균이 아이디 => " + memberDTO.getM_id());
+		logger.info("동균이 비밀번호 => " + memberDTO.getM_pwd());
+		logger.info("동균이 전화번호 => " + memberDTO.getM_tel());
+		logger.info("동균이 생일 => " + memberDTO.getM_birth());
+		logger.info("동균이 이메일 => " + memberDTO.getM_email());
+		logger.info("동균이 주소 => " + memberDTO.getM_address());
+		
+
+		
+		return "main/goBook";
+	}
+/*
+	//------------------------------------------------------------------------------------------------
+	// 예약하기 누르면 book테이블에 담아주는거 getBook, 여기가 get인가요 죄성해여
+	//------------------------------------------------------------------------------------------------
+	@RequestMapping(value="/goBook", method=RequestMethod.GET)
+	public String getBook(@RequestParam("r_bno") int r_bno, BookDTO bookDTO, Model model, HttpSession session) throws Exception {
+
 
 		//-------------------------------------------------------------------------------------------------
 		// book_order 예약번호 만드는 메서드
-		//-------------------------------------------------------------------------------------------------.
+		//-------------------------------------------------------------------------------------------------
 		Calendar cal = Calendar.getInstance();
 		int year = cal.get(Calendar.YEAR);
 		String ym = year + new DecimalFormat("00").format(cal.get(Calendar.MONTH) + 1);
@@ -168,11 +188,25 @@ public class MainController {
 		String book_order = ymd + "_" + subNum;
 		bookDTO.setBook_order(book_order);
 		
+		logger.info("예약번호 만들어지나요" + book_order);
+		
+		//-------------------------------------------------------------------------------------------------
+		// book테이블에 예약정보 담기
+		//-------------------------------------------------------------------------------------------------
+		mainService.insertBook(bookDTO);
 		
 		
-		return "main/goBook";
+		
+		return "/main/goBook";
 	}
+	
+	
 
+	 */	
+	
+	
+	
+	
 	@RequestMapping("/okBook")
 	public void okBook() throws Exception {
 	}

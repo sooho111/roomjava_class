@@ -15,6 +15,7 @@ import com.room.admin.dto.SearchCriteria;
 import com.room.main.dto.BookDTO;
 import com.room.member.dao.MemberDAO;
 import com.room.member.dto.MemberDTO;
+import com.room.member.dto.QnaDTO;
 import com.room.member.dto.FaqDTO;
 
 
@@ -87,8 +88,8 @@ MemberDAO memberDAO;
 	// 회원탈퇴
 	// -------------------------------------------------------------------------------------------------
 	@Override
-	public int memberDelete(String m_id) throws Exception {
-		return memberDAO.memberDelete(m_id);
+	public int memberDelete(MemberDTO memberDTO) throws Exception {
+		return memberDAO.memberDelete(memberDTO);
 	}
 
 
@@ -199,6 +200,15 @@ MemberDAO memberDAO;
 		public List<FaqDTO> faqListPaging(SearchCriteria cri) throws Exception {
 			logger.info("*** Board2ServiceImpl Criteria ==> " + cri);
 			return memberDAO.faqListPaging(cri);
+		}
+		
+		/*-------------------------------------------------------------------------------------------------
+		* qna 작성
+		-------------------------------------------------------------------------------------------------*/		
+		@Override
+		public void qnaWrite(QnaDTO qnaDTO) throws Exception {
+			
+			memberDAO.qnaWrite(qnaDTO);
 		}
 
 	

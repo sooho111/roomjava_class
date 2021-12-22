@@ -6,23 +6,16 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Board List</title>
-<%@ include file="../../include/includeFile.jsp" %>
-
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');
-.container { margin-top:70px; margin-bottom:70px; }
-.btnss { margin-bottom:50px; }
-.notice { font-size:20px; margin-bottom:30px; }
-</style>
+<title>1:1 게시판</title>
+<%@ include file="../include/includeFile.jsp"%>
 </head>
 <body>
-<%@ include file="../../include/m_header.jsp" %>
+<%@ include file="../include/header.jsp" %>
 <div class="container">
 		
 	<div class="form-group">
 		<div style="text-align: center; margin: 50px 0;">
-			<h5><b>공지사항</b></h5>
+			<h5><b>1:1 문의 게시판</b></h5>
 		</div>
 	</div>	
 
@@ -48,7 +41,7 @@
 		
 		<div class="form-group btnss">
 			<div align="right" class="col-sm-offset-3">
-				<button type="button" class="btn btn-success btn-sm" onclick="location.href='noticeInsert'">글 작 성</button>
+				<button type="button" class="btn btn-success btn-sm" onclick="location.href='qnaInsert'">글 작 성</button>
 			</div>
 			
 		
@@ -91,72 +84,7 @@
 		</div>
 	</form>
 </div>
-<div class="container">
-		
-	<div class="form-group">
-		<div style="text-align: center; margin: 50px 0;">
-			<h5><b>faq</b></h5>
-		</div>
-	</div>	
-
-	<form role= "form" method="get">
-	
-		<table class="table table-bordered table-striped table-hove">
-			<thead>
-				<tr>
-					<th>번호</th>
-					<th>제목</th>
-					<th>질문 종류</th>
-				</tr>
-			</thead>
-			
-			<c:forEach items="${faqlist}" var = "faqlist">
-				<tr>
-					<td><c:out value="${faqlist.faq_bno}" /></td>
-					<td>
-						<a href="/admin/board/faqUpdate?n=${faqlist.faq_bno }"><c:out value="${faqlist.faq_title}" /></a>
-					</td>
-				<c:if test="${faqlist.faq_class == 100 }"><td>입금 문의</td></c:if>
-				<c:if test="${faqlist.faq_class == 200 }"><td>상품 문의</td></c:if>
-				<c:if test="${faqlist.faq_class == 300 }"><td>배송 문의</td></c:if>
-				<c:if test="${faqlist.faq_class == 400 }"><td>기타 문의</td></c:if>
-				</tr>
-			</c:forEach>
-			
-		</table>
-		
-		<div class="form-group btnss">
-			<div align="right" class="col-sm-offset-3">
-				<button type="button" class="btn btn-success btn-sm" onclick="location.href='faqInsert'">FAQ 작 성</button>
-			</div>
-		</div>
-
-		<div class="col-md-offset-5">
-		  	<ul class="pagination">
-			    <c:if test="${pageMaker2.prev}">
-			    	<li><a href="boardList${pageMaker2.makeSearch(pageMaker2.startPage - 1)}">이전</a></li>
-			    </c:if>
-				
-			    <c:forEach begin="${pageMaker2.startPage}" end="${pageMaker2.endPage}" var="idx">
-			 		<li <c:out value="${pageMaker2.cri.page == idx ? 'class=info' : '' }" />>   
-			    	<a href="boardList${pageMaker2.makeSearch(idx)}">${idx}</a></li>
-			    </c:forEach>
-				
-			    <c:if test="${pageMaker2.next && pageMaker2.endPage > 0}">
-			    	<li><a href="boardList${pageMaker2.makeSearch(pageMaker2.endPage + 1)}">다음</a></li>
-			    </c:if>
-	  		</ul>
-		</div>
-	</form>
-</div>
-
+<%@ include file="../include/footer.jsp" %>
 
 </body>
-<script>
-	$(function(){
-		$('#searchBtn').click(function(){
-			self.location = "boardList?searchType=" +$("select option:selected").val() +"&keyword="+$("[name=keyword]").val()	});
-	});
-</script>
-
 </html>

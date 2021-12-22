@@ -6,6 +6,7 @@ import com.room.admin.dto.BoardDTO;
 import com.room.admin.dto.SearchCriteria;
 import com.room.main.dto.BookDTO;
 import com.room.member.dto.MemberDTO;
+import com.room.member.dto.QnaDTO;
 import com.room.member.dto.FaqDTO;
 
 public interface MemberDAO {
@@ -37,7 +38,7 @@ public interface MemberDAO {
 	// -------------------------------------------------------------------------------------------------
 	// 회원 탈퇴
 	// -------------------------------------------------------------------------------------------------
-	public int memberDelete(String m_id) throws Exception;
+	public int memberDelete(MemberDTO memberDTO) throws Exception;
 
 
 	// -------------------------------------------------------------------------------------------------
@@ -86,4 +87,14 @@ public interface MemberDAO {
 	* 회원 목록 보기 (Paging 처리)
 	-------------------------------------------------------------------------------------------------*/
 	public List<FaqDTO> faqListPaging(SearchCriteria cri) throws Exception;
+	
+	/*-------------------------------------------------------------------------------------------------
+	* QnA 작성
+	-------------------------------------------------------------------------------------------------*/	
+	public void qnaWrite(QnaDTO qnaDTO) throws Exception;
+	/*-------------------------------------------------------------------------------------------------
+	* QnA List
+	-------------------------------------------------------------------------------------------------*/	
+	public void qnaList(SearchCriteria cri) throws Exception;
+	
 }
