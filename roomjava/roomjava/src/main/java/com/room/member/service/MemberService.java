@@ -8,6 +8,7 @@ import com.room.admin.dto.BoardDTO;
 import com.room.admin.dto.SearchCriteria;
 import com.room.main.dto.BookDTO;
 import com.room.member.dto.MemberDTO;
+import com.room.member.dto.QnaDTO;
 import com.room.member.dto.FaqDTO;
 
 public interface MemberService {
@@ -84,5 +85,9 @@ public interface MemberService {
 	* FAQ 목록 보기 (Paging 처리)
 	-------------------------------------------------------------------------------------------------*/
 	public List<FaqDTO> faqListPaging(SearchCriteria cri) throws Exception;
-
+	
+	/*-------------------------------------------------------------------------------------------------
+	* qna 작성
+	-------------------------------------------------------------------------------------------------*/
+	public void qnaWrite(QnaDTO qnaDTO) throws Exception;
 }

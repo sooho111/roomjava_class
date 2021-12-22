@@ -11,6 +11,7 @@ import com.room.admin.dto.Room_rentDTO;
 import com.room.member.dto.FaqDTO;
 import com.room.member.dto.FaqTypeDTO;
 import com.room.member.dto.MemberDTO;
+import com.room.member.dto.QnaDTO;
 import com.room.admin.dto.RoomKindDTO;
 import com.room.admin.dto.PaymentDTO;
 
@@ -42,7 +43,6 @@ public interface AdminService {
 	public void faqDelete(FaqDTO faqDTO) throws Exception;
 	//faq 상세페이지
 	public FaqDTO faqdetailView(int faq_bno) throws Exception;
-	
 	
 	// 공지사항 상세보기
 	public BoardDTO detailView(int notice_bno) throws Exception;

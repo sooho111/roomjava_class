@@ -10,6 +10,9 @@
 <%@ include file="../include/includeFile.jsp" %>
 <style>
 #bheader .inner .gnb > li:first-child > a { font-weight:700; }
+
+.course { margin:40px 0px; }
+
 #story { width:100%; margin-bottom:150px; }
 #story .inner { width:960px; text-align:center; }
 
@@ -31,6 +34,7 @@
 
 <div id="story">
 	<div class="inner">
+		<p class="course"><img src="../../resources/images/course.png" alt="course" /></p>
 		<div class="context">
 			<p class="title">기본 정보</p>
 			<p>입실 : 15:00 | 퇴실 : 12:00</p>
@@ -41,11 +45,11 @@
 			<p>픽업 불가</p>
 			<br>
 			<p class="title">인원 추가 정보</p>
-			<br>
 			<p>영유아 기준인원 포함 / 최대인원 초과불가</p>
 			<br>
 			<p>8세 이상부터 추가요금 발생</p>
 			<p>현장결제</p>
+			<br>
 			<p class="title">취소 및 환불 규정</p>
 			<p>숙박일 기준 7 일 전 : 100% 환불</p>
 			<p>숙박일 기준 6 일 전 : 90% 환불</p>

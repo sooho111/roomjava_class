@@ -8,6 +8,7 @@
 <title>FAQ</title>
 <%@ include file="../include/includeFile.jsp" %>
 <style>
+#bheader .inner .gnb > li:nth-child(3) > a { font-weight:700; }
 .container { margin-top:70px; margin-bottom:70px; }
 span.plusIcon { cursor:pointer; }
 </style>
