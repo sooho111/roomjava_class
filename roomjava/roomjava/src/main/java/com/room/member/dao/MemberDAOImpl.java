@@ -14,6 +14,7 @@ import com.room.admin.dto.SearchCriteria;
 import com.room.main.dto.BookDTO;
 import com.room.member.dto.MemberDTO;
 import com.room.member.dto.QnaDTO;
+import com.room.member.dto.ReviewDTO;
 import com.room.member.dto.FaqDTO;
 
 
@@ -144,7 +145,7 @@ public class MemberDAOImpl implements MemberDAO {
 		return sqlSession.selectList(namespace + ".belogin", book_name);
 	}
 	//-------------------------------------------------------------------------------------------------
-	// 전체 글 갯수 구하기 (Paging 처리)
+	// faq글 갯수 구하기 (Paging 처리)
 	//-------------------------------------------------------------------------------------------------
 	@Override
 	public int faqListTotalCount(SearchCriteria cri) throws Exception {
@@ -160,6 +161,22 @@ public class MemberDAOImpl implements MemberDAO {
 		logger.info("***** ManagerDAOImpl Criteria cri.getSearchType() ==> " + cri.getSearchType());
 		
 		return sqlSession.selectList(namespace + ".faqListPaging", cri);
+	}
+	//-------------------------------------------------------------------------------------------------
+	// review 글 갯수 구하기 (Paging 처리)
+	//-------------------------------------------------------------------------------------------------
+	@Override
+	public int reviewListTotalCount(SearchCriteria cri) throws Exception {
+		return sqlSession.selectOne(namespace + ".reviewListTotalCount", cri);
+	}
+	
+	/*-------------------------------------------------------------------------------------------------
+	* review 목록 보기 (Paging 처리)
+	-------------------------------------------------------------------------------------------------*/
+	@Override
+	public List<ReviewDTO> reviewListPaging(SearchCriteria cri) throws Exception {
+		
+		return sqlSession.selectList(namespace + ".reviewListPaging", cri);
 	}
 	/*-------------------------------------------------------------------------------------------------
 	* qna 작성

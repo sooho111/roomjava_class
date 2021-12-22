@@ -29,6 +29,7 @@ import com.room.admin.dto.SearchCriteria;
 import com.room.main.dto.BookDTO;
 import com.room.member.dto.MemberDTO;
 import com.room.member.dto.QnaDTO;
+import com.room.member.dto.ReviewDTO;
 import com.room.member.service.MemberService;
 import com.room.member.dto.FaqDTO;
 
@@ -396,6 +397,27 @@ public class MemberController {
 		
 		//List<ManagerDTO>  list = managerService.memberListPaging(cri);
 		List<FaqDTO>  list = memberService.faqListPaging(cri);
+		
+		mav.addObject("list", list);
+	    mav.addObject("pageMaker", pageMaker);
+	        
+	    return mav;
+	    
+	   }
+	/*-----------------------------------------------------------------------------------------------------------
+	* faq 목록(Paging 처리)
+	----------------------------------------------------------------------------------------------------------*/
+	
+	@RequestMapping(value="/review", method=RequestMethod.GET)
+	   public ModelAndView reviewList(SearchCriteria cri) throws Exception {
+		ModelAndView mav = new ModelAndView("/member/review");
+	    
+		PageMaker pageMaker = new PageMaker();	
+		pageMaker.setCri(cri);
+		logger.info("---------------------------------------------------------------------"+cri);
+		pageMaker.setTotalCount(memberService.reviewListTotalCount(cri));
+		
+		List<ReviewDTO>  list = memberService.reviewListPaging(cri);
 		
 		mav.addObject("list", list);
 	    mav.addObject("pageMaker", pageMaker);
