@@ -89,4 +89,13 @@ class MainDAOImpl implements MainDAO {
 	public List<PaymentDTO> getPayment() throws Exception {
 		return sqlSession.selectList(namespace + ".getPayment");
 	}
+	
+//	//-------------------------------------------------------------------------------------------------
+//	// 예약하기 누르면 bookDTO에 담아주기
+//	//-------------------------------------------------------------------------------------------------
+//	@Override
+//	public void insertBook(BookDTO bookDTO) throws Exception {
+//		// sqlSession.insert(namespace + ".insertBook", bookDTO);
+//	}
+	
 }
