@@ -236,11 +236,34 @@ public class MemberController {
 	// -------------------------------------------------------------------------------------------------
 	// 회원 탈퇴
 	// -------------------------------------------------------------------------------------------------
-	@RequestMapping(value = "/memberDelete/{m_id}", method = RequestMethod.GET)
+/*	@RequestMapping(value = "/memberDelete/{m_id}", method = RequestMethod.GET)
 	private String productDelete(@PathVariable String m_id, HttpSession session) throws Exception {
 		memberService.memberDelete(m_id);
 		session.invalidate();
 		return "redirect:/";
+	}*/
+	@RequestMapping(value="/memberDelete/{m_id}", method = RequestMethod.GET)
+	public String memberDeleteGET() throws Exception {
+		return "/member/memberDelete";
+	}
+	@RequestMapping(value="/memberDelete/{m_id}", method = RequestMethod.POST)
+	public String removePOST(MemberDTO memberDTO, HttpSession session, RedirectAttributes ra) throws Exception {
+		logger.info("removePOST");
+		
+		MemberDTO member = (MemberDTO)session.getAttribute("member");
+		
+		String oldPass = memberDTO.getM_pwd();
+		String newPass = member.getM_pwd();
+		
+		if(oldPass.equals(newPass)) {
+			memberService.memberDelete(memberDTO);
+			ra.addFlashAttribute("result", "removeOK");
+			session.invalidate();
+			return "redirect:/";
+		} else {
+			ra.addFlashAttribute("result", "removeFalse");
+			return "redirect:/user/remove";
+		}
 	}
 
 	// -------------------------------------------------------------------------------------------------

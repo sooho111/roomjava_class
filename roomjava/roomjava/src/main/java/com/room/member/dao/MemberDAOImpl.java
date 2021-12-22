@@ -78,9 +78,9 @@ public class MemberDAOImpl implements MemberDAO {
 	// 회원 탈퇴
 	// -------------------------------------------------------------------------------------------------
 	@Override
-	public int memberDelete(String m_id) throws Exception {
+	public int memberDelete(MemberDTO memberDTO) throws Exception {
 		logger.info("MemberDAOImpl memberInsert(MemberDTO memberDTO).....");
-		return sqlSession.delete(namespace + ".delete", m_id);
+		return sqlSession.delete(namespace + ".delete", memberDTO);
 	}
 	// -------------------------------------------------------------------------------------------------
 	// 회원 상세 정보

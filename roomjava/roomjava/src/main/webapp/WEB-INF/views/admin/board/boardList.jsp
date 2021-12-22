@@ -106,7 +106,7 @@
 				<tr>
 					<th>번호</th>
 					<th>제목</th>
-					<th>작성자</th>
+					<th>질문 종류</th>
 				</tr>
 			</thead>
 			
@@ -116,7 +116,10 @@
 					<td>
 						<a href="/admin/board/faqUpdate?n=${faqlist.faq_bno }"><c:out value="${faqlist.faq_title}" /></a>
 					</td>
-					<td>관리자</td>
+				<c:if test="${faqlist.faq_class == 100 }"><td>입금 문의</td></c:if>
+				<c:if test="${faqlist.faq_class == 200 }"><td>상품 문의</td></c:if>
+				<c:if test="${faqlist.faq_class == 300 }"><td>배송 문의</td></c:if>
+				<c:if test="${faqlist.faq_class == 400 }"><td>기타 문의</td></c:if>
 				</tr>
 			</c:forEach>
 			
@@ -126,27 +129,6 @@
 			<div align="right" class="col-sm-offset-3">
 				<button type="button" class="btn btn-success btn-sm" onclick="location.href='faqInsert'">FAQ 작 성</button>
 			</div>
-			
-		
-		<div>
-			<div align="center" class="col-xs-2 col-sm-2" style="margin-left:300px;">
-				<select name = "searchType" class="form-control">
-					<option value ="n" <c:out value = "$(scri.seachType == null ? 'selected' : '')"/>>---선택---</option>
-					<option value ="faq_title" <c:out value = "$(scri.seachType eq 't' ? 'selected' : '')"/>>제목</option>
-					<option value ="faq_content" <c:out value = "$(scri.seachType eq 'c' ? 'selected' : '')"/>>내용</option>
-				</select>
-			</div>
-			
-			<div class="col-xs-10 col-sm-5">
-				<div class="input-group">
-					<input type="text" name="keyword" id="keywordInput" value ="${scri.keyword}" class="form-control"/>
-					<span class="input-group-btn">
-						<button id ="searchBtn" type="button" class="btn btn-default">검색</button>
-					</span>
-				</div>
-			</div>
-		</div>
-			
 		</div>
 
 		<div class="col-md-offset-5">
