@@ -152,7 +152,15 @@ public class MainController {
 		// 회원정보 가져오기
 		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
 		model.addAttribute("member", memberDTO);
-
+		
+		logger.info("동균이 이름 => " + memberDTO.getM_name());	
+		logger.info("동균이 아이디 => " + memberDTO.getM_id());
+		logger.info("동균이 비밀번호 => " + memberDTO.getM_pwd());
+		logger.info("동균이 전화번호 => " + memberDTO.getM_tel());
+		logger.info("동균이 생일 => " + memberDTO.getM_birth());
+		logger.info("동균이 이메일 => " + memberDTO.getM_email());
+		logger.info("동균이 주소 => " + memberDTO.getM_address());
+		
 		//-------------------------------------------------------------------------------------------------
 		// book_order 예약번호 만드는 메서드
 		//-------------------------------------------------------------------------------------------------.
