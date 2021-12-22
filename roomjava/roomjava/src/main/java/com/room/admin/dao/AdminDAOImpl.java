@@ -12,7 +12,9 @@ import org.springframework.stereotype.Repository;
 import com.room.admin.dto.BoardDTO;
 import com.room.admin.dto.PaymentDTO;
 import com.room.admin.dto.SearchCriteria;
+import com.room.member.dto.FaqDTO;
 import com.room.member.dto.MemberDTO;
+import com.room.member.dto.FaqTypeDTO;
 import com.room.admin.dto.RoomKindDTO;
 import com.room.admin.dto.Room_fncDTO;
 import com.room.admin.dto.Room_rentDTO;
@@ -33,9 +35,12 @@ public class AdminDAOImpl implements AdminDAO {
 	// 공지사항 작성
 	@Override
 	public void noticeWrite(BoardDTO boardDTO) throws Exception {
-		sqlSession.insert(namespace + ".notice", boardDTO);
-		
-		
+		sqlSession.insert(namespace + ".notice", boardDTO);	
+	}
+	// faq 작성
+	@Override
+	public void faqWrite(FaqDTO faqDTO) throws Exception {
+		sqlSession.insert(namespace + ".faq", faqDTO);	
 	}
 	// 공지사항 리스트
 	@Override
@@ -50,6 +55,40 @@ public class AdminDAOImpl implements AdminDAO {
 
 		return sqlSession.selectOne(namespace + ".noticeTotalCount", scri);
 	}
+	// faq 리스트
+	@Override
+	public List<FaqDTO> faqlist(SearchCriteria scri) throws Exception {
+
+		logger.info("DAO => " + sqlSession.selectList(namespace + ".noticePaging", scri));
+		return sqlSession.selectList(namespace + ".faqPaging", scri);
+	}
+	// faq 카운트
+	@Override
+	public int faqlistCount(SearchCriteria scri) throws Exception {
+
+		return sqlSession.selectOne(namespace + ".faqTotalCount", scri);
+	}
+	// faq 상세페이지
+	@Override
+	public FaqDTO faqdetailView(int faq_bno) throws Exception {
+		
+		return sqlSession.selectOne(namespace + ".faqdetailView", faq_bno);
+	}
+	
+	//faq 수정
+	@Override
+	public void faqUpdate(FaqDTO faqDTO) throws Exception {
+		
+		sqlSession.update(namespace + ".faqUpdate", faqDTO);
+			
+	}
+	//faq 삭제
+	@Override
+	public void faqDelete(FaqDTO faqDTO) throws Exception {
+		sqlSession.delete(namespace + ".faqDelete", faqDTO);
+		
+	}
+	
 	
 	// ----------------------------------------------------------------------------------------------------
 	// 방 종류 뿌려주기
@@ -185,39 +224,47 @@ public class AdminDAOImpl implements AdminDAO {
 			return sqlSession.selectOne(namespace + ".fncdetailView", fnc_bno);
 		}
 		
-		//공지사항 수정
+		//기능 수정
 		@Override
 		public void fncUpdate(Room_fncDTO room_fncDTO) throws Exception {
 			
 			sqlSession.update(namespace + ".fncUpdate", room_fncDTO);
 				
 		}
-		// 공지사항 상세페이지
+		// 대여 상세페이지
 		@Override
 		public Room_rentDTO rentdetailView(int rent_bno) throws Exception {
 			
 			return sqlSession.selectOne(namespace + ".rentdetailView", rent_bno);
 		}
 		
-		//공지사항 수정
+		//대여 수정
 		@Override
 		public void rentUpdate(Room_rentDTO room_rentDTO) throws Exception {
 			
 			sqlSession.update(namespace + ".rentUpdate", room_rentDTO);
 				
 		}
-		//공지사항 삭제
+		//기능 삭제
 		@Override
 		public void fncDelete(Room_fncDTO room_fncDTO) throws Exception {
 			sqlSession.delete(namespace + ".fncDelete", room_fncDTO);
 			
 		}
-		//공지사항 삭제
+		//대여 삭제
 		@Override
 		public void rentDelete(Room_rentDTO room_rentDTO) throws Exception {
 			sqlSession.delete(namespace + ".rentDelete", room_rentDTO);
 			
 		}
-				
+		// -------------------------------------------------------------------------------------------------
+		// Faq 유형 목록 보기
+		// -------------------------------------------------------------------------------------------------
+		@Override
+		public List<FaqTypeDTO> selectFaqType() throws Exception {
+			logger.info("ManagerDAOImpl selectFaqType() Start....");
+			return sqlSession.selectList(namespace + ".selectFaqType");
+		}
+			
 
 } // end class AdminDAOImpl implements AdminDAO

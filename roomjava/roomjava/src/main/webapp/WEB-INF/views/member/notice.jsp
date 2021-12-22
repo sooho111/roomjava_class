@@ -9,47 +9,51 @@
 <%@ include file="../include/includeFile.jsp" %>
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');
-.container { margin-top:70px; margin-bottom:70px; }
+.container { margin-top:50px; margin-bottom:70px; }
 .btnss { margin-bottom:50px; }
 .notice { font-size:20px; margin-bottom:30px; }
-
 
 .noticeInfo {  padding:30px 20px 20px 20px; display:none; height:500px; }
 .noticeInfo .inputArea { margin:10px 0; }
 .noticeInfo .inputArea label { display:inline-block; width:120px; margin-right:10px; }
 .noticeInfo .inputArea input { font-size:14px; padding:5px; }
+
+span.glyphicon-plus, span.glyphicon-minus { cursor:pointer; }
+span.glyphicon-minus, .showContent { display:none; }
 </style>
 </head>
 <body>
 <%@ include file="../include/header.jsp" %>
 	<div class="container">
-
-
-
-
 		<form role= "form" method="get">
 		
-			<table class="table table-bordered table-striped table-hove">
+			<table class="table table-bordered table-hove">
 				<thead>
-					<tr><th>번호</th><th>제목</th><th>작성자</th><th>등록일</th></tr>
+					<tr>
+						<th>제목</th>
+					</tr>
 				</thead>
 				
 				<c:forEach items="${list}" var = "list">
 					<tr>
-						<td><c:out value="${list.notice_bno}" /></td>
-						<td>
-							<a href="/member/noticeDetail?n=${list.notice_bno }"><c:out value="${list.notice_title}" /></a>
+						<td class="toggleContent">
+							<span class="glyphicon glyphicon-plus"></span>
+			      			<span class="glyphicon glyphicon-minus"></span>
+							<c:out value="${list.notice_title}" />
 						</td>
-						<td>관리자</td>
-						<td><fmt:formatDate value="${list.notice_date }"  pattern="yyyy년MM월dd일 HH:mm:ss"/></td>
+					</tr>
+					
+					<tr class="showContent">
+						<td>
+							<c:out value="${list.notice_content}" />
+							<p align="right"><fmt:formatDate value="${list.notice_date}"  pattern="yyyy년MM월dd일 HH:mm:ss"/></p>
+						</td>
 					</tr>
 				</c:forEach>
 				
 			</table>
 			
-			<div class="search row">
-			
+			<div>
 				<div align="center" class="col-xs-2 col-sm-2" style="margin-left:300px;">
 					<select name = "searchType" class="form-control">
 						<option value ="n" <c:out value = "$(scri.seachType == null ? 'selected' : '')"/>>---선택---</option>
@@ -66,51 +70,56 @@
 						</span>
 					</div>
 				</div>
-				
 			</div>
 
 			<br/>
 			<br/>
 			<br/>
 
-  				<div class="col-md-offset-3">
-				  	<ul class="pagination">
-					    <c:if test="${pageMaker.prev}">
-					    	<li><a href="notice${pageMaker.makeSearch(pageMaker.startPage - 1)}">이전</a></li>
-					    </c:if>
-						
-					    <c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="idx">
-					 		<li <c:out value="${pageMaker.cri.page == idx ? 'class=info' : '' }" />>   
-					    	<a href="notice${pageMaker.makeSearch(idx)}">${idx}</a></li>
-					    </c:forEach>
-						
-					    <c:if test="${pageMaker.next && pageMaker.endPage > 0}">
-					    	<li><a href="notice${pageMaker.makeSearch(pageMaker.endPage + 1)}">다음</a></li>
-					    </c:if>
-			  		</ul>
-				</div>
-			
+ 			<div class="col-md-offset-5">
+			  	<ul class="pagination">
+				    <c:if test="${pageMaker.prev}">
+				    	<li><a href="notice${pageMaker.makeSearch(pageMaker.startPage - 1)}">이전</a></li>
+				    </c:if>
+					
+				    <c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="idx">
+				 		<li <c:out value="${pageMaker.cri.page == idx ? 'class=info' : '' }" />>   
+				    	<a href="notice${pageMaker.makeSearch(idx)}">${idx}</a></li>
+				    </c:forEach>
+					
+				    <c:if test="${pageMaker.next && pageMaker.endPage > 0}">
+				    	<li><a href="notice${pageMaker.makeSearch(pageMaker.endPage + 1)}">다음</a></li>
+				    </c:if>
+		  		</ul>
+			</div>
 		</form>
-
-
 	</div>
 	<%@ include file="../include/footer.jsp" %>
-				<script>
-					$(function(){
-						$('#searchBtn').click(function(){
-							self.location = "notice?searchType=" +$("select option:selected").val() +"&keyword="+$("[name=keyword]").val()	});
-					});
-					
-					$(".noticeDetail_btn").click(function(){
-						$(".noticeInfo").slideDown();
-						$(".noticeDetail_btn").slideUp();
-					});
-		     
-		      $(".cancel_btn").click(function(){
-		      $(".noticeInfo").slideUp();
-		      $(".noticeDetail_btn").slideDown();
-		      });
-					
-				</script>
 </body>
+
+<script>
+var i=0;
+
+$(function(){
+	$('#searchBtn').click(function(){
+		self.location = "notice?searchType=" +$("select option:selected").val() +"&keyword="+$("[name=keyword]").val()	});
+	
+	$('.toggleContent').click(function(){
+	      if(i == 0) {
+	         $(this).find('.glyphicon-plus').css({ display:"none", });
+	         $(this).find('.glyphicon-minus').css({ display:"inline", });
+	         $(this).parent().next().show();
+	         i=1;
+	         
+	      } else {
+	         $(this).find('.glyphicon-plus').css({ display:"inline", });
+	         $(this).find('.glyphicon-minus').css({ display:"none", });
+	         $(this).parent().next().hide();
+	         i=0;
+	         
+	      }
+	   });
+	
+});
+</script>
 </html>

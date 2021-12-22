@@ -5,6 +5,8 @@ import java.util.List;
 import com.room.admin.dto.BoardDTO;
 import com.room.admin.dto.PaymentDTO;
 import com.room.admin.dto.SearchCriteria;
+import com.room.member.dto.FaqDTO;
+import com.room.member.dto.FaqTypeDTO;
 import com.room.member.dto.MemberDTO;
 import com.room.admin.dto.RoomKindDTO;
 import com.room.admin.dto.Room_fncDTO;
@@ -13,13 +15,28 @@ import com.room.admin.dto.Room_rentDTO;
 public interface AdminDAO {
 	// 게시글 작성
 	public void noticeWrite(BoardDTO boardDTO) throws Exception;
+	// 게시글 작성
+	public void faqWrite(FaqDTO faqDTO) throws Exception;
 	
 	// 게시물 목록 조회
 	public List<BoardDTO> list(SearchCriteria scri) throws Exception;
 
 	// 게시물 총 갯수
 	public int listCount(SearchCriteria scri) throws Exception;
+	// faq 목록 조회
+	public List<FaqDTO> faqlist(SearchCriteria scri) throws Exception;
 
+	// faq 총 갯수
+	public int faqlistCount(SearchCriteria scri) throws Exception;
+
+	//faq 수정
+	public void faqUpdate(FaqDTO faqDTO) throws Exception;
+	
+	//faq 삭제
+	public void faqDelete(FaqDTO faqDTO) throws Exception;
+	//faq 상세페이지
+	public FaqDTO faqdetailView(int faq_bno) throws Exception;
+	
 	// 방 종류 뿌려주기
 	public List<RoomKindDTO> roomKind() throws Exception;
 	
@@ -83,6 +100,10 @@ public interface AdminDAO {
 	public void fncDelete(Room_fncDTO room_fncDTO) throws Exception;
 	//대여항목 삭제
 	public void rentDelete(Room_rentDTO room_rentDTO) throws Exception;
+	// -------------------------------------------------------------------------------------------------
+	// FAQ 유형 목록
+	// -------------------------------------------------------------------------------------------------
+	public List<FaqTypeDTO> selectFaqType() throws Exception;
 	
 	
 

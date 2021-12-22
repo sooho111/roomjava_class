@@ -12,6 +12,8 @@ import com.room.admin.dao.AdminDAO;
 import com.room.admin.dto.BoardDTO;
 import com.room.admin.dto.PaymentDTO;
 import com.room.admin.dto.SearchCriteria;
+import com.room.member.dto.FaqDTO;
+import com.room.member.dto.FaqTypeDTO;
 import com.room.member.dto.MemberDTO;
 import com.room.admin.dto.RoomKindDTO;
 import com.room.admin.dto.Room_fncDTO;
@@ -31,6 +33,12 @@ public class AdminServiceImpl implements AdminService {
 		
 		adminDAO.noticeWrite(boardDTO);
 	}
+	//공지사항 작성
+	@Override
+	public void faqWrite(FaqDTO faqDTO) throws Exception {
+		
+		adminDAO.faqWrite(faqDTO);
+	}
 	//공지사항 페이징
 	@Override
 	public List<BoardDTO> list(SearchCriteria scri) throws Exception {
@@ -43,6 +51,37 @@ public class AdminServiceImpl implements AdminService {
 		
 		return adminDAO.listCount(scri);
 	} 	
+	//faq 페이징
+	@Override
+	public List<FaqDTO> faqlist(SearchCriteria scri) throws Exception {
+		
+		return adminDAO.faqlist(scri);
+	}
+	//faq 갯수확인
+	@Override
+	public int faqlistCount(SearchCriteria scri) throws Exception {
+		
+		return adminDAO.faqlistCount(scri);
+	} 	
+	//결제 삭제
+	@Override
+	public void faqDelete(FaqDTO faqDTO) throws Exception {
+		
+	adminDAO.faqDelete(faqDTO);
+	}	
+	//기능 수정
+	@Override
+	public void faqUpdate(FaqDTO faqDTO) throws Exception {
+		
+		adminDAO.faqUpdate(faqDTO);
+		
+	}
+	//기능 상세페이지
+	@Override
+	public FaqDTO faqdetailView(int faq_bno) throws Exception {
+		
+		return adminDAO.faqdetailView(faq_bno);
+	}
 	
 	// ----------------------------------------------------------------------------------------------------
 	// 방 종류 뿌려주기
@@ -215,6 +254,15 @@ public class AdminServiceImpl implements AdminService {
 		
 	adminDAO.rentDelete(room_rentDTO);
 	}	
+	// -------------------------------------------------------------------------------------------------
+	// Faq 목록 가져오기
+	// -------------------------------------------------------------------------------------------------
+	@Override
+	public List<FaqTypeDTO> selectFaqType() throws Exception {
+		logger.info("ManagerDAOImpl selectFaqType() Start....");
+		return adminDAO.selectFaqType();
+	}
+
 	
 	
 	
