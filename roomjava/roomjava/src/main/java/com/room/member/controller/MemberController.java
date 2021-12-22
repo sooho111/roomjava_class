@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+
 import com.room.admin.dto.BoardDTO;
 import com.room.admin.dto.PageMaker;
 import com.room.admin.dto.SearchCriteria;
@@ -379,6 +380,52 @@ public class MemberController {
 	    return mav;
 	    
 	   }
+	/*-----------------------------------------------------------------------------------------------------------
+	* qna 작성
+	----------------------------------------------------------------------------------------------------------*/
+	@RequestMapping(value = "/qnaInsert", method = RequestMethod.GET)
+	public void qnaView() throws Exception {}
+	
+	@RequestMapping(value = "/qnaInsert", method = RequestMethod.POST)
+	public String qnaWrite(HttpSession httpSession ,QnaDTO QnaDTO) throws Exception {
+		MemberDTO member = (MemberDTO) httpSession.getAttribute("member");
+		String userId = member.getM_id();
+		
+		QnaDTO.setM_id(userId);
+		
+		memberService.qnaWrite(QnaDTO);
+		
+		
+		return "redirect:/member/qna";
+	}
 
+
+
+	// -------------------------------------------------------------------------------------------------
+	// qna list 페이징
+	// -------------------------------------------------------------------------------------------------
+		@RequestMapping(value = "/member/qna", method = RequestMethod.GET)
+		public String noticeList(Model model, @ModelAttribute("scri") SearchCriteria scri) throws Exception {
+			logger.info("qnaList");
+			
+
+			
+			model.addAttribute("qnalist", memberService.list(scri));
+			
+
+			
+			PageMaker pageMaker = new PageMaker();
+			pageMaker.setCri(scri);
+			pageMaker.setTotalCount(memberService.listCount(scri));
+
+		
+			
+			model.addAttribute("pageMaker", pageMaker);
+	
+			
+			
+			return "member/qna";
+		}
+	
 	
 } // end class MemberController

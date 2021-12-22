@@ -16,7 +16,7 @@
 <%@ include file="../../include/m_header.jsp" %>
 
 	<div class="container">
-		<form class="form-horizontal" name ="updateForm" role="form" method="post" action="/admin/notice/noticeUpdate?n=${update.notice_bno }">
+		<form class="form-horizontal" name ="updateForm" role="form" method="post" action="/admin/board/noticeUpdate?n=${update.notice_bno }">
 			<input type="hidden" name="notice_bno" value="${update.notice_bno}" readonly="readonly"/>
 			<div class="form-group">
 				<div style="text-align: center; margin: 50px 0;">
@@ -61,7 +61,7 @@
 		
 		$(".cancel_btn").on("click", function(){
 			event.preventDefault();
-			location.href = "/admin/notice/noticeList";
+			location.href = "/admin/board/boardList";
 		})
 	})
 </script>
