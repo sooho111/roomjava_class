@@ -86,4 +86,13 @@ public class MainServiceImpl implements MainService {
 	public List<PaymentDTO> getPayment() throws Exception {
 		return mainDAO.getPayment();
 	}
+	
+//	//-------------------------------------------------------------------------------------------------
+//	// 예약하기 누르면 bookDTO에 담아주기
+//	//-------------------------------------------------------------------------------------------------
+//	@Override
+//	public void insertBook(BookDTO bookDTO) throws Exception {
+//		mainDAO.insertBook(bookDTO);
+//	}
+	
 }
