@@ -12,6 +12,7 @@ import com.room.admin.dao.AdminDAO;
 import com.room.admin.dto.BoardDTO;
 import com.room.admin.dto.PaymentDTO;
 import com.room.admin.dto.SearchCriteria;
+import com.room.main.dto.BookDTO;
 import com.room.member.dto.FaqDTO;
 import com.room.member.dto.FaqTypeDTO;
 import com.room.member.dto.MemberDTO;
@@ -263,10 +264,29 @@ public class AdminServiceImpl implements AdminService {
 		return adminDAO.selectFaqType();
 	}
 
+	//-----------------------------------------------------------------------------------------------------------
+	// 회원들이 예약한 방 목록
+	//-----------------------------------------------------------------------------------------------------------
+	@Override
+	public List<BookDTO> memberBookList() throws Exception {
+		return adminDAO.memberBookList();
+	}
 	
+	//-------------------------------------------------------------------------------------------------
+	// 예약 상세정보를 가져온다.
+	//-------------------------------------------------------------------------------------------------
+	@Override
+	public List<BookDTO> memberBookView(String book_order) throws Exception {
+		return adminDAO.memberBookView(book_order);
+	}
 	
-	
-	
+	//-------------------------------------------------------------------------------------------------
+	// 배송 상태 변경
+	//-------------------------------------------------------------------------------------------------
+	@Override
+	public void bookOk(BookDTO bookDTO) throws Exception {
+		adminDAO.bookOk(bookDTO);
+	}
 
 	
 	

@@ -5,6 +5,7 @@ import lombok.Data;
 @Data
 public class BookDTO {
 	
+	private int	 	book_bno;
 	private String 	book_order;		// 예약번호
 	private String 	book_name;		// 예약자 이름
 	private int	 	book_people;	// 예약 인원

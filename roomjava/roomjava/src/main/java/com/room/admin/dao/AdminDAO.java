@@ -5,6 +5,7 @@ import java.util.List;
 import com.room.admin.dto.BoardDTO;
 import com.room.admin.dto.PaymentDTO;
 import com.room.admin.dto.SearchCriteria;
+import com.room.main.dto.BookDTO;
 import com.room.member.dto.FaqDTO;
 import com.room.member.dto.FaqTypeDTO;
 import com.room.member.dto.MemberDTO;
@@ -104,9 +105,12 @@ public interface AdminDAO {
 	// FAQ 유형 목록
 	// -------------------------------------------------------------------------------------------------
 	public List<FaqTypeDTO> selectFaqType() throws Exception;
-	
-	
-
+	//  회원들이 예약한 방 목록
+	public List<BookDTO> memberBookList() throws Exception;
+	// 예약 상세정보를 가져온다.
+	public List<BookDTO> memberBookView(String book_order) throws Exception;
+	// 예약 상태 변경
+	public void bookOk(BookDTO bookDTO) throws Exception;
 
 	
 	
