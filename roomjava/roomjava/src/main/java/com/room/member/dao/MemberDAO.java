@@ -7,6 +7,7 @@ import com.room.admin.dto.SearchCriteria;
 import com.room.main.dto.BookDTO;
 import com.room.member.dto.MemberDTO;
 import com.room.member.dto.QnaDTO;
+import com.room.member.dto.ReviewDTO;
 import com.room.member.dto.FaqDTO;
 
 public interface MemberDAO {
@@ -84,9 +85,20 @@ public interface MemberDAO {
 	public int faqListTotalCount(SearchCriteria cri) throws Exception;
 		
 	/*-------------------------------------------------------------------------------------------------
-	* 회원 목록 보기 (Paging 처리)
+	* FAQ 목록 보기 (Paging 처리)
 	-------------------------------------------------------------------------------------------------*/
 	public List<FaqDTO> faqListPaging(SearchCriteria cri) throws Exception;
+	
+	//-------------------------------------------------------------------------------------------------
+	// review 페이징 처리
+	//-------------------------------------------------------------------------------------------------
+	public int reviewListTotalCount(SearchCriteria cri) throws Exception;
+		
+	/*-------------------------------------------------------------------------------------------------
+	* review 목록 보기 (Paging 처리)
+	-------------------------------------------------------------------------------------------------*/
+	public List<ReviewDTO> reviewListPaging(SearchCriteria cri) throws Exception;
+	
 	
 	/*-------------------------------------------------------------------------------------------------
 	* QnA 작성

@@ -9,6 +9,7 @@ import com.room.admin.dto.SearchCriteria;
 import com.room.main.dto.BookDTO;
 import com.room.member.dto.MemberDTO;
 import com.room.member.dto.QnaDTO;
+import com.room.member.dto.ReviewDTO;
 import com.room.member.dto.FaqDTO;
 
 public interface MemberService {
@@ -85,6 +86,15 @@ public interface MemberService {
 	* FAQ 목록 보기 (Paging 처리)
 	-------------------------------------------------------------------------------------------------*/
 	public List<FaqDTO> faqListPaging(SearchCriteria cri) throws Exception;
+	//-------------------------------------------------------------------------------------------------
+	// Review 페이징 처리
+	//-------------------------------------------------------------------------------------------------
+	public int reviewListTotalCount(SearchCriteria cri) throws Exception;
+		
+	/*-------------------------------------------------------------------------------------------------
+	* Review 목록 보기 (Paging 처리)
+	-------------------------------------------------------------------------------------------------*/
+	public List<ReviewDTO> reviewListPaging(SearchCriteria cri) throws Exception;
 	
 	/*-------------------------------------------------------------------------------------------------
 	* qna 작성

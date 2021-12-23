@@ -29,6 +29,7 @@ import com.room.admin.dto.SearchCriteria;
 import com.room.main.dto.BookDTO;
 import com.room.member.dto.MemberDTO;
 import com.room.member.dto.QnaDTO;
+import com.room.member.dto.ReviewDTO;
 import com.room.member.service.MemberService;
 import com.room.member.dto.FaqDTO;
 
@@ -262,7 +263,7 @@ public class MemberController {
 			return "redirect:/";
 		} else {
 			ra.addFlashAttribute("result", "removeFalse");
-			return "redirect:/user/remove";
+			return "redirect:/member/memberDelete";
 		}
 	}
 
@@ -341,6 +342,27 @@ public class MemberController {
 		
 		model.addAttribute("bookView", bookView);
 	}
+	// -------------------------------------------------------------------------------------------------
+	// 후기 작성 GET
+	// -------------------------------------------------------------------------------------------------
+	@RequestMapping(value="/insertReview", method=RequestMethod.GET)
+	public void reviewGOget(@RequestParam("book_order") String book_order, Model model) throws Exception {
+		
+		logger.info("뭐나오나 보쟈"+book_order);
+		List<BookDTO> review = new ArrayList<BookDTO>();
+		review.addAll(memberService.bookView(book_order));
+		logger.info("managerController return Value ==> " + review);
+		
+		BookDTO bookDTO = new BookDTO();
+		bookDTO.setBook_order(review.get(0).getBook_order());
+		bookDTO.setBook_name(review.get(0).getBook_name());
+		bookDTO.setBook_people(review.get(0).getBook_people());
+		bookDTO.setBook_ok(review.get(0).getBook_ok());
+		bookDTO.setBook_tel(review.get(0).getBook_tel());
+		logger.info("orderView.get(0).getDelivery_name() => " + bookDTO);
+		
+		model.addAttribute("review", review);
+	}
 	
 	//공지사항 view
 	@RequestMapping(value="/notice", method=RequestMethod.GET)
@@ -396,6 +418,27 @@ public class MemberController {
 		
 		//List<ManagerDTO>  list = managerService.memberListPaging(cri);
 		List<FaqDTO>  list = memberService.faqListPaging(cri);
+		
+		mav.addObject("list", list);
+	    mav.addObject("pageMaker", pageMaker);
+	        
+	    return mav;
+	    
+	   }
+	/*-----------------------------------------------------------------------------------------------------------
+	* faq 목록(Paging 처리)
+	----------------------------------------------------------------------------------------------------------*/
+	
+	@RequestMapping(value="/review", method=RequestMethod.GET)
+	   public ModelAndView reviewList(SearchCriteria cri) throws Exception {
+		ModelAndView mav = new ModelAndView("/member/review");
+	    
+		PageMaker pageMaker = new PageMaker();	
+		pageMaker.setCri(cri);
+		logger.info("---------------------------------------------------------------------"+cri);
+		pageMaker.setTotalCount(memberService.reviewListTotalCount(cri));
+		
+		List<ReviewDTO>  list = memberService.reviewListPaging(cri);
 		
 		mav.addObject("list", list);
 	    mav.addObject("pageMaker", pageMaker);
