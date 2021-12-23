@@ -47,7 +47,7 @@ span.plusIcon { cursor:pointer; }
 							<c:when test="${review.review_star == 2 }">★★</c:when>
 							<c:when test="${review.review_star == 1 }">★</c:when>
 						</c:choose></td> 
-						
+						 
 					</tr>
 			        <tr>
 			          <td>
