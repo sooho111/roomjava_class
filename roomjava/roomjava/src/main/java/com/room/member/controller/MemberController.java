@@ -263,7 +263,7 @@ public class MemberController {
 			return "redirect:/";
 		} else {
 			ra.addFlashAttribute("result", "removeFalse");
-			return "redirect:/user/remove";
+			return "redirect:/member/memberDelete";
 		}
 	}
 
@@ -341,6 +341,27 @@ public class MemberController {
 		logger.info("orderView.get(0).getDelivery_name() => " + bookDTO);
 		
 		model.addAttribute("bookView", bookView);
+	}
+	// -------------------------------------------------------------------------------------------------
+	// 후기 작성 GET
+	// -------------------------------------------------------------------------------------------------
+	@RequestMapping(value="/insertReview", method=RequestMethod.GET)
+	public void reviewGOget(@RequestParam("book_order") String book_order, Model model) throws Exception {
+		
+		logger.info("뭐나오나 보쟈"+book_order);
+		List<BookDTO> review = new ArrayList<BookDTO>();
+		review.addAll(memberService.bookView(book_order));
+		logger.info("managerController return Value ==> " + review);
+		
+		BookDTO bookDTO = new BookDTO();
+		bookDTO.setBook_order(review.get(0).getBook_order());
+		bookDTO.setBook_name(review.get(0).getBook_name());
+		bookDTO.setBook_people(review.get(0).getBook_people());
+		bookDTO.setBook_ok(review.get(0).getBook_ok());
+		bookDTO.setBook_tel(review.get(0).getBook_tel());
+		logger.info("orderView.get(0).getDelivery_name() => " + bookDTO);
+		
+		model.addAttribute("review", review);
 	}
 	
 	//공지사항 view
