@@ -325,6 +325,24 @@ INSERT INTO faq (faq_title, faq_content,faq_class)
     	SELECT * FROM faq_type
     </select>
 
-   
+    <!-- 회원들이 예약한 방 목록 -->
+   	<select id="memberBookList" resultType="com.room.main.dto.BookDTO">
+      	SELECT	book_bno, book_order,	book_name,	book_people,	book_tel, book_ok, start_date,	end_date,	r_bno
+      	FROM   	book
+   	</select>
+   	
+	<!-- 예약 상세정보 -->
+	<select id="memberBookView" resultType="com.room.main.dto.BookDTO">
+      	SELECT	book_bno, book_order,	book_name,	book_people,	book_tel, book_ok, start_date,	end_date,	r_bno
+      	FROM   	book
+		WHERE	book_order = #{book_order}
+	</select>
+	
+	<!-- 배송 상태 변경 -->
+	<update id="bookOk">
+ 		UPDATE 	book
+ 		SET 	book_ok 	= #{book_ok}
+ 		WHERE 	book_order	= #{book_order}
+	</update>
 	
 </mapper>

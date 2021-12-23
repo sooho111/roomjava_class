@@ -71,7 +71,7 @@ body { overflow-x:hidden; font-size:14px; }
 				<div class="col-sm-4">
 					<input type="text" class="form-control" 
 					name="m_tel" id="m_tel" maxlength="50" />
-				</div>
+				</div>	
 			</div>	
 			
 			<div class="form-group">
@@ -85,7 +85,6 @@ body { overflow-x:hidden; font-size:14px; }
 				</div>
 			</div>		
 		
-<<<<<<< HEAD
 			<div class="form-group">
 				<label class="control-label col-sm-4">렌트</label>
 				<div class="col-sm-5">
@@ -109,7 +108,6 @@ body { overflow-x:hidden; font-size:14px; }
 			</div>
 		</form>
 		
-=======
 		<div class="form-group">
 			<label class="control-label col-sm-2">예약자 이름</label>
 			<div class="col-sm-4">
@@ -192,7 +190,6 @@ body { overflow-x:hidden; font-size:14px; }
 		</div><br/><br/>		
 		
 				
->>>>>>> 531fc7fd8aaf0aceabb5bfd72f904154c2f60d9b
 		<form action="/main/okBook" method="post" id="okBookForm">
 			<input type="hidden" name="r_bno" value="${room.r_bno}" />
 			<input type="hidden" name="r_name" value="${room.r_name}" />
@@ -203,18 +200,15 @@ body { overflow-x:hidden; font-size:14px; }
 			<input type="hidden" name="r_rent" value="${room.r_rent}" />
 		</form>
 	
-<<<<<<< HEAD
 		<div class="col-sm-offset-8">
 			<button class="btn btn-info">이전단계</button>
 			<button type="button" class="btn btn-primary okBook">다음단계</button>
 		</div>			
-=======
 		<br/><br/>
 		<ul class="btns">
 			<li><button class="btn btn-info">이전단계</button></li>
 			<li><button type="button" class="btn btn-primary okBook">다음단계</button></li>
 		</ul>				
->>>>>>> 531fc7fd8aaf0aceabb5bfd72f904154c2f60d9b
 
 
 <br /><br />

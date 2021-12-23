@@ -1,5 +1,6 @@
 package com.room.admin.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -24,6 +25,7 @@ import com.room.admin.dto.Room_fncDTO;
 import com.room.admin.dto.Room_rentDTO;
 import com.room.admin.dto.SearchCriteria;
 import com.room.admin.service.AdminService;
+import com.room.main.dto.BookDTO;
 import com.room.member.dto.FaqDTO;
 import com.room.member.dto.FaqTypeDTO;
 import com.room.member.dto.MemberDTO;
@@ -480,7 +482,50 @@ public class AdminController {
 				return "redirect:/admin/etc/etcList";
 			}
 			
+			//-------------------------------------------------------------------------------------------------
+			// 회원들이 예약한 방 목록
+			//-------------------------------------------------------------------------------------------------
+			@RequestMapping(value="/member/memberBookList", method=RequestMethod.GET)
+			public String memberBookList(Model model) throws Exception {
+			      
+			   List<BookDTO> memberBookList = null;
+			   memberBookList = adminService.memberBookList(); // 작업할 테이블명을 매개변수로 넘겨준다.
+			      
+			model.addAttribute("memberBookList", adminService.memberBookList());
+			logger.info("고객들이 예약한 정보 잘 가져오나요? ==> " + memberBookList);
+			  
+			return "admin/member/memberBookList"; 
+				      
+			}
 			
-		
-		
+			//-------------------------------------------------------------------------------------------------
+			// 예약 상세정보를 가져온다.
+			//-------------------------------------------------------------------------------------------------
+			@RequestMapping(value="/member/memberBookView", method=RequestMethod.GET)
+			public void memberBookView(@RequestParam("book_order") String book_order, Model model) throws Exception {
+			
+			List<BookDTO> memberBookView = new ArrayList<BookDTO>();
+			
+			memberBookView.addAll(adminService.memberBookView(book_order));
+					
+			model.addAttribute("memberBookView", memberBookView);
+			
+			logger.info("예약번호 잘 가져오나요~~? " + book_order);
+			
+			} 
+			
+			//-------------------------------------------------------------------------------------------------
+			// 예약 상태 변경 => 가예약, 예약 확정, 입실 중, 퇴실 완료
+			//-------------------------------------------------------------------------------------------------
+			@RequestMapping(value = "/member/memberBookView", method = RequestMethod.POST)
+			public String BookOk(BookDTO bookDTO, String book_order) throws Exception {
+		    	logger.info("예약 상세 정보 => 상태 변경 " + bookDTO.getBook_ok());
+		    	logger.info("주문 상세 정보 => 상태 변경 주문번호 " + bookDTO.getBook_order());
+		       
+		    	adminService.bookOk(bookDTO);
+		       
+		        return "redirect:/admin/member/memberBookView?book_order=" + bookDTO.getBook_order();
+		    }
+			
+			
 }
