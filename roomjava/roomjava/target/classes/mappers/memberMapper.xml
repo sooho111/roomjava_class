@@ -162,6 +162,36 @@ WHERE book_name = #{book_name}
     	]]>
    	</select>
    	
+   		     <!-- faq 검색조건 -->
+   	<sql id="reviewsearch">
+      	<if test="searchType != null">
+	         <if test="searchType == 'r_name'.toString()">AND r_name LIKE CONCAT('%',#{keyword},'%')</if>
+	         <if test="searchType == 'review_writer'.toString()">AND review_writer LIKE CONCAT('%',#{keyword},'%')</if>
+      	</if>
+   	</sql>
+   	
+    <!-- Faq 수 구하기 (Paging 처리) + 검색조건 -->
+   	<select id="reviewListTotalCount" parameterType="com.room.admin.dto.SearchCriteria" resultType="Integer">
+    	<![CDATA[
+        	SELECT   count(*) FROM review
+        	WHERE   1=1
+     	]]>
+     	<include refid="reviewsearch"/>
+   	</select>
+   
+   <!-- Faq 목록 보기 (Paging 처리) + 검색조건 -->
+   <select id="reviewListPaging" parameterType="com.room.admin.dto.SearchCriteria" resultType="com.room.member.dto.ReviewDTO">
+    	<![CDATA[
+        	SELECT   *  FROM   review
+        	WHERE   1=1
+    	]]>
+      	<include refid="reviewsearch"/>
+    	<![CDATA[
+        	ORDER BY r_bno ASC
+        	LIMIT   #{pageStart}, #{perPageNum}
+    	]]>
+   	</select>
+   	
    	<!-- Qna 작성 -->
    	<insert id="qnaInsert"  parameterType="com.room.member.dto.QnaDTO">
    	Insert Into qna_board(qna_title, qna_content, qna_seceret, m_id)
@@ -170,7 +200,7 @@ WHERE book_name = #{book_name}
    	</insert>
    	
    		     <!-- qna 검색조건 -->
-   	<sql id="qnasearch">
+   	<sql id="qnaSearch">
       	<if test="searchType != null">
 	         <if test="searchType == 'qna_title'.toString()">AND qna_title LIKE CONCAT('%',#{keyword},'%')</if>
 	         <if test="searchType == 'qna_content'.toString()">AND qna_content LIKE CONCAT('%',#{keyword},'%')</if>
@@ -183,7 +213,7 @@ WHERE book_name = #{book_name}
         	SELECT   count(*) FROM qna_board
         	WHERE   1=1
      	]]>
-     	<include refid="qnasearch"/>
+     	<include refid="qnaSearch"/>
    	</select>
    
    <!-- qna 목록 보기 (Paging 처리) + 검색조건 -->
@@ -192,10 +222,51 @@ WHERE book_name = #{book_name}
         	SELECT   *  FROM   qna_board
         	WHERE   1=1
     	]]>
-      	<include refid="qnasearch"/>
+      	<include refid="qnaSearch"/>
     	<![CDATA[
-        	ORDER BY faq_bno ASC
+        	ORDER BY qna_bno ASC
         	LIMIT   #{pageStart}, #{perPageNum}
     	]]>
    	</select>
+
+   	
+   	<!-- qna 유저 아이디 체크 -->
+   	<select id="UserIdCheck" resultType="String">
+   	select m_id
+	from qna_board
+	where qna_bno = #{qna_bno}
+   	
+   	</select>
+   	
+   	<!-- qna 상세보기 -->
+   	<select id="qnaDetail" resultType="com.room.member.dto.QnaDTO">
+   	SELECT * FROM qna_board
+   	WHERE qna_bno = #{qna_bno}
+   	</select>
+   	
+   	<!-- qna 수정 -->
+   	<update id="qnaUpdate" parameterType="com.room.member.dto.QnaDTO" >
+   	UPDATE qna_board
+	SET	qna_title = #{qna_title},
+		qna_content = #{qna_content}
+	WHERE qna_bno = #{qna_bno}
+   	</update>
+   	
+   	<!-- qna 삭제 -->
+   	<delete id="qnaDelete" parameterType="com.room.member.dto.QnaDTO">
+    DELETE FROM qna_board
+	WHERE qna_bno = #{qna_bno} 
+   	</delete>
+
+   	   	<!-- 리뷰작성 조건 -->
+	<select id="checkReview" resultType="int">
+		select count(*) 
+		from review
+		where book_order=#{book_order}
+   	</select>
+   	<insert id="insertReview">
+   		insert into review(r_bno,r_name,m_id,r_kind,r_content,book_order,review_star)
+   		values(#{r_bno},#{r_name},#{m_id},#{r_kind},#{r_content},#{book_order},#{review_star})
+   	</insert>
+
 </mapper>

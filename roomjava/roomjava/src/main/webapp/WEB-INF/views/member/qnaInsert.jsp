@@ -38,11 +38,6 @@
 			</div>
 			
 			
-			<div class="secret">
-			    <label><input type="radio" name="qna_seceret" value="0" />공개</label>
-			    <label><input type="radio" name="qna_seceret" value="1" />비공개</label>
-			</div>
-			
 			<div class="form-group btm">
 				<div class="col-sm-offset bt">
 					<button type="submit">작성완료</button>

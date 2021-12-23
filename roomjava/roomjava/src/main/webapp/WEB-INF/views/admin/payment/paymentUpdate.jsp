@@ -27,20 +27,20 @@
 			<div class="form-group">
 				<label class="control-label col-sm-2">예 금 주</label>
 				<div class="col-sm-1">
-					<input type="text" class="form-control" name="pay_name" maxlength="20" placeholder="예 금 주"/>
+					<input type="text" class="form-control" name="pay_name" maxlength="20" placeholder="예 금 주" value="${update.pay_name}"/>
 				</div>
 			</div>
 			
 			<div class="form-group">
 				<label class="control-label col-sm-2">계 좌 번 호</label>
 				<div class="col-sm-2">
-					<input type="text" class="form-control" name="pay_account" maxlength="50" placeholder="계 좌 번 호"/>
+					<input type="text" class="form-control" name="pay_account" maxlength="50" placeholder="계 좌 번 호" value="${update.pay_account}"/>
 				</div>
 			</div>
 			<div class="form-group">
 				<label class="control-label col-sm-2">은 행 명</label>
 				<div class="col-sm-1">
-					<input type="text" class="form-control" name="pay_bank" maxlength="50" placeholder="은 행 명"/>
+					<input type="text" class="form-control" name="pay_bank" maxlength="50" placeholder="은 행 명" value="${update.pay_bank}"/>
 				</div>
 			</div>
 			<div class="form-group">

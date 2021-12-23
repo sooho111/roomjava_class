@@ -14,6 +14,7 @@ import com.room.admin.dto.SearchCriteria;
 import com.room.main.dto.BookDTO;
 import com.room.member.dto.MemberDTO;
 import com.room.member.dto.QnaDTO;
+import com.room.member.dto.ReviewDTO;
 import com.room.member.dto.FaqDTO;
 
 
@@ -144,7 +145,7 @@ public class MemberDAOImpl implements MemberDAO {
 		return sqlSession.selectList(namespace + ".belogin", book_name);
 	}
 	//-------------------------------------------------------------------------------------------------
-	// 전체 글 갯수 구하기 (Paging 처리)
+	// faq글 갯수 구하기 (Paging 처리)
 	//-------------------------------------------------------------------------------------------------
 	@Override
 	public int faqListTotalCount(SearchCriteria cri) throws Exception {
@@ -161,6 +162,22 @@ public class MemberDAOImpl implements MemberDAO {
 		
 		return sqlSession.selectList(namespace + ".faqListPaging", cri);
 	}
+	//-------------------------------------------------------------------------------------------------
+	// review 글 갯수 구하기 (Paging 처리)
+	//-------------------------------------------------------------------------------------------------
+	@Override
+	public int reviewListTotalCount(SearchCriteria cri) throws Exception {
+		return sqlSession.selectOne(namespace + ".reviewListTotalCount", cri);
+	}
+	
+	/*-------------------------------------------------------------------------------------------------
+	* review 목록 보기 (Paging 처리)
+	-------------------------------------------------------------------------------------------------*/
+	@Override
+	public List<ReviewDTO> reviewListPaging(SearchCriteria cri) throws Exception {
+		
+		return sqlSession.selectList(namespace + ".reviewListPaging", cri);
+	}
 	/*-------------------------------------------------------------------------------------------------
 	* qna 작성
 	-------------------------------------------------------------------------------------------------*/
@@ -171,12 +188,62 @@ public class MemberDAOImpl implements MemberDAO {
 	}
 
 	/*-------------------------------------------------------------------------------------------------
-	* qna 작성
+	* qna list
 	-------------------------------------------------------------------------------------------------*/
 	@Override
-	public void qnaList(SearchCriteria cri) throws Exception {
+	public List<QnaDTO> qnaList(SearchCriteria cri) throws Exception {
 		
+		return sqlSession.selectList(namespace + ".qnaListPaging", cri);
+	}
+	/*-------------------------------------------------------------------------------------------------
+	* qna count
+	-------------------------------------------------------------------------------------------------*/
+	@Override
+	public int qnaListCount(SearchCriteria scri) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(namespace + ".qnaListTotalCount", scri);
+	}
+	/*-------------------------------------------------------------------------------------------------
+	* qna 게시판 상세보기
+	-------------------------------------------------------------------------------------------------*/
+	@Override
+	public String qnaOne(int qna_bno) throws Exception {
 		
+		return sqlSession.selectOne(namespace + ".UserIdCheck", qna_bno);
+	}
+	/*-------------------------------------------------------------------------------------------------
+	* qna 게시판 상세보기
+	-------------------------------------------------------------------------------------------------*/
+	@Override
+	public QnaDTO qnaDetail(int qna_bno) throws Exception {
+		
+		return sqlSession.selectOne(namespace + ".qnaDetail", qna_bno);
+	}
+	/*-------------------------------------------------------------------------------------------------
+	* qna 게시판 수정
+	-------------------------------------------------------------------------------------------------*/
+	@Override
+	public void qnaUpdate(QnaDTO qnaDTO) throws Exception {
+		sqlSession.update(namespace + ".qnaUpdate", qnaDTO);
+		
+	}
+	/*-------------------------------------------------------------------------------------------------
+	* qna 게시판 삭제
+	-------------------------------------------------------------------------------------------------*/
+	@Override
+	public void qnaDelete(QnaDTO qnaDTO) throws Exception {
+		sqlSession.delete(namespace + ".qnaDelete", qnaDTO);
+		
+	}
+	//리뷰 체크
+	@Override
+	public Integer checkReview(String book_order) throws Exception {
+
+		return sqlSession.selectOne(namespace +".checkReview", book_order);
+	}
+	//리뷰 추가
+	public void insertReview(ReviewDTO reviewDTO) throws Exception {
+		sqlSession.insert(namespace+".insertReview",reviewDTO);
 	}
 
 }
