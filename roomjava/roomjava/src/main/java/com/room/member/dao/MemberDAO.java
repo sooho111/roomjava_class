@@ -107,6 +107,7 @@ public interface MemberDAO {
 	/*-------------------------------------------------------------------------------------------------
 	* QnA List
 	-------------------------------------------------------------------------------------------------*/	
+
 	public List<QnaDTO> qnaList(SearchCriteria cri) throws Exception;
 	/*-------------------------------------------------------------------------------------------------
 	* QnA count
@@ -129,13 +130,11 @@ public interface MemberDAO {
 	-------------------------------------------------------------------------------------------------*/	
 	public void qnaDelete(QnaDTO qnaDTO) throws Exception;
 
+
 	//리뷰 체크 
 	public Integer checkReview(String book_order) throws Exception;
 	//리뷰 작성
 	public void insertReview(ReviewDTO reviewdto) throws Exception;
-	//리뷰 불러오기
-	public ReviewDTO getReview(String book_order) throws Exception;
-	//리뷰 수정
-	public void updateReview(ReviewDTO reviewdto) throws Exception;
+	
 
 }

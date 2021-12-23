@@ -8,31 +8,37 @@
 	<meta charset="UTF-8">
 	<title>회원 예약 목록</title>
 	<%@ include file="../../include/includeFile.jsp" %>
+<style type="text/css">
+.container { margin-top:70px; margin-bottom:70px; }
+.info { cursor:pointer; }
+</style>
 </head>
 <body>
 <%@ include file="../../include/m_header.jsp" %>
 
 <div class="container">
-	
-	<table class="table table-bordered table-hover">
+
+	<div class="form-group">
+		<h5><b>회원 예약 목록</b></h5>
+	</div>
+	<form role= "form">
+	<table class="table table-bordered table-striped table-hove">
 		<thead>
-			<tr class="info">
-				<td align=center width=20>예약번호</td>
-				<td align=center width=20>방번호</td>
-				<td align=center width=30>예약자이름</td>
-				<td align=center width=5>예약인원</td>
-				<td align=center width=11>예약자 전화번호</td>
-				<td align=center width=20>예약상태</td>
-				<td align=center width=20>예약시작일자</td>
-				<td align=center width=20>예약종료일자</td>
+			<tr>
+				<th>예약번호</th>
+				<th>예약자이름</th>
+				<th>예약인원</th>
+				<th>예약자 전화번호</th>
+				<th>예약상태</th>
+				<th>예약시작일자</th>
+				<th>예약종료일자</th>
 			</tr>
 		</thead>
 		
 		<tbody>
 			<c:forEach var="List" items="${memberBookList}">	
 				<tr>
-					<td align=center><a href="../member/memberBookView?book_order=${List.book_order}">ㅎㅎ</a></td>
-					<td align=center>${List.r_bno}</td>
+					<td class="info" align=center><a href="../member/memberBookView?book_order=${List.book_order}">${List.book_order}</a></td>
 					<td align=center>${List.book_name}</td>
 					<td align=center>${List.book_people}</td>
 					<td align=center>${List.book_tel}</td>
@@ -44,6 +50,7 @@
 		</tbody>
 
 	</table>
+	</form>
 
 </div>	
 

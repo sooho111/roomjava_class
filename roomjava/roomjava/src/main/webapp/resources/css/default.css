@@ -51,6 +51,7 @@ a { text-decoration:none; }
 #header .comunity li { float:none; font-size:15px; background:#fff; margin:0; padding:7px 10px; }
 #header .comunity li a { color:#000; }
 
+
 #header .infra { position:absolute; right:25px; top:45px; padding:0; padding-top:10px; visibility:hidden; }
 #header .infra li { float:none; font-size:15px; background:#fff; margin:0; padding:7px 10px; }
 #header .infra li a { color:#000; }
