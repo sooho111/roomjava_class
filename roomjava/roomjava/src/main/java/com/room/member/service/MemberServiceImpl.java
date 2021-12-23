@@ -289,6 +289,16 @@ MemberDAO memberDAO;
 		public void insertReview(ReviewDTO reviewDTO) throws Exception {
 			memberDAO.insertReview(reviewDTO);
 		}
+		//리뷰 가져오기
+		@Override
+		public ReviewDTO getReview(String book_order) throws Exception {
+			
+			return memberDAO.getReview(book_order);
+		}
+		//리뷰 수정
+		public void updateReview(ReviewDTO reviewDTO) throws Exception {
+			memberDAO.updateReview(reviewDTO);
+		}
 
 	
 }

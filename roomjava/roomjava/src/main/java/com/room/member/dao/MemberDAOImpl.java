@@ -245,5 +245,15 @@ public class MemberDAOImpl implements MemberDAO {
 	public void insertReview(ReviewDTO reviewDTO) throws Exception {
 		sqlSession.insert(namespace+".insertReview",reviewDTO);
 	}
+	//리뷰 보기
+	@Override
+	public ReviewDTO getReview(String book_order) throws Exception {
+		
+		return sqlSession.selectOne(namespace+".getReview",book_order);
+	}
+	//리뷰 수정
+	public void updateReview(ReviewDTO reviewDTO)throws Exception {
+		sqlSession.update(namespace+".updateReview",reviewDTO);
+	}
 
 }

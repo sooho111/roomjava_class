@@ -268,5 +268,15 @@ WHERE book_name = #{book_name}
    		insert into review(r_bno,r_name,m_id,r_kind,r_content,book_order,review_star)
    		values(#{r_bno},#{r_name},#{m_id},#{r_kind},#{r_content},#{book_order},#{review_star})
    	</insert>
-
+	<select id="getReview" resultType="com.room.member.dto.ReviewDTO">
+		select*
+		from review
+		where book_order=#{book_order}
+	</select>
+	<update id="updateReview">
+		update review
+		set r_content=#{r_content},
+			review_star=#{review_star}
+		where book_order=#{book_order}
+	</update>
 </mapper>
