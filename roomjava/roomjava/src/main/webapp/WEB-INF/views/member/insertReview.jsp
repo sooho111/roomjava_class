@@ -68,7 +68,7 @@ th { text-align:center; }
 
 
 	<div class="m_content">
-		<form class="form-horizontal" method="post" autocomplete="off">
+		<form class="form-horizontal" method="post" action="insertReview">
 			<div class="form-group">
 				<label class="control-label col-sm-2">후  기</label>
 				<div class="col-sm-7">
@@ -81,9 +81,11 @@ th { text-align:center; }
 					<input type="hidden" id="r_bno" name="r_bno" value="${review.r_bno}">
 					<input type="hidden" id="r_name" name="r_name" value="${review.r_name}">
 					<input type="hidden" id="r_kind" name="r_kind" value="${review.r_kind}">
+					<input type="hidden" id="book_order" name="book_order" value="${review.book_order }">
+					<input type="hidden" id="m_id"	name="m_id" value="${member.m_id}">
 					</c:forEach>
 					<button type="reset"  class="btn btn-warning btn-sm">다시 작성하기</button>
-					<input type="button" class="btn btn-primary" name="btn_OK" onclick="checkInsertForm(this.form)" value="등록"/>
+					<input type="submit" class="btn btn-primary" name="btn_OK" value="등록"/>
 				</div>
 			</div>
 				 	

@@ -401,7 +401,7 @@ public class AdminController {
 				return "redirect:/admin/etc/etcList";
 			}
 			//-------------------------------------------------------------------------------------------------------
-			//기능 수정 GET	
+			//기능 수정 GET	///dddddd
 			//-------------------------------------------------------------------------------------------------------		
 			@RequestMapping(value = "/etc/fncUpdate", method = RequestMethod.GET)
 			public String fncUpdateView(@RequestParam("n") int fnc_bno, Room_fncDTO room_fncDTO, Model model) throws Exception {
