@@ -226,6 +226,7 @@ MemberDAO memberDAO;
 			
 			memberDAO.qnaWrite(qnaDTO);
 		}
+<<<<<<< HEAD
 		/*-------------------------------------------------------------------------------------------------
 		* qna list
 		-------------------------------------------------------------------------------------------------*/	
@@ -277,5 +278,19 @@ MemberDAO memberDAO;
 			memberDAO.qnaDelete(qnaDTO);
 			
 		}	
+=======
+		//리뷰 체크
+		@Override
+		public Integer checkReview(String book_order) throws Exception {
+			return memberDAO.checkReview(book_order);
+		}
+		//리뷰 작성
+		@Override
+		public void insertReview(ReviewDTO reviewDTO) throws Exception {
+			memberDAO.insertReview(reviewDTO);
+		}
+		
+
+>>>>>>> a5e6d46bc4e862312aed21c5b75f729f97cbb4d6
 	
 }

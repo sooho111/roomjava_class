@@ -120,8 +120,9 @@ th { text-align:center; }
 					<input type="hidden" id=book_order value="${bookView.book_order}">
 				</c:forEach>
 			</table>
+			<c:if test="${checkReview==0}">
 			<input class="btn btn-primary" type="button" value="후기 작성" id="goreview" /> 
-			
+			</c:if>
 		</div>
 	</div>
 </div>

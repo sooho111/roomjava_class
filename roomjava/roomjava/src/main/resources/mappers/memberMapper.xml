@@ -228,6 +228,7 @@ WHERE book_name = #{book_name}
         	LIMIT   #{pageStart}, #{perPageNum}
     	]]>
    	</select>
+<<<<<<< HEAD
    	
    	<!-- qna 유저 아이디 체크 -->
    	<select id="UserIdCheck" resultType="String">
@@ -256,4 +257,16 @@ WHERE book_name = #{book_name}
     DELETE FROM qna_board
 	WHERE qna_bno = #{qna_bno} 
    	</delete>
+=======
+   	   	<!-- 리뷰작성 조건 -->
+	<select id="checkReview" resultType="int">
+		select count(*) 
+		from review
+		where book_order=#{book_order}
+   	</select>
+   	<insert id="insertReview">
+   		insert into review(r_bno,r_name,m_id,r_kind,r_content,book_order)
+   		values(#{r_bno},#{r_name},#{m_id},#{r_kind},#{r_content},#{book_order})
+   	</insert>
+>>>>>>> a5e6d46bc4e862312aed21c5b75f729f97cbb4d6
 </mapper>
