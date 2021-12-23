@@ -190,12 +190,13 @@ public class MainController {
 
 	 */	
 	
-	
-	
-	
-	@RequestMapping("/okBook")
-	public void okBook() throws Exception {
-	}
+	@RequestMapping(value="/okBook", method=RequestMethod.POST)
+	public String okBook(BookDTO bookDTO) throws Exception {
+		logger.info("잠온다 " + bookDTO);
+		
+		return "/main/okBook";
+		
+	} // end String okBook() throws Exception
 	
 //	//------------------------------------------------------------------------------------------------
 //	// goBook에서 예약완료(goBook => okBook)

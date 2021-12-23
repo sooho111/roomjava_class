@@ -42,6 +42,9 @@ body { overflow-x:hidden; font-size:14px; }
 .btn { vertical-align:text-top; }
 .bang { margin-top:6px; }
 
+#start_Date, #end_Date { cursor:pointer; }
+.btns { margin-bottom:40px; }
+
 </style>	
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
@@ -56,18 +59,18 @@ body { overflow-x:hidden; font-size:14px; }
 		</div>
 				
 		<br/><br/><br/>
-		<form class="form form-horizontal">
+		<form class="form form-horizontal" action="/main/okBook" method="post" id="okBookForm">
 			<div class="form-group">
 				<label class="control-label col-sm-4">예약자 이름</label>
 				<div class="col-sm-3">
-					<input type="text" class="form-control" name="m_name" id="m_name" maxlength="50" value="${member.m_name}" />
+					<input type="text" class="form-control" name="book_name" id="m_name" maxlength="50" value="${member.m_name}" />
 				</div>
 			</div>
 			
 			<div class="form-group">
 				<label class="control-label col-sm-4">예약 인원</label>
 				<div class="col-sm-3">
-					<select class="form-control plusM" name="r_people">
+					<select class="form-control plusM" name="book_people">
 						<% int p=1; %>
 						<c:forEach var="i" begin="0" end="2" step="1">
 							<c:if test="${room.r_people == room.r_people+i}">
@@ -86,7 +89,7 @@ body { overflow-x:hidden; font-size:14px; }
 				<label class="control-label col-sm-4">예약자 전화번호</label>
 				<div class="col-sm-4">
 					<input type="text" class="form-control" 
-					name="m_tel" id="m_tel" maxlength="50" value="${member.m_tel}" />
+					name="book_tel" id="m_tel" maxlength="50" value="${member.m_tel}" />
 				</div>
 			</div>	
 			
@@ -96,8 +99,11 @@ body { overflow-x:hidden; font-size:14px; }
 					<c:forEach var="fnc" items="${fnc}">
 						<input class="btn bFnc" type="checkbox" name="room_fnc" value="${fnc.fnc_price}" /> <span class="chFnc">${fnc.fnc_name} <fmt:formatNumber value="${fnc.fnc_price}" />원</span>
 					</c:forEach>
+					<input type="checkbox" name="room_fnc" value="0" class="btn bFnc" /> <span class="chFnc">없음</span>
 				</div>
-			</div>		
+			</div>
+			
+			<input type="hidden" name="r_bno" value="${room.r_bno}" />
 		
 			<div class="form-group">
 				<label class="control-label col-sm-4">렌트</label>
@@ -105,6 +111,7 @@ body { overflow-x:hidden; font-size:14px; }
 					<c:forEach var="rent" items="${rent}">
 						<input class="btn bRent" type="checkbox" name="room_rent" value="${rent.rent_price}" /> <span class="chFnc">${rent.rent_name} <fmt:formatNumber value="${rent.rent_price}" />원</span>
 					</c:forEach>
+					<input type="checkbox" value="0" name="room_rent" class="btn bRent" /> <span class="chFnc">없음</span>
 				</div>
 			</div>		
 		
@@ -121,17 +128,18 @@ body { overflow-x:hidden; font-size:14px; }
 					
 			<div class="form-group">
 				<label class="control-label col-sm-4">예약 시작날짜</label>
-				<div class="col-sm-5">
-					<input type="text" class="form-control" id="start_Date" name="start_Date" />
+				<div class="col-sm-3">
+					<input type="text" class="form-control" id="start_Date" name="start_date" readonly />
 				</div>
 			</div>
 			
 			<div class="form-group">
 				<label class="control-label col-sm-4">예약 종료날짜</label>
-				<div class="col-sm-5">
-					<input type="text" class="form-control" id="end_Date" name="end_Date" />
+				<div class="col-sm-3">
+					<input type="text" class="form-control" id="end_Date" name="end_date" readonly />
+					<input type="hidden" id="days" name="days" />
 				</div>
-			</div>	
+			</div>
 			
 			<div class="form-group">
 				<label class="control-label col-sm-4">총 가격</label>
@@ -141,19 +149,9 @@ body { overflow-x:hidden; font-size:14px; }
 				</div>
 			</div>
 		</form>
-		
-		<form action="/main/okBook" method="post" id="okBookForm">
-			<input type="hidden" name="r_bno" value="${room.r_bno}" />
-			<input type="hidden" name="r_name" value="${room.r_name}" />
-			<input type="hidden" name="r_kind" value="${room.r_kind}" />
-			<input type="hidden" name="r_people" value="${room.r_people}" />
-			<input type="hidden" name="r_price" value="${room.r_price}" />
-			<input type="hidden" name="r_base" value="${room.r_base}" />
-			<input type="hidden" name="r_rent" value="${room.r_rent}" />
-		</form>
 	
-		<div class="col-sm-offset-8">
-			<button class="btn btn-info">이전단계</button>
+		<div class="col-sm-offset-7 btns">
+			<button class="btn btn-info back">이전단계</button>
 			<button type="button" class="btn btn-primary okBook">다음단계</button>
 		</div>
 	</div>
@@ -163,27 +161,260 @@ body { overflow-x:hidden; font-size:14px; }
 </body>
 <script>
 $('.okBook').click(function(){
-	$('#okBookForm').submit();
+	
+	if($('#start_Date').val() == "") {
+		alert("시작 날짜를 선택하십시오.");
+		$('#start_Date').focus();
+		return false;
+	}
+	
+	if($('#end_Date').val() == "") {
+		alert("종료 날짜를 선택하십시오.");
+		$('#end_Date').focus();
+		return false;
+	}
+	
+	if($('.bFnc').is(":checked") == false) {
+		alert("방 기능을 선택하세요.");
+		return false;
+	}
+	
+	if($('.bRent').is(":checked") == false) {
+		alert("렌트 종류를 선택하세요.");
+		return false;
+	}
+
+	$('#okBookForm').submit(); 
+	
 });
 
-var m = 10000;
+$('.back').click(function(){
+	history.go(-1);
+});
+
+
+$("#start_Date").datepicker();
+$("#end_Date").datepicker();
+
+var sDate=0;
+var eDate=0;
+
+$('#start_Date').change(function(){
+	var sdd = $('#start_Date').val();
+    var edd = $('#end_Date').val();
+    
+    if(sDate == 1) {
+		var re = confirm("날짜를 수정하시면 다시 예약을 해야합니다.");
+		if(re){
+			$('#start_Date').val("");
+			history.go();		
+		} else {
+			$('#start_Date').val(dd);
+		}
+	}
+    
+	if(sdd && edd && $("#start_Date").val() >= $("#end_Date").val()){
+		alert("정신차려 이 친구야");
+		$("#end_Date").val("");
+		return false;
+	}
+	sDate = 1;
+});
+
+var daysPay;
+
+$('#end_Date').change(function(){
+	
+	if(eDate == 1) {
+		var re = confirm("날짜를 수정하시면 다시 예약을 해야합니다.");
+		if(re){
+			history.go();		
+		} else {
+			$('#end_Date').val(dd);
+		}
+	}
+	
+	if($("#start_Date").val() >= $("#end_Date").val()){
+		alert("정신차려 이 친구야");
+		$("#end_Date").val("");
+		return false;
+	}
+	
+    var sdd = $('#start_Date').val();
+    var edd = $('#end_Date').val();
+    var ar1 = sdd.split('-');
+    var ar2 = edd.split('-');
+    var da1 = new Date(ar1[0], ar1[1], ar1[2]);
+    var da2 = new Date(ar2[0], ar2[1], ar2[2]);
+    var dif = da2 - da1;
+    var cDay = 24 * 60 * 60 * 1000;// 시 * 분 * 초 * 밀리세컨
+    var cMonth = cDay * 30;// 월 만듬
+    var cYear = cMonth * 12; // 년 만듬
+    
+	if(sdd && edd){
+		$('#days').val(parseInt(dif/cDay));
+		daysPay = $('#days').val();
+	}
+	
+    if(daysPay > 1) { 
+    	if($('.bFnc').is(":checked") == true && $('.bRent').is(":checked") == true) {
+    		alert("둘다");
+    		$('.allM').val( ( ( ( Number($('.realM').val()) ) * Number(daysPay) ) - (Number($('.bRent:checked').val())+Number($('.bFnc:checked').val())) ).toLocaleString()+"원" );
+			$('.realM').val( ( ( Number($('.realM').val()) ) * Number(daysPay) ) - (Number($('.bRent:checked').val())+Number($('.bFnc:checked').val())) );
+	    	
+    	} else if($('.bRent').is(":checked") == true) {
+    		alert("렌트만");
+			$('.allM').val( ( ( ( Number($('.realM').val()) ) * Number(daysPay) ) - Number( $('.bRent:checked').val() ) ).toLocaleString()+"원" );
+			$('.realM').val( ( ( Number($('.realM').val()) ) * Number(daysPay) ) - Number( $('.bRent:checked').val() ) );
+			
+    	} else if($('.bFnc').is(":checked") == true) {
+			alert("방기능만");
+   			$('.allM').val( ( ( (Number($('.realM').val()) ) * Number(daysPay) ) - Number($('.bFnc:checked').val()) ).toLocaleString()+"원" );
+   	    	$('.realM').val( (Number($('.realM').val()) * Number(daysPay)) - Number($('.bFnc:checked').val()) );
+    		
+    	} else if ($('.bFnc').is(":checked") == false || $('.bRent').is(":checked") == false) {
+    		alert("놉");
+	    	$('.allM').val( ((Number($('.realM').val()) * Number(daysPay)) ).toLocaleString()+"원");
+	    	$('.realM').val( (Number($('.realM').val()) * Number(daysPay)) );
+
+    	}
+    	
+    } else if(daysPay == 1) {
+    	$('.allM').val((Number($('.realM').val()) * Number(daysPay)).toLocaleString()+"원");
+    	$('.realM').val(Number($('.realM').val()) * Number(daysPay));
+    }
+    
+    eDate=1;
+});
+
+var dd;
+
+$.datepicker.setDefaults({
+	showOn: "both", // 버튼과 텍스트 필드 모두 캘린더를 보여준다. 
+	changeYear: true, // 년을 바꿀 수 있는 셀렉트 박스를 표시한다. 
+	changeMonth: true, // 월을 바꿀수 있는 셀렉트 박스를 표시한다. 
+    dateFormat: 'yy-mm-dd',	//날짜 포맷이다. 보통 yy-mm-dd 를 많이 사용하는것 같다.
+    prevText: '이전 달',	// 마우스 오버시 이전달 텍스트
+    nextText: '다음 달',	// 마우스 오버시 다음달 텍스트
+    closeText: '닫기', // 닫기 버튼 텍스트 변경
+    currentText: '오늘', // 오늘 텍스트 변경
+    monthNames: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],	//한글 캘린더중 월 표시를 위한 부분
+    monthNamesShort: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],	//한글 캘린더 중 월 표시를 위한 부분
+    dayNames: ['일', '월', '화', '수', '목', '금', '토'],	//한글 캘린더 요일 표시 부분
+    dayNamesShort: ['일', '월', '화', '수', '목', '금', '토'],	//한글 요일 표시 부분
+    dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'],	// 한글 요일 표시 부분
+    showMonthAfterYear: true,	// true : 년 월  false : 월 년 순으로 보여줌
+    yearSuffix: '년',	//
+    showButtonPanel: true,	// 오늘로 가는 버튼과 달력 닫기 버튼 보기 옵션
+    minDate: "+1D",
+	beforeShow: function (input, inst) { // 일자 선택되기전 이벤트 발생
+        dd = $(this).val();
+	},
+});
+
+
+var m = 0;
+var c = 0;
 
 $('.plusM').change(function(){
 	
 	if($('.plusM option:selected').val() != ${room.r_people}){
 		
-		$('.allM').val((${room.r_price}+m).toLocaleString()+"원");
-		$('.realM').val(${room.r_price}+m);
-		m += 10000;
-		
-		if(m > 20000){
-			m = 10000;
+		if($('.plusM option:selected').val() == ${room.r_people+1}) {
+			
+			if(c == 2 && sDate == 1) {
+				m -= Number(daysPay) * 10000;
+				
+			} else if(c == 4 && sDate == 1) {
+				m -= Number(daysPay) * 10000;
+				
+			} else if(sDate == 1) {
+				m += Number(daysPay) * 10000;
+				
+			} else if(c == 2 || c == 4) {
+				m -= 10000;
+				
+			} else {				
+				m += 10000;
+			}
+			
+			if($('.bFnc').is(":checked") == true || $('.bRent').is(":checked") == true) {
+				$('.allM').val((Number($('.realM').val())+m).toLocaleString()+"원");
+				$('.realM').val(Number($('.realM').val())+m);
+				m=0;
+				c=1;
+				
+			} else {
+				$('.allM').val((Number($('.realM').val())+m).toLocaleString()+"원");
+				$('.realM').val(Number($('.realM').val())+m);
+				m=0;
+				c=3;
+			}
+
+		} else if($('.plusM option:selected').val() == ${room.r_people+2}) {
+			
+			if(c == 1 && sDate == 1) {
+				m += Number(daysPay) * 10000;
+				
+			} else if(c == 3 && sDate == 1) {
+				m += Number(daysPay) * 10000;
+				
+			} else if(sDate == 1) {
+				m += Number(daysPay) * 20000;
+				
+			} else if(c == 1 || c == 3) {
+				m += 10000;
+				
+			} else {
+				m += 20000;
+			}
+			
+			if($('.bFnc').is(":checked") == true || $('.bRent').is(":checked") == true) {
+				
+				$('.allM').val((Number($('.realM').val())+m).toLocaleString()+"원");
+				$('.realM').val(Number($('.realM').val())+m);
+				m=0;
+				c=2;
+			} else {
+				$('.allM').val((Number($('.realM').val())+m).toLocaleString()+"원");
+				$('.realM').val(Number($('.realM').val())+m);
+				m=0;
+				c=4;
+			}
 		}
 		
 	} else {
-		$('.allM').val((${room.r_price}).toLocaleString()+"원");
-		$('.realM').val(${room.r_price});
-		m = 10000;
+		
+		if(c == 1 && sDate == 1) {
+			m -= Number(daysPay) * 10000;
+			
+		} else if(c==3 && sDate==1) {
+			m -= Number(daysPay) * 10000;
+			
+		} else if(c==2 && sDate==1) {
+			m -= Number(daysPay) * 20000;
+			
+		} else if(c==4 && sDate==1) {
+			m -= Number(daysPay) * 20000;
+			
+		} else if(c == 1 || c == 3) {
+			m -= 10000;
+			
+		} else if(c == 2 || c == 4) {
+			m -= 20000;
+		}
+		
+		if($('.bFnc').is(":checked") == true || $('.bRent').is(":checked") == true) {
+			$('.allM').val((Number($('.realM').val())+m).toLocaleString()+"원");
+			$('.realM').val(Number($('.realM').val())+m);
+			m=0;
+			c=0;
+		} else {
+			$('.allM').val((Number($('.realM').val())+m).toLocaleString()+"원");
+			$('.realM').val(Number($('.realM').val())+m);
+			m=0;
+			c=0;
+		} 
 	}
 });
 
@@ -211,38 +442,6 @@ $('.bRent').change(function(){
 		$('.realM').val(Number($('.realM').val())-Number($(this).val()));
 	}
 	
-});
-
-
-$("#start_Date").datepicker();
-$("#end_Date").datepicker();
-
-$('#end_Date').change(function(){
-	if($("#start_Date").val() >= $("#end_Date").val()){
-		alert("정신차려 이 친구야");
-		$("#end_Date").val("");
-	}
-});
-
-$.datepicker.setDefaults({
-	showOn: "both", // 버튼과 텍스트 필드 모두 캘린더를 보여준다. 
-	changeYear: true, // 년을 바꿀 수 있는 셀렉트 박스를 표시한다. 
-	changeMonth: true, // 월을 바꿀수 있는 셀렉트 박스를 표시한다. 
-    dateFormat: 'yy-mm-dd',	//날짜 포맷이다. 보통 yy-mm-dd 를 많이 사용하는것 같다.
-    prevText: '이전 달',	// 마우스 오버시 이전달 텍스트
-    nextText: '다음 달',	// 마우스 오버시 다음달 텍스트
-    closeText: '닫기', // 닫기 버튼 텍스트 변경
-    currentText: '오늘', // 오늘 텍스트 변경
-    monthNames: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],	//한글 캘린더중 월 표시를 위한 부분
-    monthNamesShort: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],	//한글 캘린더 중 월 표시를 위한 부분
-    dayNames: ['일', '월', '화', '수', '목', '금', '토'],	//한글 캘린더 요일 표시 부분
-    dayNamesShort: ['일', '월', '화', '수', '목', '금', '토'],	//한글 요일 표시 부분
-    dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'],	// 한글 요일 표시 부분
-    showMonthAfterYear: true,	// true : 년 월  false : 월 년 순으로 보여줌
-    yearSuffix: '년',	//
-    showButtonPanel: true,	// 오늘로 가는 버튼과 달력 닫기 버튼 보기 옵션
-    minDate: "+1D",
-    
 });
 
 
