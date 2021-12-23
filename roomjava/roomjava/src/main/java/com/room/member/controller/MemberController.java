@@ -361,6 +361,16 @@ public class MemberController {
 		
 		model.addAttribute("review", review);
 	}
+	// -------------------------------------------------------------------------------------------------
+	// 후기 수정 GET
+	// -------------------------------------------------------------------------------------------------
+	@RequestMapping(value="/updateReview", method=RequestMethod.GET)
+	public void updatereviewget(@RequestParam("book_order") String book_order, ReviewDTO reviewDTO,Model model, HttpSession session) throws Exception {
+		
+		
+		reviewDTO.setBook_order(book_order);
+		model.addAttribute("review", memberService.getReview(book_order));
+	}
 
 	// -------------------------------------------------------------------------------------------------
 	// 후기 작성 Post
@@ -374,6 +384,17 @@ public class MemberController {
 
 		
 		}
+	//-------------------------------------------------------------------------------------------------------
+	//후기 수정 POST	
+	//-------------------------------------------------------------------------------------------------------		
+	@RequestMapping(value = "/updateReview", method = RequestMethod.POST)
+	public String updateReview(@RequestParam("book_order") String book_order, ReviewDTO reviewDTO,Model model) throws Exception {
+
+		
+		memberService.updateReview(reviewDTO);
+		
+		return "redirect:/member/review";
+	}
 	
 	//공지사항 view
 	@RequestMapping(value="/notice", method=RequestMethod.GET)
