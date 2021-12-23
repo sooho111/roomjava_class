@@ -79,7 +79,7 @@ INSERT INTO faq (faq_title, faq_content,faq_class)
         FROM	faq
         WHERE   1=1
     ]]>
-     <include refid="faqSearch"/>
+
     
 	</select>
 		<!-- 대여항목 상세페이지 -->

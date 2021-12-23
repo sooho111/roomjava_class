@@ -332,14 +332,6 @@ public class MemberController {
 		bookView.addAll(memberService.bookView(book_order));
 		logger.info("managerController return Value ==> " + bookView);
 		
-		BookDTO bookDTO = new BookDTO();
-		bookDTO.setBook_order(bookView.get(0).getBook_order());
-		bookDTO.setBook_name(bookView.get(0).getBook_name());
-		bookDTO.setBook_people(bookView.get(0).getBook_people());
-		bookDTO.setBook_ok(bookView.get(0).getBook_ok());
-		bookDTO.setBook_tel(bookView.get(0).getBook_tel());
-		logger.info("orderView.get(0).getDelivery_name() => " + bookDTO);
-		
 		model.addAttribute("bookView", bookView);
 	}
 	// -------------------------------------------------------------------------------------------------
