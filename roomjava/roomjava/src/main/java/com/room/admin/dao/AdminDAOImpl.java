@@ -122,7 +122,6 @@ public class AdminDAOImpl implements AdminDAO {
 	}
 		//회원 목록 보기 (Paging 처리)
 		@Override
-		@SuppressWarnings("unchecked")
 		public List<MemberDTO> memberListPaging(SearchCriteria cri) throws Exception {
 
 			return sqlSession.selectList(namespace + ".memberListPaging", cri);

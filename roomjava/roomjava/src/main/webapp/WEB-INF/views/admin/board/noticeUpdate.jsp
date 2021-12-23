@@ -42,7 +42,7 @@
 			<div class="form-group">
 				<label for="content" class="control-label col-sm-2">내  용</label>
 				<div class="col-sm-4">
-					<textarea rows="15" cols="140" id="notice_content" name="notice_content"  padding:5px; border-radius:4px;"><c:out value="${update.notice_content}" /></textarea>
+					<textarea rows="15" cols="140" id="notice_content" name="notice_content"  ><c:out value="${update.notice_content}" /></textarea>
 				</div>
 			</div>
 			
