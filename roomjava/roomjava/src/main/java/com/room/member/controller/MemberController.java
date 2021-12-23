@@ -361,6 +361,7 @@ public class MemberController {
 		
 		model.addAttribute("review", review);
 	}
+
 	// -------------------------------------------------------------------------------------------------
 	// 후기 작성 Post
 	// -------------------------------------------------------------------------------------------------
@@ -483,7 +484,7 @@ public class MemberController {
 		@RequestMapping(value = "/qna", method = RequestMethod.GET)
 		public String qnaList(Model model, @ModelAttribute("scri") SearchCriteria scri) throws Exception {
 			logger.info("qnaList");
-			
+		
 			model.addAttribute("qnaList", memberService.qnaList(scri));
 		
 			PageMaker pageMaker = new PageMaker();
@@ -568,5 +569,6 @@ public class MemberController {
 			memberService.qnaDelete(qnaDTO);
 			
 			return "redirect:/member/qna";
+
 		}
 } // end class MemberController

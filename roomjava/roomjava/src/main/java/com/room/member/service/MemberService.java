@@ -100,7 +100,6 @@ public interface MemberService {
 	* qna 작성
 	-------------------------------------------------------------------------------------------------*/
 	public void qnaWrite(QnaDTO qnaDTO) throws Exception;
-<<<<<<< HEAD
 	/*-------------------------------------------------------------------------------------------------
 	* qna list
 	-------------------------------------------------------------------------------------------------*/
@@ -126,10 +125,10 @@ public interface MemberService {
 	* qna 삭제
 	-------------------------------------------------------------------------------------------------*/	
 	public void qnaDelete(QnaDTO qnaDTO) throws Exception;
-=======
+
 	//리뷰 체크 
 	public Integer checkReview(String book_order) throws Exception;
 	//리뷰 작성
 	public void insertReview(ReviewDTO reviewdto) throws Exception;
->>>>>>> a5e6d46bc4e862312aed21c5b75f729f97cbb4d6
+
 }
