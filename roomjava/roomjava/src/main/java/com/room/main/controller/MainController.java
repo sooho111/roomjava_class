@@ -20,6 +20,7 @@ import com.room.main.dto.BookDTO;
 import com.room.main.dto.RoomInfraDTO;
 import com.room.main.service.MainService;
 import com.room.member.dto.MemberDTO;
+import com.room.member.service.MemberService;
 import com.room.admin.dto.PaymentDTO;
 import com.room.admin.dto.RoomKindDTO;
 
@@ -47,17 +48,11 @@ public class MainController {
 	@Inject
 	AdminService adminService;
 	
+	@Inject
+	MemberService memberSerivce;
+	
 	@RequestMapping("/1")
 	public void ps() throws Exception {
-	}
-	@RequestMapping("/2")
-	public void gp() throws Exception {
-	}
-	@RequestMapping("/3")
-	public void dk() throws Exception {
-	}
-	@RequestMapping("/4")
-	public void kb() throws Exception {
 	}
 
 	//------------------------------------------------------------------------------------------------
@@ -151,17 +146,8 @@ public class MainController {
 
 		// 회원정보 가져오기
 		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
-		model.addAttribute("member", memberDTO);
-		
-		logger.info("동균이 이름 => " + memberDTO.getM_name());	
-		logger.info("동균이 아이디 => " + memberDTO.getM_id());
-		logger.info("동균이 비밀번호 => " + memberDTO.getM_pwd());
-		logger.info("동균이 전화번호 => " + memberDTO.getM_tel());
-		logger.info("동균이 생일 => " + memberDTO.getM_birth());
-		logger.info("동균이 이메일 => " + memberDTO.getM_email());
-		logger.info("동균이 주소 => " + memberDTO.getM_address());
-		
-
+		MemberDTO member = memberSerivce.view(memberDTO.getM_id());
+		model.addAttribute("member", member);
 		
 		return "main/goBook";
 	}
@@ -204,12 +190,13 @@ public class MainController {
 
 	 */	
 	
-	
-	
-	
-	@RequestMapping("/okBook")
-	public void okBook() throws Exception {
-	}
+	@RequestMapping(value="/okBook", method=RequestMethod.POST)
+	public String okBook(BookDTO bookDTO) throws Exception {
+		logger.info("잠온다 " + bookDTO);
+		
+		return "/main/okBook";
+		
+	} // end String okBook() throws Exception
 	
 //	//------------------------------------------------------------------------------------------------
 //	// goBook에서 예약완료(goBook => okBook)
