@@ -40,6 +40,16 @@ span.plusIcon { cursor:pointer; }
 			    <td>
 			      <table class="table table-bordered">
 			        <tr>
+			        	<td>별점 :<c:choose>
+							<c:when test="${review.review_star == 5 }">★★★★★</c:when>
+							<c:when test="${review.review_star == 4 }">★★★★</c:when>
+							<c:when test="${review.review_star == 3 }">★★★</c:when>
+							<c:when test="${review.review_star == 2 }">★★</c:when>
+							<c:when test="${review.review_star == 1 }">★</c:when>
+						</c:choose></td> 
+						
+					</tr>
+			        <tr>
 			          <td>
 			      	${review.r_content}
 			      	 </td>
