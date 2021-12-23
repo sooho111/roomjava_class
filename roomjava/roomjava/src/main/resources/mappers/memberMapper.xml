@@ -294,4 +294,16 @@ WHERE book_name = #{book_name}
 	SET	rep_content = #{rep_content}
 	WHERE rep_bno = #{rep_bno}
 	</update>
+	<!-- 리뷰 수정 -->
+	<select id="getReview" resultType="com.room.member.dto.ReviewDTO">
+        select*
+        from review
+        where book_order=#{book_order}
+    </select>
+    <update id="updateReview">
+        update review
+        set r_content=#{r_content},
+            review_star=#{review_star}
+        where book_order=#{book_order}
+    </update>
 </mapper>
