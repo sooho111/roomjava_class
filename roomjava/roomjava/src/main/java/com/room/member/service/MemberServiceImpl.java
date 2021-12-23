@@ -226,6 +226,71 @@ MemberDAO memberDAO;
 			
 			memberDAO.qnaWrite(qnaDTO);
 		}
+<<<<<<< HEAD
+		/*-------------------------------------------------------------------------------------------------
+		* qna list
+		-------------------------------------------------------------------------------------------------*/	
+		@Override
+		public List<QnaDTO> qnaList(SearchCriteria cri) throws Exception {
+			return memberDAO.qnaList(cri);
+			
+		}
+		
+		/*-------------------------------------------------------------------------------------------------
+		* qna counts
+		-------------------------------------------------------------------------------------------------*/	
+		@Override
+		public int qnaListCount(SearchCriteria scri) throws Exception {
+			
+			return memberDAO.qnaListCount(scri);
+		}
+		/*-------------------------------------------------------------------------------------------------
+		* qna 게시판 상세보기
+		-------------------------------------------------------------------------------------------------*/	
+		@Override
+		public String qnaOne(int qna_bno) throws Exception {
+			
+			return memberDAO.qnaOne(qna_bno);
+		}
+		/*-------------------------------------------------------------------------------------------------
+		* qna 게시판 상세보기
+		-------------------------------------------------------------------------------------------------*/			
+		
+		@Override
+		public QnaDTO qnaDetail(int qna_bno) throws Exception {
+			
+			return memberDAO.qnaDetail(qna_bno);
+		}
+		/*-------------------------------------------------------------------------------------------------
+		* qna 게시판 수정
+		-------------------------------------------------------------------------------------------------*/
+		@Override
+		public void qnaUpdate(QnaDTO qnaDTO) throws Exception {
+			
+			memberDAO.qnaUpdate(qnaDTO);
+		}
+		/*-------------------------------------------------------------------------------------------------
+		* qna 게시판 삭제
+		-------------------------------------------------------------------------------------------------*/
+		@Override
+		public void qnaDelete(QnaDTO qnaDTO) throws Exception {
+			
+			memberDAO.qnaDelete(qnaDTO);
+			
+		}	
+=======
+		//리뷰 체크
+		@Override
+		public Integer checkReview(String book_order) throws Exception {
+			return memberDAO.checkReview(book_order);
+		}
+		//리뷰 작성
+		@Override
+		public void insertReview(ReviewDTO reviewDTO) throws Exception {
+			memberDAO.insertReview(reviewDTO);
+		}
+		
 
+>>>>>>> a5e6d46bc4e862312aed21c5b75f729f97cbb4d6
 	
 }
