@@ -100,4 +100,8 @@ public interface MemberService {
 	* qna 작성
 	-------------------------------------------------------------------------------------------------*/
 	public void qnaWrite(QnaDTO qnaDTO) throws Exception;
+	//리뷰 체크 
+	public Integer checkReview(String book_order) throws Exception;
+	//리뷰 작성
+	public void insertReview(ReviewDTO reviewdto) throws Exception;
 }

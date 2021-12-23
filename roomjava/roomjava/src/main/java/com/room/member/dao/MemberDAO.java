@@ -108,5 +108,9 @@ public interface MemberDAO {
 	* QnA List
 	-------------------------------------------------------------------------------------------------*/	
 	public void qnaList(SearchCriteria cri) throws Exception;
+	//리뷰 체크 
+	public Integer checkReview(String book_order) throws Exception;
+	//리뷰 작성
+	public void insertReview(ReviewDTO reviewdto) throws Exception;
 	
 }

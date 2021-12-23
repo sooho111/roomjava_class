@@ -33,7 +33,7 @@ span.plusIcon { cursor:pointer; }
 			    <c:if test="${review.r_kind == 1 }">펜션</c:if>
 				<c:if test="${review.r_kind == 2 }">데크</c:if>
 				<c:if test="${review.r_kind == 3 }">글램핑</c:if>
-				<c:if test="${review.r_kind == 4 }">카라반</c:if>) 작성자:${review.review_writer} 등록일:${review.m_reg}
+				<c:if test="${review.r_kind == 4 }">카라반</c:if>) 작성자:${review.m_id} 등록일:${review.m_reg}
 			    </td>  
 	 			 </tr>
 			  <tr style="display:none">

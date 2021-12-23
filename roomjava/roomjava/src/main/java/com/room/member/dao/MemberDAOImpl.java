@@ -195,5 +195,15 @@ public class MemberDAOImpl implements MemberDAO {
 		
 		
 	}
+	//리뷰 체크
+	@Override
+	public Integer checkReview(String book_order) throws Exception {
+
+		return sqlSession.selectOne(namespace +".checkReview", book_order);
+	}
+	//리뷰 추가
+	public void insertReview(ReviewDTO reviewDTO) throws Exception {
+		sqlSession.insert(namespace+".insertReview",reviewDTO);
+	}
 
 }
