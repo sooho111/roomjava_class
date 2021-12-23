@@ -337,14 +337,6 @@ public class MemberController {
 		bookView.addAll(memberService.bookView(book_order));
 		logger.info("managerController return Value ==> " + bookView);
 		
-		BookDTO bookDTO = new BookDTO();
-		bookDTO.setBook_order(bookView.get(0).getBook_order());
-		bookDTO.setBook_name(bookView.get(0).getBook_name());
-		bookDTO.setBook_people(bookView.get(0).getBook_people());
-		bookDTO.setBook_ok(bookView.get(0).getBook_ok());
-		bookDTO.setBook_tel(bookView.get(0).getBook_tel());
-		logger.info("orderView.get(0).getDelivery_name() => " + bookDTO);
-		
 		model.addAttribute("bookView", bookView);
 	}
 	// -------------------------------------------------------------------------------------------------
@@ -370,6 +362,31 @@ public class MemberController {
 		model.addAttribute("review", review);
 	}
 	// -------------------------------------------------------------------------------------------------
+<<<<<<< HEAD
+	// 후기 작성 GET
+	// -------------------------------------------------------------------------------------------------
+	@RequestMapping(value="/insertReview", method=RequestMethod.GET)
+	public void reviewGOget(@RequestParam("book_order") String book_order, Model model, HttpSession session) throws Exception {
+		
+		
+		logger.info("뭐나오나 보쟈"+book_order);
+		List<BookDTO> review = new ArrayList<BookDTO>();
+		review.addAll(memberService.bookView(book_order));
+		logger.info("managerController return Value ==> " + review);
+		
+		BookDTO bookDTO = new BookDTO();
+		bookDTO.setBook_order(review.get(0).getBook_order());
+		bookDTO.setBook_name(review.get(0).getBook_name());
+		bookDTO.setBook_people(review.get(0).getBook_people());
+		bookDTO.setBook_ok(review.get(0).getBook_ok());
+		bookDTO.setBook_tel(review.get(0).getBook_tel());
+		logger.info("orderView.get(0).getDelivery_name() => " + bookDTO);
+		
+		model.addAttribute("review", review);
+	}
+	// -------------------------------------------------------------------------------------------------
+=======
+>>>>>>> 27ea0f956da31098e21d8756d37b927985764f4e
 	// 후기 작성 Post
 	// -------------------------------------------------------------------------------------------------
 	@RequestMapping(value="/insertReview", method=RequestMethod.POST)
@@ -488,10 +505,11 @@ public class MemberController {
 	// -------------------------------------------------------------------------------------------------
 	// qna list 페이징
 	// -------------------------------------------------------------------------------------------------
-		@RequestMapping(value = "/member/qna", method = RequestMethod.GET)
-		public String noticeList(Model model, @ModelAttribute("scri") SearchCriteria scri) throws Exception {
+		@RequestMapping(value = "/qna", method = RequestMethod.GET)
+		public String qnaList(Model model, @ModelAttribute("scri") SearchCriteria scri) throws Exception {
 			logger.info("qnaList");
 			
+<<<<<<< HEAD
 			model.addAttribute("qnalist", memberService.list(scri));
 		
 			PageMaker pageMaker = new PageMaker();
@@ -501,7 +519,91 @@ public class MemberController {
 			model.addAttribute("pageMaker", pageMaker);
 	
 			return "member/qna";
+=======
+			model.addAttribute("qnaList", memberService.qnaList(scri));
+		
+			PageMaker pageMaker = new PageMaker();
+			pageMaker.setCri(scri);
+			pageMaker.setTotalCount(memberService.qnaListCount(scri));
+
+			model.addAttribute("pageMaker", pageMaker);
+	
+
+			return "member/qna";
 		}
-	
-	
+		// -------------------------------------------------------------------------------------------------
+		// qna 상세보기
+		// -------------------------------------------------------------------------------------------------
+		
+		@RequestMapping(value="/qnaDetail", method = RequestMethod.GET)
+		public String qnaDetailView(@RequestParam("qna_bno") int qna_bno, Model model, QnaDTO qnaDTO) throws Exception {
+			logger.info("gna Detail View");
+			
+			qnaDTO.setQna_bno(qna_bno);
+			
+			model.addAttribute("Detail" ,memberService.qnaDetail(qna_bno));
+		
+			return "/member/qnaDetail";
+		}
+		// -------------------------------------------------------------------------------------------------
+		// QnA 상세보기
+		// -------------------------------------------------------------------------------------------------
+		@ResponseBody
+		@RequestMapping(value = "/qnaDetail", method = RequestMethod.POST)
+		public int secret(QnaDTO qnaDTO, HttpSession session) throws Exception {
+			logger.info("one on one");
+
+			int result = 0;
+
+			MemberDTO member = (MemberDTO) session.getAttribute("member");
+			String userId = memberService.qnaOne(qnaDTO.getQna_bno());
+
+			if (member.getM_id().equals(userId)) {
+
+				qnaDTO.setM_id(member.getM_id());
+				result = 1;
+			} else if (member.getM_power() == 1 || member.getM_power() == 2) {
+				result = 1;
+			}
+
+			return result;
+		}
+		// -------------------------------------------------------------------------------------------------
+		// QnA 수정
+		// -------------------------------------------------------------------------------------------------
+		@RequestMapping(value = "/qnaUpdate", method = RequestMethod.GET)
+		public String qnaUpdateView(Model model, @RequestParam("qna_bno") int qna_bno, QnaDTO qnaDTO ) throws Exception {
+			
+			qnaDTO.setQna_bno(qna_bno);
+			
+			model.addAttribute("update", memberService.qnaDetail(qna_bno));
+			
+			return "/member/qnaUpdate";
+		}
+		// -------------------------------------------------------------------------------------------------
+		// QnA 수정
+		// -------------------------------------------------------------------------------------------------
+		@RequestMapping(value = "/qnaUpdate", method = RequestMethod.POST)
+		public String qnaUpdate(@RequestParam("qna_bno") int qna_bno, QnaDTO qnaDTO) throws Exception{
+			
+			qnaDTO.setQna_bno(qna_bno);
+			
+			memberService.qnaUpdate(qnaDTO);
+			
+			return "redirect:/member/qna";
+		}
+		
+		// -------------------------------------------------------------------------------------------------
+		// QnA 삭제
+		// -------------------------------------------------------------------------------------------------
+		@RequestMapping(value = "/qnaDelete", method = RequestMethod.GET)
+		public String qnaDelete(@RequestParam("qna_bno") int qna_bno, QnaDTO qnaDTO) throws Exception {
+			
+			qnaDTO.setQna_bno(qna_bno);
+			
+			memberService.qnaDelete(qnaDTO);
+			
+			return "redirect:/member/qna";
+>>>>>>> 27ea0f956da31098e21d8756d37b927985764f4e
+		}
 } // end class MemberController

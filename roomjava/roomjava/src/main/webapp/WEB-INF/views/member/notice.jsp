@@ -9,6 +9,8 @@
 <%@ include file="../include/includeFile.jsp" %>
 
 <style>
+#bheader .inner .gnb > li:nth-child(3) > a { font-weight:700; }
+
 .container { margin-top:50px; margin-bottom:70px; }
 .btnss { margin-bottom:50px; }
 .notice { font-size:20px; margin-bottom:30px; }

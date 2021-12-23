@@ -60,7 +60,7 @@ th { text-align:center; }
 		<div class="left_bar">
 			<ul class="myShopping">
 				<li></li>
-				<li><a href="mypage/">예약 확인</a><span class="glyphicon glyphicon-chevron-right"></span></li>
+				<li><a href="myPage">예약 확인</a><span class="glyphicon glyphicon-chevron-right"></span></li>
 				<li><a href="memberUpdate/${member.m_id}">회원 정보 수정</a><span class="glyphicon glyphicon-chevron-right"></span></li>
 				<li class = "memberDelete"><a href="#">회원 탈퇴</a><span class="glyphicon glyphicon-chevron-right"></span></li>
 			</ul>
@@ -117,8 +117,12 @@ th { text-align:center; }
 							</tr>
 						</tbody>		
 					</c:if>
+					<input type="hidden" id=book_order value="${bookView.book_order}">
 				</c:forEach>
 			</table>
+			<c:if test="${checkReview==0}">
+			<input class="btn btn-primary" type="button" value="후기 작성" id="goreview" /> 
+			</c:if>
 		</div>
 	</div>
 </div>
@@ -126,16 +130,10 @@ th { text-align:center; }
 <%@ include file="../include/footer.jsp" %>
 </body>
 <script type="text/javascript">
-// 회원정보수정버튼을 눌렀을 경우 회원정보수정 페이지로 이동한다.
-$("#memberUpdateBtn").on("click", function() {
-	location.href = "/member/memberUpdate/" + $("#m_id").val();
-});
-// 회원탈퇴버튼을 눌렀을 경우 회원탈퇴.
-$('.memberDelete').click(function(){
-	var result = confirm("회원탈퇴 하시겠습니까?");
-	if(result){
-	location.href = "/member/memberDelete/" + $("#m_id").val();
-	}
+$("#goreview").click(function(){
+    if(confirm("리뷰를 작성하시겠습니까?")){
+        location.href="${path}/member/insertReview?book_order="+$("#book_order").val();
+    }
 });
 </script>
 </html>

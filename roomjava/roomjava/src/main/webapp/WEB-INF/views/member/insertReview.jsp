@@ -68,26 +68,27 @@ th { text-align:center; }
 
 
 	<div class="m_content">
-		<form class="form-horizontal" method="post" autocomplete="off">
-		 	
-		 	<div class="form-group">
-		 		<label class="control-label col-sm-2" for="m_id">아이디</label> 
-		 		<div class="col-sm-3">
-		 		<input type="text" id="m_id" name="m_id" value="${member.m_id}" readonly/>
-		 		</div>
-		 	</div>
-		 	
-		 	<div class="form-group">
-		 		<label class="control-label col-sm-2" for="m_pwd">비밀번호</label>
-		 		<div class="col-sm-3">
-		 		<input type="password" id="m_pwd" name="m_pwd" />
-		 		</div>
-		 	</div>
-		 	
-		 	<div class="form-group" style="margin-left:100px;">
-		 		<button class="btn btn-danger" type="submit">회원탈퇴</button>
-		 		<button class="btn btn-warning" onclick ="location.href='member/myPage'">뒤로</button>
-		 	</div>
+		<form class="form-horizontal" method="post" action="insertReview">
+			<div class="form-group">
+				<label class="control-label col-sm-2">후  기</label>
+				<div class="col-sm-7">
+					<textarea class="form-control" rows="10" cols="100" id="r_content" name="r_content" placeholder="답변"></textarea>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-sm-offset-3">
+					<c:forEach items="${review}" var="review">
+					<input type="hidden" id="r_bno" name="r_bno" value="${review.r_bno}">
+					<input type="hidden" id="r_name" name="r_name" value="${review.r_name}">
+					<input type="hidden" id="r_kind" name="r_kind" value="${review.r_kind}">
+					<input type="hidden" id="book_order" name="book_order" value="${review.book_order }">
+					<input type="hidden" id="m_id"	name="m_id" value="${member.m_id}">
+					</c:forEach>
+					<button type="reset"  class="btn btn-warning btn-sm">다시 작성하기</button>
+					<input type="submit" class="btn btn-primary" name="btn_OK" value="등록"/>
+				</div>
+			</div>
+				 	
 		 	
 		</form>
 	</div>
@@ -97,11 +98,4 @@ th { text-align:center; }
 		
 <%@ include file="../include/footer.jsp" %>
 </body>
-<script>
- 	var result = '${result}';
- 	
- 	if(result === "removeFalse") {
- 		alert("비밀번호를 다시 입력해주세요.");
- 	}
- </script>
 </html>

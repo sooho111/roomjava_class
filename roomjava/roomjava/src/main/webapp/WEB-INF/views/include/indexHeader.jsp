@@ -35,7 +35,7 @@ p{
 		    <li><a href="../main/1"><span class="glyphicon glyphicon-heart"></span> 시설 안내</a>
 		    	<ul class="infra">
 			    	<c:forEach items="${roomKind}" var="room">
-						<li><a href="../main/${room.room_bno}">${room.room_class}</a></li>
+						<li><a href="../main/1">${room.room_class}</a></li>
 					</c:forEach>
 		    	</ul>
 		    </li>
@@ -50,8 +50,9 @@ p{
 			<li><a href="/member/notice"><span class="glyphicon glyphicon-apple"></span> 커뮤니티</a>
 				<ul class="comunity">
 					<li><a href="/member/notice">공지 사항</a></li>
-					<li><a href="#">후기</a></li>
+					<li><a href="../member/review">후기</a></li>
 					<li><a href="../member/faq">FAQ</a></li>
+					<li><a href="../member/qna">QnA</a></li>
 				</ul>
 			</li>
 			<li><a href="../main/introduce"><span class="glyphicon glyphicon-user"></span> 소개</a></li>

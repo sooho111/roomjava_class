@@ -9,6 +9,7 @@ import com.room.admin.dto.SearchCriteria;
 import com.room.main.dto.BookDTO;
 import com.room.member.dto.MemberDTO;
 import com.room.member.dto.QnaDTO;
+import com.room.member.dto.ReviewDTO;
 import com.room.member.dto.FaqDTO;
 
 public interface MemberService {
@@ -85,9 +86,50 @@ public interface MemberService {
 	* FAQ 목록 보기 (Paging 처리)
 	-------------------------------------------------------------------------------------------------*/
 	public List<FaqDTO> faqListPaging(SearchCriteria cri) throws Exception;
+	//-------------------------------------------------------------------------------------------------
+	// Review 페이징 처리
+	//-------------------------------------------------------------------------------------------------
+	public int reviewListTotalCount(SearchCriteria cri) throws Exception;
+		
+	/*-------------------------------------------------------------------------------------------------
+	* Review 목록 보기 (Paging 처리)
+	-------------------------------------------------------------------------------------------------*/
+	public List<ReviewDTO> reviewListPaging(SearchCriteria cri) throws Exception;
 	
 	/*-------------------------------------------------------------------------------------------------
 	* qna 작성
 	-------------------------------------------------------------------------------------------------*/
 	public void qnaWrite(QnaDTO qnaDTO) throws Exception;
+<<<<<<< HEAD
+	/*-------------------------------------------------------------------------------------------------
+	* qna list
+	-------------------------------------------------------------------------------------------------*/
+	public List<QnaDTO> qnaList(SearchCriteria cri) throws Exception;
+	/*-------------------------------------------------------------------------------------------------
+	* qna count
+	-------------------------------------------------------------------------------------------------*/	
+	public int qnaListCount(SearchCriteria scri) throws Exception;
+	/*-------------------------------------------------------------------------------------------------
+	* qna게시판 상세보기
+	-------------------------------------------------------------------------------------------------*/	
+	public String qnaOne(int qna_bno) throws Exception;
+	
+	/*-------------------------------------------------------------------------------------------------
+	* qna게시판 상세보기
+	-------------------------------------------------------------------------------------------------*/		
+	public QnaDTO qnaDetail(int qna_bno) throws Exception;
+	/*-------------------------------------------------------------------------------------------------
+	* qna 수정
+	-------------------------------------------------------------------------------------------------*/	
+	public void qnaUpdate(QnaDTO qnaDTO) throws Exception;
+	/*-------------------------------------------------------------------------------------------------
+	* qna 삭제
+	-------------------------------------------------------------------------------------------------*/	
+	public void qnaDelete(QnaDTO qnaDTO) throws Exception;
+=======
+	//리뷰 체크 
+	public Integer checkReview(String book_order) throws Exception;
+	//리뷰 작성
+	public void insertReview(ReviewDTO reviewdto) throws Exception;
+>>>>>>> a5e6d46bc4e862312aed21c5b75f729f97cbb4d6
 }

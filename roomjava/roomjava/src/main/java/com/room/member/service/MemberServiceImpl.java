@@ -16,6 +16,7 @@ import com.room.main.dto.BookDTO;
 import com.room.member.dao.MemberDAO;
 import com.room.member.dto.MemberDTO;
 import com.room.member.dto.QnaDTO;
+import com.room.member.dto.ReviewDTO;
 import com.room.member.dto.FaqDTO;
 
 
@@ -201,6 +202,21 @@ MemberDAO memberDAO;
 			logger.info("*** Board2ServiceImpl Criteria ==> " + cri);
 			return memberDAO.faqListPaging(cri);
 		}
+		// -------------------------------------------------------------------------------------------------
+		// 전체 Faq 수 구하기 (Paging 처리)
+		// -------------------------------------------------------------------------------------------------
+		@Override
+		public int reviewListTotalCount(SearchCriteria cri) throws Exception {
+			return memberDAO.reviewListTotalCount(cri);
+		}
+
+		/*-------------------------------------------------------------------------------------------------
+		* Faq 목록 보기 (Paging 처리)
+		-------------------------------------------------------------------------------------------------*/
+		@Override
+		public List<ReviewDTO> reviewListPaging(SearchCriteria cri) throws Exception {
+			return memberDAO.reviewListPaging(cri);
+		}
 		
 		/*-------------------------------------------------------------------------------------------------
 		* qna 작성
@@ -210,6 +226,71 @@ MemberDAO memberDAO;
 			
 			memberDAO.qnaWrite(qnaDTO);
 		}
+<<<<<<< HEAD
+		/*-------------------------------------------------------------------------------------------------
+		* qna list
+		-------------------------------------------------------------------------------------------------*/	
+		@Override
+		public List<QnaDTO> qnaList(SearchCriteria cri) throws Exception {
+			return memberDAO.qnaList(cri);
+			
+		}
+		
+		/*-------------------------------------------------------------------------------------------------
+		* qna counts
+		-------------------------------------------------------------------------------------------------*/	
+		@Override
+		public int qnaListCount(SearchCriteria scri) throws Exception {
+			
+			return memberDAO.qnaListCount(scri);
+		}
+		/*-------------------------------------------------------------------------------------------------
+		* qna 게시판 상세보기
+		-------------------------------------------------------------------------------------------------*/	
+		@Override
+		public String qnaOne(int qna_bno) throws Exception {
+			
+			return memberDAO.qnaOne(qna_bno);
+		}
+		/*-------------------------------------------------------------------------------------------------
+		* qna 게시판 상세보기
+		-------------------------------------------------------------------------------------------------*/			
+		
+		@Override
+		public QnaDTO qnaDetail(int qna_bno) throws Exception {
+			
+			return memberDAO.qnaDetail(qna_bno);
+		}
+		/*-------------------------------------------------------------------------------------------------
+		* qna 게시판 수정
+		-------------------------------------------------------------------------------------------------*/
+		@Override
+		public void qnaUpdate(QnaDTO qnaDTO) throws Exception {
+			
+			memberDAO.qnaUpdate(qnaDTO);
+		}
+		/*-------------------------------------------------------------------------------------------------
+		* qna 게시판 삭제
+		-------------------------------------------------------------------------------------------------*/
+		@Override
+		public void qnaDelete(QnaDTO qnaDTO) throws Exception {
+			
+			memberDAO.qnaDelete(qnaDTO);
+			
+		}	
+=======
+		//리뷰 체크
+		@Override
+		public Integer checkReview(String book_order) throws Exception {
+			return memberDAO.checkReview(book_order);
+		}
+		//리뷰 작성
+		@Override
+		public void insertReview(ReviewDTO reviewDTO) throws Exception {
+			memberDAO.insertReview(reviewDTO);
+		}
+		
 
+>>>>>>> a5e6d46bc4e862312aed21c5b75f729f97cbb4d6
 	
 }

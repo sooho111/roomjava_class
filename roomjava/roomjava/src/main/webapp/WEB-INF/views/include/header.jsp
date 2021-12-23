@@ -1,4 +1,4 @@
-<body style="padding:30px;"><%@ page session="true" %>
+<%@ page session="true" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c"			uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt"			uri="http://java.sun.com/jsp/jstl/fmt" %>
@@ -31,9 +31,9 @@
 		    <li><a href="../main/1"><span class="glyphicon glyphicon-heart"></span> 시설 안내</a>
 		    	<ul class="infra">
 					<li><a href="../main/1">펜션</a></li>
-					<li><a href="../main/2">카라반</a></li>
-					<li><a href="../main/3">데크</a></li>
-					<li><a href="../main/4">글램핑</a></li>
+					<li><a href="../main/1">카라반</a></li>
+					<li><a href="../main/1">데크</a></li>
+					<li><a href="../main/1">글램핑</a></li>
 		    	</ul>
 		    </li>
 		    
@@ -47,7 +47,7 @@
 			<li><a href="../member/notice"><span class="glyphicon glyphicon-apple"></span> 커뮤니티</a>
 				<ul class="comunity">
 					<li><a href="../member/notice">공지 사항</a></li>
-					<li><a href="#">후기</a></li>
+					<li><a href="../member/review">후기</a></li>
 					<li><a href="../member/faq">FAQ</a></li>
 					<li><a href="../member/qna">QnA</a></li>
 				</ul>

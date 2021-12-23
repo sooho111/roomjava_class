@@ -12,6 +12,7 @@ import org.springframework.stereotype.Repository;
 import com.room.admin.dto.BoardDTO;
 import com.room.admin.dto.PaymentDTO;
 import com.room.admin.dto.SearchCriteria;
+import com.room.main.dto.BookDTO;
 import com.room.member.dto.FaqDTO;
 import com.room.member.dto.MemberDTO;
 import com.room.member.dto.FaqTypeDTO;
@@ -122,7 +123,6 @@ public class AdminDAOImpl implements AdminDAO {
 	}
 		//회원 목록 보기 (Paging 처리)
 		@Override
-		@SuppressWarnings("unchecked")
 		public List<MemberDTO> memberListPaging(SearchCriteria cri) throws Exception {
 
 			return sqlSession.selectList(namespace + ".memberListPaging", cri);
@@ -265,6 +265,29 @@ public class AdminDAOImpl implements AdminDAO {
 			logger.info("ManagerDAOImpl selectFaqType() Start....");
 			return sqlSession.selectList(namespace + ".selectFaqType");
 		}
-			
+		
+		//-----------------------------------------------------------------------------------------------------------
+		// 회원들이 예약한 방 목록
+		//-----------------------------------------------------------------------------------------------------------
+		@Override
+		public List<BookDTO> memberBookList() throws Exception {
+			return sqlSession.selectList(namespace + ".memberBookList");
+		} 
+		
+		//-------------------------------------------------------------------------------------------------
+		// 예약 상세정보를 가져온다.
+		//-------------------------------------------------------------------------------------------------
+		@Override
+		public List<BookDTO> memberBookView(String book_order) throws Exception {
+			return sqlSession.selectList(namespace + ".memberBookView", book_order);
+		}
+		
+		//-------------------------------------------------------------------------------------------------
+		// 배송 상태 변경
+		//-------------------------------------------------------------------------------------------------
+		@Override
+		public void bookOk(BookDTO bookDTO) throws Exception {
+			sqlSession.update(namespace + ".bookOk", bookDTO);
+		}
 
 } // end class AdminDAOImpl implements AdminDAO

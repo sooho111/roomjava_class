@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>FAQ</title>
+<title>review</title>
 <%@ include file="../include/includeFile.jsp" %>
 <style>
 #bheader .inner .gnb > li:nth-child(3) > a { font-weight:700; }
@@ -20,16 +20,20 @@ span.plusIcon { cursor:pointer; }
 		<table class="table table-bordered">
 			<thead>
 				<tr align="center">
-					<th>자주 하는 질문</th>
+					<th>후 기</th>
 				</tr>
 			</thead>
 			<tbody>
-				<c:forEach var="faq" items="${list}" varStatus="status">
+				<c:forEach var="review" items="${list}" varStatus="status">
 				<tr>
 	   			 <td>
 			      <span class="glyphicon glyphicon-plus plusIcon"></span>
 			      <span class="glyphicon glyphicon-minus plusIcon" style="display:none"></span>
-			      ${faq.faq_title}
+			      (${review.r_name},
+			    <c:if test="${review.r_kind == 1 }">펜션</c:if>
+				<c:if test="${review.r_kind == 2 }">데크</c:if>
+				<c:if test="${review.r_kind == 3 }">글램핑</c:if>
+				<c:if test="${review.r_kind == 4 }">카라반</c:if>) 작성자:${review.m_id} 등록일:${review.m_reg}
 			    </td>  
 	 			 </tr>
 			  <tr style="display:none">
@@ -37,7 +41,7 @@ span.plusIcon { cursor:pointer; }
 			      <table class="table table-bordered">
 			        <tr>
 			          <td>
-			      	${faq.faq_content}
+			      	${review.r_content}
 			      	 </td>
 			        </tr>
 			      </table>    
@@ -53,8 +57,8 @@ span.plusIcon { cursor:pointer; }
 		
 		<select id='searchType'>
 			<option>검색종류</option>
-				<option value="faq_title"   <c:if test="${pageVO.type} == 'faq_title'">selected</c:if>>질문</option>
-				<option value="faq_content" <c:if test="${pageVO.type} == 'faq_content'">selected</c:if>>답변</option>
+				<option value="r_name"   <c:if test="${pageVO.type} == 'r_name'">selected</c:if>>방 호수</option>
+				<option value="review_writer" <c:if test="${pageVO.type} == 'review_writer'">selected</c:if>>작 성 자 </option>
 		</select>
 	  <input type='text' id='searchKeyword' value="${pageVO.keyword}">
 	  <button id='searchBtn'>Search</button> 
@@ -64,25 +68,25 @@ span.plusIcon { cursor:pointer; }
 		<ul class="btn-group pagination">
 		    <c:if test="${pageMaker.prev }">
 		    <li>
-		        <a href='<c:url value="/main/faq?page=${pageMaker.startPage-1}"/>'><span class="glyphicon glyphicon-chevron-left"></span></a>
+		        <a href='<c:url value="/member/review?page=${pageMaker.startPage-1}"/>'><span class="glyphicon glyphicon-chevron-left"></span></a>
 		    </li>
 		    </c:if>
 		    
 		    <c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="pageNum">
 		    <li>
-		        <a href='<c:url value="/main/faq?page=${pageNum}"/>'><i>${pageNum}</i></a>
+		        <a href='<c:url value="/member/review?page=${pageNum}"/>'><i>${pageNum}</i></a>
 		    </li>
 		    </c:forEach>
 		    
 		    <c:if test="${pageMaker.next && pageMaker.endPage >0}">
 		    <li>
-		        <a href='<c:url value="/main/faq?page=${pageMaker.endPage+1}"/>'><span class="glyphicon glyphicon-chevron-right"></span></a>
+		        <a href='<c:url value="/member/review?page=${pageMaker.endPage+1}"/>'><span class="glyphicon glyphicon-chevron-right"></span></a>
 		    </li>
 		    </c:if>
 		</ul>
 	</div>
 	
-	<form id="formList" action="/member/faq" method="get">
+	<form id="formList" action="/member/review" method="get">
 		<input type='hidden' name='page'		value="${result.currentPageNum}">
 		<input type='hidden' name='size'		value="${result.currentPage.pageSize}">
 		<input type='hidden' name='searchType' 	value="${pageVO.type}">
