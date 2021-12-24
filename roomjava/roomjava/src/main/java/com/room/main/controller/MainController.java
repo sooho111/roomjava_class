@@ -119,6 +119,41 @@ public class MainController {
 	//------------------------------------------------------------------------------------------------
 	@RequestMapping(value="/goBook", method=RequestMethod.POST)
 	public String postBook(@RequestParam("r_bno") int r_bno, BookDTO bookDTO, Model model, HttpSession session) throws Exception {
+
+		// 회원정보 가져오기
+		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
+		
+		if(memberDTO == null) {
+			// 방 기능 가져오기 room_fnc
+	    	List<Room_fncDTO> room_fncDTO = mainService.getFnc();
+	    	model.addAttribute("fnc", room_fncDTO);
+	    	logger.info("방 기능 잘 가져오나요? room_fncDTO => " + room_fncDTO);
+	    	
+	    	// 방 렌트할 것 가져오기 roon_rent
+	       	List<Room_rentDTO> room_rentDTO = mainService.getRent();
+	    	model.addAttribute("rent", room_rentDTO);
+	    	logger.info("방 렌트할 것 잘 가져오나요? room_rentDTO => " + room_rentDTO);
+	    	
+	    	// 결제수단가져오기 payment
+	       	List<PaymentDTO> paymentDTO = mainService.getPayment();
+	    	model.addAttribute("payment", paymentDTO);
+	    	logger.info("결제수단 잘 가져오나요? paymentDTO => " + paymentDTO);
+	    	
+	    	// 방 가져오기
+			RoomInfraDTO roomInfraDTO = mainService.getRoomView(r_bno);
+			model.addAttribute("room", roomInfraDTO);
+			logger.info("동균아!!aaaaaaaa" + r_bno);
+			
+			// 방 종류가져오기
+			List<RoomKindDTO> roomkindDTO = mainService.getKind();
+			model.addAttribute("kinds", roomkindDTO);
+
+			
+			return "main/goBook";
+		}else {
+			MemberDTO member = memberSerivce.view(memberDTO.getM_id());
+			model.addAttribute("member", member);
+		}
     	
 		// 방 기능 가져오기 room_fnc
     	List<Room_fncDTO> room_fncDTO = mainService.getFnc();
@@ -144,10 +179,6 @@ public class MainController {
 		List<RoomKindDTO> roomkindDTO = mainService.getKind();
 		model.addAttribute("kinds", roomkindDTO);
 
-		// 회원정보 가져오기
-		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
-		MemberDTO member = memberSerivce.view(memberDTO.getM_id());
-		model.addAttribute("member", member);
 		
 		return "main/goBook";
 	}
