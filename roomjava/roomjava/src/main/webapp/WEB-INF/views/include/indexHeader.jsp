@@ -32,10 +32,10 @@ p{
 		</c:if>
 		
 		<ul class="gnb">
-		    <li><a href="../main/1"><span class="glyphicon glyphicon-heart"></span> 시설 안내</a>
+		    <li><a href="../main/0"><span class="glyphicon glyphicon-heart"></span> 시설 안내</a>
 		    	<ul class="infra">
 			    	<c:forEach items="${roomKind}" var="room">
-						<li><a href="../main/1">${room.room_class}</a></li>
+						<li><a href="../main/${room.room_bno}">${room.room_class}</a></li>
 					</c:forEach>
 		    	</ul>
 		    </li>

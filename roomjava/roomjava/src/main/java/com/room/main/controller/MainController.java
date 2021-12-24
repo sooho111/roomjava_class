@@ -51,8 +51,20 @@ public class MainController {
 	@Inject
 	MemberService memberSerivce;
 	
+	@RequestMapping("/0")
+	public void infra() throws Exception {
+	}
 	@RequestMapping("/1")
-	public void ps() throws Exception {
+	public void ps( ) throws Exception {
+	}
+	@RequestMapping("/2")
+	public void kb() throws Exception {
+	}
+	@RequestMapping("/3")
+	public void dk() throws Exception {
+	}
+	@RequestMapping("/4")
+	public void kbgp() throws Exception {
 	}
 
 	//------------------------------------------------------------------------------------------------

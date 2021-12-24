@@ -63,7 +63,12 @@ body { overflow-x:hidden; font-size:14px; }
 			<div class="form-group">
 				<label class="control-label col-sm-4">예약자 이름</label>
 				<div class="col-sm-3">
-					<input type="text" class="form-control" name="book_name" id="m_name" maxlength="50" value="${member.m_name}" />
+					<c:if test="${member != null}">
+						<input type="text" class="form-control" name="book_name" id="m_name" maxlength="50" value="${member.m_name}" />
+					</c:if>
+					<c:if test="${member == null}">
+						<input type="text" class="form-control" name="book_name" id="m_name" maxlength="50" />
+					</c:if>
 				</div>
 			</div>
 			
@@ -88,8 +93,12 @@ body { overflow-x:hidden; font-size:14px; }
 			<div class="form-group">
 				<label class="control-label col-sm-4">예약자 전화번호</label>
 				<div class="col-sm-4">
-					<input type="text" class="form-control" 
-					name="book_tel" id="m_tel" maxlength="50" value="${member.m_tel}" />
+					<c:if test="${member != null}">
+						<input type="text" class="form-control" name="book_tel" id="m_tel" maxlength="50" value="${member.m_tel}" />
+					</c:if>
+					<c:if test="${member == null}">
+						<input type="text" class="form-control" name="book_tel" id="m_tel" maxlength="50" />
+					</c:if>
 				</div>
 			</div>	
 			
@@ -162,6 +171,18 @@ body { overflow-x:hidden; font-size:14px; }
 <script>
 $('.okBook').click(function(){
 	
+	if($('#m_name').val() == "") {
+		alert("예약자를 입력해야합니다.");
+		$('#m_name').focus();
+		return false;
+	}
+	
+	if($('#m_tel').val() == "") {
+		alert("전화번호를 입력해야합니다.");
+		$('#m_tel').focus();
+		return false;
+	}
+	
 	if($('#start_Date').val() == "") {
 		alert("시작 날짜를 선택하십시오.");
 		$('#start_Date').focus();
@@ -188,13 +209,29 @@ $('.okBook').click(function(){
 	
 });
 
+$("#end_Date").datepicker();
+// $("#start_Date").datepicker();
+
 $('.back').click(function(){
 	history.go(-1);
 });
 
 
-$("#start_Date").datepicker();
-$("#end_Date").datepicker();
+$("#start_Date").datepicker( {
+onClose : function( selectedDate ) {  // 날짜를 설정 후 달력이 닫힐 때 실행
+              if( selectedDate != "" ) {
+                  // xxx의 maxDate를 yyy의 날짜로 설정
+                 $("#end_Date").datepicker("option", "minDate", selectedDate);
+                 
+	var ar1 = selectedDate.split('-');
+	var aaa = Number(ar1[2])+3;
+	var aar1 = selectedDate.join("", selectedDate.split("-"))
+	alert("^^" + aar1);
+	
+             	$("#end_Date").datepicker("option", "maxDate", aar1);
+              }
+          }
+} );
 
 var sDate=0;
 var eDate=0;
@@ -288,6 +325,7 @@ $('#end_Date').change(function(){
 });
 
 var dd;
+var present;
 
 $.datepicker.setDefaults({
 	showOn: "both", // 버튼과 텍스트 필드 모두 캘린더를 보여준다. 
@@ -307,11 +345,16 @@ $.datepicker.setDefaults({
     yearSuffix: '년',	//
     showButtonPanel: true,	// 오늘로 가는 버튼과 달력 닫기 버튼 보기 옵션
     minDate: "+1D",
+    maxDate: "",
 	beforeShow: function (input, inst) { // 일자 선택되기전 이벤트 발생
         dd = $(this).val();
 	},
+	/* onSelect: function (dateText, inst) { // 일자 선택된 후 이벤트 발생
+		var curDate = $("#start_Date").datepicker("getDate");  // Date return
+		curDate.setDate( curDate.getDate() + 1 );
+		$("#end_Date").datepicker("option", "maxDate", curDate+3);
+	}*/
 });
-
 
 var m = 0;
 var c = 0;

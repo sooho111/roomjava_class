@@ -34,7 +34,10 @@
 
 <div id="story">
 	<div class="inner">
-		<p class="course"><img src="../../resources/images/course.png" alt="course" /></p>
+		<p class="course"><img src="../../resources/images/pension/pension1.jpg" alt="course" width="600px" height="600px"/></p>
+		<p class="course"><img src="../../resources/images/pension/pension2.jpg" alt="course" width="600px" height="600px"/></p>
+		<hr/>
+		<p class="course"><img src="../../resources/images/infra/course.png" alt="course" /></p>
 		<div class="context">
 			<p class="title">기본 정보</p>
 			<p>입실 : 15:00 | 퇴실 : 12:00</p>
