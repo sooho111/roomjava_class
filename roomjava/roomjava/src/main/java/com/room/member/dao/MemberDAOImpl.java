@@ -257,6 +257,13 @@ public class MemberDAOImpl implements MemberDAO {
 	public void updateReview(ReviewDTO reviewDTO)throws Exception {
 		sqlSession.update(namespace+".updateReview",reviewDTO);
 	}	
+	@Override
+	//리뷰 삭제
+	public String deleteReview(String book_order)throws Exception {
+		sqlSession.delete(namespace + ".deleteReview", book_order);
+		return null;
+		
+	}	
 	//qna 답변 작성
 	@Override
 	public void registReply(ReplyDTO replyDTO) throws Exception {

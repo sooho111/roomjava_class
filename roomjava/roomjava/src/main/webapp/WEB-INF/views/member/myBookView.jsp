@@ -125,6 +125,7 @@ th { text-align:center; }
 			</c:if>
 			<c:if test="${checkReview==1}">
 			<input class="btn btn-primary" type="button" value="후기 수정" id="updatereview" /> 
+			<input class="btn btn-danger" type="button" value="댓글 삭제" id="deletereview" />
 			</c:if>
 		</div>
 	</div>
@@ -141,6 +142,11 @@ $("#goreview").click(function(){
 $("#updatereview").click(function(){
     if(confirm("리뷰를 수정하시겠습니까?")){
         location.href="${path}/member/updateReview?book_order="+$("#book_order").val();
+    }
+});
+$("#deletereview").click(function(){
+    if(confirm("리뷰를 삭제하시겠습니까?")){
+        location.href="${path}/member/deleteReview?book_order="+$("#book_order").val();
     }
 });
 </script>

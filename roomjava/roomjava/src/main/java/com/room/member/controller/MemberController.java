@@ -385,6 +385,7 @@ public class MemberController {
 
 		
 		}
+	
 	//-------------------------------------------------------------------------------------------------------
 	//후기 수정 POST	
 	//-------------------------------------------------------------------------------------------------------		
@@ -395,6 +396,14 @@ public class MemberController {
 		memberService.updateReview(reviewDTO);
 		
 		return "redirect:/member/review";
+	}
+	// -------------------------------------------------------------------------------------------------
+	// 후기 삭제 GET
+	// -------------------------------------------------------------------------------------------------
+	@RequestMapping(value="/deleteReview", method=RequestMethod.GET)
+	public String deletereview(@RequestParam("book_order") String book_order) throws Exception {
+		memberService.deleteReview(book_order);
+		return "redirect:/member/myPage";
 	}
 	
 	//공지사항 view
