@@ -30,6 +30,7 @@ import com.room.admin.dto.SearchCriteria;
 import com.room.main.dto.BookDTO;
 import com.room.member.dto.MemberDTO;
 import com.room.member.dto.QnaDTO;
+import com.room.member.dto.ReplyDTO;
 import com.room.member.dto.ReviewDTO;
 import com.room.member.service.MemberService;
 import com.room.member.dto.FaqDTO;
@@ -361,6 +362,16 @@ public class MemberController {
 		
 		model.addAttribute("review", review);
 	}
+	// -------------------------------------------------------------------------------------------------
+	// 후기 수정 GET
+	// -------------------------------------------------------------------------------------------------
+	@RequestMapping(value="/updateReview", method=RequestMethod.GET)
+	public void updatereviewget(@RequestParam("book_order") String book_order, ReviewDTO reviewDTO,Model model, HttpSession session) throws Exception {
+		
+		
+		reviewDTO.setBook_order(book_order);
+		model.addAttribute("review", memberService.getReview(book_order));
+	}
 
 	// -------------------------------------------------------------------------------------------------
 	// 후기 작성 Post
@@ -374,6 +385,26 @@ public class MemberController {
 
 		
 		}
+	
+	//-------------------------------------------------------------------------------------------------------
+	//후기 수정 POST	
+	//-------------------------------------------------------------------------------------------------------		
+	@RequestMapping(value = "/updateReview", method = RequestMethod.POST)
+	public String updateReview(@RequestParam("book_order") String book_order, ReviewDTO reviewDTO,Model model) throws Exception {
+
+		
+		memberService.updateReview(reviewDTO);
+		
+		return "redirect:/member/review";
+	}
+	// -------------------------------------------------------------------------------------------------
+	// 후기 삭제 GET
+	// -------------------------------------------------------------------------------------------------
+	@RequestMapping(value="/deleteReview", method=RequestMethod.GET)
+	public String deletereview(@RequestParam("book_order") String book_order) throws Exception {
+		memberService.deleteReview(book_order);
+		return "redirect:/member/myPage";
+	}
 	
 	//공지사항 view
 	@RequestMapping(value="/notice", method=RequestMethod.GET)
@@ -570,5 +601,57 @@ public class MemberController {
 			
 			return "redirect:/member/qna";
 
+		}
+		// -------------------------------------------------------------------------------------------------
+		// QnA 리플 리스트
+		// -------------------------------------------------------------------------------------------------
+		@ResponseBody
+		@RequestMapping(value="/qnaDetail/QnAreplyList", method = RequestMethod.GET)
+		public List<ReplyDTO> getReply(@RequestParam("qna_bno") int qna_bno) throws Exception {
+			logger.info("get reply list");
+			
+			List<ReplyDTO> reply = memberService.replyList(qna_bno);
+			
+			return reply;
+		}
+		
+		// -------------------------------------------------------------------------------------------------
+		// QnA 리플 작성
+		// -------------------------------------------------------------------------------------------------
+		@ResponseBody
+		@RequestMapping(value = "/qnaDetail/QnAregistReply", method = RequestMethod.POST)
+		public void registReply(ReplyDTO replyDTO, HttpSession httpSession, @RequestParam("qna_bno") int qna_bno) throws Exception {
+			logger.info("regist reply");
+			
+			MemberDTO member = (MemberDTO)httpSession.getAttribute("member");
+			replyDTO.setM_id(member.getM_id());
+			
+			replyDTO.setQna_bno(qna_bno);
+			
+			memberService.registReply(replyDTO);
+		}
+		// -------------------------------------------------------------------------------------------------
+		// QnA 리플 삭제
+		// -------------------------------------------------------------------------------------------------
+		@ResponseBody
+		@RequestMapping(value = "/qnaDetail/deleteReply", method = RequestMethod.POST)
+		public void deleteReply(ReplyDTO replyDTO, @RequestParam("rep_bno") int rep_bno) throws Exception {
+			logger.info("delete reply");
+			
+			replyDTO.setRep_bno(rep_bno);
+			
+			memberService.deleteReply(replyDTO);
+		}
+		// -------------------------------------------------------------------------------------------------
+		// QnA 리플 수정
+		// -------------------------------------------------------------------------------------------------
+		@ResponseBody
+		@RequestMapping(value = "/qnaDetail/modifyReply", method = RequestMethod.POST)
+		public void modifyReply(ReplyDTO replyDTO, @RequestParam("rep_bno") int rep_bno) throws Exception {
+			logger.info("modify reply");
+			
+			replyDTO.setRep_bno(rep_bno);
+			
+			memberService.modifyReply(replyDTO);
 		}
 } // end class MemberController

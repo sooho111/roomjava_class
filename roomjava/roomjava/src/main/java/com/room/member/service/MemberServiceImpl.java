@@ -16,6 +16,7 @@ import com.room.main.dto.BookDTO;
 import com.room.member.dao.MemberDAO;
 import com.room.member.dto.MemberDTO;
 import com.room.member.dto.QnaDTO;
+import com.room.member.dto.ReplyDTO;
 import com.room.member.dto.ReviewDTO;
 import com.room.member.dto.FaqDTO;
 
@@ -289,6 +290,48 @@ MemberDAO memberDAO;
 		public void insertReview(ReviewDTO reviewDTO) throws Exception {
 			memberDAO.insertReview(reviewDTO);
 		}
+
+		//리뷰 가져오기
+		@Override
+		public ReviewDTO getReview(String book_order) throws Exception {
+			
+			return memberDAO.getReview(book_order);
+		}
+		//리뷰 수정
+		public void updateReview(ReviewDTO reviewDTO) throws Exception {
+			memberDAO.updateReview(reviewDTO);
+		}
+		//리뷰 수정
+		public String deleteReview(String book_order) throws Exception {
+			return memberDAO.deleteReview(book_order);
+		}
+
+
+		//qna 답변 작성
+		@Override
+		public void registReply(ReplyDTO replyDTO) throws Exception {
+			memberDAO.registReply(replyDTO);
+			
+		}
+		//qna 답변 리스트
+		@Override
+		public List<ReplyDTO> replyList(int qna_bno) throws Exception {
+			
+			return memberDAO.replyList(qna_bno);
+		}
+		//qna 답변 삭제
+		@Override
+		public void deleteReply(ReplyDTO replyDTO) throws Exception {
+			memberDAO.deleteReply(replyDTO);
+			
+		}
+		//qna 답변 수정
+		@Override
+		public void modifyReply(ReplyDTO replyDTO) throws Exception {
+			memberDAO.modifyReply(replyDTO);
+			
+		}
+		
 
 	
 }
