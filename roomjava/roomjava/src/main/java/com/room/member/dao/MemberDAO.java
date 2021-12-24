@@ -138,4 +138,5 @@ public interface MemberDAO {
 	public ReviewDTO getReview(String book_order) throws Exception;
 	public void updateReview(ReviewDTO reviewDTO) throws Exception;
 
+
 }
