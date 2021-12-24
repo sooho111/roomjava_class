@@ -131,5 +131,7 @@ public interface MemberService {
 	public Integer checkReview(String book_order) throws Exception;
 	//리뷰 작성
 	public void insertReview(ReviewDTO reviewdto) throws Exception;
-
+	public ReviewDTO getReview(String book_order) throws Exception;
+	public void updateReview(ReviewDTO reviewDTO) throws Exception;
+	
 }

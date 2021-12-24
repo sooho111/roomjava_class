@@ -7,10 +7,6 @@
 <title>Insert title here</title>
 <%@ include file="../../include/includeFile.jsp" %>
 
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');
-
-</style>
 </head>
 <body>
 <%@ include file="../../include/m_header.jsp" %>
@@ -48,14 +44,14 @@
 		
 	</div>
 	
-	<script type="text/javascript">
-	$(document).ready(function(){
-		
-		$(".cancel_btn").on("click", function(){
-			event.preventDefault();
-			location.href = "/admin/etc/etcList";
-		})
+<script type="text/javascript">
+$(document).ready(function(){
+	
+	$(".cancel_btn").on("click", function(){
+		event.preventDefault();
+		location.href = "/admin/etc/etcList";
 	})
+})
 </script>
 
 <%@ include file="../../include/footer.jsp" %>
