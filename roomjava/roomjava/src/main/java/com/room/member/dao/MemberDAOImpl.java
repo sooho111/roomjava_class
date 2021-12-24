@@ -14,6 +14,7 @@ import com.room.admin.dto.SearchCriteria;
 import com.room.main.dto.BookDTO;
 import com.room.member.dto.MemberDTO;
 import com.room.member.dto.QnaDTO;
+import com.room.member.dto.ReplyDTO;
 import com.room.member.dto.ReviewDTO;
 import com.room.member.dto.FaqDTO;
 
@@ -244,6 +245,30 @@ public class MemberDAOImpl implements MemberDAO {
 	//리뷰 추가
 	public void insertReview(ReviewDTO reviewDTO) throws Exception {
 		sqlSession.insert(namespace+".insertReview",reviewDTO);
+	}
+	//qna 답변 작성
+	@Override
+	public void registReply(ReplyDTO replyDTO) throws Exception {
+		sqlSession.insert(namespace + ".registReply", replyDTO);
+		
+	}
+	//qna 답변 리스트
+	@Override
+	public List<ReplyDTO> replyList(int qna_bno) throws Exception {
+		
+		return sqlSession.selectList(namespace + ".replyList", qna_bno);
+	}
+	// qna 답변 삭제
+	@Override
+	public void deleteReply(ReplyDTO replyDTO) throws Exception {
+		sqlSession.delete(namespace + ".deleteReply", replyDTO);
+		
+	}
+	// qna 답변 수정
+	@Override
+	public void modifyReply(ReplyDTO replyDTO) throws Exception {
+		sqlSession.update(namespace + ".modifyReply", replyDTO);
+		
 	}
 
 }

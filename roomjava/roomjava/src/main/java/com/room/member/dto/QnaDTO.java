@@ -12,6 +12,5 @@ public class QnaDTO {
 	private String qna_content;
 	private Date  qna_date;
 	private String m_id;
-	private String m_name;
-	
+	private String qna_class;
 }

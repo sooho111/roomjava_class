@@ -7,6 +7,7 @@ import com.room.admin.dto.SearchCriteria;
 import com.room.main.dto.BookDTO;
 import com.room.member.dto.MemberDTO;
 import com.room.member.dto.QnaDTO;
+import com.room.member.dto.ReplyDTO;
 import com.room.member.dto.ReviewDTO;
 import com.room.member.dto.FaqDTO;
 
@@ -135,5 +136,15 @@ public interface MemberDAO {
 	//리뷰 작성
 	public void insertReview(ReviewDTO reviewdto) throws Exception;
 	
-
+	//qna 답변 작성
+	public void registReply(ReplyDTO replyDTO) throws Exception;
+	
+	//qna 답변 리스트
+	public List<ReplyDTO> replyList(int qna_bno) throws Exception;
+	
+	//qna 답변 삭제
+	public void deleteReply(ReplyDTO replyDTO) throws Exception;
+	
+	//qna 답변 수정
+	public void modifyReply(ReplyDTO replyDTO) throws Exception;
 }
