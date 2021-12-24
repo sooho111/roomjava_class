@@ -301,6 +301,11 @@ MemberDAO memberDAO;
 		public void updateReview(ReviewDTO reviewDTO) throws Exception {
 			memberDAO.updateReview(reviewDTO);
 		}
+		//리뷰 수정
+		public String deleteReview(String book_order) throws Exception {
+			return memberDAO.deleteReview(book_order);
+		}
+
 
 		//qna 답변 작성
 		@Override

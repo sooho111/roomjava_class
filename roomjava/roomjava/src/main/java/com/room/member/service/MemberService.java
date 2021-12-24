@@ -135,6 +135,7 @@ public interface MemberService {
 
 	public ReviewDTO getReview(String book_order) throws Exception;
 	public void updateReview(ReviewDTO reviewDTO) throws Exception;
+	public String deleteReview(String book_order) throws Exception;
 	
 
 	//댓글 답변 작성
@@ -145,5 +146,6 @@ public interface MemberService {
 	public void deleteReply(ReplyDTO replyDTO) throws Exception;
 	//qna 답변 수정
 	public void modifyReply(ReplyDTO replyDTO) throws Exception;
+	
 
 }
