@@ -223,8 +223,21 @@ public class MainController {
 	
 	@RequestMapping(value="/okBook", method=RequestMethod.POST)
 	public String okBook(BookDTO bookDTO) throws Exception {
-		logger.info("잠온다 " + bookDTO);
 		
+		Calendar cal = Calendar.getInstance();
+		int year = cal.get(Calendar.YEAR);
+		String ym = year + new DecimalFormat("00").format(cal.get(Calendar.MONTH) + 1);
+		String ymd = ym + new DecimalFormat("00").format(cal.get(Calendar.DATE));
+		String subNum = "";
+      
+		for(int i = 1; i <= 6; i ++) {
+			subNum += (int)(Math.random() * 10);
+		}
+		String book_order = ymd + "_" + subNum;
+		bookDTO.setBook_order(book_order);
+		
+		logger.info("예약번호 만들어지나요" + book_order);
+		logger.info("잠온다 " + bookDTO);
 		return "/main/okBook";
 		
 	} // end String okBook() throws Exception
