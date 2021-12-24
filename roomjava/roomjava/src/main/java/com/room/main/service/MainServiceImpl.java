@@ -13,6 +13,7 @@ import com.room.admin.dto.RoomKindDTO;
 import com.room.admin.dto.Room_fncDTO;
 import com.room.admin.dto.Room_rentDTO;
 import com.room.main.dao.MainDAO;
+import com.room.main.dto.BookDTO;
 import com.room.main.dto.RoomInfraDTO;
 
 @Service
@@ -87,12 +88,13 @@ public class MainServiceImpl implements MainService {
 		return mainDAO.getPayment();
 	}
 	
-//	//-------------------------------------------------------------------------------------------------
-//	// 예약하기 누르면 bookDTO에 담아주기
-//	//-------------------------------------------------------------------------------------------------
-//	@Override
-//	public void insertBook(BookDTO bookDTO) throws Exception {
-//		mainDAO.insertBook(bookDTO);
-//	}
+	//-------------------------------------------------------------------------------------------------
+	// 예약하기 누르면 bookDTO에 담아주기
+	//-------------------------------------------------------------------------------------------------
+	@Override
+	public void insertBook(BookDTO bookDTO) throws Exception {
+		logger.info("서비스" + bookDTO);
+		mainDAO.insertBook(bookDTO);
+	}
 	
 }

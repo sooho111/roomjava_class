@@ -85,4 +85,12 @@
         	LIMIT   #{pageStart}, #{perPageNum}
     	]]>
    	</select>
+   	
+   	<insert id="insertBook">
+   		INSERT INTO book( book_order, book_name, book_people, book_tel, start_date, 
+   			end_date, r_bno, room_class, r_name, r_kind, r_rent, r_fnc )
+   		VALUES ( #{book_order}, #{book_name}, #{book_people}, #{book_tel}, 
+   			#{start_date}, #{end_date}, #{r_bno}, #{room_class}, #{r_name}, #{r_kind}, #{r_rent}, #{r_fnc} )
+   	</insert>
+   	
 </mapper>
