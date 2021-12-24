@@ -13,6 +13,7 @@ import com.room.admin.dto.PaymentDTO;
 import com.room.admin.dto.RoomKindDTO;
 import com.room.admin.dto.Room_fncDTO;
 import com.room.admin.dto.Room_rentDTO;
+import com.room.main.dto.BookDTO;
 import com.room.main.dto.RoomInfraDTO;
 
 
@@ -90,12 +91,13 @@ class MainDAOImpl implements MainDAO {
 		return sqlSession.selectList(namespace + ".getPayment");
 	}
 	
-//	//-------------------------------------------------------------------------------------------------
-//	// 예약하기 누르면 bookDTO에 담아주기
-//	//-------------------------------------------------------------------------------------------------
-//	@Override
-//	public void insertBook(BookDTO bookDTO) throws Exception {
-//		// sqlSession.insert(namespace + ".insertBook", bookDTO);
-//	}
+	//-------------------------------------------------------------------------------------------------
+	// 예약하기 누르면 bookDTO에 담아주기
+	//-------------------------------------------------------------------------------------------------
+	@Override
+	public void insertBook(BookDTO bookDTO) throws Exception {
+		logger.info("디에오 " + bookDTO);
+		sqlSession.insert(namespace + ".insertBook", bookDTO);
+	}
 	
 }

@@ -6,6 +6,7 @@ import com.room.admin.dto.PaymentDTO;
 import com.room.admin.dto.RoomKindDTO;
 import com.room.admin.dto.Room_fncDTO;
 import com.room.admin.dto.Room_rentDTO;
+import com.room.main.dto.BookDTO;
 import com.room.main.dto.RoomInfraDTO;
 
 public interface MainDAO {
@@ -50,9 +51,9 @@ public interface MainDAO {
 	//-------------------------------------------------------------------------------------------------
 	public List<PaymentDTO> getPayment() throws Exception;
 	
-//	//-------------------------------------------------------------------------------------------------
-//	// 예약하기 누르면 bookDTO에 담아주기
-//	//-------------------------------------------------------------------------------------------------
-//	public void insertBook(BookDTO bookDTO) throws Exception;
+	//-------------------------------------------------------------------------------------------------
+	// 예약하기 누르면 bookDTO에 담아주기
+	//-------------------------------------------------------------------------------------------------
+	public void insertBook(BookDTO bookDTO) throws Exception;
 	
 }

@@ -17,4 +17,6 @@ public class BookDTO {
 	private String 	room_class;
 	private String 	r_name;
 	private int		r_kind;
+	private String 	r_rent;
+	private String	r_fnc;
 }

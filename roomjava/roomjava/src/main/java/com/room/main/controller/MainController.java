@@ -127,30 +127,26 @@ public class MainController {
 			// 방 기능 가져오기 room_fnc
 	    	List<Room_fncDTO> room_fncDTO = mainService.getFnc();
 	    	model.addAttribute("fnc", room_fncDTO);
-	    	logger.info("방 기능 잘 가져오나요? room_fncDTO => " + room_fncDTO);
 	    	
 	    	// 방 렌트할 것 가져오기 roon_rent
 	       	List<Room_rentDTO> room_rentDTO = mainService.getRent();
 	    	model.addAttribute("rent", room_rentDTO);
-	    	logger.info("방 렌트할 것 잘 가져오나요? room_rentDTO => " + room_rentDTO);
 	    	
 	    	// 결제수단가져오기 payment
 	       	List<PaymentDTO> paymentDTO = mainService.getPayment();
 	    	model.addAttribute("payment", paymentDTO);
-	    	logger.info("결제수단 잘 가져오나요? paymentDTO => " + paymentDTO);
 	    	
 	    	// 방 가져오기
 			RoomInfraDTO roomInfraDTO = mainService.getRoomView(r_bno);
 			model.addAttribute("room", roomInfraDTO);
-			logger.info("동균아!!aaaaaaaa" + r_bno);
 			
 			// 방 종류가져오기
 			List<RoomKindDTO> roomkindDTO = mainService.getKind();
 			model.addAttribute("kinds", roomkindDTO);
 
-			
 			return "main/goBook";
-		}else {
+			
+		} else {
 			MemberDTO member = memberSerivce.view(memberDTO.getM_id());
 			model.addAttribute("member", member);
 		}
@@ -158,27 +154,22 @@ public class MainController {
 		// 방 기능 가져오기 room_fnc
     	List<Room_fncDTO> room_fncDTO = mainService.getFnc();
     	model.addAttribute("fnc", room_fncDTO);
-    	logger.info("방 기능 잘 가져오나요? room_fncDTO => " + room_fncDTO);
     	
     	// 방 렌트할 것 가져오기 roon_rent
        	List<Room_rentDTO> room_rentDTO = mainService.getRent();
     	model.addAttribute("rent", room_rentDTO);
-    	logger.info("방 렌트할 것 잘 가져오나요? room_rentDTO => " + room_rentDTO);
     	
     	// 결제수단가져오기 payment
        	List<PaymentDTO> paymentDTO = mainService.getPayment();
     	model.addAttribute("payment", paymentDTO);
-    	logger.info("결제수단 잘 가져오나요? paymentDTO => " + paymentDTO);
     	
     	// 방 가져오기
 		RoomInfraDTO roomInfraDTO = mainService.getRoomView(r_bno);
 		model.addAttribute("room", roomInfraDTO);
-		logger.info("동균아!!aaaaaaaa" + r_bno);
 		
 		// 방 종류가져오기
 		List<RoomKindDTO> roomkindDTO = mainService.getKind();
 		model.addAttribute("kinds", roomkindDTO);
-
 		
 		return "main/goBook";
 	}
@@ -238,6 +229,8 @@ public class MainController {
 		
 		logger.info("예약번호 만들어지나요" + book_order);
 		logger.info("잠온다 " + bookDTO);
+		mainService.insertBook(bookDTO);
+		logger.info("즐겁네");
 		return "/main/okBook";
 		
 	} // end String okBook() throws Exception
