@@ -125,7 +125,7 @@ th { text-align:center; }
 			</c:if>
 			<c:if test="${checkReview==1}">
 			<input class="btn btn-primary" type="button" value="후기 수정" id="updatereview" /> 
-			<input class="btn btn-danger" type="button" value="댓글 삭제" id="deletereview" />
+			<input class="btn btn-danger" type="button" value="후기 삭제" id="deletereview" />
 			</c:if>
 		</div>
 	</div>
