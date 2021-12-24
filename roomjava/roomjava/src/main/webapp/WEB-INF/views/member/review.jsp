@@ -49,11 +49,20 @@ span.plusIcon { cursor:pointer; }
 						</c:choose></td> 
 						 
 					</tr>
+					
 			        <tr>
 			          <td>
 			      	${review.r_content}
 			      	 </td>
 			        </tr>
+			        <c:if test="${member.m_power == 1|| member.m_power == 2}">
+			        <tr>
+			        	<td>
+			        		<input type="hidden" id="book_order" value="${review.book_order}">
+							<input class="btn btn-danger deletereview" type="button" value="후기 삭제" />		     
+			        	</td>
+			        </tr>
+			        </c:if>
 			      </table>    
 			    </td>
 			  </tr>
@@ -145,7 +154,12 @@ $(".plusIcon").on("click",function(){
 	     obj.parent().parent().next().hide();
 	  }
 	});
-
+$(".deletereview").click(function(){
+	var book_order=$(this).prev().val();
+    if(confirm("리뷰를 삭제하시겠습니까?")){
+        location.href="${path}/member/deleteReview?book_order="+book_order;
+    }
+});
 
 
 
