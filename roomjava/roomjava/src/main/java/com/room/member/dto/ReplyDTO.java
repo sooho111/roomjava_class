@@ -11,5 +11,6 @@ public class ReplyDTO {
 	private String m_id;
 	private Date   rep_date;
 	private int qna_bno;
+	private int answer;
 	
 }

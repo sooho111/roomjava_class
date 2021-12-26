@@ -271,13 +271,13 @@ WHERE book_name = #{book_name}
    	
    	<!-- qna (댓글) 작성 -->
    	<insert id ="registReply">
-     Insert Into qna_reply(rep_content, m_id, qna_bno)
-   	  Value (#{rep_content},  #{m_id}, #{qna_bno})
+     Insert Into qna_reply(rep_content, m_id, qna_bno, answer)
+   	  Value (#{rep_content},  #{m_id}, #{qna_bno}, 0 )
    	</insert>
 
 	<!-- qna(댓글) 리스트 -->
 	<select id="replyList" resultType="com.room.member.dto.ReplyDTO">
-	select rep_bno, rep_content, m_id, rep_date
+	select rep_bno, rep_content, m_id, rep_date, answer
 	from   qna_reply
 	where  qna_bno = #{qna_bno}
 	</select>

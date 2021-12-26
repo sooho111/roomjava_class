@@ -8,6 +8,13 @@
 <meta charset="UTF-8">
 <title>1:1 게시판</title>
 <%@ include file="../include/includeFile.jsp"%>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');
+.container { margin-top:70px; margin-bottom:70px; }
+.btnss { margin-bottom:50px; }
+.notice { font-size:20px; margin-bottom:30px; }
+</style>
 </head>
 <body>
 <%@ include file="../include/header.jsp" %>
