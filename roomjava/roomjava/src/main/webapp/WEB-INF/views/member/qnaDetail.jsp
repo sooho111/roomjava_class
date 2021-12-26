@@ -28,6 +28,7 @@ section.replyList div.rep_content { padding:10px; margin:20px 0 10px 0; }
 section.replyList div.replyFooter { margin-bottom:10px; text-align:right; }
 section.replyList div.replyFooter button { font-size:14px; border: 1px solid #000; background:none; margin-right:10px; }
 div.replyModal { position:relative; z-index:1; display:none; }
+div.answerModal  { position:relative; z-index:1; display:none; }
 div.modalBackground { position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0, 0, 0, 0.8); z-index:-1; }
 div.modalContent { position:fixed; top:20%; left:calc(50% - 250px); width:520px; height:300px; padding:20px 10px; background:#fff; border:2px solid #666; }
 div.modalContent textarea { font-size:16px; font-family:'맑은 고딕', verdana; padding:10px; width:500px; height:200px; }
@@ -52,7 +53,8 @@ function QnAreplyList() {
        		var rep_date = new Date(this.rep_date);
        		rep_date = rep_date.toLocaleDateString("ko-US")
        		
-       		str += "<li data-rep_bno='" + this.rep_bno + "'>"
+       		str 
+       			+= "<li data-rep_bno='" + this.rep_bno + "'>"
           		+ "<div class='userInfo'>"
               	+ "<span class='m_id'>" + this.m_id + "</span>"
               	+ "<span class='date'>" + rep_date + "</span>"
@@ -64,11 +66,13 @@ function QnAreplyList() {
                	+ "<div class='replyFooter'>"
                 + "<button type='button' class='modify' data-rep_bno='" + this.rep_bno +"'>수정</button>"
                 + "<button type='button' class='delete' data-rep_bno='" + this.rep_bno +"'>삭제</button>"
+              
                	+ "</div>"
       			
           		+ "</c:if>"
           		
-          		+ "</li>";
+          		+ "</li>"
+          		
     	});
     	
     	$("section.replyList ol").html(str);
@@ -82,8 +86,7 @@ function QnAreplyList() {
 
 	<div class="container">
 		<form class="form-horizontal" name="readForm" method="post">
-			<input type="hidden" id="qna_bno" name="qna_bno"
-				value="${Detail.qna_bno}" />
+			<input type="hidden" id="qna_bno" name="qna_bno" value="${Detail.qna_bno}" />
 				
 			&nbsp;
 			&nbsp;
@@ -176,6 +179,22 @@ function QnAreplyList() {
 		<div class="modalBackground"></div>
 
 	</div>
+	
+		<div class="answerModal">
+		<div class="modalContent">
+			<div>
+				<textarea class="modal_rep_content" name="modal_rep_content"></textarea>
+			</div>
+
+			<div>
+				<button type="button" class="modal_answer_btn">답변달기</button>
+				<button type="button" class="modal_cancle">취소</button>
+			</div>
+		</div>
+
+		<div class="modalBackground"></div>
+
+	</div>
 	<%@ include file="../include/footer.jsp"%>
 
 	<script>
@@ -193,6 +212,12 @@ function QnAreplyList() {
 					$(".modal_rep_content").val(rep_content);
 					$(".modal_modify_btn").attr("data-rep_bno", rep_bno);
 				});
+		
+		$(document).on("click", ".answer", function() {
+			$(".answerModal").fadeIn(200);
+			var rep_bno = $(this).attr("data-rep_bno");
+			$(".modal_answer_btn").attr("data-rep_bno", rep_bno);
+		});
 
 		$(document).on("click", ".delete", function() {
 
@@ -259,9 +284,11 @@ function QnAreplyList() {
 		});
 
 		$(".modal_cancle").click(function() {
-			//$(".replyModal").attr("style", "display:none;");
+		
 			$(".replyModal").fadeOut(200);
 		});
+		
+
 	</script>
 
 
