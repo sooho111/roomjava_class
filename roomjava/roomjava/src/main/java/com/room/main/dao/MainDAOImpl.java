@@ -1,6 +1,8 @@
 package com.room.main.dao;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -96,8 +98,30 @@ class MainDAOImpl implements MainDAO {
 	//-------------------------------------------------------------------------------------------------
 	@Override
 	public void insertBook(BookDTO bookDTO) throws Exception {
-		logger.info("디에오 " + bookDTO);
 		sqlSession.insert(namespace + ".insertBook", bookDTO);
 	}
+	
+	//-------------------------------------------------------------------------------------------------
+	// DB에 예약정보 유무
+	//-------------------------------------------------------------------------------------------------
+	@Override
+	public List<BookDTO> manyBook() throws Exception {
+		return sqlSession.selectList(namespace + ".manyBook");
+	}
+	
+	//-------------------------------------------------------------------------------------------------
+	// 예약날 중복 불가
+	//-------------------------------------------------------------------------------------------------
+	@Override
+	public String haveBookDay(String startDay, String r_name) throws Exception {
+		
+		HashMap<String, String> hash = new HashMap<String, String>();
+		hash.put("start_date", startDay);
+		hash.put("r_name", r_name);
+		logger.info("데오~~~~~~~~~~~~~~~~~~~~~~~~~`` " + hash);
+		
+		return sqlSession.selectOne(namespace + ".haveBookDay", hash);
+		
+	} // end String[] haveBookDay(String startDay)
 	
 }

@@ -86,11 +86,27 @@
     	]]>
    	</select>
    	
+   	<!-- 방 예약하기 -->
    	<insert id="insertBook">
    		INSERT INTO book( book_order, book_name, book_people, book_tel, start_date, 
    			end_date, r_bno, room_class, r_name, r_kind, r_rent, r_fnc )
    		VALUES ( #{book_order}, #{book_name}, #{book_people}, #{book_tel}, 
    			#{start_date}, #{end_date}, #{r_bno}, #{room_class}, #{r_name}, #{r_kind}, #{r_rent}, #{r_fnc} )
    	</insert>
+   	
+   	<!-- DB에 예약정보 유무 -->
+   	<select id="manyBook" resultType="com.room.main.dto.BookDTO">
+   		SELECT *
+   		FROM book;
+   	</select>
+   	
+   	<!-- DB에 예약정보 유무 -->
+   	<select id="haveBookDay" parameterType="hashMap" resultType="String">
+   		SELECT start_date
+   		FROM book
+   		WHERE start_date = #{start_date}
+		AND r_name = #{r_name}
+   	</select>
+   	
    	
 </mapper>

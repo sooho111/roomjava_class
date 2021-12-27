@@ -331,8 +331,46 @@ $.datepicker.setDefaults({
     maxDate: "",
 	beforeShow: function (input, inst) { // 일자 선택되기전 이벤트 발생
         dd = $(this).val();
+        haveBookDay();
 	},
+	beforeShowDay : disableDay
 });
+
+//var exam = new [10];
+
+function haveBookDay() {
+	
+	$.ajax({
+		type : "post",
+		url : "/main/haveBookDay",
+		data : {},
+		success : function(result) {
+			//for(var e in result){
+				//exam[e] = result;
+			//}
+			alert("^^" + result);
+		},
+		error : function() {
+			alert("값없음");
+		}
+	});
+}
+
+var exam = ['2021-12-30', '2021-12-31'];
+
+function disableDay(date) {	
+    var m = date.getMonth(),
+    	d = date.getDate(), 
+    	y = date.getFullYear();
+    
+    for (i = 0; i < exam.length; i++) {
+    	
+        if($.inArray(y + '-' +(m+1) + '-' + d , exam) != -1) {
+            return [false];
+        }
+    }
+    return [true];
+}
 
 var m = 0;
 var c = 0;

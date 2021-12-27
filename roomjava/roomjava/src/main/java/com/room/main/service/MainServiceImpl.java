@@ -93,8 +93,25 @@ public class MainServiceImpl implements MainService {
 	//-------------------------------------------------------------------------------------------------
 	@Override
 	public void insertBook(BookDTO bookDTO) throws Exception {
-		logger.info("서비스" + bookDTO);
 		mainDAO.insertBook(bookDTO);
 	}
+	
+	//-------------------------------------------------------------------------------------------------
+	// DB에 예약정보 유무
+	//-------------------------------------------------------------------------------------------------
+	@Override
+	public List<BookDTO> manyBook() throws Exception {
+		return mainDAO.manyBook();
+	}
+	
+	//-------------------------------------------------------------------------------------------------
+	// 예약날 중복 불가
+	//-------------------------------------------------------------------------------------------------
+	@Override
+	public String haveBookDay(String startDay, String r_name) throws Exception {
+		logger.info("서비스`~~~~~~~~~~~~~~~~~~~~~~~~`` "+ startDay +" ^^ "+ r_name);
+		return mainDAO.haveBookDay(startDay, r_name);
+		
+	} // end String[] haveBookDay(String startDay)
 	
 }

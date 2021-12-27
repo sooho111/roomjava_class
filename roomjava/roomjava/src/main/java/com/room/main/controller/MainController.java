@@ -15,6 +15,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.room.main.dto.BookDTO;
 import com.room.main.dto.RoomInfraDTO;
@@ -122,8 +123,9 @@ public class MainController {
 
 		// 회원정보 가져오기
 		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
-		
+				
 		if(memberDTO == null) {
+			logger.info("예약? " + bookDTO);
 			// 방 기능 가져오기 room_fnc
 	    	List<Room_fncDTO> room_fncDTO = mainService.getFnc();
 	    	model.addAttribute("fnc", room_fncDTO);
@@ -173,6 +175,27 @@ public class MainController {
 		
 		return "main/goBook";
 	}
+	
+	//------------------------------------------------------------------------------------------------
+	// 예약날 중복 불가
+	//------------------------------------------------------------------------------------------------
+	@ResponseBody
+	@RequestMapping("/haveBookDay")
+	public String[] haveBookDay() throws Exception {
+		List<BookDTO> reservation = mainService.manyBook();
+		logger.info("뭐야아~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" + reservation);
+		
+		String[] result = new String[reservation.size()];
+		
+		for(int i=0; i < reservation.size(); i++) {
+			result[i] = mainService.haveBookDay(reservation.get(i).getStart_date(), reservation.get(i).getR_name());
+			logger.info("잘 나오니......?~~~~~~~~~~~~~~~~~~~~~~~~~~~~~`" + result[i]);
+		}
+		
+		return result;
+
+	} // end String[] haveBookDay()
+	
 /*
 	//------------------------------------------------------------------------------------------------
 	// 예약하기 누르면 book테이블에 담아주는거 getBook, 여기가 get인가요 죄성해여
@@ -207,11 +230,11 @@ public class MainController {
 		
 		return "/main/goBook";
 	}
-	
-	
-
 	 */	
 	
+	//------------------------------------------------------------------------------------------------
+	// 예약하기 DB에 정보 담기
+	//------------------------------------------------------------------------------------------------
 	@RequestMapping(value="/okBook", method=RequestMethod.POST)
 	public String okBook(BookDTO bookDTO) throws Exception {
 		
