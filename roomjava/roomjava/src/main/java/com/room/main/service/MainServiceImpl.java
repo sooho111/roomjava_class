@@ -109,9 +109,17 @@ public class MainServiceImpl implements MainService {
 	//-------------------------------------------------------------------------------------------------
 	@Override
 	public String haveBookDay(String startDay, String r_name) throws Exception {
-		logger.info("서비스`~~~~~~~~~~~~~~~~~~~~~~~~`` "+ startDay +" ^^ "+ r_name);
 		return mainDAO.haveBookDay(startDay, r_name);
 		
 	} // end String[] haveBookDay(String startDay)
+	
+	//-------------------------------------------------------------------------------------------------
+	// 예약날 비활성화
+	//-------------------------------------------------------------------------------------------------
+	@Override
+	public List<RoomInfraDTO> excludeRooms(BookDTO bookDTO) throws Exception {
+		logger.info("서비스" + bookDTO);
+		return mainDAO.excludeRooms(bookDTO);
+	}
 	
 }

@@ -66,4 +66,9 @@ public interface MainService {
 	//-------------------------------------------------------------------------------------------------
 	public String haveBookDay(String startDay, String r_name) throws Exception;
 	
+	//-------------------------------------------------------------------------------------------------
+	// 예약날 비활성화
+	//-------------------------------------------------------------------------------------------------
+	public List<RoomInfraDTO> excludeRooms(BookDTO bookDTO) throws Exception;
+	
 }
