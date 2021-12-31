@@ -118,10 +118,18 @@ class MainDAOImpl implements MainDAO {
 		HashMap<String, String> hash = new HashMap<String, String>();
 		hash.put("start_date", startDay);
 		hash.put("r_name", r_name);
-		logger.info("데오~~~~~~~~~~~~~~~~~~~~~~~~~`` " + hash);
 		
 		return sqlSession.selectOne(namespace + ".haveBookDay", hash);
 		
 	} // end String[] haveBookDay(String startDay)
+	
+	//-------------------------------------------------------------------------------------------------
+	// 예약날 비활성화
+	//-------------------------------------------------------------------------------------------------
+	@Override
+	public List<RoomInfraDTO> excludeRooms(BookDTO bookDTO) throws Exception {
+		logger.info("데오~~~~~~~~~~~~~~~~~~~~~~~~````````" + bookDTO);
+		return sqlSession.selectList(namespace + ".excludeRooms", bookDTO);
+	}
 	
 }

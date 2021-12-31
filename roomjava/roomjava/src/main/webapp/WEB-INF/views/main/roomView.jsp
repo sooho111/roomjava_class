@@ -86,6 +86,8 @@
 				<input type="hidden" name="r_price" value="${room.r_price}" />
 				<input type="hidden" name="r_base" value="${room.r_base}" />
 				<input type="hidden" name="r_rent" value="${room.r_rent}" />
+				<input type="hidden" name="start_date" value="${start_date}" />
+				<input type="hidden" name="end_date" value="${end_date}" />
 			</form>
 	
 			<ul class="btns" align="right">
