@@ -267,7 +267,6 @@ MemberDAO memberDAO;
 		-------------------------------------------------------------------------------------------------*/
 		@Override
 		public void qnaUpdate(QnaDTO qnaDTO) throws Exception {
-			
 			memberDAO.qnaUpdate(qnaDTO);
 		}
 		/*-------------------------------------------------------------------------------------------------
@@ -275,9 +274,7 @@ MemberDAO memberDAO;
 		-------------------------------------------------------------------------------------------------*/
 		@Override
 		public void qnaDelete(QnaDTO qnaDTO) throws Exception {
-			
 			memberDAO.qnaDelete(qnaDTO);
-			
 		}	
 
 		//리뷰 체크
