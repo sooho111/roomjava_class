@@ -12,4 +12,5 @@ public class RoomInfraDTO {
 	private String 	r_price;	// 방 가격
 	private String 	r_base;		// 기본 기능
 	private String 	r_rent;		// 대여 항목
+	private int 	count;		// 예약날 비활성화 위한 개수
 }
