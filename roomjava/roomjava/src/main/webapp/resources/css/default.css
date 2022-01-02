@@ -16,9 +16,9 @@ a { text-decoration:none; }
 .inner { margin:0 auto; }
 
 /* layout */
-#header .inner { width:1000px; height:150px; position:relative; }
+#header .inner { width:1200px; height:150px; position:relative; }
 #content { margin:0 auto; height:555px; width:1000px; }
-#footer .inner { height:170px; width:1000px; position:relative; }
+#footer .inner { height:170px; width:1200px; position:relative; }
 
 /* index header */
 #header { position:absolute; z-index:5; width:100%; height:160px; }
