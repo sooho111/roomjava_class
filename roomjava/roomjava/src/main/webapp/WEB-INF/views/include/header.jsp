@@ -40,7 +40,12 @@
 			<li><a href="../main/roomList"><span class="glyphicon glyphicon-credit-card"></span> 예약 하기</a>
 				<ul class="reservation">
 					<li><a href="../main/roomList">예약 하기</a></li>
-					<li><a href="#">예약 확인 및 취소</a></li>
+					<c:if test="${member != null}">
+					<li><a href="../member/myPage">예약 확인 및 취소</a></li>
+					</c:if>
+					<c:if test="${member == null}">
+					<li><a href="../member/belogin">예약 확인 및 취소</a></li>
+					</c:if>
 				</ul>
 			</li>
 			

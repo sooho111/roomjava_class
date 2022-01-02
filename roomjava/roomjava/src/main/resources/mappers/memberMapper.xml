@@ -310,4 +310,8 @@ WHERE book_name = #{book_name}
     delete from review
     where book_order=#{book_order}
     </delete>
+    <delete id="deleteBook" >
+    delete from book
+    where book_order=#{book_order}
+    </delete>
 </mapper>

@@ -298,9 +298,13 @@ MemberDAO memberDAO;
 		public void updateReview(ReviewDTO reviewDTO) throws Exception {
 			memberDAO.updateReview(reviewDTO);
 		}
-		//리뷰 수정
+		//리뷰 삭제
 		public String deleteReview(String book_order) throws Exception {
 			return memberDAO.deleteReview(book_order);
+		}
+		//예약 취소
+		public String deleteBook(String book_order) throws Exception {
+			return memberDAO.deleteBook(book_order);
 		}
 
 

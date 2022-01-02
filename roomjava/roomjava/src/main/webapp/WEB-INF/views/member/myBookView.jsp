@@ -127,6 +127,7 @@ th { text-align:center; }
 			<input class="btn btn-primary" type="button" value="후기 수정" id="updatereview" /> 
 			<input class="btn btn-danger" type="button" value="후기 삭제" id="deletereview" />
 			</c:if>
+			<input class="btn btn-danger" type="button" value="예약 취소" id="deleteBook"/>
 		</div>
 	</div>
 </div>
@@ -147,6 +148,11 @@ $("#updatereview").click(function(){
 $("#deletereview").click(function(){
     if(confirm("리뷰를 삭제하시겠습니까?")){
         location.href="${path}/member/deleteReview?book_order="+$("#book_order").val();
+    }
+});
+$("#deleteBook").click(function(){
+    if(confirm("예약을 취소하시겠습니까?")){
+        location.href="${path}/member/deleteBook?book_order="+$("#book_order").val();
     }
 });
 </script>

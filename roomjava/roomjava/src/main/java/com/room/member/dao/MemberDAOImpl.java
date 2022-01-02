@@ -264,6 +264,13 @@ public class MemberDAOImpl implements MemberDAO {
 		return null;
 		
 	}	
+	@Override
+	//예약 취소
+	public String deleteBook(String book_order)throws Exception {
+		sqlSession.delete(namespace + ".deleteBook", book_order);
+		return null;
+		
+	}	
 	//qna 답변 작성
 	@Override
 	public void registReply(ReplyDTO replyDTO) throws Exception {

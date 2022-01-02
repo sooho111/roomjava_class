@@ -423,6 +423,22 @@ public class MemberController {
 		logger.info("noticeList 나와" +  memberService.detailView(boardDTO.getNotice_bno()));
 		return "/member/notice";
 	}
+	// -------------------------------------------------------------------------------------------------
+	// 예약 취소 GET
+	// -------------------------------------------------------------------------------------------------
+	@RequestMapping(value="/deleteBook", method=RequestMethod.GET)
+	public String deleteBook(@RequestParam("book_order") String book_order) throws Exception {
+		memberService.deleteBook(book_order);
+		return "redirect:/member/myPage";
+	}
+	// -------------------------------------------------------------------------------------------------
+	// 비회원 예약 취소 GET
+	// -------------------------------------------------------------------------------------------------
+	@RequestMapping(value="/deletebeBook", method=RequestMethod.GET)
+	public String deletebeBook(@RequestParam("book_order") String book_order) throws Exception {
+		memberService.deleteBook(book_order);
+		return "redirect:/";
+	}
 	
 	
 	
