@@ -108,10 +108,10 @@ public class MainServiceImpl implements MainService {
 	// 예약날 중복 불가
 	//-------------------------------------------------------------------------------------------------
 	@Override
-	public String haveBookDay(String startDay, String r_name) throws Exception {
-		return mainDAO.haveBookDay(startDay, r_name);
+	public int haveBookDay(BookDTO bookDTO) throws Exception {
+		return mainDAO.haveBookDay(bookDTO);
 		
-	} // end String[] haveBookDay(String startDay)
+	} // end int haveBookDay(BookDTO bookDTO)
 	
 	//-------------------------------------------------------------------------------------------------
 	// 예약날 비활성화

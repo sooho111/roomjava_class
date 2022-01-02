@@ -4,23 +4,7 @@
 <%@ taglib prefix="fmt"			uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page import="java.text.SimpleDateFormat" %>
 <%! SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd"); %>
-<%
-String start_date = null;
-String end_date = null;
 
-if(request.getParameter("start_date") != null) {
-	start_date = request.getParameter("start_date");
-} else {
-	start_date = null;
-}
-
-if(request.getParameter("end_date") != null) {
-	end_date = request.getParameter("end_date");
-} else {
-	end_date = null;
-}
-
-%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -42,13 +26,12 @@ if(request.getParameter("end_date") != null) {
 .Rooms li a:hover { color:#111; text-decoration:none; }
 
 #showRooms { width:950px; float:right; position:relative; padding-bottom:50px; }
-.list { float:left; width:230px; margin-right:20px; margin-bottom:30px; border:1px solid red; }
-.list li a { color:#777; font-size:15px; }
-.list li:nth-child(2) a { color:#333; font-size:23px; font-weight:500; }
+.list { float:left; width:230px; margin-right:20px; margin-bottom:30px; }
+.list li { color:#777; font-size:15px; }
+.list li:nth-child(2) { color:#333; font-size:23px; font-weight:500; }
 .list li:first-child { margin-bottom:15px; }
 
 .kindList:after { content:""; display:block; clear:both; }
-.kindList { border:1px solid blue; }
 
 #start_Date, #end_Date { cursor:pointer; }
 
@@ -61,43 +44,37 @@ if(request.getParameter("end_date") != null) {
 <div id="container">
 	<div class="inner">
 	
-		<form class="form form-horizontal" action="/main/roomList" method="post" id="roomDate">
+		<form class="form form-horizontal" action="/main/roomView" id="roomDate">
+		
 			<div class="form-group">
 				<label class="control-label col-sm-4">예약 시작날짜</label>
 				<div class="col-sm-2">
-					<input type="text" class="form-control" id="start_Date" name="start_date" value="" readonly />
+					<input type="text" class="form-control" id="start_Date" name="start_date" readonly />
+					<input type="hidden" id="start" value="N" />
 				</div>
+				
 				<label class="control-label col-sm-1">예약 종료날짜</label>
 				<div class="col-sm-2">
-					<input type="text" class="form-control" id="end_Date" readonly />
 					<input type="hidden" id="real_end" name="end_date" />
+					<input type="text" class="form-control" id="end_Date" readonly />
+					<input type="hidden" id="end" value="N" />
 				</div>
 			</div>
-		</form>
-	
-		<div id="allRooms">
-
-			<p class="gTitle">모든 방</p>
-
-			<ul class="Rooms">
-				<c:forEach items="${kinds}" var="kind">
-					<li class="room_name"><a href="#">${kind.room_class}</a></li>
-					<input type="hidden" value="${kind.room_bno}" />
-				</c:forEach>
-			</ul>
-			<form action="/main/roomList" method="POST" id="kindList">
-				<input type="hidden" name="room_bno" class="bno" />
-			</form>
 			
-		</div>
-		
-		<div id="showRooms">
-			<c:if test="${list.room_class != null}">
-				<p class="gTitle">${list.room_class}</p>
-			</c:if>
-			<!--
-			<c:forEach items="${alreadyRoom}" var="alreadyRoom">
-				<li>${alreadyRoom.r_name}</li>
+			<div id="allRooms">
+				<p class="gTitle">모든 방</p>
+	
+				<ul class="Rooms">
+					<c:forEach items="${kinds}" var="kind">
+						<li><a href="/main/roomList?room_bno=${kind.room_bno}">${kind.room_class}</a></li>
+					</c:forEach>
+				</ul>
+			</div>
+			
+			<div id="showRooms">
+				<c:if test="${list.room_class != null}">
+					<p class="gTitle">${list.room_class}</p>
+				</c:if>
 				
 				<c:forEach items="${kinds}" var="kind">
 					<c:if test="${list.room_class == null}">
@@ -107,116 +84,61 @@ if(request.getParameter("end_date") != null) {
 					<div class="kindList">
 						<c:forEach items="${allRooms}" var="lists">
 							<c:if test="${kind.room_bno == lists.r_kind}">
-							
-								<c:if test="${empty alreadyRoom}">
-									<c:forEach items="${alreadyRoom}" var="alreadyRoom">
-										<ul class="list">
-											<li>
-												<a href="roomView?r_bno=${alreadyRoom.r_bno}">
-													<img src="/resources/images/none.png" alt="images" width="230px" height="230px" />
-												</a>
-											</li>
-											<li><a href="roomView?r_bno=${alreadyRoom.r_bno}">${alreadyRoom.r_name}호</a></li>
-											<li><a href="roomView?r_bno=${alreadyRoom.r_bno}"><fmt:formatNumber value="${alreadyRoom.r_price}" />원</a></li>
-										</ul>
-									</c:forEach>
-								</c:if>
-								
-								<c:if test="${not empty alreadyRoom}">
-								
-									<ul class="list">
-										<li>
-											<a href="roomView?r_bno=${lists.r_bno}">
-												<img src="/resources/images/none.png" alt="images" width="230px" height="230px" />
-											</a>
-										</li>
-										<li><a href="roomView?r_bno=${lists.r_bno}">${kind.room_class} ${lists.r_name}호</a></li>
-										<li><a href="roomView?r_bno=${lists.r_bno}"><fmt:formatNumber value="${lists.r_price}" />원</a></li>
-									</ul>
-								</c:if>
-
-							</c:if>
-						</c:forEach>
-					</div>
-				</c:forEach>
-			</c:forEach>
-			
-			<c:forEach items="${alreadyRoom}" var="alreadyRoom">
-				<li>${alreadyRoom.r_name}</li>
-			</c:forEach>
-			-->
-			<c:forEach items="${kinds}" var="kind">
-				<c:if test="${list.room_class == null}">
-					<p class="gTitle">${kind.room_class}</p>
-				</c:if>
-				
-				<c:if test="${empty alreadyRoom}">
-					<div class="kindList">
-						<c:forEach items="${allRooms}" var="lists">
-							<c:if test="${kind.room_bno == lists.r_kind}">
 								<ul class="list">
-									<li class="suntac">
-										<a href="roomView?r_bno=${lists.r_bno}&start_date=<%=start_date%>&end_date=<%=end_date%>">
+									<li>
+										<a class="suntac" href="#">
 											<img src="/resources/images/none.png" alt="images" width="230px" height="230px" />
 										</a>
+										<input type="hidden" value="${lists.r_bno}" id="r_bno" name="r_bno" />
 									</li>
-									<li><a href="roomView?r_bno=${lists.r_bno}">${kind.room_class} ${lists.r_name}호</a></li>
-									<li><a href="roomView?r_bno=${lists.r_bno}"><fmt:formatNumber value="${lists.r_price}" />원</a></li>
+									<li>${kind.room_class} ${lists.r_name}호</li>
+									<li><fmt:formatNumber value="${lists.r_price}" />원</li>
 								</ul>
 							</c:if>
 						</c:forEach>
+						
 					</div>
-				</c:if>
-				
-				<c:if test="${not empty alreadyRoom}">
-					<div class="kindList">
-						<c:forEach items="${allRooms}" var="lists">
-							<c:forEach items="${alreadyRoom}" var="alreadyRoom">
-								<c:if test="${lists.r_bno != alreadyRoom.r_bno && kind.room_bno == lists.r_kind}">
-									<ul class="list">
-										<li>
-											<form action="/main/roomView">
-												<a href="roomView?r_bno=${lists.r_bno}&start_date=<%=start_date%>&end_date=<%=end_date%>">
-													<img src="/resources/images/none.png" alt="images" width="230px" height="230px" />
-													<input type="hidden" name="r_bno" value="${lists.r_bno}" />
-													<input type="hidden" name="start_date" class="start" />
-													<input type="hidden" name="end_date" class="end" />
-												</a>
-											</form>
-										</li>
-										<li><a href="roomView?r_bno=${lists.r_bno}">${kind.room_class} ${lists.r_name}호</a></li>
-										<li><a href="roomView?r_bno=${lists.r_bno}"><fmt:formatNumber value="${lists.r_price}" />원</a></li>
-									</ul>
-								</c:if>
-							</c:forEach>
-						</c:forEach>
-					</div>
-				</c:if>
-				
-			</c:forEach>
-			
-		</div>
+				</c:forEach>
+			</div>
+		</form>
 	</div>
 </div>
 <%@ include file="../include/footer.jsp" %>
 </body>
 
 <script>
-$('.room_name').click(function(){
-	$('.bno').val($(this).next().val());
-	$('#kindList').submit();
-});
 
 $('.suntac').click(function(){
-	if($('#start_Date').val() == "") {
+	if($('#start').val() == "N") {
 		alert("입실 날을 먼저 선택해주세요.");
 		return false;
 	} 
 	
-	if($('#end_Date').val() == "") {
+	if($('#end').val() == "N") {
 		alert("퇴실 날을 먼저 선택해주세요.");
+		//alert("^^" + $('#real_end').val());
 		return false;
 	}
+	
+	var r_bno = $(this).next().val();
+	
+	$.ajax({
+		type : "post",
+		url : "/main/haveBookDay",
+		data : { "r_bno" : r_bno, "start_date" : $('#start_Date').val(), "end_date" : $('#real_end').val() } ,
+		success : function(result) {
+			if(result >= 1) {
+				alert("이미 예약된 방입니다.");
+			} else {
+				$('#r_bno').val(r_bno);
+				$('#roomDate').submit();
+			}
+		},
+		error : function() {
+			alert("값없음");
+		}
+	});
+	
 });
 
 $("#start_Date").datepicker({
@@ -232,6 +154,7 @@ $("#start_Date").datepicker({
 			
 			$("#end_Date").datepicker("option", "maxDate", aar2);
 			$("#end_Date").next().css({ display:"none", });
+			$('#start').val("Y");
 		}
 	}
 } );
@@ -256,18 +179,26 @@ $("#end_Date").datepicker({
 				daysPay = parseInt(dif/cDay);
 			}
 		    
-			if(daysPay > 1) {
+			if(daysPay >= 1) {
 				var bb = Number(b1[2])-1;
-				b1[2] = "0" + bb;
+				if(bb < 10) {
+					b1[2] = "0" + bb;					
+				} else {
+					b1[2] = bb;
+				}
 				var bb2 = b1.join("-")
 				$('#real_end').val(bb2);
 			} else {
 				var bb = Number(b1[2]);
-				b1[2] = "0" + bb;
+				if(bb < 10) {
+					b1[2] = "0" + bb;					
+				} else {
+					b1[2] = bb;
+				}
 				var bb2 = b1.join("-")
+				$('#real_end').val(bb2);
 			}
-			
-			$('#roomDate').submit();
+			$('#end').val("Y");
 		}
 	}
 } );
@@ -291,45 +222,7 @@ $.datepicker.setDefaults({
     showButtonPanel: true,	// 오늘로 가는 버튼과 달력 닫기 버튼 보기 옵션
     minDate: "+1D",
     maxDate: "",
-	beforeShow: function (input, inst) { // 일자 선택되기전 이벤트 발생
-        // haveBookDay();
-	},
-	// beforeShowDay : disableDay
 });
-/*
-function haveBookDay() {
-	
-	$.ajax({
-		type : "post",
-		url : "/main/haveBookDay",
-		data : {},
-		success : function(result) {
-			//for(var e in result){
-				//exam[e] = result;
-			//}
-		},
-		error : function() {
-			alert("값없음");
-		}
-	});
-}
-
-var exam = ['2021-12-30', '2021-12-31'];
-
-function disableDay(date) {	
-    var m = date.getMonth(),
-    	d = date.getDate(), 
-    	y = date.getFullYear();
-    
-    for (i = 0; i < exam.length; i++) {
-    	
-        if($.inArray(y + '-' +(m+1) + '-' + d , exam) != -1) {
-            return [false];
-        }
-    }
-    return [true];
-}
-*/
 
 </script>
 </html>

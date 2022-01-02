@@ -90,74 +90,57 @@ public class MainController {
 	//------------------------------------------------------------------------------------------------
     @RequestMapping(value = "/roomList")
     public String roomList(String room_bno, Model model, BookDTO bookDTO) throws Exception {
-    	
-    	if(bookDTO.getStart_date() == null) {
-        	if(room_bno == null) {
-        		logger.info("뭐야~~~~~~~~~~~~~~11111111111111111111");
-            	List<RoomInfraDTO> roominfraDTO = mainService.allRooms();
-            	List<RoomKindDTO> roomkindDTO = mainService.getKind();
-            	model.addAttribute("allRooms", roominfraDTO);
-            	model.addAttribute("kinds", roomkindDTO);
-            	
-        	} else { // 방 리스트를 종류대로 뿌려주기
-        		logger.info("뭐야~~~~~~~~~~~~~~22222222222222222222");
-        		List<RoomInfraDTO> kindroominfraDTO = mainService.kindRooms(room_bno);
-        		RoomKindDTO list = mainService.soKind(room_bno);
-            	model.addAttribute("allRooms", kindroominfraDTO);
-            	model.addAttribute("list", list);
-        	}
+	
+    	if(room_bno == null) { // (예약된 날 제외)방 리스트를 종류대로 뿌려주기
+    		logger.info("뭐야~~~~~~~~~~~~~~11111111111111111111");
+        	List<RoomInfraDTO> roominfraDTO = mainService.allRooms();
+        	List<RoomInfraDTO> alreadyRoom = mainService.excludeRooms(bookDTO);
+        	logger.info("휴 이게 맞아?" + alreadyRoom);
+        	List<RoomKindDTO> roomkindDTO = mainService.getKind();
+        	model.addAttribute("allRooms", roominfraDTO);
+        	model.addAttribute("kinds", roomkindDTO);
+        	model.addAttribute("alreadyRoom", alreadyRoom);
         	
-    	} else { // (예약된 날 제외)방 리스트를 종류대로 뿌려주기
-    		if(room_bno == null) {
-    			logger.info("뭐야~~~~~~~~~~~~~~33333333333333333");
-    			List<RoomInfraDTO> roominfraDTO = mainService.allRooms();
-            	List<RoomInfraDTO> alreadyRoom = mainService.excludeRooms(bookDTO);
-            	logger.info("휴 이게 맞아?" + alreadyRoom);
-            	List<RoomKindDTO> roomkindDTO = mainService.getKind();
-            	
-            	model.addAttribute("allRooms", roominfraDTO);
-            	model.addAttribute("kinds", roomkindDTO);
-            	model.addAttribute("alreadyRoom", alreadyRoom);
-            	
-        	} else { // 종류 선택
-        		logger.info("뭐야~~~~~~~~~~~~~~555555555555555555");
-        		List<RoomInfraDTO> kindroominfraDTO = mainService.kindRooms(room_bno);
-        		RoomKindDTO list = mainService.soKind(room_bno);
-            	model.addAttribute("allRooms", kindroominfraDTO);
-            	model.addAttribute("list", list);
-        	}
-    		
+    	} else { // 방 리스트를 종류대로 뿌려주기
+    		logger.info("뭐야~~~~~~~~~~~~~~22222222222222222222");
+    		List<RoomInfraDTO> kindroominfraDTO = mainService.kindRooms(room_bno);
+    		RoomKindDTO list = mainService.soKind(room_bno);
+    		List<RoomKindDTO> roomkindDTO = mainService.getKind();
+        	model.addAttribute("allRooms", kindroominfraDTO);
+        	model.addAttribute("kinds", roomkindDTO);
+        	model.addAttribute("list", list);
     	}
-
-    	return "main/roomList";    	
-    }
+    	
+		return "main/roomList";    	
+		
+    } // end String roomList(String room_bno, Model model, BookDTO bookDTO)
     
 	//------------------------------------------------------------------------------------------------
 	// roomView로 이동
 	//------------------------------------------------------------------------------------------------
 	@RequestMapping("/roomView")
-	public String roomView(@RequestParam("start_date") String start_date, @RequestParam("end_date") String end_date, int r_bno, Model model, HttpSession session) throws Exception {
+	public String roomView(Model model, HttpSession session, BookDTO bookDTO) throws Exception {
 
-		RoomInfraDTO roomInfraDTO = mainService.getRoomView(r_bno);
+		RoomInfraDTO roomInfraDTO = mainService.getRoomView(bookDTO.getR_bno());
 		List<RoomKindDTO> roomkindDTO = mainService.getKind();
 		// MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
-		
-		logger.info("맞아???? " +start_date + " ^^ " +end_date);
 		
 		Calendar cal = Calendar.getInstance();
 		SimpleDateFormat sdformat = new SimpleDateFormat("yyyy-MM-dd");
 		
-		cal.setTime(sdformat.parse(end_date));
+		logger.info("맞지......?" + bookDTO);
+		
+		cal.setTime(sdformat.parse(bookDTO.getEnd_date()));
 		cal.add(Calendar.DATE, +1);
 		
-		end_date = sdformat.format(cal.getTime());
+		bookDTO.setEnd_date(sdformat.format(cal.getTime()));
 		
-		logger.info("맞아???? ^^ " +end_date);
+		logger.info("맞아???? ^^ " +bookDTO.getEnd_date());
 		
 		model.addAttribute("room", roomInfraDTO);
 		model.addAttribute("kinds", roomkindDTO);
-		model.addAttribute("start_date", start_date);
-		model.addAttribute("end_date", end_date);
+		model.addAttribute("start_date", bookDTO.getStart_date());
+		model.addAttribute("end_date", bookDTO.getEnd_date());
 		
 		return "main/roomView";
 	}
@@ -235,18 +218,15 @@ public class MainController {
 	//------------------------------------------------------------------------------------------------
 	@ResponseBody
 	@RequestMapping("/haveBookDay")
-	public String[] haveBookDay() throws Exception {
-		List<BookDTO> reservation = mainService.manyBook();
+	public int haveBookDay(BookDTO bookDTO) throws Exception {
 		
-		String[] result = new String[reservation.size()];
+		logger.info("잘 왔어?? " + bookDTO);
 		
-		for(int i=0; i < reservation.size(); i++) {
-			result[i] = mainService.haveBookDay(reservation.get(i).getStart_date(), reservation.get(i).getR_name());
-		}
-		
+		int result = mainService.haveBookDay(bookDTO);
+		logger.info("얼마냐 " + result);
 		return result;
 
-	} // end String[] haveBookDay()
+	} // end int haveBookDay(BookDTO bookDTO)
 	
 /*
 	//------------------------------------------------------------------------------------------------

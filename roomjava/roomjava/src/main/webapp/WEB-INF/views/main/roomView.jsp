@@ -99,7 +99,7 @@
 			<p class="gTitle">시설 상세 정보 보기</p>
 			
 			<div id="story">
-				<p class="course"><img src="../../resources/images/course.png" alt="course" /></p>
+				<p class="course"><img src="../../resources/images/infra/course.png" alt="course" /></p>
 				
 				<div class="context">
 					<p class="title">기본 정보</p>

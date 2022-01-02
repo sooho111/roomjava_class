@@ -113,15 +113,10 @@ class MainDAOImpl implements MainDAO {
 	// 예약날 중복 불가
 	//-------------------------------------------------------------------------------------------------
 	@Override
-	public String haveBookDay(String startDay, String r_name) throws Exception {
+	public int haveBookDay(BookDTO bookDTO) throws Exception {
+		return sqlSession.selectOne(namespace + ".haveBookDay", bookDTO);
 		
-		HashMap<String, String> hash = new HashMap<String, String>();
-		hash.put("start_date", startDay);
-		hash.put("r_name", r_name);
-		
-		return sqlSession.selectOne(namespace + ".haveBookDay", hash);
-		
-	} // end String[] haveBookDay(String startDay)
+	} // end int haveBookDay(BookDTO bookDTO)
 	
 	//-------------------------------------------------------------------------------------------------
 	// 예약날 비활성화
