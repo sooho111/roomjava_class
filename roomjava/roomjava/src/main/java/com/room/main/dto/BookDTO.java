@@ -21,4 +21,5 @@ public class BookDTO {
 	private String 	r_rent;
 	private String	r_fnc;
 	private String 	payment;
+	private int		r_price;
 }

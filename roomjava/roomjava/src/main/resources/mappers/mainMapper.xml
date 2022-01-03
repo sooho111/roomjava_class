@@ -89,9 +89,9 @@
    	<!-- 방 예약하기 -->
    	<insert id="insertBook">
    		INSERT INTO book( book_order, m_name, book_people, book_tel, start_date, 
-   			end_date, r_bno, room_class, r_name, r_kind, r_rent, r_fnc ,payment)
+   			end_date, r_bno, room_class, r_name, r_kind, r_rent, r_fnc ,payment,r_price)
    		VALUES ( #{book_order}, #{m_name}, #{book_people}, #{book_tel}, 
-   			#{start_date}, #{end_date}, #{r_bno}, #{room_class}, #{r_name}, #{r_kind}, #{r_rent}, #{r_fnc} ,#{payment})
+   			#{start_date}, #{end_date}, #{r_bno}, #{room_class}, #{r_name}, #{r_kind}, #{r_rent}, #{r_fnc} ,#{payment},#{r_price})
    	</insert>
    	
    	<!-- DB에 예약정보 유무 -->

@@ -104,6 +104,7 @@ th { text-align:center; }
 								<th align=center>종료일</th>
 								<th align=center>방번호</th>
 								<th align=center>방종류</th>
+								<th align=center>총 액</th>
 							</tr>
 						</thead>
 						
@@ -116,6 +117,7 @@ th { text-align:center; }
 								<td align=center>${bookView.end_date}</td>
 								<td align=center>${bookView.r_name}</td>
 								<td align=center>${bookView.room_class}</td>
+								<td align=center>${bookView.r_price}원</td>
 							</tr>
 						</tbody>		
 					</c:if>

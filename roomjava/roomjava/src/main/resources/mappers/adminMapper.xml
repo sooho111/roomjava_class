@@ -328,13 +328,13 @@ INSERT INTO faq (faq_title, faq_content,faq_class)
 
     <!-- 회원들이 예약한 방 목록 -->
    	<select id="memberBookList" resultType="com.room.main.dto.BookDTO">
-      	SELECT	book_bno, book_order,	m_name,	book_people,	book_tel, book_ok, start_date,	end_date,	r_bno,payment
+      	SELECT	book_bno, book_order,	m_name,	book_people,	book_tel, book_ok, start_date,	end_date,	r_bno,payment,r_price
       	FROM   	book
    	</select>
    	
 	<!-- 예약 상세정보 -->
 	<select id="memberBookView" resultType="com.room.main.dto.BookDTO">
-		SELECT 	book_order,m_name,book_people,book_tel,book_ok,start_date,end_date,ri.r_bno,b.r_bno,ri.r_kind,ri.r_name,rk.room_class,b.payment
+		SELECT 	book_order,m_name,book_people,book_tel,book_ok,start_date,end_date,ri.r_bno,b.r_bno,ri.r_kind,ri.r_name,rk.room_class,b.payment,b.r_price
 		FROM	book b join room_infra ri join room_kind rk on ri.r_kind = rk.room_bno on ri.r_bno = b.r_bno
 		WHERE	b.book_order = #{book_order};
 	</select>

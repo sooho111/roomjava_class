@@ -35,6 +35,7 @@
 						<th>예약시작일자</th>
 						<th>예약종료일자</th>
 						<th>입금 계좌</th>
+						<th>총액</th>
 					</tr>
 				</thead>
 				
@@ -49,6 +50,7 @@
 						<td align=center>${View.start_date}</td>
 						<td align=center>${View.end_date}</td>
 						<td align=center>${View.payment}</td>
+						<td align=center>${View.r_price}원</td>
 						</tr>
 						
 					</c:forEach>
