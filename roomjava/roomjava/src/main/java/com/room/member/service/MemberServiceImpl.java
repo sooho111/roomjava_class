@@ -267,7 +267,6 @@ MemberDAO memberDAO;
 		-------------------------------------------------------------------------------------------------*/
 		@Override
 		public void qnaUpdate(QnaDTO qnaDTO) throws Exception {
-			
 			memberDAO.qnaUpdate(qnaDTO);
 		}
 		/*-------------------------------------------------------------------------------------------------
@@ -275,9 +274,7 @@ MemberDAO memberDAO;
 		-------------------------------------------------------------------------------------------------*/
 		@Override
 		public void qnaDelete(QnaDTO qnaDTO) throws Exception {
-			
 			memberDAO.qnaDelete(qnaDTO);
-			
 		}	
 
 		//리뷰 체크
@@ -301,9 +298,13 @@ MemberDAO memberDAO;
 		public void updateReview(ReviewDTO reviewDTO) throws Exception {
 			memberDAO.updateReview(reviewDTO);
 		}
-		//리뷰 수정
+		//리뷰 삭제
 		public String deleteReview(String book_order) throws Exception {
 			return memberDAO.deleteReview(book_order);
+		}
+		//예약 취소
+		public String deleteBook(String book_order) throws Exception {
+			return memberDAO.deleteBook(book_order);
 		}
 
 

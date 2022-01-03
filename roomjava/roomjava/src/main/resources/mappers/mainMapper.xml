@@ -86,11 +86,38 @@
     	]]>
    	</select>
    	
+   	<!-- 방 예약하기 -->
    	<insert id="insertBook">
    		INSERT INTO book( book_order, book_name, book_people, book_tel, start_date, 
    			end_date, r_bno, room_class, r_name, r_kind, r_rent, r_fnc )
    		VALUES ( #{book_order}, #{book_name}, #{book_people}, #{book_tel}, 
    			#{start_date}, #{end_date}, #{r_bno}, #{room_class}, #{r_name}, #{r_kind}, #{r_rent}, #{r_fnc} )
    	</insert>
+   	
+   	<!-- DB에 예약정보 유무 -->
+   	<select id="manyBook" resultType="com.room.main.dto.BookDTO">
+   		SELECT *
+   		FROM book;
+   	</select>
+   	
+   	<!-- DB에 예약정보 유무 -->
+   	<select id="haveBookDay" resultType="int" parameterType="com.room.main.dto.BookDTO">
+   		SELECT COUNT(*)
+   		FROM book
+   		WHERE r_bno = #{r_bno}
+   		AND ( start_date = #{start_date} 
+   		OR start_date = #{end_date}
+   		OR end_date = #{end_date} )
+		
+   	</select>
+   	
+   	<!-- 예약날 비활성화 -->
+   	<select id="excludeRooms" resultType="com.room.main.dto.RoomInfraDTO">
+	   	SELECT i.r_bno, i.r_name, i.r_kind, i.r_people, i.r_price, i.r_base, i.r_rent, b.start_date, b.end_date
+		FROM book b, room_infra i
+		WHERE b.r_bno = i.r_bno
+		AND (start_date = #{start_date}
+		OR start_date = #{end_date});
+   	</select>
    	
 </mapper>
