@@ -28,10 +28,11 @@
 					<c:forEach var="bookView" items="${bookView}">				
 						<tr>
 							<td align=center>${bookView.book_order}</td>
-							<td align=center>${bookView.book_name}</td>
+							<td align=center>${bookView.m_name}</td>
 							<td align=center>${bookView.book_people}</td>
-							<td class="delivery" align=center>${bookView.book_ok}</td>
+							<td class="delivery" align=center>${bookView.book_ok}</td>			
 						</tr>
+						<input type="hidden" id="book_order" value="${bookView.book_order}"/>
 					</c:forEach>
 				</tbody>
 			</table>
@@ -53,7 +54,7 @@
 						
 						<tbody>
 							<tr>
-								<td align=center>${bookView.book_name}</td>
+								<td align=center>${bookView.m_name}</td>
 								<td align=center>${bookView.book_tel}</td>
 								<td align=center>${bookView.book_people}</td>
 								<td align=center>${bookView.start_date}</td>
@@ -66,7 +67,15 @@
 				</c:forEach>
 			</table>
 			<button type="button" onclick="history.go(-1);" class="btn btn-warning btn-sm">뒤로가기</button>
+			<input class="btn btn-danger" type="button" value="예약 취소" id="deleteBook"/>
 		</div>
 		<%@ include file="../include/footer.jsp" %>
 </body>
+<script>
+$("#deleteBook").click(function(){
+    if(confirm("예약을 취소하시겠습니까?")){
+        location.href="${path}/member/deletebeBook?book_order="+$("#book_order").val();
+    }
+});
+</script>
 </html>

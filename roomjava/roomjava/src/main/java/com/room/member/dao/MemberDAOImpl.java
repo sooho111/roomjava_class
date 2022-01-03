@@ -141,9 +141,9 @@ public class MemberDAOImpl implements MemberDAO {
 	// 비로그인
 	// -------------------------------------------------------------------------------------------------
 	@Override
-	public List<BookDTO> belogin(String book_name) throws Exception{
-		logger.info("MemberDAOImpl memberInsert(MemberDTO memberDTO)....."+book_name);
-		return sqlSession.selectList(namespace + ".belogin", book_name);
+	public List<BookDTO> belogin(String m_name) throws Exception{
+		logger.info("MemberDAOImpl memberInsert(MemberDTO memberDTO)....."+m_name);
+		return sqlSession.selectList(namespace + ".belogin", m_name);
 	}
 	//-------------------------------------------------------------------------------------------------
 	// faq글 갯수 구하기 (Paging 처리)
@@ -261,6 +261,13 @@ public class MemberDAOImpl implements MemberDAO {
 	//리뷰 삭제
 	public String deleteReview(String book_order)throws Exception {
 		sqlSession.delete(namespace + ".deleteReview", book_order);
+		return null;
+		
+	}	
+	@Override
+	//예약 취소
+	public String deleteBook(String book_order)throws Exception {
+		sqlSession.delete(namespace + ".deleteBook", book_order);
 		return null;
 		
 	}	
