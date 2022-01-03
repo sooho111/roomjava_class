@@ -75,6 +75,7 @@ th { text-align:center; }
 						<th align=center>예약자</th>
 						<th align=center>인원수</th>
 						<th align=center>주문상태</th>
+						<th align=center>입금계좌</th>
 					</tr>
 				</thead>
 				
@@ -85,6 +86,7 @@ th { text-align:center; }
 							<td align=center>${bookView.m_name}</td>
 							<td align=center>${bookView.book_people}</td>
 							<td class="delivery" align=center>${bookView.book_ok}</td>
+							<td align=center>${bookView.payment}</td>
 						</tr>
 					</c:forEach>
 				</tbody>

@@ -34,6 +34,7 @@
 						<th>예약상태</th>
 						<th>예약시작일자</th>
 						<th>예약종료일자</th>
+						<th>입금 계좌</th>
 					</tr>
 				</thead>
 				
@@ -47,6 +48,7 @@
 						<td align=center>${View.book_ok}</td>
 						<td align=center>${View.start_date}</td>
 						<td align=center>${View.end_date}</td>
+						<td align=center>${View.payment}</td>
 						</tr>
 						
 					</c:forEach>
