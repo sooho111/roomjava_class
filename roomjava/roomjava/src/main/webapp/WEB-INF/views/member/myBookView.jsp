@@ -82,7 +82,7 @@ th { text-align:center; }
 					<c:forEach var="bookView" items="${bookView}">				
 						<tr>
 							<td align=center>${bookView.book_order}</td>
-							<td align=center>${bookView.book_name}</td>
+							<td align=center>${bookView.m_name}</td>
 							<td align=center>${bookView.book_people}</td>
 							<td class="delivery" align=center>${bookView.book_ok}</td>
 						</tr>
@@ -107,7 +107,7 @@ th { text-align:center; }
 						
 						<tbody>
 							<tr>
-								<td align=center>${bookView.book_name}</td>
+								<td align=center>${bookView.m_name}</td>
 								<td align=center>${bookView.book_tel}</td>
 								<td align=center>${bookView.book_people}</td>
 								<td align=center>${bookView.start_date}</td>
@@ -127,6 +127,7 @@ th { text-align:center; }
 			<input class="btn btn-primary" type="button" value="후기 수정" id="updatereview" /> 
 			<input class="btn btn-danger" type="button" value="후기 삭제" id="deletereview" />
 			</c:if>
+			<input class="btn btn-danger" type="button" value="예약 취소" id="deleteBook"/>
 		</div>
 	</div>
 </div>
@@ -147,6 +148,11 @@ $("#updatereview").click(function(){
 $("#deletereview").click(function(){
     if(confirm("리뷰를 삭제하시겠습니까?")){
         location.href="${path}/member/deleteReview?book_order="+$("#book_order").val();
+    }
+});
+$("#deleteBook").click(function(){
+    if(confirm("예약을 취소하시겠습니까?")){
+        location.href="${path}/member/deleteBook?book_order="+$("#book_order").val();
     }
 });
 </script>

@@ -79,7 +79,7 @@ public interface MemberDAO {
 	// -------------------------------------------------------------------------------------------------
 	// 비로그인
 	// -------------------------------------------------------------------------------------------------
-	public List<BookDTO> belogin(String book_name) throws Exception;
+	public List<BookDTO> belogin(String m_name) throws Exception;
 	//-------------------------------------------------------------------------------------------------
 	// FAQ 페이징 처리
 	//-------------------------------------------------------------------------------------------------
@@ -140,6 +140,7 @@ public interface MemberDAO {
 	public ReviewDTO getReview(String book_order) throws Exception;
 	public void updateReview(ReviewDTO reviewDTO) throws Exception;
 	public String deleteReview(String book_order) throws Exception;
+	public String deleteBook(String book_order) throws Exception;
 
 
 	

@@ -184,8 +184,8 @@ MemberDAO memberDAO;
 		// 비회원
 		// -------------------------------------------------------------------------------------------------
 		@Override
-		public List<BookDTO> belogin(String book_name) throws Exception{
-			return memberDAO.belogin(book_name);
+		public List<BookDTO> belogin(String m_name) throws Exception{
+			return memberDAO.belogin(m_name);
 		}
 		// -------------------------------------------------------------------------------------------------
 		// 전체 Faq 수 구하기 (Paging 처리)
@@ -298,9 +298,13 @@ MemberDAO memberDAO;
 		public void updateReview(ReviewDTO reviewDTO) throws Exception {
 			memberDAO.updateReview(reviewDTO);
 		}
-		//리뷰 수정
+		//리뷰 삭제
 		public String deleteReview(String book_order) throws Exception {
 			return memberDAO.deleteReview(book_order);
+		}
+		//예약 취소
+		public String deleteBook(String book_order) throws Exception {
+			return memberDAO.deleteBook(book_order);
 		}
 
 
