@@ -26,9 +26,9 @@
 #showRooms { float:right; width:950px; position:relative; padding-bottom:50px; }
 
 #showDatil { float:right; width:950px; position:relative; padding-bottom:50px; }
-.list { border:1px solid red; }
 .list:after { content:""; clear:both; display:block; }
-.list li { float:left; font-size:30px; margin-bottom:15px; }
+.list li { font-size:30px; padding-top:40px; }
+.list li:first-child { float:left; font-size:30px; margin-bottom:15px; margin-right:100px; padding-top:0px; }
 
 #story { width:100%; margin-bottom:150px; }
 #story .inner { width:1200px; text-align:center; }
@@ -39,8 +39,7 @@
 .context p { font-size:20px; color:#666; font-weight:300; }
 #story .context.con2 { margin-bottom:60px; }
 
-#story .f_title { margin-left:80px; font-size:35px;
-	 font-weight:500; color:#333; border-top:1px solid #999; border-bottom:1px solid #999; width:800px; padding:50px 0px; }
+#story .f_title { margin-left:80px; font-size:35px; font-weight:500; color:#333; border-top:1px solid #999; border-bottom:1px solid #999; width:800px; padding:50px 0px; }
 
 </style>
 </head>
@@ -72,9 +71,9 @@
 			</c:forEach>
 		
 			<ul class="list">
-				<li><img src="/resources/images/none.png" alt="images" width="230px" height="230px" /></li>	
+				<li><img src="/resources/images/none.png" alt="images" width="300px" height="300px" /></li>	
 				<li>${room.r_name}호</li>
-				<li class="r_price">${room.r_price}원</li>
+				<li class="r_price">1박 : ${room.r_price}원</li>
 				<li>최대인원 : ${room.r_people}명</li>
 			</ul>
 			<hr>
@@ -87,9 +86,11 @@
 				<input type="hidden" name="r_price" value="${room.r_price}" />
 				<input type="hidden" name="r_base" value="${room.r_base}" />
 				<input type="hidden" name="r_rent" value="${room.r_rent}" />
+				<input type="hidden" name="start_date" value="${start_date}" />
+				<input type="hidden" name="end_date" value="${end_date}" />
 			</form>
 	
-			<ul class="btns">
+			<ul class="btns" align="right">
 				<li><button type="button" class="btn btn-primary goBook">다음단계</button></li>
 			</ul>
 		</div>
@@ -98,7 +99,7 @@
 			<p class="gTitle">시설 상세 정보 보기</p>
 			
 			<div id="story">
-				<p class="course"><img src="../../resources/images/course.png" alt="course" /></p>
+				<p class="course"><img src="../../resources/images/infra/course.png" alt="course" /></p>
 				
 				<div class="context">
 					<p class="title">기본 정보</p>
