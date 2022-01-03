@@ -184,8 +184,8 @@ MemberDAO memberDAO;
 		// 비회원
 		// -------------------------------------------------------------------------------------------------
 		@Override
-		public List<BookDTO> belogin(String book_name) throws Exception{
-			return memberDAO.belogin(book_name);
+		public List<BookDTO> belogin(String m_name) throws Exception{
+			return memberDAO.belogin(m_name);
 		}
 		// -------------------------------------------------------------------------------------------------
 		// 전체 Faq 수 구하기 (Paging 처리)

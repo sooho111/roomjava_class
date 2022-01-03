@@ -52,10 +52,10 @@ body { overflow-x:hidden; font-size:14px; }
 				<label class="control-label col-sm-4">예약자 이름</label>
 				<div class="col-sm-3">
 					<c:if test="${member != null}">
-						<input type="text" class="form-control" name="book_name" id="m_name" maxlength="50" value="${member.m_name}" />
+						<input type="text" class="form-control" name="m_name" id="m_name" maxlength="50" value="${member.m_name}" />
 					</c:if>
 					<c:if test="${member == null}">
-						<input type="text" class="form-control" name="book_name" id="m_name" maxlength="50" />
+						<input type="text" class="form-control" name="m_name" id="m_name" maxlength="50" />
 					</c:if>
 				</div>
 			</div>

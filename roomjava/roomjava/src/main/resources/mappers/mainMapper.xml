@@ -88,9 +88,9 @@
    	
    	<!-- 방 예약하기 -->
    	<insert id="insertBook">
-   		INSERT INTO book( book_order, book_name, book_people, book_tel, start_date, 
+   		INSERT INTO book( book_order, m_name, book_people, book_tel, start_date, 
    			end_date, r_bno, room_class, r_name, r_kind, r_rent, r_fnc )
-   		VALUES ( #{book_order}, #{book_name}, #{book_people}, #{book_tel}, 
+   		VALUES ( #{book_order}, #{m_name}, #{book_people}, #{book_tel}, 
    			#{start_date}, #{end_date}, #{r_bno}, #{room_class}, #{r_name}, #{r_kind}, #{r_rent}, #{r_fnc} )
    	</insert>
    	

@@ -88,7 +88,7 @@ th { text-align:center; }
 						<c:forEach var="bookList" items="${bookList}">		
 							<tr>
 								<td align=center><a href="../member/myBookView?book_order=${bookList.book_order}">${bookList.book_order}</a></td>
-								<td align=center>${bookList.book_name}</td>
+								<td align=center>${bookList.m_name}</td>
 								<td align=center>${bookList.book_people}</td>
 								<td align=center>${bookList.book_ok}</td>
 							</tr>
