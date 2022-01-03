@@ -97,14 +97,14 @@ public class MemberController {
 	public String belogin(BookDTO bookDTO, HttpServletRequest req, RedirectAttributes rttr) throws Exception {
 
 		// 넘겨받은 회원정보를 가지고 Service에게 의뢰한다.
-		List<BookDTO> bookList = memberService.belogin(bookDTO.getBook_name());
+		List<BookDTO> bookList = memberService.belogin(bookDTO.getM_name());
 
 		return "member/beLoginBookList";
 	}
 	 
 	@RequestMapping (value ="/beLoginBookList")
  	public void beLoginBookList(BookDTO bookDTO,Model model) throws Exception {
-		List<BookDTO> bookList = memberService.belogin(bookDTO.getBook_name());
+		List<BookDTO> bookList = memberService.belogin(bookDTO.getM_name());
 		BookDTO bebookDTO = new BookDTO();
 
 		logger.info("다 가져온다며 " + bookList);
@@ -126,7 +126,7 @@ public class MemberController {
 		
 		BookDTO bookDTO = new BookDTO();
 		bookDTO.setBook_order(bookView.get(0).getBook_order());
-		bookDTO.setBook_name(bookView.get(0).getBook_name());
+		bookDTO.setM_name(bookView.get(0).getM_name());
 		bookDTO.setBook_people(bookView.get(0).getBook_people());
 		bookDTO.setBook_ok(bookView.get(0).getBook_ok());
 		bookDTO.setBook_tel(bookView.get(0).getBook_tel());
@@ -354,7 +354,7 @@ public class MemberController {
 		
 		BookDTO bookDTO = new BookDTO();
 		bookDTO.setBook_order(review.get(0).getBook_order());
-		bookDTO.setBook_name(review.get(0).getBook_name());
+		bookDTO.setM_name(review.get(0).getM_name());
 		bookDTO.setBook_people(review.get(0).getBook_people());
 		bookDTO.setBook_ok(review.get(0).getBook_ok());
 		bookDTO.setBook_tel(review.get(0).getBook_tel());

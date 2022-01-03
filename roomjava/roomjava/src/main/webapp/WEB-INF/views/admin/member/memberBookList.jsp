@@ -39,7 +39,7 @@
 			<c:forEach var="List" items="${memberBookList}">	
 				<tr>
 					<td class="info" align=center><a href="../member/memberBookView?book_order=${List.book_order}">${List.book_order}</a></td>
-					<td align=center>${List.book_name}</td>
+					<td align=center>${List.m_name}</td>
 					<td align=center>${List.book_people}</td>
 					<td align=center>${List.book_tel}</td>
 					<td align=center>${List.book_ok}</td>

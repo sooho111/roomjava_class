@@ -82,7 +82,7 @@ th { text-align:center; }
 					<c:forEach var="bookView" items="${bookView}">				
 						<tr>
 							<td align=center>${bookView.book_order}</td>
-							<td align=center>${bookView.book_name}</td>
+							<td align=center>${bookView.m_name}</td>
 							<td align=center>${bookView.book_people}</td>
 							<td class="delivery" align=center>${bookView.book_ok}</td>
 						</tr>
@@ -107,7 +107,7 @@ th { text-align:center; }
 						
 						<tbody>
 							<tr>
-								<td align=center>${bookView.book_name}</td>
+								<td align=center>${bookView.m_name}</td>
 								<td align=center>${bookView.book_tel}</td>
 								<td align=center>${bookView.book_people}</td>
 								<td align=center>${bookView.start_date}</td>
