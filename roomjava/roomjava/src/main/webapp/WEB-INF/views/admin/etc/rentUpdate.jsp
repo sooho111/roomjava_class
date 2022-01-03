@@ -6,6 +6,9 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <%@ include file="../../include/includeFile.jsp" %>
+<style>
+.won { margin-top:5px; font-size:16px; }
+</style>
 
 </head>
 <body>
@@ -29,9 +32,10 @@
 			</div>
 			<div class="form-group">
 				<label class="control-label col-sm-2">대여 비용</label>
-				<div class="col-sm-3">
+				<div class="col-sm-1">
 					<input type="text" class="form-control" name="rent_price" value="${update.rent_price}" maxlength="50" placeholder="대여 비용"/>
 				</div>
+				<p class="won">원</p>
 			</div>
 			<div class="form-group">
 				<div class="col-sm-offset-9">
