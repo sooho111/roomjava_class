@@ -141,9 +141,9 @@ public class MemberDAOImpl implements MemberDAO {
 	// 비로그인
 	// -------------------------------------------------------------------------------------------------
 	@Override
-	public List<BookDTO> belogin(String m_name) throws Exception{
-		logger.info("MemberDAOImpl memberInsert(MemberDTO memberDTO)....."+m_name);
-		return sqlSession.selectList(namespace + ".belogin", m_name);
+	public List<BookDTO> belogin(String m_bname) throws Exception{
+		logger.info("MemberDAOImpl memberInsert(MemberDTO memberDTO)....."+m_bname);
+		return sqlSession.selectList(namespace + ".belogin", m_bname);
 	}
 	//-------------------------------------------------------------------------------------------------
 	// faq글 갯수 구하기 (Paging 처리)

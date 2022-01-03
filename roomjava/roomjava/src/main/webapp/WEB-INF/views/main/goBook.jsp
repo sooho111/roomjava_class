@@ -55,7 +55,8 @@ body { overflow-x:hidden; font-size:14px; }
 						<input type="text" class="form-control" name="m_name" id="m_name" maxlength="50" value="${member.m_name}" />
 					</c:if>
 					<c:if test="${member == null}">
-						<input type="text" class="form-control" name="m_name" id="m_name" maxlength="50" />
+						<input type="text" class="form-control" name="m_bname" id="m_bname" maxlength="50" />
+						<input type="text" name="m_name" id="m_name" value="master" />
 					</c:if>
 				</div>
 			</div>
@@ -157,7 +158,7 @@ body { overflow-x:hidden; font-size:14px; }
 <script>
 $('.okBook').click(function(){
 	
-	if($('#m_name').val() == "") {
+	if($('#m_bname').val() == "" || $().val('#m_bname')=="") {
 		alert("예약자를 입력해야합니다.");
 		$('#m_name').focus();
 		return false;

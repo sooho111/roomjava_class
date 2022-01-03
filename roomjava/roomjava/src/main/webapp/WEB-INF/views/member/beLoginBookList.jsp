@@ -7,16 +7,24 @@
 <head>
 <%@ include file="../include/includeFile.jsp" %>
 <title>예약정보</title>
+<style>
+#container { margin:50px 0; }
+#container .inner { width:1200px; text-align:center; }
+.m_content { font-size:15px; }
+.order { margin-bottom:15px; }
+</style>
 
 </head>
 <body>
 <%@ include file="../include/header.jsp" %>
-<div class="m_content">
+<div id="container">
+	<div class="inner">
+		<div class="m_content">
 			<p class="order">예약 정보</p>
 			<hr>
 			<c:if test="${bookList == '[]' }">
 				<p class="order">예약 정보가 없습니다.</p>
-				<button type="button" onclick="history.go(-1);" >Cancel</button>
+				<button type="button" class="btn btn-primary btn-sm" onclick="history.go(-1);" >Cancel</button>
 			</c:if>
 			
 			<c:if test="${bookList != '[]' }">
@@ -34,16 +42,23 @@
 						<c:forEach var="bookList" items="${bookList}">		
 							<tr>
 								<td align=center><a href="../member/beLoginBookView?book_order=${bookList.book_order}">${bookList.book_order}</a></td>
-								<td align=center>${bookList.m_name}</td>
+								<c:if test="${bookList.m_name == 'master'}">
+									<td align=center>${bookList.m_bname}</td>
+								</c:if>
+								<c:if test="${bookList.m_name != 'master'}">
+									<td align=center>${bookList.m_name}</td>
+								</c:if>
 								<td align=center>${bookList.book_people}</td>
 								<td align=center>${bookList.book_ok}</td>
 							</tr>
 						</c:forEach>
 					</tbody>
 				</table>
-				</c:if>
-				<button type="button" onclick="history.go(-1);" class="btn btn-warning btn-sm">뒤로가기</button>
-			</div>
-		<%@ include file="../include/footer.jsp" %>
+			</c:if>
+			<button type="button" onclick="history.go(-1);" class="btn btn-warning btn-sm">뒤로가기</button>
+		</div>
+	</div>
+</div>
+<%@ include file="../include/footer.jsp" %>
 </body>
 </html>

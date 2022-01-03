@@ -7,7 +7,8 @@ public class BookDTO {
 	
 	private int	 	book_bno;
 	private String 	book_order;		// 예약번호
-	private String 	m_name;		// 예약자 이름
+	private String 	m_name;			// 예약자 이름
+	private String	m_bname;			// 비회원 이름
 	private int	 	book_people;	// 예약 인원
 	private String 	book_tel;		// 예약자 전화번호
 	private String 	book_ok;		// 예약 상태(입금여부-가예약,예약완료,입실,퇴실)

@@ -30,16 +30,14 @@
 			<div class="form-group">
 				<label class="control-label col-sm-4">이름</label>
 				<div class="col-sm-3">
-					<input type="text" class="form-control" id="book_name" name="book_name"
-						maxlength="16" placeholder="Enter username" />
+					<input type="text" class="form-control" id="m_bname" name="m_bname" maxlength="16" placeholder="Enter username" />
 				</div>
 			</div>
 
 			<div class="form-group">
 				<label class="control-label col-sm-4">전화번호</label>
 				<div class="col-sm-3">
-					<input type="text" class="form-control" id="book_tel"
-						placeholder="Enter tel" name="book_tel">
+					<input type="text" class="form-control" id="book_tel" placeholder="Enter tel" name="book_tel">
 				</div>
 			</div>
 			
@@ -67,9 +65,9 @@
 	// 예약확인 버튼을 눌렀을 경우
 	$("#submit").on("click", function() {
 
-		if ($("#book_name").val() == "") { // 이름를 입력하지 않았으면
+		if ($("#m_bname").val() == "") { // 이름를 입력하지 않았으면
 			alert("이름을 입력하십시오.");
-			$("#book_name").focus();
+			$("#m_bname").focus();
 			return false;
 		}
 		if ($("#book_tel").val() == "") { // 번호를 입력하지 않았으면

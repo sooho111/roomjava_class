@@ -93,12 +93,9 @@ public class MainController {
 	
     	if(room_bno == null) { // (예약된 날 제외)방 리스트를 종류대로 뿌려주기
         	List<RoomInfraDTO> roominfraDTO = mainService.allRooms();
-        	List<RoomInfraDTO> alreadyRoom = mainService.excludeRooms(bookDTO);
-        	logger.info("휴 이게 맞아?" + alreadyRoom);
         	List<RoomKindDTO> roomkindDTO = mainService.getKind();
         	model.addAttribute("allRooms", roominfraDTO);
         	model.addAttribute("kinds", roomkindDTO);
-        	model.addAttribute("alreadyRoom", alreadyRoom);
         	
     	} else { // 방 리스트를 종류대로 뿌려주기
     		List<RoomInfraDTO> kindroominfraDTO = mainService.kindRooms(room_bno);
@@ -258,7 +255,9 @@ public class MainController {
 	// 예약하기 DB에 정보 담기
 	//------------------------------------------------------------------------------------------------
 	@RequestMapping(value="/okBook", method=RequestMethod.POST)
-	public String okBook(BookDTO bookDTO) throws Exception {
+	public String okBook(BookDTO bookDTO, HttpSession session) throws Exception {
+		
+		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
 		
 		Calendar cal = Calendar.getInstance();
 		int year = cal.get(Calendar.YEAR);
@@ -272,8 +271,12 @@ public class MainController {
 		String book_order = ymd + "_" + subNum;
 		bookDTO.setBook_order(book_order);
 		
-		mainService.insertBook(bookDTO);
-
+		if(memberDTO == null) {
+			mainService.insertBmemBook(bookDTO);
+		} else {
+			mainService.insertBook(bookDTO);
+		}
+		
 		return "/main/okBook";
 		
 	} // end String okBook() throws Exception	

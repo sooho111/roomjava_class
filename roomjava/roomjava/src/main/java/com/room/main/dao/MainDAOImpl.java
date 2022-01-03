@@ -122,9 +122,8 @@ class MainDAOImpl implements MainDAO {
 	// 예약날 비활성화
 	//-------------------------------------------------------------------------------------------------
 	@Override
-	public List<RoomInfraDTO> excludeRooms(BookDTO bookDTO) throws Exception {
-		logger.info("데오~~~~~~~~~~~~~~~~~~~~~~~~````````" + bookDTO);
-		return sqlSession.selectList(namespace + ".excludeRooms", bookDTO);
+	public void insertBmemBook(BookDTO bookDTO) throws Exception {
+		sqlSession.insert(namespace + ".insertBmemBook", bookDTO);
 	}
 	
 }

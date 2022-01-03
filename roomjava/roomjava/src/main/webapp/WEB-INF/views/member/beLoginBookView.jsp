@@ -8,10 +8,19 @@
 <title>예약 정보</title>
 <%@ include file="../include/includeFile.jsp" %>
 
+<style>
+#container { margin:50px 0; }
+#container .inner { width:1200px; text-align:center; }
+.m_content { font-size:15px; }
+
+</style>
+
 </head>
 <body>
 <%@ include file="../include/header.jsp" %>
-<div class="m_content">
+<div id="container">
+	<div class="inner">
+		<div class="m_content">
 			<p class="order"> 조회 </p>
 			<hr>
 			<table class="table table-bordered table-hover">
@@ -54,7 +63,7 @@
 						
 						<tbody>
 							<tr>
-								<td align=center>${bookView.m_name}</td>
+								<td align=center>${bookView.m_bname}</td>
 								<td align=center>${bookView.book_tel}</td>
 								<td align=center>${bookView.book_people}</td>
 								<td align=center>${bookView.start_date}</td>
@@ -67,9 +76,11 @@
 				</c:forEach>
 			</table>
 			<button type="button" onclick="history.go(-1);" class="btn btn-warning btn-sm">뒤로가기</button>
-			<input class="btn btn-danger" type="button" value="예약 취소" id="deleteBook"/>
+			<input class="btn btn-danger btn-sm" type="button" value="예약 취소" id="deleteBook"/>
 		</div>
-		<%@ include file="../include/footer.jsp" %>
+	</div>
+</div>
+<%@ include file="../include/footer.jsp" %>
 </body>
 <script>
 $("#deleteBook").click(function(){

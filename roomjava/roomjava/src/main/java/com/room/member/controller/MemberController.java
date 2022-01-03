@@ -90,22 +90,10 @@ public class MemberController {
 		return "/member/belogin";
 
 	} // end String getLogin()
-	// -------------------------------------------------------------------------------------------------
-	// 비로그인 POST
-	// -------------------------------------------------------------------------------------------------
-	@RequestMapping(value = "/belogin", method = RequestMethod.POST)
-	public String belogin(BookDTO bookDTO, HttpServletRequest req, RedirectAttributes rttr) throws Exception {
-
-		// 넘겨받은 회원정보를 가지고 Service에게 의뢰한다.
-		List<BookDTO> bookList = memberService.belogin(bookDTO.getM_name());
-
-		return "member/beLoginBookList";
-	}
-	 
+		 
 	@RequestMapping (value ="/beLoginBookList")
- 	public void beLoginBookList(BookDTO bookDTO,Model model) throws Exception {
-		List<BookDTO> bookList = memberService.belogin(bookDTO.getM_name());
-		BookDTO bebookDTO = new BookDTO();
+ 	public void beLoginBookList(BookDTO bookDTO, Model model) throws Exception {
+		List<BookDTO> bookList = memberService.belogin(bookDTO.getM_bname());
 
 		logger.info("다 가져온다며 " + bookList);
 			
@@ -130,6 +118,7 @@ public class MemberController {
 		bookDTO.setBook_people(bookView.get(0).getBook_people());
 		bookDTO.setBook_ok(bookView.get(0).getBook_ok());
 		bookDTO.setBook_tel(bookView.get(0).getBook_tel());
+		bookDTO.setM_bname(bookView.get(0).getM_bname());
 		logger.info("orderView.get(0).getDelivery_name() => " + bookDTO);
 		
 		model.addAttribute("bookView", bookView);

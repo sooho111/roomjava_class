@@ -121,17 +121,21 @@ and m_email = #{m_email}
 	</select>
 	
 		<select id="bookView" resultType="com.room.main.dto.BookDTO">
-SELECT 	book_order,m_name,book_people,book_tel,book_ok,start_date,end_date,ri.r_bno,b.r_bno,ri.r_kind,ri.r_name,rk.room_class
-FROM	book b join room_infra ri join room_kind rk on ri.r_kind = rk.room_bno on ri.r_bno = b.r_bno
-WHERE	b.book_order = #{book_order};
-	</select>
+			SELECT 	book_order, m_name, m_bname, book_people, book_tel, book_ok,
+				start_date, end_date, ri.r_bno, b.r_bno, ri.r_kind, ri.r_name, rk.room_class
+			FROM	book b join room_infra ri 
+			join room_kind rk 
+			on ri.r_kind = rk.room_bno 
+			on ri.r_bno = b.r_bno
+			WHERE	b.book_order = #{book_order};
+		</select>
 	
 	
 	<select id="belogin" resultType="com.room.main.dto.BookDTO" parameterType="String" >
-SELECT *
-FROM book
-WHERE m_name = #{m_name}
-</select>
+		SELECT *
+		FROM book
+		WHERE m_bname = #{m_bname}
+	</select>
 	     <!-- faq 검색조건 -->
    	<sql id="faqsearch">
       	<if test="searchType != null">
