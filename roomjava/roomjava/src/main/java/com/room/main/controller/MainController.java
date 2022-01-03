@@ -92,7 +92,6 @@ public class MainController {
     public String roomList(String room_bno, Model model, BookDTO bookDTO) throws Exception {
 	
     	if(room_bno == null) { // (예약된 날 제외)방 리스트를 종류대로 뿌려주기
-    		logger.info("뭐야~~~~~~~~~~~~~~11111111111111111111");
         	List<RoomInfraDTO> roominfraDTO = mainService.allRooms();
         	List<RoomInfraDTO> alreadyRoom = mainService.excludeRooms(bookDTO);
         	logger.info("휴 이게 맞아?" + alreadyRoom);
@@ -102,7 +101,6 @@ public class MainController {
         	model.addAttribute("alreadyRoom", alreadyRoom);
         	
     	} else { // 방 리스트를 종류대로 뿌려주기
-    		logger.info("뭐야~~~~~~~~~~~~~~22222222222222222222");
     		List<RoomInfraDTO> kindroominfraDTO = mainService.kindRooms(room_bno);
     		RoomKindDTO list = mainService.soKind(room_bno);
     		List<RoomKindDTO> roomkindDTO = mainService.getKind();
@@ -128,14 +126,10 @@ public class MainController {
 		Calendar cal = Calendar.getInstance();
 		SimpleDateFormat sdformat = new SimpleDateFormat("yyyy-MM-dd");
 		
-		logger.info("맞지......?" + bookDTO);
-		
 		cal.setTime(sdformat.parse(bookDTO.getEnd_date()));
 		cal.add(Calendar.DATE, +1);
 		
 		bookDTO.setEnd_date(sdformat.format(cal.getTime()));
-		
-		logger.info("맞아???? ^^ " +bookDTO.getEnd_date());
 		
 		model.addAttribute("room", roomInfraDTO);
 		model.addAttribute("kinds", roomkindDTO);
@@ -219,11 +213,7 @@ public class MainController {
 	@ResponseBody
 	@RequestMapping("/haveBookDay")
 	public int haveBookDay(BookDTO bookDTO) throws Exception {
-		
-		logger.info("잘 왔어?? " + bookDTO);
-		
 		int result = mainService.haveBookDay(bookDTO);
-		logger.info("얼마냐 " + result);
 		return result;
 
 	} // end int haveBookDay(BookDTO bookDTO)
@@ -282,22 +272,11 @@ public class MainController {
 		String book_order = ymd + "_" + subNum;
 		bookDTO.setBook_order(book_order);
 		
-		logger.info("예약번호 만들어지나요" + book_order);
-		logger.info("잠온다 " + bookDTO);
 		mainService.insertBook(bookDTO);
-		logger.info("즐겁네");
+
 		return "/main/okBook";
 		
-	} // end String okBook() throws Exception
-	
-//	//------------------------------------------------------------------------------------------------
-//	// goBook에서 예약완료(goBook => okBook)
-//	//------------------------------------------------------------------------------------------------
-//	@RequestMapping(value="/okBook", method=RequestMethod.POST)
-//	public String okBook(@RequestParam("r_bno") int r_bno, BookDTO bookDTO, Model model, HttpSession session) throws Exception {
-//		return "main/okBook";
-//	}
-	
+	} // end String okBook() throws Exception	
 
 }
 //	@RequestMapping(value = "/book_ps")
