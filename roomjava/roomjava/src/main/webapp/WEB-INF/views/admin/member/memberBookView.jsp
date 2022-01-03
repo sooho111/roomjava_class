@@ -41,7 +41,7 @@
 					<c:forEach var="View" items="${memberBookView}">				
 						<tr>
 						<td align=center>${View.room_class}, ${View.r_name}호 </td>
-						<td align=center>${View.book_name}</td>
+						<td align=center>${View.m_name}</td>
 						<td align=center>${View.book_people}</td>
 						<td align=center>${View.book_tel}</td>
 						<td align=center>${View.book_ok}</td>
