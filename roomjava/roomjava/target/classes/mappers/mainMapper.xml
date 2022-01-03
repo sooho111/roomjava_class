@@ -111,13 +111,12 @@
 		
    	</select>
    	
-   	<!-- 예약날 비활성화 -->
-   	<select id="excludeRooms" resultType="com.room.main.dto.RoomInfraDTO">
-	   	SELECT i.r_bno, i.r_name, i.r_kind, i.r_people, i.r_price, i.r_base, i.r_rent, b.start_date, b.end_date
-		FROM book b, room_infra i
-		WHERE b.r_bno = i.r_bno
-		AND (start_date = #{start_date}
-		OR start_date = #{end_date});
-   	</select>
-   	
+   	<!-- 비회원 예약하기 -->
+	<insert id="insertBmemBook">
+		INSERT INTO book( book_order, m_bname, m_name, book_people, book_tel, start_date, 
+   			end_date, r_bno, room_class, r_name, r_kind, r_rent, r_fnc )
+   		VALUES ( #{book_order}, #{m_bname}, #{m_name}, #{book_people}, #{book_tel}, 
+   			#{start_date}, #{end_date}, #{r_bno}, #{room_class}, #{r_name}, #{r_kind}, #{r_rent}, #{r_fnc} )
+	</insert>
+	   	
 </mapper>

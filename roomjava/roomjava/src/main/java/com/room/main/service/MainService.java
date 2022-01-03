@@ -67,8 +67,8 @@ public interface MainService {
 	public int haveBookDay(BookDTO bookDTO) throws Exception;
 	
 	//-------------------------------------------------------------------------------------------------
-	// 예약날 비활성화
+	// 비회원 예약하기
 	//-------------------------------------------------------------------------------------------------
-	public List<RoomInfraDTO> excludeRooms(BookDTO bookDTO) throws Exception;
+	public void insertBmemBook(BookDTO bookDTO) throws Exception;
 	
 }

@@ -114,12 +114,11 @@ public class MainServiceImpl implements MainService {
 	} // end int haveBookDay(BookDTO bookDTO)
 	
 	//-------------------------------------------------------------------------------------------------
-	// 예약날 비활성화
+	// 비회원 예약하기
 	//-------------------------------------------------------------------------------------------------
 	@Override
-	public List<RoomInfraDTO> excludeRooms(BookDTO bookDTO) throws Exception {
-		logger.info("서비스" + bookDTO);
-		return mainDAO.excludeRooms(bookDTO);
+	public void insertBmemBook(BookDTO bookDTO) throws Exception {
+		mainDAO.insertBmemBook(bookDTO);
 	}
 	
 }

@@ -54,7 +54,7 @@
 						
 						<tbody>
 							<tr>
-								<td align=center>${bookView.m_name}</td>
+								<td align=center>${bookView.m_bname}</td>
 								<td align=center>${bookView.book_tel}</td>
 								<td align=center>${bookView.book_people}</td>
 								<td align=center>${bookView.start_date}</td>

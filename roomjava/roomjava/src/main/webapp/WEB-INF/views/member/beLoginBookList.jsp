@@ -34,7 +34,12 @@
 						<c:forEach var="bookList" items="${bookList}">		
 							<tr>
 								<td align=center><a href="../member/beLoginBookView?book_order=${bookList.book_order}">${bookList.book_order}</a></td>
-								<td align=center>${bookList.m_name}</td>
+								<c:if test="${bookList.m_name == 'master'}">
+									<td align=center>${bookList.m_bname}</td>
+								</c:if>
+								<c:if test="${bookList.m_name != 'master'}">
+									<td align=center>${bookList.m_name}</td>
+								</c:if>
 								<td align=center>${bookList.book_people}</td>
 								<td align=center>${bookList.book_ok}</td>
 							</tr>
