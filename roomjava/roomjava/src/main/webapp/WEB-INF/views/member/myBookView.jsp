@@ -62,7 +62,7 @@ th { text-align:center; }
 				<li></li>
 				<li><a href="myPage">예약 확인</a><span class="glyphicon glyphicon-chevron-right"></span></li>
 				<li><a href="memberUpdate/${member.m_id}">회원 정보 수정</a><span class="glyphicon glyphicon-chevron-right"></span></li>
-				<li class = "memberDelete"><a href="#">회원 탈퇴</a><span class="glyphicon glyphicon-chevron-right"></span></li>
+				<li class = "memberDelete"><a href="memberDelete/${member.m_id}">회원 탈퇴</a><span class="glyphicon glyphicon-chevron-right"></span></li>
 			</ul>
 		</div>
 		<div class="m_content">

@@ -38,7 +38,7 @@
 					<c:forEach var="bookView" items="${bookView}">				
 						<tr>
 							<td align=center>${bookView.book_order}</td>
-							<td align=center>${bookView.m_name}</td>
+							<td align=center>${bookView.m_bname}</td>
 							<td align=center>${bookView.book_people}</td>
 							<td class="delivery" align=center>${bookView.book_ok}</td>
 							<td align=center>${bookView.payment}</td>
