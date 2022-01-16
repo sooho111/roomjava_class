@@ -30,6 +30,7 @@
 						<th align=center>예약자</th>
 						<th align=center>인원수</th>
 						<th align=center>주문상태</th>
+						<th align=center>입금 계좌</th>
 					</tr>
 				</thead>
 				
@@ -37,9 +38,10 @@
 					<c:forEach var="bookView" items="${bookView}">				
 						<tr>
 							<td align=center>${bookView.book_order}</td>
-							<td align=center>${bookView.m_name}</td>
+							<td align=center>${bookView.m_bname}</td>
 							<td align=center>${bookView.book_people}</td>
-							<td class="delivery" align=center>${bookView.book_ok}</td>			
+							<td class="delivery" align=center>${bookView.book_ok}</td>
+							<td align=center>${bookView.payment}</td>
 						</tr>
 						<input type="hidden" id="book_order" value="${bookView.book_order}"/>
 					</c:forEach>
@@ -58,6 +60,7 @@
 								<th align=center>종료일</th>
 								<th align=center>방번호</th>
 								<th align=center>방종류</th>
+								<th align=center>총 액</th>
 							</tr>
 						</thead>
 						
@@ -70,6 +73,7 @@
 								<td align=center>${bookView.end_date}</td>
 								<td align=center>${bookView.r_name}</td>
 								<td align=center>${bookView.room_class}</td>
+								<td align=center>${bookView.r_price}원</td>
 							</tr>
 						</tbody>		
 					</c:if>

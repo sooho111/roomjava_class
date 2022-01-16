@@ -56,7 +56,7 @@ body { overflow-x:hidden; font-size:14px; }
 					</c:if>
 					<c:if test="${member == null}">
 						<input type="text" class="form-control" name="m_bname" id="m_bname" maxlength="50" />
-						<input type="text" name="m_name" id="m_name" value="master" />
+						<input type="hidden" name="m_name" id="m_name" value="master" />
 					</c:if>
 				</div>
 			</div>
@@ -131,7 +131,7 @@ body { overflow-x:hidden; font-size:14px; }
 				<div class="col-sm-5">
 					<select class="form-control" name="payment" id="payment">
 						<c:forEach var="payment" items="${payment}">
-							<option value="${payment.pay_name}">${payment.pay_name}, ${payment.pay_account}, ${payment.pay_bank}</option>
+							<option value="${payment.pay_name}, ${payment.pay_account}, ${payment.pay_bank}">${payment.pay_name}, ${payment.pay_account}, ${payment.pay_bank}</option>
 						</c:forEach>
 					</select>
 				</div>

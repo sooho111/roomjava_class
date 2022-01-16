@@ -62,7 +62,7 @@ th { text-align:center; }
 				<li></li>
 				<li><a href="myPage">예약 확인</a><span class="glyphicon glyphicon-chevron-right"></span></li>
 				<li><a href="memberUpdate/${member.m_id}">회원 정보 수정</a><span class="glyphicon glyphicon-chevron-right"></span></li>
-				<li class = "memberDelete"><a href="#">회원 탈퇴</a><span class="glyphicon glyphicon-chevron-right"></span></li>
+				<li class = "memberDelete"><a href="memberDelete/${member.m_id}">회원 탈퇴</a><span class="glyphicon glyphicon-chevron-right"></span></li>
 			</ul>
 		</div>
 		<div class="m_content">
@@ -75,6 +75,7 @@ th { text-align:center; }
 						<th align=center>예약자</th>
 						<th align=center>인원수</th>
 						<th align=center>주문상태</th>
+						<th align=center>입금계좌</th>
 					</tr>
 				</thead>
 				
@@ -85,6 +86,7 @@ th { text-align:center; }
 							<td align=center>${bookView.m_name}</td>
 							<td align=center>${bookView.book_people}</td>
 							<td class="delivery" align=center>${bookView.book_ok}</td>
+							<td align=center>${bookView.payment}</td>
 						</tr>
 					</c:forEach>
 				</tbody>
@@ -102,6 +104,7 @@ th { text-align:center; }
 								<th align=center>종료일</th>
 								<th align=center>방번호</th>
 								<th align=center>방종류</th>
+								<th align=center>총 액</th>
 							</tr>
 						</thead>
 						
@@ -114,6 +117,7 @@ th { text-align:center; }
 								<td align=center>${bookView.end_date}</td>
 								<td align=center>${bookView.r_name}</td>
 								<td align=center>${bookView.room_class}</td>
+								<td align=center>${bookView.r_price}원</td>
 							</tr>
 						</tbody>		
 					</c:if>

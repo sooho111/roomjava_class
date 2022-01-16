@@ -20,4 +20,6 @@ public class BookDTO {
 	private int		r_kind;
 	private String 	r_rent;
 	private String	r_fnc;
+	private String 	payment;
+	private int		r_price;
 }
